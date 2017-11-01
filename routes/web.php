@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('admin.clinic');
 });
+
+Route::get('/user', function() {
+    return view('admin.management.user.list');
+});

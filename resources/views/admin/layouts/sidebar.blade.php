@@ -32,15 +32,15 @@
             </li>
 
             <li class="nav-item start">
-                <a href="admin/user" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">User</span>
+                <a href="management/public/user" class="nav-link nav-toggle">
+                    <i class="fa fa-user-md"></i>
+                    <span class="title">Người Dùng</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item start">
-                        <a href="admin/user" class="nav-link ">
+                        <a href="/user" class="nav-link ">
                             <i class="icon-bar-chart"></i>
                             <span class="title">Danh Sách</span>
                             <span class="selected"></span>
@@ -52,8 +52,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/role" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Quyền</span>
+                    <i class="fa fa-male"></i>
+                    <span class="title">Bệnh Nhân</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -72,8 +72,8 @@
                 
             <li class="nav-item start">
                 <a href="admin/userrole" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Phân Quyền</span>
+                    <i class="fa fa-globe"></i>
+                    <span class="title">Tỉnh / Thành Phố</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -91,8 +91,8 @@
 
             <li class="nav-item start">
                 <a href="admin/product" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Sản Phẩm</span>
+                    <i class="fa fa-map-signs"></i>
+                    <span class="title">Quận / Huyện</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -105,36 +105,14 @@
                         </a>
                     </li>
 
-                    <li class="nav-item start">
-                        <a href="admin/product-export" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Xuất Sản Phẩm</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item start">
-                        <a href="admin/productcategory" class="nav-link ">
-                            <i class="icon-list"></i>
-                            <span class="title">Danh Mục Sản Phẩm</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item start">
-                        <a href="admin/productunit" class="nav-link ">
-                            <i class="fa fa-retweet"></i>
-                            <span class="title">Đơn vị tính</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
                 </ul>
                 <!-- end receipt  -->
             </li>
 
             <li class="nav-item start">
                 <a href="admin/product" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Nhà Cung Cấp</span>
+                    <i class="fa fa-hospital-o"></i>
+                    <span class="title">Phòng Khám</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -142,7 +120,7 @@
                     <li class="nav-item start">
                         <a href="admin/ingredient-purchase" class="nav-link ">
                             <i class="icon-bar-chart"></i>
-                            <span class="title">Nhập Nguyên Liệu Nhà Cung Cấp</span>
+                            <span class="title">Danh Sách</span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -152,8 +130,8 @@
 
             <li class="nav-item start">
                 <a href="admin/customer-type" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Loại Khách Hàng</span>
+                    <i class="fa fa-briefcase"></i>
+                    <span class="title">Chuyên Khoa</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -170,8 +148,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/customer" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Khách Hàng</span>
+                    <i class="fa fa-credit-card"></i>
+                    <span class="title">Thẻ Bảo Hiểm</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -188,8 +166,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/product-stock" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Sản Phẩm Tồn Kho</span>
+                    <i class="fa fa-medkit"></i>
+                    <span class="title">Thuốc</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -202,21 +180,14 @@
                         </a>
                     </li>
 
-                    <li class="nav-item start">
-                        <a href="admin/product-destroy" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Quản Lý Sản Phẩm Tiêu Hủy</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
                 </ul>
 
                 <!-- end receipt  -->
             </li>
             <li class="nav-item start">
                 <a href="admin/product-stock" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Đơn Hàng</span>
+                    <i class="fa fa-check"></i>
+                    <span class="title">Hóa Đơn</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -231,10 +202,28 @@
                 </ul>
                 <!-- end receipt  -->
             </li>
+            <li class="nav-item start">
+                <a href="admin/manage_step" class="nav-link nav-toggle">
+                    <i class="fa fa-info"></i>
+                    <span class="title">Chi Tiết Hóa Đơn</span>
+                    <span class="selected"></span>
+                    <span class="arrow open"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start">
+                        <a href="admin/manage_step" class="nav-link ">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">Danh sách</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- end receipt  -->
+            </li>
              <li class="nav-item start">
                 <a href="admin/deliver" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Giao Hàng</span>
+                    <i class="fa fa-stethoscope"></i>
+                    <span class="title">Dịch Vụ</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -251,8 +240,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/manage_receipt" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Kế hoạch sản xuất</span>
+                    <i class="fa fa-clock-o"></i>
+                    <span class="title">Lịch Hẹn</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -264,19 +253,13 @@
                             <span class="selected"></span>
                         </a>
                     </li>
-                    <li class="nav-item start">
-                        <a href="admin/plan/add" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Tạo kế hoạch sản xuất</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
+                
                 </ul>
             </li>
             <li class="nav-item start">
                 <a href="admin/manage_unit" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Đơn vị tính</span>
+                    <i class="fa fa-heart"></i>
+                    <span class="title">Bệnh Án</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -293,8 +276,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/manage_ingredient_sample" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Nguyên liệu mẫu</span>
+                    <i class="fa fa-heartbeat"></i>
+                    <span class="title">Xét Nghiệm</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -311,8 +294,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/list_supplier" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Nhà cung cấp</span>
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="title">Kết Quả Xét Nghiệm</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -329,8 +312,8 @@
             </li>
             <li class="nav-item start">
                 <a href="admin/manage_receipt" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Công thức</span>
+                    <i class="fa fa-money"></i>
+                    <span class="title">Giao Dịch</span>
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
@@ -345,67 +328,7 @@
                 </ul>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item start">
-                <a href="admin/manage_step" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Công đoạn</span>
-                    <span class="selected"></span>
-                    <span class="arrow open"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item start">
-                        <a href="admin/manage_step" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Danh sách</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item start">
-                        <a href="admin/list_product_step" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Công đoạn theo sản phẩm</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- end receipt  -->
-            </li>
-            <li class="nav-item start">
-                <a href="admin/import/ingredientsample" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">KH Nhập Nguyên Liệu</span>
-                    <span class="selected"></span>
-                    <span class="arrow open"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item start">
-                        <a href="admin/import/ingredientsample" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Danh sách</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- end receipt  -->
-            </li>
-             <li class="nav-item start">
-                <a href="admin/promotion" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Chương Trình khuyến Mãi</span>
-                    <span class="selected"></span>
-                    <span class="arrow open"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item start">
-                        <a href="admin/promotion" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Danh sách</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- end receipt  -->
-            </li>
+            
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
     </div>
