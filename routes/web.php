@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/user', function() {
     return view('admin.management.user.list');
 });
+
+Route::get('/add-user',function(){
+	return view('admin.management.user.add');
+});

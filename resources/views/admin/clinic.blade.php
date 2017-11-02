@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="portlet-body">
                                         <div id="site_statistics_loading">
-                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                                            <img src="global/img/loading.gif" alt="loading" /> </div>
                                         <div id="site_statistics_content" class="display-none">
                                             <div id="site_statistics" class="chart"> </div>
                                         </div>
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="portlet-body">
                                         <div id="site_activities_loading">
-                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                                            <img src="global/img/loading.gif" alt="loading" /> </div>
                                         <div id="site_activities_content" class="display-none">
                                             <div id="site_activities" style="height: 228px;"> </div>
                                         </div>
@@ -283,7 +283,7 @@
                                                 <div class="mt-comments">
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar1.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar1.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Michael Baker</span>
@@ -308,7 +308,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar6.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar6.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Larisa Maskalyova</span>
@@ -333,7 +333,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Natasha Kim</span>
@@ -358,7 +358,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar4.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar4.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Sebastian Davidson</span>
@@ -389,7 +389,7 @@
                                                 <div class="mt-comments">
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar4.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar4.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Michael Baker</span>
@@ -414,7 +414,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Larisa Maskalyova</span>
@@ -439,7 +439,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar6.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar6.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Natasha Kim</span>
@@ -464,7 +464,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="../assets/pages/media/users/avatar1.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar1.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Sebastian Davidson</span>
@@ -517,7 +517,7 @@
                                                 <div class="mt-actions">
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar10.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar10.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -545,7 +545,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar3.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar3.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -573,7 +573,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar2.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar2.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -601,7 +601,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar7.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar7.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -629,7 +629,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -657,7 +657,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar9.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar9.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -691,7 +691,7 @@
                                                 <div class="mt-actions">
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar1.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar1.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -719,7 +719,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -747,7 +747,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar5.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar5.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -775,7 +775,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="../assets/pages/media/users/avatar2.jpg" /> </div>
+                                                            <img src="pages/media/users/avatar2.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -909,7 +909,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_3.jpg" />
+                                                                <img src="pages/media/users/avatar80_3.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -935,7 +935,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_3.jpg" />
+                                                                <img src="pages/media/users/avatar80_3.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Hugh Grant</a>
@@ -977,7 +977,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_1.jpg" />
+                                                                <img src="pages/media/users/avatar80_1.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue">Rory Matthew</a>
@@ -1001,7 +1001,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1023,7 +1023,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_1.jpg" />
+                                                                <img src="pages/media/users/avatar80_1.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Matt Goldman</a>
@@ -1063,7 +1063,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_1.jpg" />
+                                                                <img src="pages/media/users/avatar80_1.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Rory Matthew</a>
@@ -1072,7 +1072,7 @@
                                                         </div>
                                                         <div class="clearfix"></div>
                                                         <div class="mt-content border-grey-steel">
-                                                            <img class="timeline-body-img pull-left" src="../assets/pages/media/blog/5.jpg" alt="">
+                                                            <img class="timeline-body-img pull-left" src="pages/media/blog/5.jpg" alt="">
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis
                                                                 qui ut. laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut. </p>
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis
@@ -1088,7 +1088,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_5.jpg" />
+                                                                <img src="pages/media/users/avatar80_5.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Jessica Wolf</a>
@@ -1097,7 +1097,7 @@
                                                         </div>
                                                         <div class="clearfix"></div>
                                                         <div class="mt-content border-grey-steel">
-                                                            <img class="timeline-body-img pull-right" src="../assets/pages/media/blog/6.jpg" alt="">
+                                                            <img class="timeline-body-img pull-right" src="pages/media/blog/6.jpg" alt="">
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis
                                                                 qui ut.</p>
                                                             <a href="javascript:;" class="btn btn-circle green-sharp">Read More</a>
@@ -1109,7 +1109,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1131,7 +1131,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1153,7 +1153,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1175,7 +1175,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1283,7 +1283,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Lisa Bold</a>
@@ -1307,7 +1307,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_3.jpg" />
+                                                                <img src="pages/media/users/avatar80_3.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Hugh Grant</a>
@@ -1349,7 +1349,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_1.jpg" />
+                                                                <img src="pages/media/users/avatar80_1.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue">Rory Matthew</a>
@@ -1373,7 +1373,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1395,7 +1395,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_1.jpg" />
+                                                                <img src="pages/media/users/avatar80_1.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Matt Goldman</a>
@@ -1435,7 +1435,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_1.jpg" />
+                                                                <img src="pages/media/users/avatar80_1.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Rory Matthew</a>
@@ -1444,7 +1444,7 @@
                                                         </div>
                                                         <div class="clearfix"></div>
                                                         <div class="mt-content border-grey-steel">
-                                                            <img class="timeline-body-img pull-left" src="../assets/pages/media/blog/5.jpg" alt="">
+                                                            <img class="timeline-body-img pull-left" src="pages/media/blog/5.jpg" alt="">
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis
                                                                 qui ut. laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut. </p>
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis
@@ -1460,7 +1460,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_5.jpg" />
+                                                                <img src="pages/media/users/avatar80_5.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Jessica Wolf</a>
@@ -1469,7 +1469,7 @@
                                                         </div>
                                                         <div class="clearfix"></div>
                                                         <div class="mt-content border-grey-steel">
-                                                            <img class="timeline-body-img pull-right" src="../assets/pages/media/blog/6.jpg" alt="">
+                                                            <img class="timeline-body-img pull-right" src="pages/media/blog/6.jpg" alt="">
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis
                                                                 qui ut.</p>
                                                             <a href="javascript:;" class="btn btn-circle green-sharp">Read More</a>
@@ -1481,7 +1481,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1503,7 +1503,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1525,7 +1525,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -1547,7 +1547,7 @@
                                                         </div>
                                                         <div class="mt-author">
                                                             <div class="mt-avatar">
-                                                                <img src="../assets/pages/media/users/avatar80_2.jpg" />
+                                                                <img src="pages/media/users/avatar80_2.jpg" />
                                                             </div>
                                                             <div class="mt-author-name">
                                                                 <a href="javascript:;" class="font-blue-madison">Andres Iniesta</a>
@@ -2389,7 +2389,7 @@
                                     </div>
                                     <div class="portlet-body">
                                         <div id="region_statistics_loading">
-                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
+                                            <img src="global/img/loading.gif" alt="loading" /> </div>
                                         <div id="region_statistics_content" class="display-none">
                                             <div class="btn-toolbar margin-bottom-10">
                                                 <div class="btn-group btn-group-circle" data-toggle="buttons">
@@ -3010,7 +3010,7 @@
                                         <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
                                             <ul class="chats">
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar2.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Lisa Wong </a>
@@ -3019,7 +3019,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar2.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Lisa Wong </a>
@@ -3028,7 +3028,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3037,7 +3037,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3046,7 +3046,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar3.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Richard Doe </a>
@@ -3055,7 +3055,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar3.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Richard Doe </a>
@@ -3064,7 +3064,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3073,7 +3073,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar3.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Richard Doe </a>
@@ -3082,7 +3082,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3150,7 +3150,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="mt-img">
-                                                        <img src="../assets/pages/media/users/avatar80_8.jpg"> </div>
+                                                        <img src="pages/media/users/avatar80_8.jpg"> </div>
                                                     <div class="mt-body">
                                                         <h3 class="mt-username">Diana Ellison</h3>
                                                         <p class="mt-user-title"> Lorem Ipsum is simply dummy text. </p>
@@ -3177,7 +3177,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="mt-img">
-                                                        <img src="../assets/pages/media/users/avatar80_7.jpg"> </div>
+                                                        <img src="pages/media/users/avatar80_7.jpg"> </div>
                                                     <div class="mt-body">
                                                         <h3 class="mt-username">Jason Baker</h3>
                                                         <p class="mt-user-title"> Lorem Ipsum is simply dummy text. </p>
@@ -3204,7 +3204,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="mt-img">
-                                                        <img src="../assets/pages/media/users/avatar80_6.jpg"> </div>
+                                                        <img src="pages/media/users/avatar80_6.jpg"> </div>
                                                     <div class="mt-body">
                                                         <h3 class="mt-username">Julia Berry</h3>
                                                         <p class="mt-user-title"> Lorem Ipsum is simply dummy text. </p>
@@ -3245,13 +3245,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="mt-widget-2">
-                                                    <div class="mt-head" style="background-image: url(../assets/pages/img/background/32.jpg);">
+                                                    <div class="mt-head" style="background-image: url(pages/img/background/32.jpg);">
                                                         <div class="mt-head-label">
                                                             <button type="button" class="btn btn-success">Manhattan</button>
                                                         </div>
                                                         <div class="mt-head-user">
                                                             <div class="mt-head-user-img">
-                                                                <img src="../assets/pages/img/avatars/team7.jpg"> </div>
+                                                                <img src="pages/img/avatars/team7.jpg"> </div>
                                                             <div class="mt-head-user-info">
                                                                 <span class="mt-user-name">Chris Jagers</span>
                                                                 <span class="mt-user-time">
@@ -3283,13 +3283,13 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mt-widget-2">
-                                                    <div class="mt-head" style="background-image: url(../assets/pages/img/background/43.jpg);">
+                                                    <div class="mt-head" style="background-image: url(pages/img/background/43.jpg);">
                                                         <div class="mt-head-label">
                                                             <button type="button" class="btn btn-danger">London</button>
                                                         </div>
                                                         <div class="mt-head-user">
                                                             <div class="mt-head-user-img">
-                                                                <img src="../assets/pages/img/avatars/team3.jpg"> </div>
+                                                                <img src="pages/img/avatars/team3.jpg"> </div>
                                                             <div class="mt-head-user-info">
                                                                 <span class="mt-user-name">Harry Harris</span>
                                                                 <span class="mt-user-time">
@@ -3345,7 +3345,7 @@
                                             <div class="col-md-4">
                                                 <div class="mt-widget-4">
                                                     <div class="mt-img-container">
-                                                        <img src="../assets/pages/img/background/34.jpg" /> </div>
+                                                        <img src="pages/img/background/34.jpg" /> </div>
                                                     <div class="mt-container bg-purple-opacity">
                                                         <div class="mt-head-title"> Website Revamp & Deployment </div>
                                                         <div class="mt-body-icons">
@@ -3368,7 +3368,7 @@
                                             <div class="col-md-4">
                                                 <div class="mt-widget-4">
                                                     <div class="mt-img-container">
-                                                        <img src="../assets/pages/img/background/46.jpg" /> </div>
+                                                        <img src="pages/img/background/46.jpg" /> </div>
                                                     <div class="mt-container bg-green-opacity">
                                                         <div class="mt-head-title"> CRM Development & Deployment </div>
                                                         <div class="mt-body-icons">
@@ -3391,7 +3391,7 @@
                                             <div class="col-md-4">
                                                 <div class="mt-widget-4">
                                                     <div class="mt-img-container">
-                                                        <img src="../assets/pages/img/background/37.jpg" /> </div>
+                                                        <img src="pages/img/background/37.jpg" /> </div>
                                                     <div class="mt-container bg-dark-opacity">
                                                         <div class="mt-head-title"> Marketing Campaigns </div>
                                                         <div class="mt-body-icons">
