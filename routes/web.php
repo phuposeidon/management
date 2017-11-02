@@ -18,3 +18,63 @@ Route::get('/', function () {
 Route::get('/user', function() {
     return view('admin.management.user.list');
 });
+
+Route::get('/appointment', function() {
+    return view('admin.management.appointment.list');
+});
+
+Route::get('/clinic', function() {
+    return view('admin.management.clinic.list');
+});
+
+Route::get('/district', function() {
+    return view('admin.management.district.list');
+});
+
+Route::get('/insurrance', function() {
+    return view('admin.management.insurrance.list');
+});
+
+Route::get('/medicalrecord', function() {
+    return view('admin.management.medicalrecord.list');
+});
+
+Route::get('/medicine', function() {
+    return view('admin.management.medicine.list');
+});
+
+Route::get('/order', function() {
+    return view('admin.management.order.list');
+});
+
+Route::get('/orderitem', function() {
+    return view('admin.management.orderitem.list');
+});
+
+Route::get('/patient', function() {
+    return view('admin.management.patient.list');
+});
+
+Route::get('/province', function() {
+    return view('admin.management.province.list');
+});
+
+Route::get('/service', function() {
+    return view('admin.management.service.list');
+});
+
+Route::get('/speciality', function() {
+    return view('admin.management.speciality.list');
+});
+
+Route::get('/test', function() {
+    return view('admin.management.test.list');
+});
+
+Route::get('/testresult', function() {
+    return view('admin.management.testresult.list');
+});
+
+Route::get('/transaction', function() {
+    return view('admin.management.transaction.list');
+});

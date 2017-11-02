@@ -88,7 +88,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Người dùng</a>
+                        <a href="#">Bệnh nhân</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -124,7 +124,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title"> DANH SÁCH NGƯỜI DÙNG
+            <h1 class="page-title"> DANH SÁCH BỆNH NHÂN
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -203,7 +203,6 @@
                                         <th> Updated At</th>
                                         <th> Username </th>
                                         <th> Verify Code </th>
-                                        <th> Speciality </th>
                                         <th> Clinic </th>
                                         <th> Edit </th>
                                         <th> Delete </th>
@@ -236,7 +235,6 @@
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
-                                        <td> kop </td>
                                         <td>
                                             <div>
                                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
@@ -264,7 +262,6 @@
                                         <td>
                                             <span class="label label-sm label-warning"> Suspended </span>
                                         </td>
-                                        <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
@@ -304,7 +301,6 @@
                                         <td>
                                             <span class="label label-sm label-warning"> Suspended </span>
                                         </td>
-                                        <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
