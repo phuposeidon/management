@@ -63,6 +63,20 @@
         <script src="layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src=" global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src=" global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src=" pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+
         
         
 
