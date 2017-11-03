@@ -91,3 +91,7 @@ Route::get('/testresult', function() {
 Route::get('/transaction', function() {
     return view('admin.management.transaction.list');
 });
+
+Route::get('/index', function() {
+    return view('client.layouts.index');
+});
