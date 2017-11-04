@@ -69,6 +69,10 @@ Route::get('/orderitem', function() {
     return view('admin.management.orderitem.list');
 });
 
+Route::get('/ordermedicine', function() {
+    return view('admin.management.ordermedicine.list');
+});
+
 Route::get('/patient', function() {
     return view('admin.management.patient.list');
 });

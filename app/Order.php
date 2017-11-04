@@ -19,4 +19,12 @@ class Order extends Model
     public function User() {
         return $this->belongsTo('App\User', 'doctorId', 'id');
     }
+
+    public function OrderMedicine() {
+        return $this->hasMany('App\OrderMedicine', 'orderId', 'id');
+    }
+
+    public function OrderItem() {
+        return $this->hasMany('App\OrderItem', 'orderId', 'id');
+    }
 }

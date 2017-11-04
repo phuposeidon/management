@@ -15,4 +15,9 @@ class Medicine extends Model
     public function Unit() {
         return $this->belongsTo('App\Unit', 'unitId', 'id');
     }
+
+    public function OrderMedicine() {
+        return $this->hasOne('App\OrderMedicine', 'medicineId', 'id');
+    }
+
 }

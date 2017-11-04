@@ -5,7 +5,9 @@
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
             <!-- BEGIN PAGE HEADER-->
+            <!-- BEGIN THEME PANEL -->
             
+            <!-- END THEME PANEL -->
             <!-- BEGIN PAGE BAR -->
             <div class="page-bar">
                 <ul class="page-breadcrumb">
@@ -14,7 +16,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Người dùng</a>
+                        <a href="#">Đơn Thuốc</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -50,7 +52,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title"> DANH SÁCH NGƯỜI DÙNG
+            <h1 class="page-title"> DANH SÁCH ĐƠN THUỐC
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -115,67 +117,15 @@
                                                 <span></span>
                                             </label>
                                         </th>
-                                        <th> ID </th>
-                                        <th> Firstname</th>
-                                        <th> Lastname </th>
-                                        <th> Fullname</th>
-                                        <th> Address </th>
-                                        <th> Email </th>
-                                        <th> Gender </th>
-                                        <th> Phone Number</th>
-                                        <th> Note </th>
-                                        <th> User Type </th>
-                                        <th> Created At</th>
-                                        <th> Updated At</th>
-                                        <th> Username </th>
-                                        <th> Verify Code </th>
-                                        <th> Speciality </th>
-                                        <th> Clinic </th>
+                                        <th> STT </th>
+                                        <th> Hóa Đơn </th>
+                                        <th> Loại Thuốc</th>
+                                        <th> Số lượng</th>
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
-                                        </td>
-                                        <td>
-                                            <span class="label label-sm label-warning"> Suspended </span>
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr>
-                                   
                                     <tr class="odd gradeX">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -184,25 +134,9 @@
                                             </label>
                                         </td>
                                         <td> kop </td>
-                                        <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
-                                        </td>
-                                        <td>
-                                            <span class="label label-sm label-warning"> Suspended </span>
-                                        </td>
                                         <td> kop </td>
                                         <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
+                                        <td> 2 </td>
                                         <td>
                                             <div>
                                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
@@ -216,45 +150,6 @@
                                         </td>
                                     </tr>
 
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
-                                        </td>
-                                        <td>
-                                            <span class="label label-sm label-warning"> Suspended </span>
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr>
                                     
                                 </tbody>
                             </table>
