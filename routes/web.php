@@ -67,6 +67,9 @@ Route::get('/orderitem', function() {
 Route::get('/patient', function() {
     return view('admin.management.patient.list');
 });
+Route::get('/add-patient',function(){
+    return view('admin.management.patient.add');
+});
 
 Route::get('/province', function() {
     return view('admin.management.province.list');
