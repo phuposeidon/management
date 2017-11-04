@@ -56,6 +56,11 @@ Route::get('/medicine', function() {
     return view('admin.management.medicine.list');
 });
 
+Route::get('/add-medicine',function(){
+    return view('admin.management.medicine.add');
+});
+
+
 Route::get('/order', function() {
     return view('admin.management.order.list');
 });

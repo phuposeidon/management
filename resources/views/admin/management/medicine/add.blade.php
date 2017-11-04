@@ -88,11 +88,11 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Người dùng</a>
+                        <a href="#">Thuốc</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <span>Thêm Người Dùng</span>
+                        <span>Thêm Thuốc</span>
                     </li>
                 </ul>
                 <div class="page-toolbar">
@@ -124,7 +124,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title">Thông Tin Người Dùng
+            <h1 class="page-title">Thêm Thuốc Mới
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -135,45 +135,31 @@
                         <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Họ Tên</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Ngày Sinh</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Giới Tính</label>
+                                    <label class="col-md-3 control-label">Chọn Loại</label>
                                     <div class="col-md-6">
                                         <select class="form-control">
-                                            <option>Nam</option>
+                                            <option>Mới</option>
                                             <option>Nữ</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">CMND</label>
+                                    <label class="col-md-3 control-label">Thuốc/VTYT</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Số Điện Thoại</label>
+                                    <label class="col-md-3 control-label">Mã thuốc BHYT</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Email</label>
+                                    <label class="col-md-3 control-label">Số đăng ký</label>
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
@@ -182,9 +168,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Mật Khẩu</label>
+                                    <label class="col-md-3 control-label">Nồng độ</label>
                                     <div class="col-md-6">
-                                        <input type="password" class="form-control spinner" placeholder="Password"> </div>
+                                        <input type="password" class="form-control spinner" placeholder=""> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Quy cách</label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control spinner" placeholder=""> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nhóm</label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control spinner" placeholder=""> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Dược chất chính</label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control spinner" placeholder=""> </div>
                                 </div>
                             </div>
                         </form>
@@ -194,76 +195,39 @@
                         <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Học Vị</label>
+                                    <label class="col-md-3 control-label">Đơn Vị</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Chuyên Môn</label>
+                                    <label class="col-md-3 control-label">Giá</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Chuyên Khoa</label>
+                                    <label class="col-md-3 control-label">Giá thầu</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Chứng Chỉ</label>
+                                    <label class="col-md-3 control-label">Dạng bào chế</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tiêu chuẩn</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-             <legend style="margin-left:15px;"><h1 class="page-title">Địa Chỉ
-            </h1></legend>
-             <div class="row">
-                <div class="col-md-12">
-                <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quốc Gia</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
                                 <div class="form-group">
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
@@ -278,7 +242,7 @@
                         </form>
                     </div>
                 </div>
-             </div>
+            </div>
              <!-- END CONTENT -->
         </div>
         <!-- END CONTENT BODY -->
