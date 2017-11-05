@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     protected $table = "Patient";
-    
+    public $timestamps = false;
     public function Appointment() {
         return $this->hasMany('App\Appointment', 'patientId', 'id');
     }

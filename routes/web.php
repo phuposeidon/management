@@ -73,12 +73,15 @@ Route::get('/ordermedicine', function() {
     return view('admin.management.ordermedicine.list');
 });
 
-Route::get('/patient', function() {
+// PATIENT
+Route::get('/patient', function() { 
     return view('admin.management.patient.list');
 });
+
 Route::get('/add-patient',function(){
     return view('admin.management.patient.add');
 });
+Route::post('/postpatient','PatientController@index')->name('addPatient');
 
 Route::get('/province', function() {
     return view('admin.management.province.list');

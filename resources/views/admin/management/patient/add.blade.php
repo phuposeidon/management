@@ -95,6 +95,7 @@
                         <span>Thêm Bệnh Nhân</span>
                     </li>
                 </ul>
+
                 <div class="page-toolbar">
                     <div class="btn-group pull-right">
                         <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
@@ -129,31 +130,42 @@
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
             <!-- CONTENT -->
+            @if(Session::has('flash_message'))
+                    <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
+            @endif
+            <form class="form-horizontal" action="{{route('addPatient')}}" role="form" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="fullname" class="form-control" placeholder="">
                                     </div>
                                  </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                                            <input type="text" name="birthday" class="form-control" >
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Giới Tính</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Nam</option>
-                                            <option>Nữ</option>
+                                        <select class="form-control" name="gender">
+                                            <option value="1">Nam</option>
+                                            <option value="0">Nữ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -161,14 +173,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">CMND</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="passport" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="phonenumber" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -177,31 +189,22 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="text" class="form-control" placeholder=""> </div>
+                                            <input type="text" name="email" class="form-control" placeholder=""> </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                 <label class="col-md-3 control-label">Tôn Giáo</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="  ">
+                                    <input type="text" name="religion" class="form-control" placeholder="  ">
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Số Điện Thoại</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="  ">
-                                </div>
-                            </div>
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mật Khẩu</label>
                                     <div class="col-md-6">
-                                        <input type="password" class="form-control spinner" placeholder="Password"> </div>
+                                        <input type="password" name="password" class="form-control spinner" placeholder="Password"> </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <!-- END INFO LEFT -->
                     <div class="col-md-6">
@@ -216,13 +219,12 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
+                                        <select class="form-control" name="province">
+                                            <option value="1">TpHCM</option>
+                                            <option value="2">Hà Nội</option>
                                         </select>
                                     </div>
                                 </div>
@@ -230,9 +232,9 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quận/Huyện</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Quận 1</option>
-                                            <option>Hà Nội</option>
+                                        <select class="form-control" name="district">
+                                            <option value="1">Quận 1</option>
+                                            <option value="2">Quận 2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -240,9 +242,9 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nhóm Máu</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>A</option>
-                                            <option>Hà Nội</option>
+                                        <select class="form-control" name="bloodgroup">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
                                         </select>
                                     </div>
                                 </div>
@@ -250,21 +252,21 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Dị Ứng</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="allergic" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Người Thân</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="pet" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">ĐT Người Thân</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="petphonenumber" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -272,7 +274,7 @@
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                <input checked="true" type="checkbox">Hoạt Động
+                                                <input name="active" value="1" type="checkbox">Hoạt Động
                                                 <span></span>
                                             </label>
                                         </div>
@@ -286,21 +288,21 @@
             </h1></legend>
              <div class="row">
                 <div class="col-md-12">
-                <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
+                    <div class="col-md-6">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số BHYT</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="cardId" type="text" name="insurrentcode" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Từ Ngày</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
-                                            <input type="text" class="form-control" >
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                                            <input name="todate" type="text" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -309,17 +311,15 @@
                                         </div>
                                     </div>
                                 </div>
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Nơi ĐK KCB BĐ</label>
                                 <div class="col-md-6">
-                                    <select class="form-control">
-                                        <option>TpHCM</option>
-                                        <option>Hà Nội</option>
+                                    <select name="placecheck" class="form-control">
+                                        <option value="TPHCM">TpHCM</option>
+                                        <option value="Hà Nội">Hà Nội</option>
                                     </select>
                                 </div>
                             </div>
@@ -327,8 +327,8 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Đến Ngày</label>
                                 <div class="col-md-6">
-                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
-                                        <input type="text" class="form-control" >
+                                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                                        <input name="fromdate" type="text" class="form-control" >
                                         <span class="input-group-btn">
                                             <button class="btn default" type="button">
                                                 <i class="fa fa-calendar"></i>
@@ -337,13 +337,40 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                    </div>
+            </div>
+
+             </div>
+
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center" style="margin-top:30px;">
+                        <button  type="submit" class="btn btn-primary" >
+                            <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
+                        </button>
+                        <button type="button" class="btn btn-default" >
+                            <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
+                        </button>
                     </div>
                 </div>
-             </div>
+            </div>
+        </form>
              <!-- END CONTENT -->
         </div>
         <!-- END CONTENT BODY -->
     </div>
     <!-- END CONTENT -->
 @endsection
+<script src="global/plugins/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function()
+        {
+            $('#reportAdd').fadeOut();
+        },4000);
+    })
+</script>
+
