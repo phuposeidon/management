@@ -142,7 +142,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="fullname" class="form-control" placeholder="">
+                                        <input type="text" required name="fullname" class="form-control" placeholder="">
                                     </div>
                                  </div>
 
@@ -150,7 +150,7 @@
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                            <input type="text" name="birthday" class="form-control" >
+                                            <input type="text" required name="birthday" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -173,14 +173,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">CMND</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="passport" class="form-control" placeholder="  ">
+                                        <input type="number" required name="passport" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="phonenumber" class="form-control" placeholder="  ">
+                                        <input type="text" required name="phonenumber" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -189,7 +189,7 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="text" name="email" class="form-control" placeholder=""> </div>
+                                            <input type="email" required name="email" class="form-control" placeholder=""> </div>
                                     </div>
                                 </div>
 
@@ -223,8 +223,9 @@
                                     <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="province">
-                                            <option value="1">TpHCM</option>
-                                            <option value="2">Hà Nội</option>
+                                        @foreach($provinces  as $province)
+                                            <option value="<?php echo $province['id'];?>">{{$province['name']}}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -233,8 +234,9 @@
                                     <label class="col-md-3 control-label">Quận/Huyện</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="district">
-                                            <option value="1">Quận 1</option>
-                                            <option value="2">Quận 2</option>
+                                        @foreach($districts as $district)
+                                            <option value="<?php echo $district['id'];?>">{{$district['name']}}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>

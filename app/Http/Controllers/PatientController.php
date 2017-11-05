@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Province;
+use App\District;
 use App\Patient;
 use App\Insurrance;
 
 class PatientController extends Controller
 {
+	function show(){
+		$provinces = Province::all();
+		$districts = District::all();
+		return view('admin.management.patient.add',['provinces'=>$provinces,'districts'=>$districts]);
+	}
+
     function index(Request $req){
-		
+		$provinces = Province::all();
+		$districts = District::all();
 		$insurrance = new Insurrance;
 		$patient = new Patient;
 		if($req->active!=1)
@@ -46,9 +54,6 @@ class PatientController extends Controller
 			\Session::flash('flash_fail','Thêm bệnh nhân thất bai');
 		}
 
-		return view('admin.management.patient.add',['test'=>'asd']);
-		
-		
-    	
+		return view('admin.management.patient.add',['provinces'=>$provinces,'districts'=>$districts]);
     }
 }

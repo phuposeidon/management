@@ -2,6 +2,8 @@
 Route::get('/index', function () {
     return view('client.layouts.index');
 });
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,10 +80,8 @@ Route::get('/patient', function() {
     return view('admin.management.patient.list');
 });
 
-Route::get('/add-patient',function(){
-    return view('admin.management.patient.add');
-});
-Route::post('/postpatient','PatientController@index')->name('addPatient');
+Route::get('/add-patient','PatientController@show')->name('showPatient');
+Route::post('/add-patient','PatientController@index')->name('addPatient');
 
 Route::get('/province', function() {
     return view('admin.management.province.list');
