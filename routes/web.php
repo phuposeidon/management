@@ -77,9 +77,7 @@ Route::get('/ordermedicine', function() {
 });
 
 // PATIENT
-Route::get('/patient', function() { 
-    return view('admin.management.patient.list');
-})->name('patient');
+Route::get('/patient', 'PatientController@list')->name('patient');
 
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');
