@@ -7,6 +7,7 @@
   <title>VietCare</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Bevan|Paytone+One" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="client/css/font-awesome.min.css">

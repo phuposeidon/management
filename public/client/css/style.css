@@ -154,8 +154,9 @@ banner
 	color: #fff;
 }
 .banner-text h1{
-	font-family: 'Candal', sans-serif;
-	font-size: 35px;
+	font-family: 'Paytone One', sans-serif;
+    font-size: 40px;
+    word-spacing: 10px;
 	text-transform: uppercase;
 	padding-bottom:15px; 
 }
