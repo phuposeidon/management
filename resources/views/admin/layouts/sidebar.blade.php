@@ -51,22 +51,11 @@
                 <!-- end receipt  -->
             </li>
             <li class="nav-item start">
-                <a href="admin/role" class="nav-link nav-toggle">
+                <a href="{{route('patient')}}" class="nav-link nav-toggle">
                     <i class="fa fa-male"></i>
                     <span class="title">Bệnh Nhân</span>
                     <span class="selected"></span>
-                    <span class="arrow open"></span>
                 </a>
-                <ul class="sub-menu">
-                    <li class="nav-item start">
-                        <a href="admin/role" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Danh Sách</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                </ul>
-
                 <!-- end receipt  -->
             </li>
                 

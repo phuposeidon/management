@@ -26,12 +26,13 @@ Route::get('/user', function() {
     return view('admin.management.user.list');
 });
 
+Route::get('/add-user','UserController@index');
+
+Route::post('/add-user}','UserController@post')->name('postUser');
+
+
 Route::get('/add-appointment',function(){
     return view('admin.management.appointment.add');
-});
-
-Route::get('/add-user',function(){
-    return view('admin.management.user.add');
 });
 
 Route::get('/appointment', function() {
@@ -78,7 +79,7 @@ Route::get('/ordermedicine', function() {
 // PATIENT
 Route::get('/patient', function() { 
     return view('admin.management.patient.list');
-});
+})->name('patient');
 
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');

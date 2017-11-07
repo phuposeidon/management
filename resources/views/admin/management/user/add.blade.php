@@ -129,31 +129,35 @@
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
             <!-- CONTENT -->
+             @if(Session::has('flash_message'))
+                    <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
+            @endif
+             <form class="form-horizontal" action="{{route('postUser')}}" method="POST"  role="form">
+              <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="fullname" class="form-control" placeholder="  ">
                                     </div>
                                  </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="birthday" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Giới Tính</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Nam</option>
-                                            <option>Nữ</option>
+                                        <select name="gender" class="form-control">
+                                            <option value="1">Nam</option>
+                                            <option value="0">Nữ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -161,14 +165,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">CMND</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="passport" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="phonenumber" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -177,51 +181,50 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="text" class="form-control" placeholder=""> </div>
+                                            <input type="text" name="email" class="form-control" placeholder=""> </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mật Khẩu</label>
                                     <div class="col-md-6">
-                                        <input type="password" class="form-control spinner" placeholder="Password"> </div>
+                                        <input type="password" name="password" class="form-control spinner" placeholder="Password"> </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <!-- END INFO LEFT -->
                     <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Học Vị</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Chuyên Môn</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="degree" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Chuyên Khoa</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <select name="speciality" class="form-control">
+                                            @foreach($speciality as $doc)
+                                            <option value="{{$doc['id']}}">{{$doc['name']}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Chứng Chỉ</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="certificate" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
-
-                        </form>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ghi Chú</label>
+                                    <div class="col-md-6">
+                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
+                                    </div>
+                                </div>
                     </div>
                 </div>
             </div>
@@ -230,36 +233,33 @@
              <div class="row">
                 <div class="col-md-12">
                 <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="country" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
+                                        <select name="province" class="form-control">
                                             <option>TpHCM</option>
                                             <option>Hà Nội</option>
                                         </select>
                                     </div>
                                 </div>
 
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quận/Huyện</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
+                                        <select name="district" class="form-control">
+                                            <option value="1">TpHCM</option>
+                                            <option value="2">Hà Nội</option>
                                         </select>
                                     </div>
                                 </div>
@@ -268,20 +268,43 @@
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                <input type="checkbox">Hoạt Động
+                                                <input name="active" value="1" type="checkbox">Hoạt Động
                                                 <span></span>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-
-                        </form>
                     </div>
                 </div>
              </div>
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center" style="margin-top:30px;">
+                        <button  type="submit" class="btn btn-primary" >
+                            <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
+                        </button>
+                        <button type="button" class="btn btn-default" >
+                            <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
+                        </button>
+                    </div>
+                </div>
+            </div>
+             </form>
              <!-- END CONTENT -->
         </div>
         <!-- END CONTENT BODY -->
     </div>
     <!-- END CONTENT -->
 @endsection
+<script src="global/plugins/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function()
+        {
+            $('#reportAdd').fadeOut();
+        },4000);
+    })
+</script>

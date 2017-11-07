@@ -116,64 +116,19 @@
                                             </label>
                                         </th>
                                         <th> ID </th>
-                                        <th> Firstname</th>
-                                        <th> Lastname </th>
-                                        <th> Fullname</th>
-                                        <th> Address </th>
+                                        <th> Họ Tên</th>
+                                        <th> Tên Đăng Nhập </th>
+                                        <th> Địa Chỉ </th>
                                         <th> Email </th>
-                                        <th> Gender </th>
-                                        <th> Phone Number</th>
-                                        <th> Note </th>
-                                        <th> User Type </th>
-                                        <th> Created At</th>
-                                        <th> Updated At</th>
-                                        <th> Username </th>
-                                        <th> Verify Code </th>
-                                        <th> Clinic </th>
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Giới Tính </th>
+                                        <th> SĐT</th>
+                                        <th> Ghi Chú </th>
+                                        <th> Ngày Tạo</th>
+                                        <th> Sửa </th>
+                                        <th> Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
-                                        </td>
-                                        <td>
-                                            <span class="label label-sm label-warning"> Suspended </span>
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr>
-                                   
                                     <tr class="odd gradeX">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -186,20 +141,14 @@
                                             <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
                                         </td>
                                         <td>
-                                            <span class="label label-sm label-warning"> Suspended </span>
+                                            phutran626
                                         </td>
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
-                                        <td> kop </td>
                                         <td class="center"> 12.12.2011 </td>
                                         <td class="center"> 12.12.2011 </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
                                         <td>
                                             <div>
                                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
@@ -211,7 +160,39 @@
                                                 <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> 
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                <input type="checkbox" class="checkboxes" value="1" />
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                        <td> kop </td>
+                                        <td>
+                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
+                                        </td>
+                                        <td>
+                                            phutran626
+                                        </td>
+                                        <td> kop </td>
+                                        <td> kop </td>
+                                        <td> kop </td>
+                                        <td> kop </td>
+                                        <td class="center"> 12.12.2011 </td>
+                                        <td class="center"> 12.12.2011 </td>
+                                        <td>
+                                            <div>
+                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
+                                                
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
+                                            </div>
+                                        </td>
+                                    </tr> 
 
                                     <tr class="odd gradeX">
                                         <td>
@@ -225,20 +206,14 @@
                                             <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
                                         </td>
                                         <td>
-                                            <span class="label label-sm label-warning"> Suspended </span>
+                                            phutran626
                                         </td>
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
                                         <td> kop </td>
-                                        <td> kop </td>
                                         <td class="center"> 12.12.2011 </td>
                                         <td class="center"> 12.12.2011 </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
                                         <td>
                                             <div>
                                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
@@ -250,8 +225,8 @@
                                                 <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
                                             </div>
                                         </td>
-                                    </tr>
-                                    
+                                    </tr>  
+                                                      
                                 </tbody>
                             </table>
                         </div>
