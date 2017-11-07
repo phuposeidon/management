@@ -129,6 +129,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($allPatients as $patient)
                                     <tr class="odd gradeX">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -136,19 +137,19 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> kop </td>
+                                        <td> {{$patient->id}} </td>
                                         <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
+                                            {{$patient->fullname}}
                                         </td>
                                         <td>
-                                            phutran626
+                                            {{$patient->username}}
                                         </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
+                                        <td> {{$patient->address}} </td>
+                                        <td> {{$patient->email}} </td>
+                                        <td> {{$patient->gender}} </td>
+                                        <td> {{$patient->phonenumber}} </td>
+                                        <td> {{$patient->note}} </td>
+                                        <td class="center"> {{$patient->createdAt}} </td>
                                         <td>
                                             <div>
                                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
@@ -160,75 +161,12 @@
                                                 <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
                                             </div>
                                         </td>
-                                    </tr> 
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
-                                        </td>
-                                        <td>
-                                            phutran626
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr> 
-
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td>
-                                            <a href="mailto:userwow@gmail.com"> good@gmail.com </a>
-                                        </td>
-                                        <td>
-                                            phutran626
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td class="center"> 12.12.2011 </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr>  
-                                                      
+                                    </tr>
+                                    @endforeach
+                                                    
                                 </tbody>
                             </table>
+                            {{$allPatients->links()}}
                         </div>
                     </div>
                     <!-- END EXAMPLE TABLE PORTLET-->

@@ -258,8 +258,8 @@
                                     <label class="col-md-3 control-label">Quận/Huyện</label>
                                     <div class="col-md-6">
                                         <select name="district" class="form-control">
-                                            <option value="1">TpHCM</option>
-                                            <option value="2">Hà Nội</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
                                         </select>
                                     </div>
                                 </div>

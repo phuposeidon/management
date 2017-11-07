@@ -55,5 +55,10 @@ class PatientController extends Controller
 		}
 
 		return view('admin.management.patient.add',['provinces'=>$provinces,'districts'=>$districts]);
-    }
+	}
+	
+	function list() {
+		$allPatients = Patient::paginate(10);
+		return view('admin.management.patient.list', ['allPatients' => $allPatients]); 
+	}
 }
