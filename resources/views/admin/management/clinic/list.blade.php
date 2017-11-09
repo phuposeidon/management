@@ -54,6 +54,8 @@
             <!-- BEGIN PAGE TITLE-->
             <h1 class="page-title"> DANH SÁCH PHÒNG KHÁM
             </h1>
+            <div class="alert alert-success" id="report" style="display: none">Đã xóa phòng khám thành công.</div>
+	        <div class="alert alert-success" id="reportAll" style="display: none">Các phòng khám được chọn đã xóa thành công.</div>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
            

@@ -81,6 +81,8 @@ Route::get('/patient', 'PatientController@list')->name('patient');
 
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');
+Route::post('/patient-delete', 'PatientController@delete');
+Route::post('/patient-multidelete', 'PatientController@deleteAll');
 
 Route::get('/province', function() {
     return view('admin.management.province.list');

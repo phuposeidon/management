@@ -61,4 +61,16 @@ class PatientController extends Controller
 		$allPatients = Patient::paginate(10);
 		return view('admin.management.patient.list', ['allPatients' => $allPatients]); 
 	}
+
+	function delete(Request $request) {
+		$id = $request->id;
+		Patient::find($id)->delete();
+	}
+
+	function deleteAll(Request $request) {
+		$ids = $request->id;
+		foreach($ids as $id) {
+			Patient::find($id)->delete();
+		}
+	}
 }

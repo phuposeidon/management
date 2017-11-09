@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Medicine extends Controller
+class InsurranceController extends Controller
 {
     //
 }
