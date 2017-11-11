@@ -18,13 +18,10 @@ Route::get('/index', function () {
 Route::get('/', function () {
     return view('admin.clinic');
 });
-Route::get('/add-clinic',function(){
-    return view('admin.management.clinic.add');
-});
 
-Route::get('/user', function() {
-    return view('admin.management.user.list');
-});
+Route::get('/user', 'UserController@list');
+Route::post('/user-delete','UserController@delete');
+Route::post('/user-multidelete', 'UserController@deleteAll');
 
 Route::get('/add-user','UserController@index');
 
@@ -35,13 +32,17 @@ Route::get('/add-appointment',function(){
     return view('admin.management.appointment.add');
 });
 
-Route::get('/appointment', function() {
-    return view('admin.management.appointment.list');
-});
+Route::get('/appointment', 'AppointmentController@list');
+Route::post('/appointment-delete','AppointmentController@delete');
+Route::post('/appointment-multidelete', 'AppointmentController@deleteAll');
 
-Route::get('/clinic', function() {
-    return view('admin.management.clinic.list');
+
+Route::get('/clinic', 'ClinicController@list');
+Route::get('/add-clinic',function(){
+    return view('admin.management.clinic.add');
 });
+Route::post('/clinic-delete','ClinicController@delete');
+Route::post('/clinic-multidelete', 'ClinicController@deleteAll');
 
 Route::get('/district', function() {
     return view('admin.management.district.list');
@@ -55,18 +56,18 @@ Route::get('/medicalrecord', function() {
     return view('admin.management.medicalrecord.list');
 });
 
-Route::get('/medicine', function() {
-    return view('admin.management.medicine.list');
-});
-
+Route::get('/medicine', 'MedicineController@list');
 Route::get('/add-medicine',function(){
     return view('admin.management.medicine.add');
 });
+Route::post('/medicine-delete', 'MedicineController@delete');
+Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
 
 
-Route::get('/order', function() {
-    return view('admin.management.order.list');
-});
+Route::get('/order', 'OrderController@list');
+Route::post('/order-delete', 'OrderController@delete');
+Route::post('/order-multidelete', 'OrderController@deleteAll');
+
 
 Route::get('/orderitem', function() {
     return view('admin.management.orderitem.list');
@@ -88,25 +89,27 @@ Route::get('/province', function() {
     return view('admin.management.province.list');
 });
 
-Route::get('/service', function() {
-    return view('admin.management.service.list');
-});
+Route::get('/service','ServiceController@list');
+Route::post('/service-delete', 'ServiceController@delete');
+Route::post('/service-multidelete', 'ServiceController@deleteAll');
 
-Route::get('/speciality', function() {
-    return view('admin.management.speciality.list');
-});
 
-Route::get('/test', function() {
-    return view('admin.management.test.list');
-});
+Route::get('/speciality', 'SpecialityController@list');
+Route::post('/speciality-delete', 'SpecialityController@delete');
+Route::post('/speciality-multidelete', 'SpecialityController@deleteAll');
+
+Route::get('/test', 'TestController@list');
+Route::post('/test-delete', 'TestController@delete');
+Route::post('/test-multidelete', 'TestController@deleteAll');
+
 
 Route::get('/testresult', function() {
     return view('admin.management.testresult.list');
 });
 
-Route::get('/transaction', function() {
-    return view('admin.management.transaction.list');
-});
+Route::get('/transaction','TransactionController@list');
+Route::post('/transaction-delete', 'TransactionController@delete');
+Route::post('/transaction-multidelete', 'TransactionController@deleteAll');
 
 Route::get('/index', function() {
     return view('client.layouts.index');

@@ -49,4 +49,21 @@ class UserController extends Controller
         
         return view('admin.management.user.add',['speciality'=>$speciality]);
     }
+
+    function list() {
+        $allUsers = User::paginate(10);
+        return view('admin.management.user.list', ['allUsers' => $allUsers]);
+    }
+
+    function delete(Request $request) {
+		$id = $request->id;
+		User::find($id)->delete();
+	}
+
+	function deleteAll(Request $request) {
+		$ids = $request->id;
+		foreach($ids as $id) {
+			User::find($id)->delete();
+		}
+	}
 }

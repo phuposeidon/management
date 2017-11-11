@@ -15,4 +15,8 @@ class Service extends Model
     public function TestResult() {
         return $this->hasOne('App\TestResult', 'serviceId', 'id');
     }
+
+    public function User() {
+        return $this->belongsTo('App\User', 'executeById', 'id');
+    }
 }

@@ -12,4 +12,8 @@ class Transaction extends Model
         return $this->hasOne('App\Order', 'orderId', 'id');
     }
 
+    public function User() {
+        return $this->belongsTo('App\User', 'createdById', 'id');
+    }
+
 }

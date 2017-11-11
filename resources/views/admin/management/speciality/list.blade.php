@@ -52,6 +52,9 @@
             <!-- BEGIN PAGE TITLE-->
             <h1 class="page-title"> DANH SÁCH CHUYÊN KHOA
             </h1>
+            <div class="alert alert-success" id="report" style="display: none">Đã xóa chuyên khoa thành công.</div>
+	        <div class="alert alert-success" id="reportAll" style="display: none">Các chuyên khoa được chọn đã xóa thành công.</div>
+          
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
            
@@ -123,78 +126,84 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
+                                    @foreach($allSpecialitys as $speciality)
+                                    <tr class="odd gradeX" id="tr{{$speciality->id}}">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
+                                                <input type="checkbox" class="checkboxes" value="{{$speciality->id}}" />
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
+                                        <td> {{$speciality->id}} </td>
+                                        <td> {{$speciality->name}} </td>
+                                        <td> {{$speciality->Clinic->name}} </td>
                                         
                                         <td>
                                             <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
+                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
                                                 
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$speciality->id}}"> Xóa</a>
                                             </div>
                                         </td>
                                     </tr>
+                                    @endforeach
                                     
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="1" />
-                                                <span></span>
-                                            </label>
-                                        </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        <td> kop </td>
-                                        
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Sửa</button>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-xs red dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Xóa</button>                               
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
+
+                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                            {{$allSpecialitys->links()}}
+
+                            <!-- làm modal delete -->
+                            <div class="modal fade" id="modal-1" style="margin-top: 12em ">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                                            <h4 class="modal-title">Xóa chuyên khoa</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Bạn muốn xóa chuyên khoa?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                                            <button type="button" class="btn btn-primary" id="yesBtn">Có</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                            <!-- end modal delete -->
+
+                            <!-- làm modal delete all row-->
+                            <div class="modal fade" id="modal-all" style="margin-top: 12em ">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                                            <h4 class="modal-title">Xóa các chuyên khoa đã chọn?</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Bạn muốn xóa các chuyên khoa đã chọn?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                                            <button type="button" class="btn btn-primary" id="yesBtnAll">Có</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                            <!-- end modal delete all row--> 
+
                         </div>
                     </div>
                     <!-- END EXAMPLE TABLE PORTLET-->
@@ -205,4 +214,81 @@
         <!-- END CONTENT BODY -->
     </div>
     <!-- END CONTENT -->
+
+    <script>
+        $(document).ready(function() {
+            //Xoá 1 dòng
+            $('.delete').on('click',function(e){
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#modal-1').data('id',id).modal('show');
+            });
+            $("#report").hide();
+            $('#yesBtn').click(function(){
+                var id = $('#modal-1').data('id');
+                $('#modal-1').modal('hide');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: 'speciality-delete',
+                    dataType: 'text',
+                    data: {id: id},
+                    success:function(data){
+                        $('#tr' + id).fadeOut();
+                        $('#tr' + id).remove();
+                        $("#report").show();
+                        setTimeout(function()
+                            {
+                                $('#report').fadeOut();
+                            },4000);
+                    }
+                });
+            });
+
+            //Xoá tất cả
+			$('#deleteAll').on('click',function(e){
+				e.preventDefault();
+				$('#modal-all').modal('show');
+			});
+			$("#reportAll").hide();
+			$('#yesBtnAll').click(function(){
+				$('#modal-all').modal('hide');
+				var val = [];
+				$(':checkbox:checked').each(function(i){
+					val[i] = $(this).val();			//get id của từng row       	
+				});
+				if(val[0] == 'on') {				//Nếu th đã check thì bỏ qua
+					val.shift();
+				}
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$.ajax({
+					type: 'POST',
+					url: 'speciality-multidelete',
+					dataType: 'text',
+					data: {id: val},
+					success:function(data){
+						for(var i = 0; i < val.length; i++) {
+							$('#tr' + val[i]).fadeOut();
+							$('#tr' + val[i]).remove();
+							$("#reportAll").show();
+							setTimeout(function()
+                            {
+                            	$('#reportAll').fadeOut();
+                            },4000);
+						}
+					}
+				});
+			});
+
+
+        })
+    </script>
 @endsection
