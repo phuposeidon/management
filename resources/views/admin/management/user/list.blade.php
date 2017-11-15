@@ -119,20 +119,13 @@
                                             </label>
                                         </th>
                                         <th> ID </th>
-                                        <th> Fullname</th>
-                                        <th> Address </th>
-                                        <th> Email </th>
-                                        <th> Gender </th>
-                                        <th> Phone Number</th>
-                                        <th> Note </th>
                                         <th> User Type </th>
-                                        <th> Created At</th>
-                                        <th> Updated At</th>
-                                        <th> Username </th>
-                                        <th> Verify Code </th>
-                                        <th> Speciality </th>
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Họ Tên</th>
+                                        <th> Email </th>
+                                        <th> Giới Tính </th>
+                                        <th> Số Điện Thoại</th>
+                                        <th> Chuyên Khoa </th>
+                                        <th> Hành Động </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -145,27 +138,22 @@
                                             </label>
                                         </td>
                                         <td> {{$user->id}} </td>
-                                        <td> {{$user->fullname}} </td>
-                                        <td> {{$user->address}} </td>
-                                        <td> {{$user->email}} </td>
-                                        <td> {{$user->gender}} </td>
-                                        <td> {{$user->phonenumber}} </td>
-                                        <td> {{$user->note}} </td>
                                         <td> {{$user->usertype}} </td>
-                                        <td class="center"> {{$user->createdAt}} </td>
-                                        <td class="center"> {{$user->updatedAt}} </td>
-                                        <td> {{$user->username}} </td>
-                                        <td> {{$user->verifycode}} </td>
+                                        <td> {{$user->fullname}} </td>
+                                        <td> {{$user->email}} </td>
+                                        <td>
+                                        @if(($user->gender)==1)
+                                            Nam
+                                        @else
+                                            Nữ
+                                        @endif 
+                                         </td>
+                                        <td> {{$user->phonenumber}} </td>
                                         <td> {{$user->Speciality->name}} </td>
                                         <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$user->id}}"> Xóa</a>                               
+                                            <div style="text-align:center;">
+                                                <a href="user/{{$user->id}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$user->id}}"> <i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>
                                     </tr>

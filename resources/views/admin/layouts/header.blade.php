@@ -6,11 +6,12 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
+        <base href="{{asset('')}}" >
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- <base href="{{asset('')}}"> -->
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="{!!url('global/plugins/font-awesome/css/font-awesome.min.css')!!}" rel="stylesheet" type="text/css" />
         <link href="global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
@@ -34,7 +35,7 @@
     </head>
     <!-- END HEAD -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-     <script src="global/plugins/jquery.min.js" type="text/javascript"></script>
+     <script src="{!!url('global/plugins/jquery.min.js')!!}" type="text/javascript"></script>
         <script src="global/scripts/datatable.js" type="text/javascript"></script>
         <script src="global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>

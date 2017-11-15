@@ -73,4 +73,16 @@ class PatientController extends Controller
 			Patient::find($id)->delete();
 		}
 	}
+
+	function getEdit($id){
+		$patient = Patient::find($id);
+		$insurrance = $patient->Insurrance()->get();
+		foreach($insurrance as $a)
+		{
+			return view('admin.management.patient.edit',['patient'=>$patient,'insurrance'=>$a]);
+			dd($a['cardId']);
+		}
+		
+		
+	}
 }
