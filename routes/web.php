@@ -114,3 +114,23 @@ Route::post('/transaction-multidelete', 'TransactionController@deleteAll');
 Route::get('/index', function() {
     return view('client.layouts.index');
 });
+Route::get('plogin', 'PatientController@getLogin');
+Route::post('plogin', 'PatientController@postLogin');
+Route::get('plogout', 'PatientController@getLogout');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/appointment', function() {
+    return view('client.page.appointment');
+});
+Route::get('/hours', function() {
+    return view('client.page.hours');
+});
+Route::get('/user-info', function() {
+    return view('client.page.user-info');
+});
+Route::get('/signup', function() {
+    return view('client.page.register');
+});
+Route::post('/signup', 'PatientController@signUp');

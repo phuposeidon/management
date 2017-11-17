@@ -194,11 +194,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label class="col-md-3 control-label">Tôn Giáo</label>
-                                <div class="col-md-6">
-                                    <input type="text" name="religion" class="form-control" placeholder="  ">
+                                    <label class="col-md-3 control-label">Username</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="username" class="form-control" placeholder="  ">
+                                    </div>
                                 </div>
-                            </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mật Khẩu</label>
                                     <div class="col-md-6">
@@ -210,6 +210,13 @@
                     <div class="col-md-6">
                         <form class="form-horizontal" role="form">
                             <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tôn Giáo</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="religion" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">

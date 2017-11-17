@@ -1,53 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VietCare</title>
-  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Bevan|Paytone+One" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
-  <link rel="stylesheet" type="text/css" href="client/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="client/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="client/css/style.css">
-  <!-- =======================================================
-    Theme Name: Medilab
-    Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-    Author: BootstrapMade.com
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
-</head>
+@include('client.layouts.header')
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <!--banner-->
   <section id="banner" class="banner">
     <div class="bg-color">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="col-md-12">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				      </button>
-              <a class="navbar-brand" href="#"><img src="client/img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
-            </div>
-            <div class="collapse navbar-collapse navbar-right" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#banner">Trang chủ</a></li>
-                <li class=""><a href="#service">Dịch vụ</a></li>
-                <li class=""><a href="#about">Thông tin</a></li>
-                <li class=""><a href="#testimonial">Đánh giá</a></li>
-                <li class=""><a href="#contact">Liên hệ</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
+      
+      @include('client.layouts.menu-bar')
       <div class="container">
         <div class="row">
           <div class="banner-info">
@@ -56,8 +14,8 @@
             </div>
             <div class="banner-text text-center">
               <h1 class="white">Chăm sóc sức khỏe ngay tại bàn!!</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua.</p>
-              <a href="#contact" class="btn btn-appoint">Đặt lịch hẹn</a>
+              <p>Cung cấp dịch vụ chăm sóc sức khỏe chuyên nghiệp và tận tình<br>Tất cả vì sức khỏe của bạn và người thân.</p>
+              <a href="{{asset('appointment')}}" class="btn btn-appoint">Đặt lịch hẹn</a>
             </div>
             <div class="overlay-detail text-center">
               <a href="#service"><i class="fa fa-angle-down"></i></a>
@@ -75,7 +33,7 @@
         <div class="col-md-4 col-sm-4">
           <h2 class="ser-title">Dịch vụ</h2>
           <hr class="botm-line">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris cillum.</p>
+          <p>Dịch vụ khám chữa bệnh đa dạng, </p>
         </div>
         <div class="col-md-4 col-sm-4">
           <div class="service-info">
@@ -354,7 +312,7 @@
         </div>
         <div class="col-md-8 col-sm-8 marb20">
           <div class="contact-info">
-            <h3 class="cnt-ttl">Đặt lịch hẹn</h3>
+            <h3 class="cnt-ttl">Đóng góp ý kiến</h3>
             <div class="space"></div>
             <div id="sendmessage">Đã gửi thành công!</div>
             <div id="errormessage"></div>
@@ -364,7 +322,7 @@
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control br-radius-zero" name="email" id="email" placeholder="Đĩa chỉ Email" data-rule="email" data-msg="Please enter a valid email" />
+                <input type="email" class="form-control br-radius-zero" name="email" id="email" placeholder="Địa chỉ Email" data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validation"></div>
               </div>
               <div class="form-group">
@@ -377,7 +335,7 @@
               </div>
 
               <div class="form-action">
-                <button type="submit" class="btn btn-form">Đặt lịch</button>
+                <button type="submit" class="btn btn-form">Đóng góp</button>
               </div>
             </form>
           </div>
@@ -386,56 +344,7 @@
     </div>
   </section>
   <!--/ contact-->
-  <!--footer-->
-  <footer id="footer">
-    <div class="top-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 marb20">
-            <div class="ftr-tle">
-              <h4 class="white no-padding">Về chúng tôi</h4>
-            </div>
-            <div class="info-sec">
-              <p>Praesent convallis tortor et enim laoreet, vel consectetur purus latoque penatibus et dis parturient.</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 marb20">
-            <div class="ftr-tle">
-              <h4 class="white no-padding">Liên kết</h4>
-            </div>
-            <div class="info-sec">
-              <ul class="quick-info">
-                <li><a href="index.html"><i class="fa fa-circle"></i>Trang chủ</a></li>
-                <li><a href="#service"><i class="fa fa-circle"></i>Dịch vụ</a></li>
-                <li><a href="#contact"><i class="fa fa-circle"></i>Đặt lịch</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 marb20">
-            <div class="ftr-tle">
-              <h4 class="white no-padding">Theo dõi chúng tôi</h4>
-            </div>
-            <div class="info-sec">
-              <ul class="social-icon">
-                <li class="bglight-blue"><i class="fa fa-facebook"></i></li>
-                <li class="bgred"><i class="fa fa-google-plus"></i></li>
-                <li class="bgdark-blue"><i class="fa fa-linkedin"></i></li>
-                <li class="bglight-blue"><i class="fa fa-twitter"></i></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!--/ footer-->
-
-  <script src="client/js/jquery.min.js"></script>
-  <script src="client/js/jquery.easing.min.js"></script>
-  <script src="client/js/bootstrap.min.js"></script>
-  <script src="client/js/custom.js"></script>
-  <script src="client/contactform/contactform.js"></script>
-
-</body>
+  @include('client.layouts.footer')
+  </body>
 
 </html>

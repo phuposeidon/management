@@ -3,11 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Patient extends Model
+class Patient extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = "Patient";
     public $timestamps = false;
+
+    protected $fillable = [
+        'fullname', 'username', 'password',
+    ];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     public function Appointment() {
         return $this->hasMany('App\Appointment', 'patientId', 'id');
     }
