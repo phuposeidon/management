@@ -99,7 +99,23 @@ banner
     padding: 0; 
     background: rgba(28,74,90, 0.9);
 }
-
+ul.menudrop {
+    background-color: rgba(12, 184, 182, 0.7);
+}
+li.menu-list {
+    height: 50px;
+}
+li.menu-list:hover {
+    background-color: rgba(124, 199, 198, 0.5);
+}
+li.menu-list a {
+    color: #fff;
+    text-transform: uppercase;
+    padding: 15px;
+}
+li.menu-list a:hover {
+    background: none;
+}
 .white, .white:hover, .white:focus
 {
 	color: #fff;
@@ -140,12 +156,67 @@ banner
 	min-height: 650px;
 	position: relative;
 }
+.label-bottom {
+    margin-bottom: 10px;
+}
 .bg-color{
 	background-color: RGBA(13, 70, 83, 0.78);
 	min-height: 650px;
 }
+.hours-board {
+    width: 100%;
+    height: 315px;
+    padding: 25px 80px;
+    /* border: 1px solid #fff; */
+    /* background-color: rgba(255, 255, 255, 0.2); */
+}
+.hours-box {
+    width: 23%;
+    height: 70px;
+    float: left;
+    margin: 0 2.5px 5px;
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-bottom: 5px solid green;
+    cursor: pointer;
+}
+.hours-box:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 5px solid lightgreen;
+}
+.hours-box p {
+    color: #333;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+}
+.hours-box span {
+    color: #333;
+}
+.hours-selected {
+    background-color: #333;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-bottom: 5px solid #767676; 
+}
+.hours-selected p , .hours-selected span {
+    color: #fff;
+}
+.hours-noslot, .hours-noslot:hover  {
+    background-color: rgba(200, 200, 200, 0.5);
+    border-bottom: 5px solid red;
+}
+.hours-noslot p, .hours-noslot span {
+    color: #333;
+}
+.user-info input, select {
+    color: black;
+    width: 90%;
+}
 .banner-info{
 	padding-top: 190px;
+}
+.banner-info-1 {
+    padding-top: 110px;
 }
 .banner-logo img{
 	display: inline-block;

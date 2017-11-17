@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Province;
 use App\District;
 use App\Patient;
@@ -11,6 +16,9 @@ use App\Insurrance;
 
 class PatientController extends Controller
 {
+	use AuthenticatesUsers;
+	protected $guard = "patient" ;
+	
 	function show(){
 		$provinces = Province::all();
 		$districts = District::all();
@@ -31,7 +39,8 @@ class PatientController extends Controller
 		$patient->email = $req->email;
 		$patient->gender = $req->gender;
 		$patient->phonenumber = $req->phonenumber;
-		$patient->password = $req->password;
+		$patient->username = $req->username;
+		$patient->password = bcrypt($req->password);
 		$patient->passport = $req->passport;
 		$patient->allergic = $req->allergic;
 		$patient->bloodgroup = $req->bloodgroup;
@@ -72,6 +81,51 @@ class PatientController extends Controller
 		foreach($ids as $id) {
 			Patient::find($id)->delete();
 		}
+	}
+
+	public function getLogin() {
+		return view('client.page.loginpage');
+	}
+	public function postLogin(Request $request) {
+		$this->validate($request,[
+			'username' => 'required',
+			'password' => 'required'
+		],[
+			'username.required' => 'Bạn chưa nhập username',
+			'password.required' => 'Bạn chưa nhập password'
+		]);
+			
+		if(Auth::guard('patient')->attempt(['username' => $request->username, 'password' => $request->password])) //Ktra đăng nhập
+		{	
+			$thongbao = 'Chào mừng '.Auth::guard('patient')->user()->name.' đã đăng nhập thành công.';
+			return redirect()->back()->with('thongbao', $thongbao);
+		}
+		else {
+			return redirect()->back()->with('thongbao', 'Tên tài khoản hoặc mật khẩu không chính xác.');
+		}
+	}
+	public function getLogout(){
+        Auth::guard('patient')->logout();
+        return redirect()->back()->with('thongbao', 'Bạn đã đăng xuất thành công');
+	}
+	public function signUp(Request $request) {
+		$patient = new Patient;
+		$patient->fullname = $request->fullname;
+		$patient->email = $request->email;
+		$patient->gender = $request->gender;
+		$patient->phonenumber = $request->phonenumber;
+		$patient->username = $request->username;
+		$patient->password = bcrypt($request->password);
+		// $patient->passport = $request->passport;
+		// $patient->allergic = $request->allergic;
+		$patient->bloodgroup = $request->bloodgroup;
+		// $patient->pet = $request->pet;
+		// $patient->phonepet = $request->petphonenumber;
+		// $patient->provinceId = $request->province;
+		// $patient->active = $request->active;
+		$patient->save();
+
+		return view('client.layouts.index');
 	}
 
 	function getEdit($id){
