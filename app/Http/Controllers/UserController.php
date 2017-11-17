@@ -66,4 +66,42 @@ class UserController extends Controller
 			User::find($id)->delete();
 		}
 	}
+
+	function getEdit($id){
+		$speciality = Speciality::all();
+		$user = User::find($id);
+		return view('admin.management.user.edit',['user'=>$user,'speciality'=>$speciality]);
+	}
+
+	function postEdit(Request $req){
+		$speciality = Speciality::all();
+        $provinces = Province::all();
+        $districts = District::all();
+        $user = User::find($req->id);
+		if($req->active!=1)
+		{
+			$req->active=0;
+		}
+		$user->fullname = $req->fullname;
+		$user->districtId = 1;
+		$user->email = $req->email;
+		$user->gender = $req->gender;
+		$user->phonenumber = $req->phonenumber;
+        $user->passport = $req->passport;
+        $user->degree = $req->degree;
+        $user->note = $req->note;
+        $user->specialityId = $req->speciality;
+		$user->provinceId = 1;
+		$user->active = $req->active;
+		$user->save();
+		if($user->save())
+		{
+			\Session::flash('flash_message','Sửa thành công');
+			
+		}else{
+			\Session::flash('flash_fail','Sửa thất bai');
+        }
+        
+        return view('admin.management.user.add',['speciality'=>$speciality]);
+	}
 }

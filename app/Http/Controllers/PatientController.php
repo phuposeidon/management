@@ -82,6 +82,7 @@ class PatientController extends Controller
 			Patient::find($id)->delete();
 		}
 	}
+
 	public function getLogin() {
 		return view('client.page.loginpage');
 	}
@@ -125,5 +126,17 @@ class PatientController extends Controller
 		$patient->save();
 
 		return view('client.layouts.index');
+	}
+
+	function getEdit($id){
+		$patient = Patient::find($id);
+		$insurrance = $patient->Insurrance()->get();
+		foreach($insurrance as $a)
+		{
+			return view('admin.management.patient.edit',['patient'=>$patient,'insurrance'=>$a]);
+			dd($a['cardId']);
+		}
+		
+		
 	}
 }

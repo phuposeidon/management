@@ -20,11 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/user', 'UserController@list');
+Route::get('/user/{id}','UserController@getEdit');
+Route::post('/user/edit','UserController@postEdit')->name('postEdit');
 Route::post('/user-delete','UserController@delete');
 Route::post('/user-multidelete', 'UserController@deleteAll');
-
 Route::get('/add-user','UserController@index');
-
 Route::post('/add-user}','UserController@post')->name('postUser');
 
 
@@ -79,7 +79,7 @@ Route::get('/ordermedicine', function() {
 
 // PATIENT
 Route::get('/patient', 'PatientController@list')->name('patient');
-
+Route::get('/patient/{id}','PatientController@getEdit');
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');
 Route::post('/patient-delete', 'PatientController@delete');
