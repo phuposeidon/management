@@ -120,15 +120,13 @@
                                         </th>
                                         <th> ID </th>
                                         <th> Họ Tên</th>
-                                        <th> Tên Đăng Nhập </th>
                                         <th> Địa Chỉ </th>
                                         <th> Email </th>
                                         <th> Giới Tính </th>
                                         <th> SĐT</th>
                                         <th> Ghi Chú </th>
                                         <th> Ngày Tạo</th>
-                                        <th> Sửa </th>
-                                        <th> Xóa</th>
+                                        <th> Hành Động </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,9 +142,6 @@
                                         <td>
                                             {{$patient->fullname}}
                                         </td>
-                                        <td>
-                                            {{$patient->username}}
-                                        </td>
                                         <td> {{$patient->address}} </td>
                                         <td> {{$patient->email}} </td>
                                         <td> {{$patient->gender}} </td>
@@ -156,12 +151,7 @@
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> Xóa</a>                               
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> Xóa</a>  
                                             </div>
                                         </td>
                                     </tr>

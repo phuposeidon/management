@@ -150,7 +150,7 @@
                                 <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
-                                            <input name="birthday" type="text" value="{{$user->birthday}}" class="form-control" >
+                                            <input name="birthday" disabled type="text" value="{{$user->birthday}}" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -239,7 +239,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
-                                        <input name="country" type="text" class="form-control" placeholder="  ">
+                                        <input name="country" value="{{$user->country}}" disabled type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
