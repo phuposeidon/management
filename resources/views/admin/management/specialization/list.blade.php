@@ -234,7 +234,7 @@
                 });
                 $.ajax({
                     type: 'POST',
-                    url: 'speciality-delete',
+                    url: 'specialization-delete',
                     dataType: 'text',
                     data: {id: id},
                     success:function(data){
@@ -271,7 +271,7 @@
 				});
 				$.ajax({
 					type: 'POST',
-					url: 'speciality-multidelete',
+					url: 'specialization-multidelete',
 					dataType: 'text',
 					data: {id: val},
 					success:function(data){

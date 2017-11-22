@@ -146,7 +146,7 @@
                                         </td>
                                         <td> {{$appointment->Clinic->name}} </td>
                                         <td> {{$appointment->User->fullname}} </td>
-                                        <td class="center"> {{$appointment->date}} </td>
+                                        <td class="center">{{Carbon\Carbon::Parse($appointment->appointmentDate)->format('d-m-Y H:i:s')}}</td>
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

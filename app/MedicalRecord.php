@@ -9,7 +9,18 @@ class MedicalRecord extends Model
     protected $table = "MedicalRecord";
     
     public function Order() {
-        return $this->belongsTo('App\Order', 'orderId', 'id');
+        return $this->hasOne('App\Order', 'medicalRecordId', 'id');
     }
 
+    public function Patient() {
+        return $this->belongsTo('App\Patient', 'patientId', 'id');
+    }
+
+    public function Clinic() {
+        return $this->belongsTo('App\Clinic', 'clinicId', 'id');
+    }
+
+    public function User() {
+        return $this->belongsTo('App\User', 'doctorId', 'id');
+    }
 }

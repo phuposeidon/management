@@ -119,11 +119,11 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Hóa Đơn </th>
-                                        <th> Tạo Bởi</th>
-                                        <th> Số Lượng</th>
+                                        <th> Mã Hóa Đơn </th>
+                                        <th> Bệnh nhân</th>
+                                        <th> Số Tiền</th>
+                                        <th> Người Tạo</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Ngày Sửa</th>
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
@@ -138,11 +138,11 @@
                                             </label>
                                         </td>
                                         <td> {{$transaction->id}} </td>
-                                        <td> {{$transaction->orderId}} </td>
-                                        <td> {{$transaction->User->name}} </td>
-                                        <td> {{$transaction->amount}} </td>
+                                        <td> {{$transaction->Order->orderCode}} </td>
+                                        <td> {{$transaction->Order->MedicalRecord->Patient->fullname}} </td>
+                                        <td> {{$transaction->totalAmount}} </td>
+                                        <td> {{$transaction->Order->MedicalRecord->User->fullname}}  </td>
                                         <td class="center"> {{$transaction->createdAt}} </td>
-                                        <td class="center"> {{$transaction->updatedAt}} </td>
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

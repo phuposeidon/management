@@ -133,11 +133,12 @@
             @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="" role="form" method="POST">
+            <form class="form-horizontal" action="{{asset('patient/edit')}}" role="form" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="id" value="{{$patient->id}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
@@ -299,7 +300,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số BHYT</label>
                                     <div class="col-md-6">
-                                        <input name="cardId" value="{{$insurrance->cardId}}" type="text" name="insurrentcode" class="form-control" placeholder="  ">
+                                        <input name="cardId" value="{{$insurance->cardId}}" type="text" name="insurrentcode" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -307,7 +308,7 @@
                                     <label class="col-md-3 control-label">Từ Ngày</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                            <input name="todate" value="{{$insurrance->todate}}" type="text" class="form-control" >
+                                            <input name="todate" value="{{$insurance->todate}}" type="text" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -322,7 +323,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Số BHYT</label>
                                 <div class="col-md-6">
-                                    <input name="placeCheck" value="{{$insurrance->placeCheck}}" type="text" name="insurrentcode" class="form-control" placeholder="  ">
+                                    <input name="placeCheck" value="{{$insurance->placeCheck}}" type="text" name="insurrentcode" class="form-control" placeholder="  ">
                                 </div>
                             </div>
                             
@@ -330,7 +331,7 @@
                                 <label class="col-md-3 control-label">Đến Ngày</label>
                                 <div class="col-md-6">
                                     <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                        <input name="fromdate" value="{{$insurrance->fromdate}}" type="text" class="form-control" >
+                                        <input name="fromdate" value="{{$insurance->fromdate}}" type="text" class="form-control" >
                                         <span class="input-group-btn">
                                             <button class="btn default" type="button">
                                                 <i class="fa fa-calendar"></i>

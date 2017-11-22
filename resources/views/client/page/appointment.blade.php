@@ -12,10 +12,10 @@
                     <h1 class="white">Đặt lịch khám </h1>
 
                     <div class="form-group" style="margin-top: 40px;">
-                        <label for="" class="label-bottom">Chọn phòng khám: </label>
+                        <label for="" class="label-bottom">Chọn loại bệnh: </label>
                         <select name="" id="" class="form-control br-radius-zero">
-                            <option value="">Phòng khám Nhiệt Đới</option>
-                            <option value="">Phòng khám Hoàn Mỹ</option>
+                            <option value="">Tai Mũi Họng</option>
+                            <option value="">Răng Hàm Mặt</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn ngày khám: </label>
-                        <input type="date" class="form-control br-radius-zero" name="" />
+                        <input type="text" class="form-control br-radius-zero datepicker" name="" />
                         
                     </div>
 

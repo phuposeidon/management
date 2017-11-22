@@ -12,11 +12,11 @@ class Service extends Model
         return $this->belongsTo('App\Clinic', 'clinicId', 'id');
     }
 
-    public function TestResult() {
-        return $this->hasOne('App\TestResult', 'serviceId', 'id');
+    public function User() {
+        return $this->belongsTo('App\User', 'executedById', 'id');
     }
 
-    public function User() {
-        return $this->belongsTo('App\User', 'executeById', 'id');
+    public function OrderService() {
+        return $this->hasMany('App\OrderService', 'serviceId', 'id');
     }
 }

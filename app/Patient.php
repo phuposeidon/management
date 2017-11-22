@@ -24,15 +24,15 @@ class Patient extends Authenticatable
         return $this->hasMany('App\Appointment', 'patientId', 'id');
     }
 
-    public function Insurrance() {
-        return $this->hasMany('App\Insurrance', 'patientId', 'id');
+    public function Insurance() {
+        return $this->hasMany('App\Insurance', 'patientId', 'id');
     }
 
     public function Order() {
         return $this->hasMany('App\Order', 'patientId', 'id');
     }
 
-    public function TestResult() {
-        return $this->hasMany('App\TestResult', 'patientId', 'id');
+    public function MedicalRecord() {
+        return $this->hasMany('App\MedicalRecord', 'patientId', 'id');
     }
 }

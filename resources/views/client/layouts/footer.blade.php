@@ -44,8 +44,23 @@
 
   <script src="client/js/jquery.min.js"></script>
   <script src="client/js/jquery.easing.min.js"></script>
+  <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
   <script src="client/js/bootstrap.min.js"></script>
   <script src="client/js/custom.js"></script>
   <script src="client/contactform/contactform.js"></script>
+  <script type="text/javascript">
+      $(function () {
+        $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).on('changeDate', function (ev) {
+          $(this).datepicker('hide');
+      });
+    })
+  </script>
+  <script>
+    $(document).ready(function() {
+        @if(session('thongbao'))
+            $('#login-popup').modal('show');
+        @endif
+    });
+</script>
 
 

@@ -82,6 +82,8 @@ Route::get('/ordermedicine', function() {
 // PATIENT
 Route::get('/patient', 'PatientController@list')->name('patient');
 Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
+Route::get('/patient/{id}','PatientController@getEdit');
+Route::post('/patient/edit','PatientController@postEdit');
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');
 Route::post('/patient-delete', 'PatientController@delete');
@@ -96,9 +98,9 @@ Route::post('/service-delete', 'ServiceController@delete');
 Route::post('/service-multidelete', 'ServiceController@deleteAll');
 
 
-Route::get('/speciality', 'SpecialityController@list');
-Route::post('/speciality-delete', 'SpecialityController@delete');
-Route::post('/speciality-multidelete', 'SpecialityController@deleteAll');
+Route::get('/specialization', 'SpecializationController@list');
+Route::post('/specialization-delete', 'SpecializationController@delete');
+Route::post('/specialization-multidelete', 'SpecializationController@deleteAll');
 
 Route::get('/test', 'TestController@list');
 Route::post('/test-delete', 'TestController@delete');
@@ -123,7 +125,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/appointment', function() {
+Route::get('/appointment-login',['as' => 'appoint-login' ,function() {
+    return view('client.page.appointment-login');
+}]);
+Route::get('/appointments', function() {
     return view('client.page.appointment');
 });
 Route::get('/hours', function() {

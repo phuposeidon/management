@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Route;
 use App\Province;
 use App\District;
 use App\Patient;
-use App\Insurrance;
+use App\Insurance;
 
 class PatientController extends Controller
 {
@@ -28,7 +29,7 @@ class PatientController extends Controller
     function index(Request $req){
 		$provinces = Province::all();
 		$districts = District::all();
-		$insurrance = new Insurrance;
+		$insurrance = new Insurance;
 		$patient = new Patient;
 		if($req->active!=1)
 		{
@@ -97,7 +98,7 @@ class PatientController extends Controller
 			
 		if(Auth::guard('patient')->attempt(['username' => $request->username, 'password' => $request->password])) //Ktra đăng nhập
 		{	
-			$thongbao = 'Chào mừng '.Auth::guard('patient')->user()->name.' đã đăng nhập thành công.';
+			$thongbao = 'Chào mừng '.Auth::guard('patient')->user()->fullname.' đã đăng nhập thành công.';
 			return redirect()->back()->with('thongbao', $thongbao);
 		}
 		else {
@@ -130,13 +131,54 @@ class PatientController extends Controller
 
 	function getEdit($id){
 		$patient = Patient::find($id);
-		$insurrance = $patient->Insurrance()->get();
+		$insurrance = $patient->Insurance()->get();
 		foreach($insurrance as $a)
 		{
 			return view('admin.management.patient.edit',['patient'=>$patient,'insurrance'=>$a]);
 			dd($a['cardId']);
+		}		
+		
+	}
+
+	function postEdit(Request $req){
+		$provinces = Province::all();
+		$districts = District::all();
+		$patient = Patient::find($req->id);
+		$insurrance = Insurance::where('patientId', $req->id)->get();
+		
+		if($req->active!=1)
+		{
+			$req->active=0;
 		}
-		
-		
+		$patient->fullname = $req->fullname;
+		$patient->districtId = $req->district;
+		$patient->email = $req->email;
+		$patient->gender = $req->gender;
+		$patient->phonenumber = $req->phonenumber;
+		$patient->username = $req->username;
+		$patient->password = bcrypt($req->password);
+		$patient->passport = $req->passport;
+		$patient->allergic = $req->allergic;
+		$patient->bloodgroup = $req->bloodgroup;
+		$patient->pet = $req->pet;
+		$patient->phonepet = $req->petphonenumber;
+		$patient->provinceId = $req->province;
+		$patient->active = $req->active;
+		$patient->save();
+		$insurrance->todate = $req->todate;
+		$insurrance->fromdate = $req->fromdate;
+		$insurrance->cardId = $req->cardId;
+		$insurrance->placeCheck = $req->placecheck;
+		$insurrance->patientId = $patient->id;
+		$insurrance->save();
+		if($patient->save() && $insurrance->save())
+		{
+			\Session::flash('flash_message','Sửa thông tin bệnh nhân thành công');
+			
+		}else{
+			\Session::flash('flash_fail','Sửa thông tin bệnh nhân thất bại');
+		}
+
+		return view('admin.management.patient.edit',['provinces'=>$provinces,'districts'=>$districts]);
 	}
 }

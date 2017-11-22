@@ -1,2 +1,0 @@
-ALTER TABLE service DROP updatedById
-ALTER TABLE order DROP createdById;

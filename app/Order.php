@@ -8,23 +8,20 @@ class Order extends Model
 {
     protected $table = "Order";
     
-    public function Patient() {
-        return $this->belongsTo('App\Patient', 'patientId', 'id');
-    }
-
-    public function Clinic() {
-        return $this->belongsTo('App\Clinic', 'clinicId', 'id');
-    }
-
-    public function User() {
-        return $this->belongsTo('App\User', 'doctorId', 'id');
-    }
 
     public function OrderMedicine() {
         return $this->hasMany('App\OrderMedicine', 'orderId', 'id');
     }
 
-    public function OrderItem() {
-        return $this->hasMany('App\OrderItem', 'orderId', 'id');
+    public function MedicalRecord() {
+        return $this->belongsTo('App\MedicalRecord', 'medicalRecordId', 'id');
+    }
+
+    public function Transaction() {
+        return $this->hasOne('App\Transaction', 'orderId', 'id');
+    }
+
+    public function OrderService() {
+        return $this->hasMany('App\OrderService', 'orderId', 'id');
     }
 }

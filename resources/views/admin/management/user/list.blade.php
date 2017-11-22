@@ -119,7 +119,7 @@
                                             </label>
                                         </th>
                                         <th> ID </th>
-                                        <th> User Type </th>
+                                        <th> Chức Vụ </th>
                                         <th> Họ Tên</th>
                                         <th> Email </th>
                                         <th> Giới Tính </th>
@@ -138,7 +138,7 @@
                                             </label>
                                         </td>
                                         <td> {{$user->id}} </td>
-                                        <td> {{$user->usertype}} </td>
+                                        <td> {{$user->userType}} </td>
                                         <td> {{$user->fullname}} </td>
                                         <td> {{$user->email}} </td>
                                         <td>
@@ -148,8 +148,12 @@
                                             Nữ
                                         @endif 
                                          </td>
-                                        <td> {{$user->phonenumber}} </td>
-                                        <td> {{$user->Speciality->name}} </td>
+                                        <td> {{$user->phone}} </td>
+                                        <td> 
+                                        @if(isset($user->specializationId))
+                                            {{$user->Specialization->name}} 
+                                        @endif
+                                        </td>
                                         <td>
                                             <div style="text-align:center;">
                                                 <a href="user/{{$user->id}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
