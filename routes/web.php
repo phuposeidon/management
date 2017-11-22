@@ -37,10 +37,12 @@ Route::post('/appointment-delete','AppointmentController@delete');
 Route::post('/appointment-multidelete', 'AppointmentController@deleteAll');
 
 
-Route::get('/clinic', 'ClinicController@list');
-Route::get('/add-clinic',function(){
-    return view('admin.management.clinic.add');
-});
+Route::get('/clinic', 'ClinicController@list')->name('list');
+Route::get('/add-clinic','ClinicController@index')->name('add');
+Route::post('/clinic','ClinicController@add')->name('addClinic');
+Route::get('/clinic/edit/{id}','ClinicController@getEdit');
+Route::post('/clinic/edit/{id}','ClinicController@edit')->name('editClinic');
+
 Route::post('/clinic-delete','ClinicController@delete');
 Route::post('/clinic-multidelete', 'ClinicController@deleteAll');
 
@@ -79,7 +81,7 @@ Route::get('/ordermedicine', function() {
 
 // PATIENT
 Route::get('/patient', 'PatientController@list')->name('patient');
-Route::get('/patient/{id}','PatientController@getEdit');
+Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');
 Route::post('/patient-delete', 'PatientController@delete');

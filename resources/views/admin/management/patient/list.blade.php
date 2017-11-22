@@ -150,7 +150,7 @@
                                         <td class="center"> {{$patient->createdAt}} </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{route('edit', ['id' => $patient->id])}}" > Sửa</a>
                                                 <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> Xóa</a>  
                                             </div>
                                         </td>

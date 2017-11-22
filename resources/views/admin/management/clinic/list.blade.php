@@ -82,9 +82,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
+                                            <a href="{{route('add')}}"><button id="sample_editable_1_new" class="btn sbold green"> Thêm
                                                 <i class="fa fa-plus"></i>
-                                            </button>
+                                            </button></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -128,9 +128,8 @@
                                         <th> Giấy Phép</th>
                                         <th> Mã Số Thuế</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Ngày Sửa</th>
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Sửa</th>
+                                        <th> Xóa </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -152,13 +151,12 @@
                                         <td>
                                                 {{$clinic->phonenumber}}
                                         </td>
-                                        <td> {{$clinic->licence}} </td>
+                                        <td> {{$clinic->license}} </td>
                                         <td>{{$clinic->taxcode}} </td>
                                         <td class="center"> {{$clinic->createdAt}} </td>
-                                        <td class="center"> {{$clinic->updatedAt}} </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{route('editClinic', ['id' => $clinic->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
                                                 
                                             </div>
                                         </td>

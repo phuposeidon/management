@@ -124,7 +124,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title">Thêm Phòng Khám
+            <h1 class="page-title">Thông Tin Phòng Khám
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -132,7 +132,7 @@
              @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{route('addClinic')}}" role="form" method="POST">
+            <form class="form-horizontal" action="{{route('editClinic',['id'=>$clinic->id])}}" role="form" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -142,41 +142,41 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên Miền</label>
                                     <div class="col-md-6">
-                                        <input name="domain" required type="text" class="form-control" placeholder="  ">
+                                        <input name="domain" value="{{$clinic->domain}}" required type="text" class="form-control" placeholder="  ">
                                     </div>
                                  </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên Cơ Sở</label>
                                     <div class="col-md-6">
-                                        <input name="name" type="text" class="form-control" placeholder="  ">
+                                        <input name="name" value="{{$clinic->name}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên Viết Tắt</label>
                                     <div class="col-md-6">
-                                        <input name="shortName" type="text" class="form-control" placeholder="  ">
+                                        <input name="shortName" value="{{$clinic->shortName}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số điện thoại</label>
                                     <div class="col-md-6">
-                                        <input name="phonenumber" type="text" class="form-control" placeholder="  ">
+                                        <input name="phonenumber" value="{{$clinic->phonenumber}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số giấy phép</label>
                                     <div class="col-md-6">
-                                        <input name="liencse" type="text" class="form-control" placeholder="  ">
+                                        <input name="liencse" value="{{$clinic->license}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mã Số Thuế</label>
                                     <div class="col-md-6">
-                                        <input name="taxcode" type="text" class="form-control" placeholder="  ">
+                                        <input name="taxcode" value="{{$clinic->taxcode}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -206,14 +206,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Fax</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="fax" class="form-control" placeholder="  ">
+                                        <input type="text" value="{{$clinic->fax}}" name="fax" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
-                                        <input name="country" type="text" class="form-control" placeholder="  ">
+                                        <input name="country"  value="Việt Nam" disabled="" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -232,7 +232,6 @@
                                     <div class="col-md-6">
                                         <select class="form-control">
                                             <option>Quận 1</option>
-                                            <option>Quận 2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -240,7 +239,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Thông tin Bổ Sung</label>
                                     <div class="col-md-6">
-                                    <textarea name="note" rows="5" class="form-control" style=""></textarea>
+                                    <textarea name="note" value="{{$clinic->note}}" rows="5" class="form-control" style=""></textarea>
                                     </div>
                                 </div>
                     </div>
@@ -256,10 +255,8 @@
                             <button type="button" class="btn btn-primary">
                                 <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
                             </button>
-                            <a href="{{route('list')}}">
-                                <button type="button" class="btn btn-default" >
+                            <a href="{{route('list')}}" class="btn btn-default" >
                                 <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
-                            </button>
                             </a>
                     </div>
                 </div>
