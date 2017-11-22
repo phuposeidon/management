@@ -148,7 +148,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="birthday" class="form-control" placeholder="  ">
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                            <input type="text" required name="birthday" class="form-control" >
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -203,6 +210,17 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">Chức Vụ</label>
+                                    <div class="col-md-6">
+                                        <select name="userType" class="form-control">
+                                            <option value="Bác Sĩ">Bác Sĩ</option>
+                                            <option value-"Y Tá">Y tá</option>
+                                            <option value="User">User</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-md-3 control-label">Chuyên Khoa</label>
                                     <div class="col-md-6">
                                         <select name="speciality" class="form-control">
@@ -237,7 +255,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
-                                        <input name="country" type="text" class="form-control" placeholder="  ">
+                                        <input name="country" value="Việt Nam" disabled type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 

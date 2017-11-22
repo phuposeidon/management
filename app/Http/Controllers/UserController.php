@@ -25,7 +25,9 @@ class UserController extends Controller
 		{
 			$req->active=0;
 		}
+		$user->birthday = $req->birthday;
 		$user->fullname = $req->fullname;
+		$user->usertype = $req->userType;
 		$user->districtId = 1;
 		$user->email = $req->email;
 		$user->gender = $req->gender;
@@ -94,14 +96,23 @@ class UserController extends Controller
 		$user->provinceId = 1;
 		$user->active = $req->active;
 		$user->save();
-		if($user->save())
-		{
-			\Session::flash('flash_message','Sửa thành công');
+		$allUsers = User::paginate(10);
+		// if($user->save())
+		// {
+		// 	\Session::flash('flash_message','Sửa thành công');
 			
+<<<<<<< HEAD
 		}else{
 			\Session::flash('flash_fail','Sửa thất bại');
         }
         
         return view('admin.management.user.edit',['speciality'=>$speciality]);
+=======
+		// }else{
+		// 	\Session::flash('flash_fail','Sửa thất bai');
+        // }
+        
+        return view('admin.management.user.list',['allUsers'=>$allUsers]);
+>>>>>>> 2910ae3bf58cbe70d4b0a2784adb7297e8522ee6
 	}
 }

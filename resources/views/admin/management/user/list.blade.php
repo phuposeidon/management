@@ -81,9 +81,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
+                                            <a href="{{route('addUser')}}"><button id="sample_editable_1_new" class="btn sbold green"> Thêm
                                                 <i class="fa fa-plus"></i>
-                                            </button>
+                                            </button></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

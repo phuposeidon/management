@@ -120,14 +120,17 @@
                                         </th>
                                         <th> ID </th>
                                         <th> Họ Tên</th>
+<<<<<<< HEAD
                                         <th> Tên Đăng Nhập </th>
                                         <!-- <th> Địa Chỉ </th> -->
+=======
+                                        <th> Địa Chỉ </th>
+>>>>>>> 2910ae3bf58cbe70d4b0a2784adb7297e8522ee6
                                         <th> Email </th>
                                         <th> Giới Tính </th>
                                         <th> SĐT</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Sửa </th>
-                                        <th> Xóa</th>
+                                        <th> Hành Động </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -143,10 +146,14 @@
                                         <td>
                                             {{$patient->fullname}}
                                         </td>
+<<<<<<< HEAD
                                         <td>
                                             {{$patient->username}}
                                         </td>
                                         <!-- <td> {{$patient->address}} </td> -->
+=======
+                                        <td> {{$patient->address}} </td>
+>>>>>>> 2910ae3bf58cbe70d4b0a2784adb7297e8522ee6
                                         <td> {{$patient->email}} </td>
                                         <td> 
                                             @if ($patient->gender == 1)
@@ -159,6 +166,7 @@
                                         <td class="center"> {{$patient->createdAt}} </td>
                                         <td>
                                             <div>
+<<<<<<< HEAD
                                                 <a href="{{asset('patient/'.$patient->id)}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
                                                 
                                             </div>
@@ -166,6 +174,10 @@
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> Xóa</a>                               
+=======
+                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> Xóa</a>  
+>>>>>>> 2910ae3bf58cbe70d4b0a2784adb7297e8522ee6
                                             </div>
                                         </td>
                                     </tr>
