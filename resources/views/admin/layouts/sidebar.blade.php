@@ -19,14 +19,14 @@
                     <a href="javascript:;" class="remove">
                         <i class="icon-close"></i>
                     </a>
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <input type="text" class="form-control" placeholder="Tìm Sản Phẩm...">
                         <span class="input-group-btn">
                             <a href="javascript:;" class="btn submit">
                                 <i class="icon-magnifier"></i>
                             </a>
                         </span>
-                    </div>
+                    </div> -->
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
@@ -48,13 +48,12 @@
                 <!-- end receipt  -->
             </li>
                 
-            <li class="nav-item start">
+            <!-- <li class="nav-item start">
                 <a href="{{asset('province')}}" class="nav-link nav-toggle">
                     <i class="fa fa-globe"></i>
                     <span class="title">Tỉnh / Thành Phố</span>
                     <span class="selected"></span>
                 </a>
-                <!-- end receipt  -->
             </li>
 
             <li class="nav-item start">
@@ -63,8 +62,7 @@
                     <span class="title">Quận / Huyện</span>
                     <span class="selected"></span>
                 </a>
-                <!-- end receipt  -->
-            </li>
+            </li> -->
 
             <li class="nav-item start">
                 <a href="{{asset('clinic')}}" class="nav-link nav-toggle">
@@ -76,21 +74,20 @@
             </li>
 
             <li class="nav-item start">
-                <a href="{{asset('speciality')}}" class="nav-link nav-toggle">
+                <a href="{{asset('specialization')}}" class="nav-link nav-toggle">
                     <i class="fa fa-briefcase"></i>
                     <span class="title">Chuyên Khoa</span>
                     <span class="selected"></span>
                 </a>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item start">
+            <!-- <li class="nav-item start">
                 <a href="{{asset('insurrance')}}" class="nav-link nav-toggle">
                     <i class="fa fa-credit-card"></i>
                     <span class="title">Thẻ Bảo Hiểm</span>
                     <span class="selected"></span>
                 </a>
-                <!-- end receipt  -->
-            </li>
+            </li> -->
             <li class="nav-item start">
                 <a href="{{asset('medicine')}}" class="nav-link nav-toggle">
                     <i class="fa fa-medkit"></i>
@@ -107,14 +104,13 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item start">
+            <!-- <li class="nav-item start">
                 <a href="{{asset('orderitem')}}" class="nav-link nav-toggle">
                     <i class="fa fa-info"></i>
                     <span class="title">Chi Tiết Hóa Đơn</span>
                     <span class="selected"></span>
                 </a>
-                <!-- end receipt  -->
-            </li>
+            </li> -->
              <li class="nav-item start">
                 <a href="{{asset('service')}}" class="nav-link nav-toggle">
                     <i class="fa fa-stethoscope"></i>
@@ -130,30 +126,14 @@
                     <span class="selected"></span>
                 </a>
             </li>
-            <li class="nav-item start">
+            <!-- <li class="nav-item start">
                 <a href="{{asset('medicalrecord')}}" class="nav-link nav-toggle">
                     <i class="fa fa-heart"></i>
                     <span class="title">Bệnh Án</span>
                     <span class="selected"></span>
                 </a>
-                <!-- end receipt  -->
-            </li>
-            <li class="nav-item start">
-                <a href="{{asset('test')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-heartbeat"></i>
-                    <span class="title">Xét Nghiệm</span>
-                    <span class="selected"></span>
-                </a>
-                <!-- end receipt  -->
-            </li>
-            <li class="nav-item start">
-                <a href="{{asset('testresult')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-file-text-o"></i>
-                    <span class="title">Kết Quả Xét Nghiệm</span>
-                    <span class="selected"></span>
-                </a>
-                <!-- end receipt  -->
-            </li>
+            </li> -->
+            
             <li class="nav-item start">
                 <a href="{{asset('transaction')}}" class="nav-link nav-toggle">
                     <i class="fa fa-money"></i>

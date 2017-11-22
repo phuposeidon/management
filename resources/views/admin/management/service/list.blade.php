@@ -121,7 +121,6 @@
                                         <th> STT </th>
                                         <th> Tên Dịch Vụ </th>
                                         <th> Giá</th>
-                                        <th> Nội Dung</th>
                                         <th> Phòng Khám </th>
                                         <th> Thực Hiện</th>
                                         <th> Edit </th>
@@ -140,9 +139,16 @@
                                         <td> {{$service->id}} </td>
                                         <td> {{$service->name}} </td>
                                         <td> {{$service->price}} </td>
-                                        <td> {{$service->content}} </td>
-                                        <td> {{$service->Clinic->name}} </td>
-                                        <td> {{$service->User->fullname}} </td>
+                                        <td>
+                                        @if(isset($service->clinicId))
+                                            {{$service->Clinic->name}} 
+                                        @endif
+                                        </td>
+                                        <td> 
+                                        @if(isset($service->clinicId))
+                                            {{$service->User->fullname}} 
+                                        @endif
+                                        </td>
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

@@ -15,7 +15,11 @@
             <div class="banner-text text-center">
               <h1 class="white">Chăm sóc sức khỏe ngay tại bàn!!</h1>
               <p>Cung cấp dịch vụ chăm sóc sức khỏe chuyên nghiệp và tận tình<br>Tất cả vì sức khỏe của bạn và người thân.</p>
-              <a href="{{asset('appointment')}}" class="btn btn-appoint">Đặt lịch hẹn</a>
+              @if(isset(Auth::guard('patient')->user()->username))
+              <a href="{{asset('appointments')}}" class="btn btn-appoint">Đặt lịch hẹn</a>
+              @else
+              <a href="{{asset('appointment-login')}}" class="btn btn-appoint">Đặt lịch hẹn</a>
+              @endif
             </div>
             <div class="overlay-detail text-center">
               <a href="#service"><i class="fa fa-angle-down"></i></a>

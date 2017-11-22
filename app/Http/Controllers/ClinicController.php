@@ -4,16 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Clinic;
-use App\Province;
-use App\District;
 
 class ClinicController extends Controller
 {
     function list() {
         $allClinics = Clinic::paginate(10);
-        $allProvinces = Province::all();
-        $allDistricts = District::all();
-        return view('admin.management.clinic.list', ['allClinics' => $allClinics, 'allProvinces' => $allProvinces, 'allDistricts' => $allDistricts]);
+        return view('admin.management.clinic.list', ['allClinics' => $allClinics]);
     }
 
     function delete(Request $request) {

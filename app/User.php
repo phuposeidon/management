@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     public function Service() {
-        return $this->hasMany('App\Service', 'executeById', 'id');
+        return $this->hasMany('App\Service', 'executedById', 'id');
     }
 
     public function Transaction() {
@@ -40,8 +40,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Order', 'doctorId', 'id');
     }
 
-    public function Speciality() {
-        return $this->belongsTo('App\Speciality', 'specialityId', 'id');
+    public function Specialization() {
+        return $this->belongsTo('App\Specialization', 'specializationId', 'id');
+    }
+
+    public function Appointment() {
+        return $this->hasMany('App\Appointment', 'doctorId', 'id');
     }
 
 }

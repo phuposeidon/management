@@ -119,17 +119,17 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Loại Xát Nghiệm </th>
+                                        <th> Loại Xét Nghiệm </th>
                                         <th> Tên Xét Nghiệm</th>
-                                        <th> Mô Tả</th>
+                                        <!-- <th> Mô Tả</th>
                                         <th> Ghi Chú </th>
                                         <th> Đơn Vị</th>
-                                        <th> Đang Hoạt Động</th>
+                                        <th> Đang Hoạt Động</th> -->
                                         <th> Phòng Khám</th>
-                                        <th> Reference Range</th>
-                                        <th> Normal Range</th>
+                                        <!-- <th> Reference Range</th>
+                                        <th> Normal Range</th> -->
                                         <th> Ngày Tạo</th>
-                                        <th> Ngày Sửa</th>
+                                        <!-- <th> Ngày Sửa</th> -->
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
@@ -146,17 +146,17 @@
                                         <td> {{$test->id}} </td>
                                         <td> {{$test->type}} </td>
                                         <td> {{$test->name}} </td>
-                                        <td> {{$test->description}} </td>
+                                        <!-- <td> {{$test->description}} </td>
                                         <td>
                                             {{$test->note}}
                                         </td>
                                         <td> {{$test->unit}} </td>
-                                        <td> {{$test->isActive}} </td>
+                                        <td> {{$test->isActive}} </td> -->
                                         <td> {{$test->Clinic->name}} </td>
-                                        <td> {{$test->referenceRange}} </td>
-                                        <td> {{$test->normalRange}} </td>
+                                        <!-- <td> {{$test->referenceRange}} </td>
+                                        <td> {{$test->normalRange}} </td> -->
                                         <td class="center"> {{$test->createdAt}} </td>
-                                        <td class="center"> {{$test->updatedAt}} </td>
+                                        <!-- <td class="center"> {{$test->updatedAt}} </td> -->
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

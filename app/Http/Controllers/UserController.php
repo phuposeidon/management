@@ -44,7 +44,7 @@ class UserController extends Controller
 			\Session::flash('flash_message','Thêm bác sĩ thành công');
 			
 		}else{
-			\Session::flash('flash_fail','Thêm bác sĩ thất bai');
+			\Session::flash('flash_fail','Thêm bác sĩ thất bại');
         }
         
         return view('admin.management.user.add',['speciality'=>$speciality]);
@@ -99,9 +99,9 @@ class UserController extends Controller
 			\Session::flash('flash_message','Sửa thành công');
 			
 		}else{
-			\Session::flash('flash_fail','Sửa thất bai');
+			\Session::flash('flash_fail','Sửa thất bại');
         }
         
-        return view('admin.management.user.add',['speciality'=>$speciality]);
+        return view('admin.management.user.edit',['speciality'=>$speciality]);
 	}
 }

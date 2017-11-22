@@ -121,11 +121,10 @@
                                         <th> ID </th>
                                         <th> Họ Tên</th>
                                         <th> Tên Đăng Nhập </th>
-                                        <th> Địa Chỉ </th>
+                                        <!-- <th> Địa Chỉ </th> -->
                                         <th> Email </th>
                                         <th> Giới Tính </th>
                                         <th> SĐT</th>
-                                        <th> Ghi Chú </th>
                                         <th> Ngày Tạo</th>
                                         <th> Sửa </th>
                                         <th> Xóa</th>
@@ -147,15 +146,20 @@
                                         <td>
                                             {{$patient->username}}
                                         </td>
-                                        <td> {{$patient->address}} </td>
+                                        <!-- <td> {{$patient->address}} </td> -->
                                         <td> {{$patient->email}} </td>
-                                        <td> {{$patient->gender}} </td>
-                                        <td> {{$patient->phonenumber}} </td>
-                                        <td> {{$patient->note}} </td>
+                                        <td> 
+                                            @if ($patient->gender == 1)
+                                                Nam
+                                            @else
+                                                Nữ
+                                            @endif
+                                        </td>
+                                        <td> {{$patient->phone}} </td>
                                         <td class="center"> {{$patient->createdAt}} </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{asset('patient/'.$patient->id)}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
                                                 
                                             </div>
                                         </td>

@@ -7,17 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Clinic extends Model
 {
     protected $table = "Clinic";
-    
-        public function District() {
-            return $this->belongsTo('App\District', 'districtId', 'id');
-        }
-    
-        public function Province() {
-            return $this->belongsTo('App\Province', 'provinceId', 'id');
-        }
-    
-        public function Speciality() {
-            return $this->hasMany('App\Speciality', 'clinicId', 'id');
+   
+        public function Specialization() {
+            return $this->hasMany('App\Specialization', 'clinicId', 'id');
         }
 
         public function Appointment() {
@@ -30,10 +22,6 @@ class Clinic extends Model
 
         public function Service() {
             return $this->hasMany('App\Service', 'clinicId', 'id');
-        }
-
-        public function Test() {
-            return $this->hasMany('App\Test', 'clinicId', 'id');
         }
 
         public function Medicine() {

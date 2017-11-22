@@ -120,21 +120,22 @@
                                         </th>
                                         <th> STT </th>
                                         <th> Tên Thuốc </th>
-                                        <th> Giá Thầu</th>
+                                        <th> Đơn Vị </th>
+                                        <!-- <th> Giá Thầu</th>
                                         <th> Giá CSKCB</th>
                                         <th> Đang Bào Chế </th>
                                         <th> Nồng Độ</th>
                                         <th> Quy Cách</th>
                                         <th> Tiêu Chuẩn</th>
-                                        <th> Mã Nhà Thầu</th>
-                                        <th> Ghi Chú</th>
-                                        <th> Đang Điều Trị</th>
+                                        <th> Mã Nhà Thầu</th> -->
+                                        <th> Xuất Xứ</th>
+                                        <!-- <th> Đang Điều Trị</th>
                                         <th> Thành Phần</th>
                                         <th> Giá</th>
-                                        <th> Còn Thuốc</th>
+                                        <th> Còn Thuốc</th> -->
                                         <th> Phòng Khám</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Ngày Sửa</th>
+                                        <!-- <th> Ngày Sửa</th> -->
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
@@ -151,7 +152,8 @@
                                         </td>
                                         <td> {{$medicine->id}} </td>
                                         <td> {{$medicine->name}} </td>
-                                        <td> {{$medicine->bidprice}} </td>
+                                        <td> {{$medicine->Unit->name}} </td>
+                                        <!-- <td> {{$medicine->bidprice}} </td>
                                         <td> {{$medicine->CSKCBprice}} </td>
                                         <td>
                                             {{$medicine->beingprepared}}
@@ -161,19 +163,19 @@
                                             {{$medicine->concentration}}
                                         </td>
                                         <td> {{$medicine->standard}} </td>
-                                        <td> {{$medicine->contractorcode}} </td>
-                                        <td> {{$medicine->note}} </td>
-                                        <td> {{$medicine->istreatment}} </td>
+                                        <td> {{$medicine->contractorcode}} </td> -->
+                                        <td> {{$medicine->madeIn}} </td>
+                                        <!-- <td> {{$medicine->istreatment}} </td>
                                         <td>
                                         {{$medicine->ingredient}}
                                         </td>
                                         <td>
                                         {{$medicine->price}}
                                         </td>
-                                        <td> {{$medicine->isActive}} </td>
+                                        <td> {{$medicine->isActive}} </td> -->
                                         <td> {{$medicine->Clinic->name}} </td>
                                         <td class="center"> {{$medicine->createdAt}} </td>
-                                        <td class="center"> {{$medicine->updatedAt}} </td>
+                                        <!-- <td class="center"> {{$medicine->updatedAt}} </td> -->
                                         <td>
                                             <div>
                                             <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

@@ -119,16 +119,16 @@
                                                 <span></span>
                                             </label>
                                         </th>
-                                        <th> STT </th>
+                                        <th> ID </th>
                                         <th> Tên Phòng Khám </th>
                                         <th> Địa Chỉ</th>
-                                        <th> Domain</th>
-                                        <th> Liên Hệ </th>
+                                        <!-- <th> Domain</th>
+                                        <th> Liên Hệ </th> -->
                                         <th> Số ĐT</th>
-                                        <th> Giấy Phép</th>
+                                        <!-- <th> Giấy Phép</th>
+                                        <th> Mã Số Thuế</th> -->
                                         <th> Mã Số Thuế</th>
-                                        <th> Ngày Tạo</th>
-                                        <th> Ngày Sửa</th>
+                                        <!-- <th> Ngày Sửa</th> -->
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
@@ -145,17 +145,17 @@
                                         <td> {{$clinic->id}} </td>
                                         <td> {{$clinic->name}} </td>
                                         <td> {{$clinic->address}} </td>
-                                        <td> {{$clinic->domain}} </td>
+                                        <!-- <td> {{$clinic->domain}} </td>
                                         <td>
                                                 {{$clinic->contactInfo}}
-                                        </td>
+                                        </td> -->
                                         <td>
-                                                {{$clinic->phonenumber}}
+                                                {{$clinic->phone}}
                                         </td>
-                                        <td> {{$clinic->licence}} </td>
-                                        <td>{{$clinic->taxcode}} </td>
-                                        <td class="center"> {{$clinic->createdAt}} </td>
-                                        <td class="center"> {{$clinic->updatedAt}} </td>
+                                        <!-- <td> {{$clinic->licence}} </td>
+                                        <td>{{$clinic->taxcode}} </td> -->
+                                        <td class="center"> {{$clinic->taxCode}} </td>
+                                        <!-- <td class="center"> {{$clinic->updatedAt}} </td> -->
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

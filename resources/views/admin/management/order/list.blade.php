@@ -119,17 +119,16 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Phòng Khám </th>
+                                        <th> Mã Đơn Hàng</th>
+                                        <!-- <th> Phòng Khám </th> -->
                                         <th> Bệnh Nhân</th>
                                         <th> Bác Sĩ</th>
-                                        <th> Mã Đơn Hàng</th>
                                         <th> Trạng Thái</th>
-                                        <th> Lý Do Hủy</th>
+                                        <!-- <th> Lý Do Hủy</th> 
                                         <th> Tổng Cộng</th>
-                                        <th> Thời Gian</th>
-                                        <th> Lịch Hẹn</th>
+                                        <th> Lịch Hẹn</th>-->
                                         <th> Ngày Tạo</th>
-                                        <th> Ngày Sửa</th>
+                                        <!-- <th> Ngày Sửa</th> -->
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
@@ -145,17 +144,24 @@
                                             </label>
                                         </td>
                                         <td> {{$order->id}} </td>
-                                        <td> {{$order->Clinic->name}} </td>
-                                        <td> {{$order->Patient->fullname}} </td>
-                                        <td> {{$order->User->fullname}} </td>
-                                        <td> {{$order->ordercode}} </td>
-                                        <td> {{$order->paymentStatus}} </td>
-                                        <td> {{$order->reasonCancel}}  </td>
-                                        <td> {{$order->totalAmount}}  </td>
-                                        <td class="center"> {{$order->times}}  </td>
+                                        <td> {{$order->orderCode}} </td>
+                                        <!-- <td> {{$order->MedicalRecord->Clinic->name}} </td> -->
+                                        <td> {{$order->MedicalRecord->Patient->fullname}} </td>
+                                        <td> {{$order->MedicalRecord->User->fullname}} </td>
+                                        <td> 
+                                        @if($order->status == "new")
+                                            <span class="label label-warning">Hóa đơn mới</span>
+                                        @elseif($order->status == "confirmed")
+                                            <span class="label label-success">Đã thanh toán</span>
+                                        @else
+                                            <span class="label label-danger">Đã hủy</span>
+                                        @endif
+                                        </td>
+                                        <!-- <td> {{$order->reasonCancel}}  </td>
+                                        <td> {{$order->totalAmount}}  </td> -->
                                         <td class="center"> {{$order->createdAt}} </td>
-                                        <td class="center"> {{$order->updatedAt}} </td>
-                                        <td class="center"> {{$order->appointmentDate}} </td>
+                                        <!-- <td class="center"> {{$order->updatedAt}} </td>
+                                        <td class="center"> {{$order->appointmentDate}} </td> -->
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

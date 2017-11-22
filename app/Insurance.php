@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Insurrance extends Model
+class Insurance extends Model
 {
-    protected $table = "Insurrance";
+    protected $table = "Insurance";
     public $timestamps = false;
+    
     public function Patient() {
         return $this->hasOne('App\Patient', 'patientId', 'id');
     }

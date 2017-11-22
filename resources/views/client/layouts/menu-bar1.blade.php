@@ -12,7 +12,11 @@
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active indexBtn"><a href="{{asset('index')}}">Trang chủ</a></li>
-                <li class="bookingBtn"><a href="">Đặt lịch</a></li>
+                @if(isset(Auth::guard('patient')->user()->username))
+                <li class="bookingBtn"><a href="{{asset('appointments')}}">Đặt lịch</a></li>
+                @else
+                <li class="bookingBtn"><a href="{{asset('appointment-login')}}">Đặt lịch</a></li>
+                @endif  
                 <li class="askBtn"><a href="">Hỏi / Đáp</a></li>
                 @if(isset(Auth::guard('patient')->user()->username))
                 <?php

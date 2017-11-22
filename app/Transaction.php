@@ -9,7 +9,7 @@ class Transaction extends Model
     protected $table = "Transaction";
     
     public function Order() {
-        return $this->hasOne('App\Order', 'orderId', 'id');
+        return $this->belongsTo('App\Order', 'orderId', 'id');
     }
 
     public function User() {

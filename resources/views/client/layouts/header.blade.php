@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="client/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="client/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="client/css/style.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
   <!-- =======================================================
     Theme Name: Medilab
     Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
