@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Specialization extends Model
 {
+    public $timestamps = false;
     protected $table = "Specialization";
    
     public function Clinic() {

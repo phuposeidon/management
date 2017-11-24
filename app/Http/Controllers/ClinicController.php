@@ -31,19 +31,12 @@ class ClinicController extends Controller
 
 	function add(Request $req){
 		$clinic = new Clinic;
-		$clinic->domain = $req->domain;
+		$clinic->website = $req->domain;
 		$clinic->name = $req->name;
-		$clinic->shortName = $req->shortName;
-		$clinic->phonenumber = $req->phonenumber;
-		$clinic->license = $req->liencse;
-		$clinic->tuyenCs = $req->tuyenCS;
-		$clinic->fax = $req->fax;
+		$clinic->phone = $req->phonenumber;
 		$clinic->taxcode = $req->taxcode;
-		$clinic->country = $req->country;
-		$clinic->note = $req->note;
-		$clinic->districtId = 1;
-		$clinic->provinceId = 1;
-		$clinic->address = "TPHCM";
+		$clinic->address =$req->address;
+		$clinic->email =$req->email;
 		if($clinic->save())
 		{
 			\Session::flash('flash_message','Thêm bệnh nhân thành công');
@@ -61,25 +54,15 @@ class ClinicController extends Controller
 	}
 
 	function edit(Request $req){
-		$allProvinces = Province::all();
-        $allDistricts = District::all();
 		$clinic = Clinic::find($req->id);
-		$clinic->domain = $req->domain;
+		$clinic->website = $req->domain;
 		$clinic->name = $req->name;
-		$clinic->shortName = $req->shortName;
-		$clinic->phonenumber = $req->phonenumber;
-		$clinic->license = $req->liencse;
-		$clinic->tuyenCs = $req->tuyenCS;
-		$clinic->fax = $req->fax;
+		$clinic->phone = $req->phonenumber;
 		$clinic->taxcode = $req->taxcode;
-		$clinic->country = $req->country;
-		$clinic->note = $req->note;
-		$clinic->districtId = 1;
-		$clinic->provinceId = 1;
-		$clinic->address = "TPHCM";
+		$clinic->address = $req->address;
 		$clinic->save();
 		$allClinics = Clinic::paginate(10);
-		return view('admin.management.clinic.list', ['allClinics' => $allClinics, 'allProvinces' => $allProvinces, 'allDistricts' => $allDistricts]);
+		return view('admin.management.clinic.list', ['allClinics' => $allClinics]);
 
 	}
 

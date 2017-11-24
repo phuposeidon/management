@@ -152,10 +152,11 @@
                                         <input name="name" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên Viết Tắt</label>
+                                    <label class="col-md-3 control-label">Email</label>
                                     <div class="col-md-6">
-                                        <input name="shortName" type="text" class="form-control" placeholder="  ">
+                                        <input name="email" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -180,17 +181,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Tuyến Cơ Sở</label>
-                                    <div class="col-md-6">
-                                        <select name="tuyenCS" class="form-control">
-                                            <option value="Thành Phố">Thành Phố</option>
-                                            <option value="Trung Ương">Trung Ương</option>
-                                            <option value="Trạm Y Tế">Trạm Y Tế</option>
-                                            <option value="Phòng Khám">Phòng Khám</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                     </div>
                     <!-- END INFO LEFT -->
@@ -202,11 +192,10 @@
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Số Fax</label>
+                                    <label class="col-md-3 control-label">Địa Chỉ</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="fax" class="form-control" placeholder="  ">
+                                        <input type="text" name="address" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -216,33 +205,12 @@
                                         <input name="country" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Quận 1</option>
-                                            <option>Quận 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
+                                {{--  <div class="form-group">
                                     <label class="col-md-3 control-label">Thông tin Bổ Sung</label>
                                     <div class="col-md-6">
                                     <textarea name="note" rows="5" class="form-control" style=""></textarea>
                                     </div>
-                                </div>
+                                </div>  --}}
                     </div>
                 </div>
             </div>

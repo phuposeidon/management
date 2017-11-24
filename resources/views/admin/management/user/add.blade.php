@@ -145,11 +145,18 @@
                                     </div>
                                  </div>
 
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">Tài Khoản</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="username" class="form-control" placeholder="  ">
+                                    </div>
+                                 </div>
+
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
-                                            <input type="text" required name="birthday" class="form-control" >
+                                            <input type="text" required name="DOB" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -179,7 +186,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="phonenumber" class="form-control" placeholder="  ">
+                                        <input type="text" name="phone" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -203,18 +210,11 @@
                     <div class="col-md-6">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Học Vị</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="degree" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label class="col-md-3 control-label">Chức Vụ</label>
                                     <div class="col-md-6">
                                         <select name="userType" class="form-control">
                                             <option value="Bác Sĩ">Bác Sĩ</option>
-                                            <option value-"Y Tá">Y tá</option>
+                                            <option value-"Lễ Tân">Y tá</option>
                                             <option value="User">User</option>
                                         </select>
                                     </div>
@@ -224,34 +224,12 @@
                                     <label class="col-md-3 control-label">Chuyên Khoa</label>
                                     <div class="col-md-6">
                                         <select name="speciality" class="form-control">
-                                            @foreach($speciality as $doc)
-                                            <option value="{{$doc['id']}}">{{$doc['name']}}</option>
+                                            @foreach($specialization as $doc)
+                                            <option value="{{$doc->id}}">{{$doc->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Chứng Chỉ</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="certificate" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Ghi Chú</label>
-                                    <div class="col-md-6">
-                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
-                                    </div>
-                                </div>
-                    </div>
-                </div>
-            </div>
-             <legend style="margin-left:15px;"><h1 class="page-title">Địa Chỉ
-            </h1></legend>
-             <div class="row">
-                <div class="col-md-12">
-                <div class="col-md-6">
-                            <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
@@ -260,28 +238,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
+                                    <label class="col-md-3 control-label">Địa Chỉ</label>
                                     <div class="col-md-6">
-                                        <select name="province" class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                    </div>
-                </div>
-                <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select name="district" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
+                                        <input name="address" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
                                 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ghi Chú</label>
+                                    <div class="col-md-6">
+                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
@@ -294,7 +262,7 @@
                                 </div>
                     </div>
                 </div>
-             </div>
+            </div>
              <div class="row">
                 <div class="col-md-12">
                     <div class="text-center" style="margin-top:30px;">

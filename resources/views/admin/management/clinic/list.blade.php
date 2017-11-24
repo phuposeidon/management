@@ -121,6 +121,7 @@
                                         </th>
                                         <th> ID </th>
                                         <th> Tên Phòng Khám </th>
+                                        <th> Email </th>
                                         <th> Địa Chỉ</th>
                                         <!-- <th> Domain</th>
                                         <th> Liên Hệ </th> -->
@@ -129,8 +130,7 @@
                                         <th> Mã Số Thuế</th> -->
                                         <th> Mã Số Thuế</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Sửa</th>
-                                        <th> Xóa </th>
+                                        <th> Hành Động</th>
 
                                     </tr>
                                 </thead>
@@ -145,6 +145,7 @@
                                         </td>
                                         <td> {{$clinic->id}} </td>
                                         <td> {{$clinic->name}} </td>
+                                         <td> {{$clinic->email}} </td>
                                         <td> {{$clinic->address}} </td>
                                         <!-- <td> {{$clinic->domain}} </td>
                                         <td>
@@ -153,7 +154,6 @@
                                         <td>
                                                 {{$clinic->phone}}
                                         </td>
-                                        <td> {{$clinic->license}} </td>
                                         <td>{{$clinic->taxcode}} </td>
                                         <td class="center"> {{$clinic->createdAt}} </td>
 
@@ -165,14 +165,10 @@
                                         <td>
                                             <div>
                                                 <a href="{{route('editClinic', ['id' => $clinic->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$clinic->id}}"> Xóa</a>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div>
-                                            <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$clinic->id}}"> Xóa</a>                               
-                                            </div>
-                                        </td>
+                                       
                                     </tr>
                                     @endforeach
 

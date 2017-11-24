@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Route;
-use App\Province;
-use App\District;
 use App\Patient;
 use App\Insurance;
 
@@ -21,14 +19,10 @@ class PatientController extends Controller
 	protected $guard = "patient" ;
 	
 	function show(){
-		$provinces = Province::all();
-		$districts = District::all();
-		return view('admin.management.patient.add',['provinces'=>$provinces,'districts'=>$districts]);
+		return view('admin.management.patient.add');
 	}
 
     function index(Request $req){
-		$provinces = Province::all();
-		$districts = District::all();
 		$insurrance = new Insurance;
 		$patient = new Patient;
 		if($req->active!=1)
@@ -36,35 +30,37 @@ class PatientController extends Controller
 			$req->active=0;
 		}
 		$patient->fullname = $req->fullname;
-		$patient->districtId = $req->district;
 		$patient->email = $req->email;
 		$patient->gender = $req->gender;
-		$patient->phonenumber = $req->phonenumber;
+		$patient->DOB = $req->DOB;
+		$patient->country = $req->country;
+		$patient->religion = $req->religion;
+		$patient->phone = $req->phone;
 		$patient->username = $req->username;
 		$patient->password = bcrypt($req->password);
 		$patient->passport = $req->passport;
 		$patient->allergic = $req->allergic;
 		$patient->bloodgroup = $req->bloodgroup;
-		$patient->pet = $req->pet;
-		$patient->phonepet = $req->petphonenumber;
-		$patient->provinceId = $req->province;
 		$patient->active = $req->active;
-		$patient->save();
-		$insurrance->todate = $req->todate;
-		$insurrance->fromdate = $req->fromdate;
-		$insurrance->cardId = $req->cardId;
+		$patient->address = $req->address;
+		
+		$insurrance->toDate = $req->todate;
+		$insurrance->fromDate = $req->fromdate;
+		$insurrance->cardCode = $req->cardCode;
 		$insurrance->placeCheck = $req->placecheck;
 		$insurrance->patientId = $patient->id;
 		$insurrance->save();
-		if($patient->save() && $insurrance->save())
+		
+		if( $insurrance->save())
 		{
+			$patient->save();
 			\Session::flash('flash_message','Thêm bệnh nhân thành công');
 			
 		}else{
 			\Session::flash('flash_fail','Thêm bệnh nhân thất bai');
 		}
 
-		return view('admin.management.patient.add',['provinces'=>$provinces,'districts'=>$districts]);
+		return view('admin.management.patient.add');
 	}
 	
 	function list() {
@@ -134,51 +130,47 @@ class PatientController extends Controller
 		$insurrance = $patient->Insurance()->get();
 		foreach($insurrance as $a)
 		{
-			return view('admin.management.patient.edit',['patient'=>$patient,'insurrance'=>$a]);
-			dd($a['cardId']);
+			return view('admin.management.patient.edit',['patient'=>$patient,'insurance'=>$a]);
+			
 		}		
 		
 	}
 
 	function postEdit(Request $req){
-		$provinces = Province::all();
-		$districts = District::all();
 		$patient = Patient::find($req->id);
-		$insurrance = Insurance::where('patientId', $req->id)->get();
-		
+		$insurrance = Insurance::where('patientId', $req->id)->first();
 		if($req->active!=1)
 		{
 			$req->active=0;
 		}
 		$patient->fullname = $req->fullname;
-		$patient->districtId = $req->district;
 		$patient->email = $req->email;
 		$patient->gender = $req->gender;
-		$patient->phonenumber = $req->phonenumber;
+		$patient->phone = $req->phone;
 		$patient->username = $req->username;
 		$patient->password = bcrypt($req->password);
 		$patient->passport = $req->passport;
 		$patient->allergic = $req->allergic;
 		$patient->bloodgroup = $req->bloodgroup;
-		$patient->pet = $req->pet;
-		$patient->phonepet = $req->petphonenumber;
-		$patient->provinceId = $req->province;
 		$patient->active = $req->active;
-		$patient->save();
-		$insurrance->todate = $req->todate;
-		$insurrance->fromdate = $req->fromdate;
-		$insurrance->cardId = $req->cardId;
-		$insurrance->placeCheck = $req->placecheck;
+		
+		$insurrance->toDate = $req->todate;
+		$insurrance->fromDate = $req->fromdate;
+		$insurrance->cardCode = $req->cardCode;
+		$insurrance->placeCheck = $req->placeCheck;
 		$insurrance->patientId = $patient->id;
 		$insurrance->save();
-		if($patient->save() && $insurrance->save())
+		$allPatients = Patient::paginate(10);
+		
+		if($insurrance->save())
 		{
+			$patient->save();
 			\Session::flash('flash_message','Sửa thông tin bệnh nhân thành công');
-			
+			return redirect()->route('patient', ['allPatients' => $allPatients]);
 		}else{
 			\Session::flash('flash_fail','Sửa thông tin bệnh nhân thất bại');
 		}
-
-		return view('admin.management.patient.edit',['provinces'=>$provinces,'districts'=>$districts]);
+		
+		
 	}
 }

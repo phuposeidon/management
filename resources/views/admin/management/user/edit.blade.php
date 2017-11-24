@@ -132,9 +132,8 @@
              @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-             <form class="form-horizontal" action="{{route('postEdit')}}" method="POST"  role="form">
+             <form class="form-horizontal" action="{{route('postEdit',['id'=>$user->id])}}" method="POST"  role="form">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
-              <input type="hidden" name="id" value="{{$user->id}}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -146,11 +145,18 @@
                                     </div>
                                  </div>
 
-                                <div class="form-group">
-                                <label class="col-md-3 control-label">Ngày Sinh</label>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">Tài Khoản</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
-                                            <input name="birthday" disabled type="text" value="{{$user->birthday}}" class="form-control" >
+                                        <input type="text" name="username"  value="{{$user->username}}" class="form-control" placeholder="  ">
+                                    </div>
+                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ngày Sinh</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                            <input type="text" required name="DOB"  value="{{$user->DOB}}"  class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -177,14 +183,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">CMND</label>
                                     <div class="col-md-6">
-                                        <input name="passport" value="{{$user->passport}}" type="text" class="form-control" placeholder="  ">
+                                        <input name="passport" value="{{$user->passport}}"  type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="{{$user->phonenumber}}" name="phonenumber" class="form-control" placeholder="  ">
+                                        <input type="text" value="{{$user->phone}}" name="phone" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -193,8 +199,14 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="text" value="{{$user->email}}" name="email" class="form-control" placeholder=""> </div>
+                                            <input type="text" name="email" class="form-control" placeholder=""> </div>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Mật Khẩu</label>
+                                    <div class="col-md-6">
+                                        <input type="password" name="password" class="form-control spinner" placeholder="Password"> </div>
                                 </div>
                             </div>
                     </div>
@@ -202,78 +214,54 @@
                     <div class="col-md-6">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Học Vị</label>
+                                    <label class="col-md-3 control-label">Chức Vụ</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="{{$user->degree}}" name="degree" class="form-control" placeholder="  ">
+                                        <select name="userType" class="form-control">
+                                            <option value="Bác Sĩ">Bác Sĩ</option>
+                                            <option value-"Lễ Tân">Y tá</option>
+                                            <option value="User">User</option>
+                                        </select>
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="col-md-3 control-label">Chuyên Khoa</label>
                                     <div class="col-md-6">
                                         <select name="speciality" class="form-control">
-                                            @foreach($speciality as $doc)
-                                            <option value="{{$doc['id']}}" @if($user->specialityId==$doc['id'])
-                                            selected
-                                            @endif>{{$doc['name']}}</option>
+                                            @foreach($specialization as $doc)
+                                            <option value="{{$doc->id}}">{{$doc->name}}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Quốc Gia</label>
+                                    <div class="col-md-6">
+                                        <input name="country" value="Việt Nam" disabled type="text" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Địa Chỉ</label>
+                                    <div class="col-md-6">
+                                        <input name="address" value="{{$user->address}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ghi Chú</label>
                                     <div class="col-md-6">
-                                    <textarea rows="5" value="" name="note" class="form-control" style="">{{$user->note}}</textarea>
+                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
                                     </div>
                                 </div>
-                    </div>
-                </div>
-            </div>
-             <legend style="margin-left:15px;"><h1 class="page-title">Địa Chỉ
-            </h1></legend>
-             <div class="row">
-                <div class="col-md-12">
-                <div class="col-md-6">
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quốc Gia</label>
-                                    <div class="col-md-6">
-                                        <input name="country" value="{{$user->country}}" disabled type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select name="province" class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                    </div>
-                </div>
-                                <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select name="district" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
                                 <div class="form-group">
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                <input name="active" value="1"
-                                                @if($user->active==1)
+                                                <input name="active" value="{{$user->active}}"
+                                                    @if($user->active==1)
                                                     checked
-                                                @endif
+                                                    @endif
                                                  type="checkbox">Hoạt Động
                                                 <span></span>
                                             </label>
@@ -282,7 +270,7 @@
                                 </div>
                     </div>
                 </div>
-             </div>
+            </div>
              <div class="row">
                 <div class="col-md-12">
                     <div class="text-center" style="margin-top:30px;">
@@ -292,9 +280,11 @@
                         <button type="button" class="btn btn-primary">
                             <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
                         </button>
-                        <button type="button" class="btn btn-default" >
+                        <a href="{{route('listUser')}}">
+                            <button type="button" class="btn btn-default" >
                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                         </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -305,7 +295,7 @@
     </div>
     <!-- END CONTENT -->
 @endsection
-<script src="{!!url('global/plugins/jquery.min.js')!!}" type="text/javascript"></script>
+<script src="global/plugins/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         setTimeout(function()

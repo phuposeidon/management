@@ -142,7 +142,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên Miền</label>
                                     <div class="col-md-6">
-                                        <input name="domain" value="{{$clinic->domain}}" required type="text" class="form-control" placeholder="  ">
+                                        <input name="domain" value="{{$clinic->website}}" required type="text" class="form-control" placeholder="  ">
                                     </div>
                                  </div>
 
@@ -152,26 +152,21 @@
                                         <input name="name" value="{{$clinic->name}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên Viết Tắt</label>
+                                    <label class="col-md-3 control-label">Email</label>
                                     <div class="col-md-6">
-                                        <input name="shortName" value="{{$clinic->shortName}}" type="text" class="form-control" placeholder="  ">
+                                        <input name="email" value="{{$clinic->email}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số điện thoại</label>
                                     <div class="col-md-6">
-                                        <input name="phonenumber" value="{{$clinic->phonenumber}}" type="text" class="form-control" placeholder="  ">
+                                        <input name="phonenumber" value="{{$clinic->phone}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Số giấy phép</label>
-                                    <div class="col-md-6">
-                                        <input name="liencse" value="{{$clinic->license}}" type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mã Số Thuế</label>
@@ -180,17 +175,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Tuyến Cơ Sở</label>
-                                    <div class="col-md-6">
-                                        <select name="tuyenCS" class="form-control">
-                                            <option value="Thành Phố">Thành Phố</option>
-                                            <option value="Trung Ương">Trung Ương</option>
-                                            <option value="Trạm Y Tế">Trạm Y Tế</option>
-                                            <option value="Phòng Khám">Phòng Khám</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                     </div>
                     <!-- END INFO LEFT -->
@@ -204,9 +188,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Số Fax</label>
+                                    <label class="col-md-3 control-label">Logo</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="{{$clinic->fax}}" name="fax" class="form-control" placeholder="  ">
+                                        <input type="text" name="address" class="form-control" value="{{$clinic->address}}" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -216,32 +200,13 @@
                                         <input name="country"  value="Việt Nam" disabled="" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Quận 1</option>
-                                        </select>
-                                    </div>
-                                </div>
-
+{{--  
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Thông tin Bổ Sung</label>
                                     <div class="col-md-6">
                                     <textarea name="note" value="{{$clinic->note}}" rows="5" class="form-control" style=""></textarea>
                                     </div>
-                                </div>
+                                </div>  --}}
                     </div>
                 </div>
             </div>
