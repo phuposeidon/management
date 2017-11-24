@@ -81,9 +81,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
+                                            <a id="sample_editable_1_new" data-toggle="modal" href="#draggable" class="btn sbold green"> Thêm
                                                 <i class="fa fa-plus"></i>
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -140,8 +140,7 @@
                                         
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                
+                                                <a href="#edit" data-toggle="modal" data-target="#edit"   data-id="{{$speciality->id}}" class="btn btn-xs green dropdown-toggle edit-modal"> Sửa</a>                                              
                                             </div>
                                         </td>
                                         <td>
@@ -157,6 +156,96 @@
 
                             <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
                             {{$allSpecialitys->links()}}
+
+                                 <div class="modal fade draggable-modal" data-id="{{$speciality->id}}" id="edit" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                <h4 class="modal-title">SửaChuyên Khoa</h4>
+                                                <div id="test"></div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group">
+
+                                                    <label class="control-label col-sm-3 ng-binding">Chuyên Khoa </label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="edit-specialization" class="form-control " required="" >
+                                                    </div>
+                                                </div>
+
+                                                <!-- ngIf: isFMP -->
+
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-3 col-md-9">
+                                                        <div class="mt-checkbox-list">
+                                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                                <input id="edit-active" checked value="1" type="checkbox">Hoạt Động
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                     </div>
+                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Hủy</button>
+                                                <button type="button" id="save_edit" class="btn green">Lưu</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                            <!-- /.modal-dialog -->
+                                </div>
+
+                                {{--  edit   --}}
+                                <div class="modal fade draggable-modal"  id="draggable"  tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                <h4 class="modal-title">Thêm Chuyên Khoa</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group">
+
+                                                    <label class="control-label col-sm-3 ng-binding">Chuyên Khoa </label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="specialization" class="form-control " required="" >
+                                                    </div>
+                                                </div>
+
+                                                <!-- ngIf: isFMP -->
+
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-3 col-md-9">
+                                                        <div class="mt-checkbox-list">
+                                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                                <input id="active" checked value="1" type="checkbox">Hoạt Động
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                     </div>
+                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Hủy</button>
+                                                <button type="button" id="save_ck" class="btn green">Lưu</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                            <!-- /.modal-dialog -->
+                                </div>
 
                             <!-- làm modal delete -->
                             <div class="modal fade" id="modal-1" style="margin-top: 12em ">
@@ -289,6 +378,62 @@
 			});
 
 
-        })
+            $('#save_ck').click(function(){
+                var specialization = $('#specialization').val();
+                var active = $('#active').val();
+
+               $.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$.ajax({
+					type: 'POST',
+					url: 'specialization',
+					dataType: 'text',
+					data: {specialization: specialization,active:active},
+					success:function(data){
+						if(data){
+                            location.reload();
+                        }else{
+                            alert('Something went wrong!');
+                        }
+					}
+				});
+            })
+   $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+				        });
+            $('.edit-modal').on('click',function(){
+               var id = $(this).data('id');
+
+                 $.get("specialization/"+id, function(data){
+                     var data = jQuery.parseJSON(data);
+                    $('#edit-specialization').val(data.name);
+                    $('#edit-active').val(data.active);
+
+                    $('#save_edit').on('click',function(){
+                        var specialization =  $('#edit-specialization').val();  
+                      
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'specialization/'+id,
+                            dataType: 'json',
+                            data: {specialization: specialization,id:id},
+                            success:function(data){
+                                if(data){
+                                    location.reload();
+                                }else{
+                                    alert('Something went wrong!');
+                                }
+                            }
+                        });           
+                    })
+                 });         
+            });
+        });
     </script>
 @endsection

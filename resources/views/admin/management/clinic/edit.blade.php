@@ -88,11 +88,11 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Thuốc</a>
+                        <a href="#">Phòng Khám</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <span>Thêm Thuốc</span>
+                        <span>Thông Tin Phòng Khám</span>
                     </li>
                 </ul>
                 <div class="page-toolbar">
@@ -124,7 +124,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title">Thêm Thuốc Mới
+            <h1 class="page-title">Thông Tin Phòng Khám
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -132,75 +132,46 @@
              @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{route('addMedicine')}}" method="POST" role="form">
+            <form class="form-horizontal" action="{{route('editClinic',['id'=>$clinic->id])}}" role="form" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
-                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                         
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-body">
-                                {{--  <div class="form-group">
-                                    <label class="col-md-3 control-label">Chọn Loại</label>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tên Miền</label>
                                     <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Mới</option>
-                                            <option>Nữ</option>
-                                        </select>
+                                        <input name="domain" value="{{$clinic->website}}" required type="text" class="form-control" placeholder="  ">
                                     </div>
-                                </div>  --}}
+                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên Thuốc</label>
+                                    <label class="col-md-3 control-label">Tên Cơ Sở</label>
                                     <div class="col-md-6">
-                                        <input type="text" required name="name" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                {{--  <div class="form-group">
-                                    <label class="col-md-3 control-label">Mã thuốc BHYT</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="name" value="{{$clinic->name}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Số đăng ký</label>
+                                    <label class="col-md-3 control-label">Email</label>
                                     <div class="col-md-6">
-                                        <div class="input-icon">
-                                            <i class="fa fa-envelope"></i>
-                                            <input type="text" class="form-control" placeholder=""> </div>
+                                        <input name="email" value="{{$clinic->email}}" type="text" class="form-control" placeholder="  ">
                                     </div>
-                                </div>  --}}
+                                </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Nồng độ</label>
+                                    <label class="col-md-3 control-label">Số điện thoại</label>
                                     <div class="col-md-6">
-                                        <input type="number" required name="concentration" class="form-control spinner" placeholder=""> </div>
+                                        <input name="phonenumber" value="{{$clinic->phone}}" type="text" class="form-control" placeholder="  ">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Nơi Sản Xuất</label>
-                                    <div class="col-md-6">
-                                        <input type="text" required name="madeIn" class="form-control spinner" placeholder=""> </div>
-                                </div>
-                                {{--  <div class="form-group">
-                                    <label class="col-md-3 control-label">Nhóm</label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control spinner" placeholder=""> </div>
-                                </div>  --}}
-                                {{--  <div class="form-group">
-                                    <label class="col-md-3 control-label">Dược chất chính</label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control spinner" placeholder=""> </div>
-                                </div>  --}}
+
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Đơn Vị</label>
+                                    <label class="col-md-3 control-label">Mã Số Thuế</label>
                                     <div class="col-md-6">
-                                        <select name="unit"  class="form-control">
-                                        @foreach($allUnits as $unit)
-                                            <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                        @endforeach
-                                        </select>
+                                        <input name="taxcode" value="{{$clinic->taxcode}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -209,85 +180,59 @@
                     <!-- END INFO LEFT -->
                     <div class="col-md-6">
                             <div class="form-body">
-                                
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Giá</label>
-                                    <div class="col-md-6">
-                                        <input type="number" required name="price" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                {{--  <div class="form-group">
-                                    <label class="col-md-3 control-label">Giá thầu</label>
+                                    <label class="col-md-3 control-label">Logo</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Logo</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="address" class="form-control" value="{{$clinic->address}}" placeholder="  ">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Quốc Gia</label>
+                                    <div class="col-md-6">
+                                        <input name="country"  value="Việt Nam" disabled="" type="text" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+{{--  
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Thông tin Bổ Sung</label>
+                                    <div class="col-md-6">
+                                    <textarea name="note" value="{{$clinic->note}}" rows="5" class="form-control" style=""></textarea>
+                                    </div>
                                 </div>  --}}
-                                
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Hạn Sử Dụng</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
-                                            <input type="text" required name="expectancy" class="form-control" >
-                                            <span class="input-group-btn">
-                                                <button class="btn default" type="button">
-                                                    <i class="fa fa-calendar"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+            </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Tiêu chuẩn</label>
-                                    <div class="col-md-6">
-                                        <input type="text" required name="standard" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Ghi Chú</label>
-                                    <div class="col-md-6">
-                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <div class="mt-checkbox-list">
-                                            <label class="mt-checkbox mt-checkbox-outline">
-                                                <input checked type="checkbox">Hoạt Động
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center" style="margin-top:30px;">
+                            <button type="submit" class="btn btn-primary" >
+                                <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
+                            </button>
+                            <a href="{{route('list')}}" class="btn btn-default" >
+                                <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
+                            </a>
                     </div>
                 </div>
             </div>
              <!-- END CONTENT -->
-             <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center" style="margin-top:30px;">
-                        <button  type="submit" class="btn btn-primary" >
-                            <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
-                        </button>
-                        <a href="{{route('getlist')}}" class="btn btn-default" >
-                            <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- END CONTENT BODY -->
-        </form>
     </div>
+</form>
     <!-- END CONTENT -->
 @endsection
-
 <script src="global/plugins/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){

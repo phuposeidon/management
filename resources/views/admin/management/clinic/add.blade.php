@@ -124,78 +124,67 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title">Thông Tin Phòng Khám
+            <h1 class="page-title">Thêm Phòng Khám
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
             <!-- CONTENT -->
+             @if(Session::has('flash_message'))
+                    <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
+            @endif
+            <form class="form-horizontal" action="{{route('addClinic')}}" role="form" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
+                        
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên Miền</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="domain" required type="text" class="form-control" placeholder="  ">
                                     </div>
                                  </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên Cơ Sở</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="name" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên Viết Tắt</label>
+                                    <label class="col-md-3 control-label">Email</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="email" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số điện thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="phonenumber" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số giấy phép</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="liencse" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mã Số Thuế</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="taxcode" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Tuyến Cơ Sở</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>Nam</option>
-                                            <option>Nữ</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">CMND</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
                             </div>
-                        </form>
                     </div>
                     <!-- END INFO LEFT -->
                     <div class="col-md-6">
-                        <form class="form-horizontal" role="form">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Logo</label>
@@ -203,48 +192,25 @@
                                         <input type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Số Fax</label>
+                                    <label class="col-md-3 control-label">Địa Chỉ</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input type="text" name="address" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="  ">
+                                        <input name="country" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
-                                            <option>TpHCM</option>
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
+                                {{--  <div class="form-group">
                                     <label class="col-md-3 control-label">Thông tin Bổ Sung</label>
                                     <div class="col-md-6">
-                                    <textarea rows="5" class="form-control" style=""></textarea>
+                                    <textarea name="note" rows="5" class="form-control" style=""></textarea>
                                     </div>
-                                </div>
-                        </form>
+                                </div>  --}}
                     </div>
                 </div>
             </div>
@@ -252,15 +218,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-center" style="margin-top:30px;">
-                            <button type="button" class="btn btn-primary" >
+                            <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
                             </button>
                             <button type="button" class="btn btn-primary">
                                 <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
                             </button>
-                            <button type="button" class="btn btn-default" >
+                            <a href="{{route('list')}}">
+                                <button type="button" class="btn btn-default" >
                                 <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                             </button>
+                            </a>
                     </div>
                 </div>
             </div>
@@ -268,5 +236,15 @@
         </div>
         <!-- END CONTENT BODY -->
     </div>
+</form>
     <!-- END CONTENT -->
 @endsection
+<script src="global/plugins/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function()
+        {
+            $('#reportAdd').fadeOut();
+        },4000);
+    })
+</script>

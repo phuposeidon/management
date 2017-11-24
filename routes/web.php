@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('admin.clinic');
 });
 
-Route::get('/user', 'UserController@list');
+Route::get('/user', 'UserController@list')->name('listUser');
 Route::get('/user/{id}','UserController@getEdit');
 Route::post('/user/edit','UserController@postEdit')->name('postEdit');
 Route::post('/user-delete','UserController@delete');
@@ -37,10 +37,12 @@ Route::post('/appointment-delete','AppointmentController@delete');
 Route::post('/appointment-multidelete', 'AppointmentController@deleteAll');
 
 
-Route::get('/clinic', 'ClinicController@list');
-Route::get('/add-clinic',function(){
-    return view('admin.management.clinic.add');
-});
+Route::get('/clinic', 'ClinicController@list')->name('list');
+Route::get('/add-clinic','ClinicController@index')->name('add');
+Route::post('/clinic','ClinicController@add')->name('addClinic');
+Route::get('/clinic/edit/{id}','ClinicController@getEdit');
+Route::post('/clinic/edit/{id}','ClinicController@edit')->name('editClinic');
+
 Route::post('/clinic-delete','ClinicController@delete');
 Route::post('/clinic-multidelete', 'ClinicController@deleteAll');
 
@@ -56,10 +58,9 @@ Route::get('/medicalrecord', function() {
     return view('admin.management.medicalrecord.list');
 });
 
-Route::get('/medicine', 'MedicineController@list');
-Route::get('/add-medicine',function(){
-    return view('admin.management.medicine.add');
-});
+Route::get('/medicine', 'MedicineController@list')->name('getlist');
+Route::get('/medicine/add','MedicineController@index');
+Route::post('/medicine/add','MedicineController@add')->name('addMedicine');
 Route::post('/medicine-delete', 'MedicineController@delete');
 Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
 
@@ -79,8 +80,8 @@ Route::get('/ordermedicine', function() {
 
 // PATIENT
 Route::get('/patient', 'PatientController@list')->name('patient');
-Route::get('/patient/{id}','PatientController@getEdit');
-Route::post('/patient/edit','PatientController@postEdit');
+Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
+Route::post('/patient/{id}','PatientController@postEdit')->name('editPatient');
 Route::get('/add-patient','PatientController@show')->name('showPatient');
 Route::post('/add-patient','PatientController@index')->name('addPatient');
 Route::post('/patient-delete', 'PatientController@delete');
@@ -96,8 +97,13 @@ Route::post('/service-multidelete', 'ServiceController@deleteAll');
 
 
 Route::get('/specialization', 'SpecializationController@list');
+Route::post('/specialization/{id}', 'SpecializationController@post');
+Route::get('/specialization/{id}', 'SpecializationController@ajax');
 Route::post('/specialization-delete', 'SpecializationController@delete');
 Route::post('/specialization-multidelete', 'SpecializationController@deleteAll');
+
+Route::post('/specialization','SpecializationController@add' );
+
 
 Route::get('/test', 'TestController@list');
 Route::post('/test-delete', 'TestController@delete');

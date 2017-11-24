@@ -149,8 +149,8 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                            <input type="text" required name="birthday" class="form-control" >
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                            <input type="text" required name="DOB" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -180,7 +180,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" required name="phonenumber" class="form-control" placeholder="  ">
+                                        <input type="text" required name="phone" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -216,6 +216,12 @@
                                         <input type="text" name="religion" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Địa Chỉ</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="address" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
@@ -226,27 +232,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="province">
-                                        @foreach($provinces  as $province)
-                                            <option value="<?php echo $province['id'];?>">{{$province['name']}}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="district">
-                                        @foreach($districts as $district)
-                                            <option value="<?php echo $district['id'];?>">{{$district['name']}}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nhóm Máu</label>
@@ -262,20 +248,6 @@
                                     <label class="col-md-3 control-label">Dị Ứng</label>
                                     <div class="col-md-6">
                                         <input type="text" name="allergic" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Người Thân</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="pet" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">ĐT Người Thân</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="petphonenumber" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -303,15 +275,15 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số BHYT</label>
                                     <div class="col-md-6">
-                                        <input name="cardId" type="text" name="insurrentcode" class="form-control" placeholder="  ">
+                                        <input  type="text" name="cardCode" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Từ Ngày</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                            <input name="todate" type="text" class="form-control" >
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
+                                            <input name="todate" required type="text" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -336,8 +308,8 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Đến Ngày</label>
                                 <div class="col-md-6">
-                                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                        <input name="fromdate" type="text" class="form-control" >
+                                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
+                                        <input name="fromdate" required type="text" class="form-control" >
                                         <span class="input-group-btn">
                                             <button class="btn default" type="button">
                                                 <i class="fa fa-calendar"></i>

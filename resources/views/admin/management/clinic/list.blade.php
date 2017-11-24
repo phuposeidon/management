@@ -82,9 +82,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
+                                            <a href="{{route('add')}}"><button id="sample_editable_1_new" class="btn sbold green"> Thêm
                                                 <i class="fa fa-plus"></i>
-                                            </button>
+                                            </button></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -121,16 +121,16 @@
                                         </th>
                                         <th> ID </th>
                                         <th> Tên Phòng Khám </th>
+                                        <th> Email </th>
                                         <th> Địa Chỉ</th>
                                         <!-- <th> Domain</th>
                                         <th> Liên Hệ </th> -->
                                         <th> Số ĐT</th>
-                                        <!-- <th> Giấy Phép</th>
-                                        <th> Mã Số Thuế</th> -->
+                                        <!-- <th> Giấy Phép</th> -->
                                         <th> Mã Số Thuế</th>
-                                        <!-- <th> Ngày Sửa</th> -->
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <!-- <th> Ngày Tạo</th> -->
+                                        <th> Hành Động</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,6 +144,7 @@
                                         </td>
                                         <td> {{$clinic->id}} </td>
                                         <td> {{$clinic->name}} </td>
+                                         <td> {{$clinic->email}} </td>
                                         <td> {{$clinic->address}} </td>
                                         <!-- <td> {{$clinic->domain}} </td>
                                         <td>
@@ -152,21 +153,18 @@
                                         <td>
                                                 {{$clinic->phone}}
                                         </td>
-                                        <!-- <td> {{$clinic->licence}} </td>
-                                        <td>{{$clinic->taxcode}} </td> -->
-                                        <td class="center"> {{$clinic->taxCode}} </td>
+                                        <td>{{$clinic->taxCode}} </td>
+                                        <!-- <td class="center"> {{$clinic->createdAt}} </td> -->
+
                                         <!-- <td class="center"> {{$clinic->updatedAt}} </td> -->
+
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                
+                                                <a href="{{route('editClinic', ['id' => $clinic->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$clinic->id}}"> Xóa</a>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div>
-                                            <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$clinic->id}}"> Xóa</a>                               
-                                            </div>
-                                        </td>
+                                       
                                     </tr>
                                     @endforeach
 

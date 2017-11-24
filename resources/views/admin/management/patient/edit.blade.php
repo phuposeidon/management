@@ -133,12 +133,11 @@
             @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{asset('patient/edit')}}" role="form" method="POST">
+            <form class="form-horizontal" action="{{route('editPatient',['id'=>$patient->id])}}" role="form" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
-                            <input type="hidden" name="id" value="{{$patient->id}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
@@ -151,7 +150,7 @@
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
-                                            <input type="text" value="{{$patient->birthday}}" required name="birthday" class="form-control" >
+                                            <input type="text" value="{{$patient->DOB}}" required name="birthday" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -185,7 +184,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="{{$patient->phonenumber}}" required name="phonenumber" class="form-control" placeholder="  ">
+                                        <input type="text" value="{{$patient->phone}}" required name="phone" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Username</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="username" value="{{$patient->username}}" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -218,26 +224,9 @@
                                  <div class="form-group">
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="{{$patient['country']}}" name="religion" class="form-control" placeholder="  ">
+                                        <input type="text" value="Việt Nam" disabled name="religion" class="form-control" placeholder="  ">
                                     </div>
                                  </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Thành Phố/Tỉnh</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="province">
-                                            <option>Hà Nội</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Quận/Huyện</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="district">
-                                            <option>Quận 1</option>
-                                        </select>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nhóm Máu</label>
@@ -258,21 +247,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Dị Ứng</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="allergic" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Người Thân</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="pet" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">ĐT Người Thân</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="petphonenumber" class="form-control" placeholder="  ">
+                                        <input type="text" value="{{$patient['allergic']}}" name="allergic" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -280,7 +255,11 @@
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                <input name="active" value="1" type="checkbox">Hoạt Động
+                                                <input name="active" value="1" 
+                                                @if($patient->active==1)
+                                                    checked
+                                                @endif
+                                                 type="checkbox">Hoạt Động
                                                 <span></span>
                                             </label>
                                         </div>
@@ -300,15 +279,15 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số BHYT</label>
                                     <div class="col-md-6">
-                                        <input name="cardId" value="{{$insurance->cardId}}" type="text" name="insurrentcode" class="form-control" placeholder="  ">
+                                        <input name="cardCode" value="{{$insurance->cardCode}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Từ Ngày</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                            <input name="todate" value="{{$insurance->todate}}" type="text" class="form-control" >
+                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
+                                            <input name="todate" value="{{$insurance->toDate}}" type="text" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -331,7 +310,7 @@
                                 <label class="col-md-3 control-label">Đến Ngày</label>
                                 <div class="col-md-6">
                                     <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                        <input name="fromdate" value="{{$insurance->fromdate}}" type="text" class="form-control" >
+                                        <input name="fromdate" value="{{$insurance->fromDate}}" type="text" class="form-control" >
                                         <span class="input-group-btn">
                                             <button class="btn default" type="button">
                                                 <i class="fa fa-calendar"></i>
