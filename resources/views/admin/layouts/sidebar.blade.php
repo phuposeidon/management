@@ -31,7 +31,9 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
 
-            <li class="nav-item start">
+            <li class="nav-item start
+            {{ (Request::is('user/*') || Request::is('user') || Request::is('user/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('user')}}" class="nav-link nav-toggle">
                     <i class="fa fa-user-md"></i>
                     <span class="title">Người Dùng</span>
@@ -39,7 +41,9 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item start">
+            <li class="nav-item 
+            {{ (Request::is('patient/*') || Request::is('patient') || Request::is('patient/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('patient')}}" class="nav-link nav-toggle">
                     <i class="fa fa-male"></i>
                     <span class="title">Bệnh Nhân</span>
@@ -64,7 +68,9 @@
                 </a>
             </li> -->
 
-            <li class="nav-item start">
+            <li class="nav-item 
+            {{ (Request::is('clinic/*') || Request::is('clinic') || Request::is('clinic/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('clinic')}}" class="nav-link nav-toggle">
                     <i class="fa fa-hospital-o"></i>
                     <span class="title">Phòng Khám</span>
@@ -73,7 +79,9 @@
                 <!-- end receipt  -->
             </li>
 
-            <li class="nav-item start">
+            <li class="nav-item 
+            {{ (Request::is('specialization/*') || Request::is('specialization') || Request::is('specialization/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('specialization')}}" class="nav-link nav-toggle">
                     <i class="fa fa-briefcase"></i>
                     <span class="title">Chuyên Khoa</span>
@@ -88,7 +96,9 @@
                     <span class="selected"></span>
                 </a>
             </li> -->
-            <li class="nav-item start">
+            <li class="nav-item 
+            {{ (Request::is('medicine/*') || Request::is('medicine') || Request::is('medicine/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('medicine')}}" class="nav-link nav-toggle">
                     <i class="fa fa-medkit"></i>
                     <span class="title">Thuốc</span>
@@ -96,7 +106,9 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item start">
+            <li class="nav-item 
+            {{ (Request::is('order/*') || Request::is('order') || Request::is('order/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('order')}}" class="nav-link nav-toggle">
                     <i class="fa fa-check"></i>
                     <span class="title">Hóa Đơn</span>
@@ -111,7 +123,9 @@
                     <span class="selected"></span>
                 </a>
             </li> -->
-             <li class="nav-item start">
+             <li class="nav-item
+             {{ (Request::is('service/*') || Request::is('service') || Request::is('service/*') ? 'active' : '') }}
+             ">
                 <a href="{{asset('service')}}" class="nav-link nav-toggle">
                     <i class="fa fa-stethoscope"></i>
                     <span class="title">Dịch Vụ</span>
@@ -119,7 +133,9 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item start">
+            <li class="nav-item 
+            {{ (Request::is('appointment/*') || Request::is('appointment') || Request::is('appointment/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('appointment')}}" class="nav-link nav-toggle">
                     <i class="fa fa-clock-o"></i>
                     <span class="title">Lịch Hẹn</span>
@@ -134,7 +150,9 @@
                 </a>
             </li> -->
             
-            <li class="nav-item start">
+            <li class="nav-item  
+            {{ (Request::is('transaction/*') || Request::is('transaction') || Request::is('transaction/*') ? 'active' : '') }}
+            ">
                 <a href="{{asset('transaction')}}" class="nav-link nav-toggle">
                     <i class="fa fa-money"></i>
                     <span class="title">Giao Dịch</span>

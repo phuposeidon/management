@@ -122,19 +122,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/appointment-login',['as' => 'appoint-login' ,function() {
-    return view('client.page.appointment-login');
-}]);
-Route::get('/appointments', function() {
-    return view('client.page.appointment');
-});
-Route::get('/hours', function() {
-    return view('client.page.hours');
-});
-Route::get('/user-info', function() {
-    return view('client.page.user-info');
-});
-Route::get('/signup', function() {
-    return view('client.page.register');
-});
-Route::post('/signup', 'PatientController@signUp');
+Route::get('/appointment-login', 'PageController@showAppointmentLogin');
+Route::get('/appointments', 'PageController@showAppointment');
+Route::post('/hours', 'PageController@showHour');
+Route::post('/post-appointment', 'PageController@postAppointment');
+Route::get('/user-info','PageController@showUserInfo');
+Route::get('/signup', 'PageController@getSignUp');
+Route::post('/signup', 'PageController@postSignUp');

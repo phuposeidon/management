@@ -8,32 +8,36 @@
         <div class="row">
           <div class="col-md-offset-4 col-md-4 banner-info-1">
             <div class="banner-text text-center">
-                <form action="">
+                <form action="{{asset('hours')}}" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+
                     <h1 class="white">Đặt lịch khám </h1>
 
                     <div class="form-group" style="margin-top: 40px;">
                         <label for="" class="label-bottom">Chọn loại bệnh: </label>
-                        <select name="" id="" class="form-control br-radius-zero">
-                            <option value="">Tai Mũi Họng</option>
-                            <option value="">Răng Hàm Mặt</option>
+                        <select name="specializationId" id="" class="form-control br-radius-zero">
+                            @foreach($specializations as $specialization)
+                                <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn bác sĩ: </label>
-                        <select name="" id="" class="form-control br-radius-zero">
+                        <select name="doctorId" id="" class="form-control br-radius-zero">
                             <option value="">Bác sĩ bất kỳ</option>
-                            <option value="">Nguyễn Văn A</option>
-                            <option value="">Nguyễn Văn B</option>
+                            @foreach($doctors as $doctor)
+                            <option value="{{$doctor->id}}">{{$doctor->fullname}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn ngày khám: </label>
-                        <input type="text" class="form-control br-radius-zero datepicker" name="" />
-                        
-                    </div>
+                        <input type="text" class="form-control br-radius-zero datepicker" name="appointmentDate"/>
+                        <!-- required oninvalid="this.setCustomValidity('Vui lòng chọn ngày khám')"
+        oninput="setCustomValidity('')" -->
+                     </div>
 
-                    <!-- <button type="submit" class="btn btn-appoint">Chọn giờ</button> -->
-                    <a href="{{asset('hours')}}" class="btn btn-appoint">Chọn giờ</a>
+                    <button type="submit" class="btn btn-appoint">Chọn giờ</button>
                 </form>
             </div>
 

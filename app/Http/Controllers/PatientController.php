@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 use App\Province;
 use App\District;
 use App\Patient;
@@ -109,25 +110,7 @@ class PatientController extends Controller
         Auth::guard('patient')->logout();
         return redirect()->back()->with('thongbao', 'Bạn đã đăng xuất thành công');
 	}
-	public function signUp(Request $request) {
-		$patient = new Patient;
-		$patient->fullname = $request->fullname;
-		$patient->email = $request->email;
-		$patient->gender = $request->gender;
-		$patient->phonenumber = $request->phonenumber;
-		$patient->username = $request->username;
-		$patient->password = bcrypt($request->password);
-		// $patient->passport = $request->passport;
-		// $patient->allergic = $request->allergic;
-		$patient->bloodgroup = $request->bloodgroup;
-		// $patient->pet = $request->pet;
-		// $patient->phonepet = $request->petphonenumber;
-		// $patient->provinceId = $request->province;
-		// $patient->active = $request->active;
-		$patient->save();
-
-		return view('client.layouts.index');
-	}
+	
 
 	function getEdit($id){
 		$patient = Patient::find($id);

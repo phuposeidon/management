@@ -8,19 +8,37 @@
         <div class="row">
           <div class="col-md-offset-3 col-md-6 banner-info-1">
             <div class="banner-text text-center">
-                <form action="">
+                <form action="{{asset('post-appointment')}}" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+
                     <h1 class="white">Chọn khung giờ khám </h1>
 
-                    <p>Ngày khám: dd/mm/yyyy </p>
+                    <p>Ngày khám: {{$appointmentDate}} </p>
 
                     <ul class="hours-board">
-                        
+                        @foreach($allHours as $hour)
                         <li class="hours-box">
-                            <p>7:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
+                            <p>{{substr($hour->hour, 0 , 5)}}</p>
+                            <span class="seat">
+                                <?php 
+                                    $i = "Còn chỗ";
+                                    foreach($selectedDates as $appointment)
+                                    {
+                                        if($appointment['hour'] != $hour->hour )
+                                            $i = "Còn chỗ"; 
+                                        else
+                                        {
+                                            $i = "Hết chỗ";
+                                            break;
+                                        }
+                                    }
+                                    echo $i;
+                                ?>
+                            </span>
+                            <input type="hidden" name="selected-hour" value="{{$hour->hour}}"> 
                         </li>
-                        <li class="hours-box">
+                        @endforeach
+                        <!-- <li class="hours-box">
                             <p>8:00</p>
                             <span>Còn chỗ</span>
                             <input type="hidden" name="" value="">
@@ -94,7 +112,7 @@
                             <p>16:30</p>
                             <span>Còn chỗ</span>
                             <input type="hidden" name="" value="">
-                        </li>
+                        </li> -->
                     </ul>
 
                     <button id="selectBtn" type="button" class="btn btn-appoint">Chọn giờ</button>
@@ -137,13 +155,18 @@
       $('#myNavbar ul .indexBtn').removeClass('active');
       $('#myNavbar ul .bookingBtn').addClass('active');
 
-
+      $(".seat:contains('Hết chỗ')").parent('li.hours-box').addClass('hours-noslot');
+    
+      $val = 0;
       $('.hours-box').click(function(){
+        
         $('.hours-board li').removeClass('hours-selected');
         $(this).addClass('hours-selected');
         if($(this).hasClass('hours-noslot')) {
           $(this).removeClass('hours-selected');
         }
+        //get selected hour 
+        $val = $(".hours-selected input[type=hidden][name=selected-hour]").val();
       });
 
       //show modal booking success

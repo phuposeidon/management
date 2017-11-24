@@ -174,7 +174,7 @@
                                         </td>
                                         <td> {{$medicine->isActive}} </td> -->
                                         <td> {{$medicine->Clinic->name}} </td>
-                                        <td class="center"> {{$medicine->createdAt}} </td>
+                                        <td class="center"> {{Carbon\Carbon::parse($medicine->createdAt)->format('d-m-Y H:i:s')}} </td>
                                         <!-- <td class="center"> {{$medicine->updatedAt}} </td> -->
                                         <td>
                                             <div>

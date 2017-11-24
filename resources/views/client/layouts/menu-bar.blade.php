@@ -23,7 +23,7 @@
                 ?>
                 <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Xin chào, {{$last_name}} <span class="caret"></span></a>
                   <ul class="dropdown-menu menudrop">
-                    <li class="menu-list"><a href="">Thông tin cá nhân</a></li>
+                    <li class="menu-list"><a href="{{asset('user-info')}}">Thông tin cá nhân</a></li>
                     <li class="menu-list"><a href="{{asset('plogout')}}">Đăng xuất</a></li>
                   </ul>
                 </li>

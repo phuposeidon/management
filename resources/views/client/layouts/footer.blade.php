@@ -50,7 +50,7 @@
   <script src="client/contactform/contactform.js"></script>
   <script type="text/javascript">
       $(function () {
-        $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).on('changeDate', function (ev) {
+        $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true, changeYear: true,  }).on('changeDate', function (ev) {
           $(this).datepicker('hide');
       });
     })

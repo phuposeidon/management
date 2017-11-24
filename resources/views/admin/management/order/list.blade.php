@@ -119,7 +119,7 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Mã Đơn Hàng</th>
+                                        <th> Mã Hóa Đơn </th>
                                         <!-- <th> Phòng Khám </th> -->
                                         <th> Bệnh Nhân</th>
                                         <th> Bác Sĩ</th>
@@ -159,7 +159,7 @@
                                         </td>
                                         <!-- <td> {{$order->reasonCancel}}  </td>
                                         <td> {{$order->totalAmount}}  </td> -->
-                                        <td class="center"> {{$order->createdAt}} </td>
+                                        <td class="center"> {{Carbon\Carbon::parse($order->createdAt)->format('d-m-Y H:i:s')}} </td>
                                         <!-- <td class="center"> {{$order->updatedAt}} </td>
                                         <td class="center"> {{$order->appointmentDate}} </td> -->
                                         <td>

@@ -119,7 +119,7 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Mã Bệnh Nhân </th>
+                                        <!-- <th> Mã Bệnh Nhân </th> -->
                                         <th> Bệnh Nhân</th>
                                         <th> Phòng Khám </th>
                                         <th> Bác Sĩ</th>
@@ -138,9 +138,9 @@
                                             </label>
                                         </td>
                                         <td> {{$appointment->id}} </td>
-                                        <td>
+                                        <!-- <td>
                                             {{$appointment->patientId}}
-                                        </td>
+                                        </td> -->
                                         <td>
                                             {{$appointment->Patient->fullname}}
                                         </td>

@@ -140,9 +140,9 @@
                                         <td> {{$transaction->id}} </td>
                                         <td> {{$transaction->Order->orderCode}} </td>
                                         <td> {{$transaction->Order->MedicalRecord->Patient->fullname}} </td>
-                                        <td> {{$transaction->totalAmount}} </td>
-                                        <td> {{$transaction->Order->MedicalRecord->User->fullname}}  </td>
-                                        <td class="center"> {{$transaction->createdAt}} </td>
+                                        <td> {{number_format($transaction->totalAmount).' VNĐ'}} </td>
+                                        <td> {{\App\Http\Controllers\TransactionController::getUser($transaction->createdById)}}  </td>
+                                        <td class="center"> {{Carbon\Carbon::parse($transaction->createdAt)->format('d-m-Y H:i:s')}} </td>
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

@@ -138,7 +138,7 @@
                                         </td>
                                         <td> {{$service->id}} </td>
                                         <td> {{$service->name}} </td>
-                                        <td> {{$service->price}} </td>
+                                        <td> {{number_format($service->price).' VNĐ'}} </td>
                                         <td>
                                         @if(isset($service->clinicId))
                                             {{$service->Clinic->name}} 
