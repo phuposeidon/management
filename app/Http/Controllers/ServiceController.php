@@ -26,4 +26,29 @@ class ServiceController extends Controller
 			Service::find($id)->delete();
 		}
 	}
+
+	function index(){
+		$allUser = User::all();
+		return view('admin.management.service.add',['allUser'=>$allUser]);
+	}
+
+	function add(Request $req){
+		$service = new Service;
+		$allUser = User::all();
+		$service->executedById = $req->user;
+		$service->name = $req->name;
+		$service->content = $req->note;
+		$service->price = $req->price;
+		$service->clinicId = 1;
+		$service->save();
+		if($service->save())
+		{
+			\Session::flash('flash_message','Thêm bệnh nhân thành công');
+			
+		}else{
+			\Session::flash('flash_fail','Thêm bệnh nhân thất bai');
+		}
+
+		return view('admin.management.service.add',['allUser'=>$allUser]);
+	}
 }

@@ -91,9 +91,12 @@ Route::get('/province', function() {
     return view('admin.management.province.list');
 });
 
-Route::get('/service','ServiceController@list');
+Route::get('/service','ServiceController@list')->name('getService');
 Route::post('/service-delete', 'ServiceController@delete');
 Route::post('/service-multidelete', 'ServiceController@deleteAll');
+
+Route::get('/service/add','ServiceController@index');
+Route::post('/service/add','ServiceController@add')->name('addService');
 
 
 Route::get('/specialization', 'SpecializationController@list');
