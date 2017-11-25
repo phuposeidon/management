@@ -214,7 +214,7 @@
                                     <div class="col-md-6">
                                         <select name="userType" class="form-control">
                                             <option value="Bác Sĩ">Bác Sĩ</option>
-                                            <option value-"Lễ Tân">Y tá</option>
+                                            <option value-"Lễ Tân">Lễ Tân</option>
                                             <option value="User">User</option>
                                         </select>
                                     </div>
