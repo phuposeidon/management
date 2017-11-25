@@ -110,4 +110,8 @@ class UserController extends Controller
         
         return view('admin.management.user.list',['allUsers'=>$allUsers]);
 	}
+
+	public function getLogin() {
+		return view('admin.layouts.login-page');
+	}
 }

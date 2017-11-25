@@ -57,6 +57,7 @@ class ClinicController extends Controller
 		$clinic = Clinic::find($req->id);
 		$clinic->website = $req->domain;
 		$clinic->name = $req->name;
+		$clinic->email = $req->email;
 		$clinic->phone = $req->phonenumber;
 		$clinic->taxcode = $req->taxcode;
 		$clinic->address = $req->address;

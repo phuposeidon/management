@@ -16,7 +16,10 @@
               <h1 class="white">Chăm sóc sức khỏe ngay tại bàn!!</h1>
               <p>Cung cấp dịch vụ chăm sóc sức khỏe chuyên nghiệp và tận tình<br>Tất cả vì sức khỏe của bạn và người thân.</p>
               @if(isset(Auth::guard('patient')->user()->username))
-              <a href="{{asset('appointments')}}" class="btn btn-appoint">Đặt lịch hẹn</a>
+              <form action="{{asset('appointments')}}" method="post">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <button type="submit" class="btn btn-appoint">Đặt lịch hẹn</button>
+              </form>
               @else
               <a href="{{asset('appointment-login')}}" class="btn btn-appoint">Đặt lịch hẹn</a>
               @endif

@@ -43,10 +43,10 @@ class ServiceController extends Controller
 		$service->save();
 		if($service->save())
 		{
-			\Session::flash('flash_message','Thêm bệnh nhân thành công');
+			\Session::flash('flash_message','Thêm dịch vụ thành công');
 			
 		}else{
-			\Session::flash('flash_fail','Thêm bệnh nhân thất bai');
+			\Session::flash('flash_fail','Thêm dịch vụ thất bại');
 		}
 
 		return view('admin.management.service.add',['allUser'=>$allUser]);

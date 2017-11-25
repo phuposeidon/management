@@ -10,6 +10,9 @@
             <div class="banner-text text-center">
                 <form action="{{asset('post-appointment')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="patientId" value="{{$getPatientId}}">
+                    <input type="hidden" name="doctorId" value="{{$doctorId}}">
+                    <input type="hidden" name="appointmentDate">
 
                     <h1 class="white">Chọn khung giờ khám </h1>
 
@@ -35,7 +38,7 @@
                                     echo $i;
                                 ?>
                             </span>
-                            <input type="hidden" name="selected-hour" value="{{$hour->hour}}"> 
+                            <input type="hidden" name="selected-hour" value="{{Carbon\Carbon::createFromFormat('d-m-Y H:i:s',$appointmentDate.' '.$hour->hour)->toDateTimeString()}}"> 
                         </li>
                         @endforeach
                         <!-- <li class="hours-box">
@@ -115,7 +118,7 @@
                         </li> -->
                     </ul>
 
-                    <button id="selectBtn" type="button" class="btn btn-appoint">Chọn giờ</button>
+                    <button id="selectBtn" type="submit" class="btn btn-appoint">Chọn giờ</button>
                     <!-- data-toggle="modal" data-target="#modal-success" -->
                 </form>
             </div>
@@ -167,14 +170,15 @@
         }
         //get selected hour 
         $val = $(".hours-selected input[type=hidden][name=selected-hour]").val();
+        $('input[name="appointmentDate"]').val($val);
       });
 
       //show modal booking success
-      $('#selectBtn').click(function() {
-        if($('.hours-board li').hasClass('hours-selected')) {
-          $('#modal-success').modal();
-        }
-      });
+    //   $('#selectBtn').click(function() {
+    //     if($('.hours-board li').hasClass('hours-selected')) {
+    //       $('#modal-success').modal();
+    //     }
+    //   });
 
       
     });

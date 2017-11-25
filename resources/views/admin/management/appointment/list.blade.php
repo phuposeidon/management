@@ -121,9 +121,10 @@
                                         <th> STT </th>
                                         <!-- <th> Mã Bệnh Nhân </th> -->
                                         <th> Bệnh Nhân</th>
-                                        <th> Phòng Khám </th>
+                                        <!-- <th> Phòng Khám </th> -->
                                         <th> Bác Sĩ</th>
                                         <th> Ngày </th>
+                                        <th> Giờ </th>
                                         <th> Edit </th>
                                         <th> Delete </th>
                                     </tr>
@@ -144,9 +145,10 @@
                                         <td>
                                             {{$appointment->Patient->fullname}}
                                         </td>
-                                        <td> {{$appointment->Clinic->name}} </td>
+                                        <!-- <td> {{$appointment->Clinic->name}} </td> -->
                                         <td> {{$appointment->User->fullname}} </td>
-                                        <td class="center">{{Carbon\Carbon::Parse($appointment->appointmentDate)->format('d-m-Y H:i:s')}}</td>
+                                        <td class="center">{{Carbon\Carbon::Parse($appointment->appointmentDate)->format('d-m-Y')}}</td>
+                                        <td> {{Carbon\Carbon::Parse($appointment->appointmentDate)->format('H:i')}} </td>
                                         <td>
                                             <div>
                                                 <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>

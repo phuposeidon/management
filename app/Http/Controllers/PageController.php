@@ -19,10 +19,31 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function showAppointment() {
+
+    public function showAppointmentLogin() {
+        return view('client.page.appointment-login');
+    }
+
+    public function showAppointment(Request $request) {
+        $getNewPatientId = '';
+        if(isset($request->fullname))
+        {
+            $this->validate($request, [
+                'email' => 'required|unique:patient,email',
+            ], [
+                'email.required' => 'Vui lòng nhập email',
+                'email.unique' => 'Email đã tồn tại, vui lòng nhập email khác',
+            ]);
+            $newPatient = new Patient;
+            $newPatient->fullname = $request->fullname;
+            $newPatient->email = $request->email;
+            $newPatient->phone = $request->phone;
+            $newPatient->save();
+            $getNewPatientId = $newPatient->id;
+        }
         $specializations = Specialization::all();
         $doctors = User::where('userType','Bác sĩ')->get();
-        return view('client.page.appointment', ['specializations' => $specializations, 'doctors' => $doctors]);
+        return view('client.page.appointment', ['specializations' => $specializations, 'doctors' => $doctors, 'getNewPatientId' => $getNewPatientId]);
     }
 
     public function showHour(Request $request) {
@@ -45,11 +66,24 @@ class PageController extends Controller
             }
         }
         //$selectedDates = Appointment::whereIn('id', $date_array)->get();
+        if(isset($request->patientId))
+        {
+            $getPatientId = $request->patientId;
+        }
+        else $getPatientId = Auth::guard('patient')->user()->id;
+        $doctorId = $request->doctorId;
 
-        return view('client.page.hours', ['appointmentDate' => $appointmentDate, 'allHours' => $allHours, 'selectedDates' => $selectedDates]);
+        return view('client.page.hours', ['appointmentDate' => $appointmentDate, 'allHours' => $allHours, 'selectedDates' => $selectedDates, 'getPatientId' => $getPatientId, 'doctorId' => $doctorId]);
     }
     public function postAppointment(Request $request) {
-        dd($request->all());
+        $appointment = new Appointment;
+        $appointment->clinicId = 1;
+        $appointment->doctorId = $request->doctorId;
+        $appointment->patientId = $request->patientId;
+        $appointment->appointmentDate = $request->appointmentDate;
+        $appointment->save();
+
+        return view('client.layouts.index', ['thongbao' => 'Bạn đã đặt lịch khám thành công.']);
     }
 
     public function showUserInfo() {
@@ -59,10 +93,6 @@ class PageController extends Controller
             return view('client.page.user-info', ['getPatientById' => $getPatientById]);
         }
         else return view('client.layouts.index');
-    }
-
-    public function showAppointmentLogin() {
-        return view('client.page.appointment-login');
     }
 
     public function getSignUp() {

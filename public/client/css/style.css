@@ -235,6 +235,14 @@ li.menu-list a:hover {
 	text-transform: uppercase;
 	padding-bottom:15px; 
 }
+#report-appointment {
+    position: absolute;
+    z-index: 100;
+    height: 50px;
+    right: 15px;
+    top: 450px;
+    width: auto;
+}
 .btn-appoint, .btn-appoint:hover, .btn-appoint:focus{
 	margin-top: 30px;
 	padding: 10px 20px;

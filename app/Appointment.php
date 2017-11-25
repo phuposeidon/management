@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     protected $table = "Appointment";
+    public $timestamps = false;
 
     public function Patient() {
         return $this->belongsTo('App\Patient', 'patientId', 'id');

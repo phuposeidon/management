@@ -167,11 +167,11 @@
                                     </div>
                                 </div>
 
-
+                        
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mã Số Thuế</label>
                                     <div class="col-md-6">
-                                        <input name="taxcode" value="{{$clinic->taxcode}}" type="text" class="form-control" placeholder="  ">
+                                        <input name="taxcode" value="{{$clinic->taxCode}}" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -188,7 +188,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Logo</label>
+                                    <label class="col-md-3 control-label">Địa chỉ</label>
                                     <div class="col-md-6">
                                         <input type="text" name="address" class="form-control" value="{{$clinic->address}}" placeholder="  ">
                                     </div>
@@ -198,6 +198,13 @@
                                     <label class="col-md-3 control-label">Quốc Gia</label>
                                     <div class="col-md-6">
                                         <input name="country"  value="Việt Nam" disabled="" type="text" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Số giấy phép</label>
+                                    <div class="col-md-6">
+                                        <input name="license" type="text" class="form-control" value="{{$clinic->license}}" disabled>
                                     </div>
                                 </div>
 {{--  

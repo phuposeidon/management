@@ -45,6 +45,7 @@ class PatientController extends Controller
 		$patient->active = $req->active;
 		$patient->address = $req->address;
 		
+		$patient->save();
 		$insurrance->toDate = $req->todate;
 		$insurrance->fromDate = $req->fromdate;
 		$insurrance->cardCode = $req->cardCode;
@@ -54,7 +55,7 @@ class PatientController extends Controller
 		
 		if( $insurrance->save())
 		{
-			$patient->save();
+			
 			\Session::flash('flash_message','Thêm bệnh nhân thành công');
 			
 		}else{

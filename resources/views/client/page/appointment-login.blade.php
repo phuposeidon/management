@@ -8,7 +8,8 @@
         <div class="row">
           <div class="col-md-offset-3 col-md-6 banner-info-1">
             <div class="banner-text">
-                <form action="">
+                <form action="{{asset('appointments')}}" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <h1 class="white text-center">Đăng nhập</h1>
 
                     @if(isset(Auth::guard('patient')->user()->username))
@@ -21,22 +22,34 @@
                     <div class="form-group" style="margin-top: 40px;">
                         <label for="" class="label-bottom text-left">Họ Tên: </label>
                         <input type="text" class="form-control br-radius-zero" name="fullname" required oninvalid="this.setCustomValidity('Vui lòng điền họ tên')"
-    oninput="setCustomValidity('')" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?> />
+    oninput="setCustomValidity('')" value="{{old('fullname')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?> />
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Điện thoại: </label>
-                        <input type="text" class="form-control br-radius-zero" name="phonenumber" required oninvalid="this.setCustomValidity('Vui lòng điền số điện thoại')"
-    oninput="setCustomValidity('')" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
+                        <input type="text" class="form-control br-radius-zero" name="phone" required oninvalid="this.setCustomValidity('Vui lòng điền số điện thoại')"
+    oninput="setCustomValidity('')" value="{{old('phone')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Email: </label>
+                        
                         <input type="email" class="form-control br-radius-zero" name="email" required oninvalid="this.setCustomValidity('Vui lòng điền địa chỉ email')"
-    oninput="setCustomValidity('')" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
+    oninput="setCustomValidity('')" value="{{old('email')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
                         
                     </div>
 
-                    <!-- <button type="submit" class="btn btn-appoint">Chọn giờ</button> -->
+                    @if($errors->any())
+                        <div class="alert alert-danger" id="report-appointment">
+                            @foreach($errors->all() as $err)
+                                {{$err}}<br>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(isset(Auth::guard('patient')->user()->username))
                     <center><a href="{{asset('appointments')}}" class="btn btn-appoint">Tiếp tục</a></center>
+                    @else
+                    <center><button type="submit" class="btn btn-appoint">Tiếp tục</button></center>
+                    @endif
                 </form>
             </div>
 
@@ -52,6 +65,11 @@
             //active menu bar
             $('#myNavbar ul .indexBtn').removeClass('active');
             $('#myNavbar ul .bookingBtn').addClass('active');
+
+            setTimeout(function()
+            {
+            	  $('#report-appointment').fadeOut();
+            },4000);
         });
     </script>
 </body>

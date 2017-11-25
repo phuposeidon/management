@@ -174,7 +174,7 @@
                                         <td class="center"> {{$patient->createdAt}} </td> -->
                                         <td style="padding-left:2px;">
                                             <div style="text-align:center;">
-                                                <a href="{{route('editPatient',['id'=>$patient->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
+                                                <a href="{{asset('/patient/'.$patient->id)}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> <i class="fa fa-trash-o"></i></a>
 
                                             </div>

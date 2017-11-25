@@ -11,6 +11,10 @@
                 <form action="{{asset('hours')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
 
+                    @if($getNewPatientId != '')
+                    <input type="hidden" name="patientId" value="{{$getNewPatientId}}">
+                    @endif
+
                     <h1 class="white">Đặt lịch khám </h1>
 
                     <div class="form-group" style="margin-top: 40px;">

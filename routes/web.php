@@ -26,6 +26,8 @@ Route::post('/user-delete','UserController@delete');
 Route::post('/user-multidelete', 'UserController@deleteAll');
 Route::get('/add-user','UserController@index')->name('addUser');
 Route::post('/add-user}','UserController@post')->name('postUser');
+Route::get('user-login','UserController@getLogin');
+
 
 
 Route::get('/add-appointment',function(){
@@ -132,7 +134,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/appointment-login', 'PageController@showAppointmentLogin');
-Route::get('/appointments', 'PageController@showAppointment');
+Route::post('/appointments', 'PageController@showAppointment');
 Route::post('/hours', 'PageController@showHour');
 Route::post('/post-appointment', 'PageController@postAppointment');
 Route::get('/user-info','PageController@showUserInfo');

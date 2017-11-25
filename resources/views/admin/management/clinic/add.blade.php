@@ -170,7 +170,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số giấy phép</label>
                                     <div class="col-md-6">
-                                        <input name="liencse" type="text" class="form-control" placeholder="  ">
+                                        <input name="license" type="text" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 

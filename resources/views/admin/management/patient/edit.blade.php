@@ -150,7 +150,7 @@
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
-                                            <input type="text" value="{{$patient->DOB}}" required name="birthday" class="form-control" >
+                                            <input type="text" value="{{Carbon\Carbon::Parse($patient->DOB)->format('d-m-Y')}}" required name="birthday" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
