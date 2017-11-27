@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Carbon\Carbon;
 use App\User;
 use App\Specialization;
-use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -34,7 +39,7 @@ class UserController extends Controller
         $user->note = $req->note;
         $user->specializationId = $req->speciality;
 		$user->active = $req->active;
-		$user->password = $req->password;
+		$user->password = bcrypt($req->password);
 		$user->address = $req->address;
 		$user->username = $req->username;
         $user->save();
@@ -80,13 +85,19 @@ class UserController extends Controller
 		{
 			$req->active=0;
 		}
-		$user->DOB= Carbon::parse($req->DOB)->format('Y-m-d');
+
+		// $user->DOB= Carbon::parse($req->DOB)->format('Y-m-d');
+
+		$user->DOB= Carbon::createFromFormat('d-m-Y',$req->DOB)->toDateTimeString();
+
 		$user->fullname = $req->fullname;
 		$user->usertype = $req->userType;
 		$user->email = $req->email;
 		$user->gender = $req->gender;
 		$user->phone= $req->phone;
-		$user->password = $req->password;
+		if($req->password != '') {
+			$user->password = bcrypt($req->password);
+		}		
         $user->passport = $req->passport;
         $user->note = $req->note;
         $user->specializationId = $req->speciality;
@@ -119,4 +130,28 @@ class UserController extends Controller
 	public function getLogin() {
 		return view('admin.layouts.login-page');
 	}
+
+	public function postLogin(Request $request) {
+		$this->validate($request,[
+			'username' => 'required',
+			'password' => 'required'
+		],[
+			'username.required' => 'Bạn chưa nhập username',
+			'password.required' => 'Bạn chưa nhập password'
+		]);
+			
+		if(Auth::attempt(['username' => $request->username, 'password' => $request->password])) //Ktra đăng nhập
+		{	
+			$thongbao = 'Chào mừng '.Auth::user()->fullname.' đã đăng nhập thành công.';
+			return redirect('dashboard')->with('thongbao', $thongbao);
+		}
+		else {
+			return redirect()->back()->with('thongbao', 'Tài khoản hoặc mật khẩu không chính xác.');
+		}
+	}
+	public function getLogout(){
+        Auth::logout();
+        return redirect('user-login')->with('thongbao1', 'Bạn đã đăng xuất thành công');
+	}
+
 }

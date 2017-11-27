@@ -45,8 +45,11 @@
                         </div>
                     @endif
 
-                    @if(isset(Auth::guard('patient')->user()->username))
-                    <center><a href="{{asset('appointments')}}" class="btn btn-appoint">Tiếp tục</a></center>
+                    @if(isset(Auth::guard('patient')->user()->username)) 
+                    <form action="{{asset('appointments')}}" method="post">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <center><button type="submit" class="btn btn-appoint">Đặt lịch hẹn</button></center>
+                    </form>
                     @else
                     <center><button type="submit" class="btn btn-appoint">Tiếp tục</button></center>
                     @endif

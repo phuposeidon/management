@@ -199,7 +199,7 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="text" name="email" class="form-control" placeholder=""> </div>
+                                            <input type="text" name="email" class="form-control" value="{{$user->email}}" placeholder=""> </div>
                                     </div>
                                 </div>
 
@@ -218,7 +218,7 @@
                                     <div class="col-md-6">
                                         <select name="userType" class="form-control">
                                             <option value="Bác Sĩ">Bác Sĩ</option>
-                                            <option value-"Lễ Tân">Y tá</option>
+                                            <option value-"Lễ Tân">Lễ Tân</option>
                                             <option value="User">User</option>
                                         </select>
                                     </div>

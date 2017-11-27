@@ -55,15 +55,28 @@ License: You must have a valid license purchased only from themeforest(the above
             <h2 class="white">ĐĂNG NHẬP</h2>
         </div>
         <!-- END LOGO -->
+        @if(session('thongbao1'))
+            <div class="alert alert-danger displayAlert col-md-offset-4 col-md-4">
+                <button class="close" data-close="alert"></button>
+                    <span>{{session('thongbao1')}}</span>
+            </div>
+        @endif
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.html" method="post">
+            <form class="login-form" action="{{asset('user-login')}}" method="post">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <h3 class="form-title">Bạn vui lòng đăng nhập</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
-                    <span> Enter any username and password. </span>
+                    <span>  Mời nhập username và password. </span>
                 </div>
+                @if(session('thongbao'))
+                    <div class="alert alert-danger displayAlert">
+                        <button class="close" data-close="alert"></button>
+                            <span>{{session('thongbao')}}</span>
+                    </div>
+                @endif
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -116,6 +129,14 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->
+        <script>
+            $(document).ready(function(){
+                setTimeout(function()
+                {
+                    $('.displayAlert').fadeOut();
+                },4000)
+            });
+        </script>
     </body>
 
 </html>
