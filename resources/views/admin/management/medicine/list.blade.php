@@ -178,7 +178,7 @@
                                         <!-- <td class="center"> {{$medicine->updatedAt}} </td> -->
                                         <td>
                                             <div>
-                                            <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                            <a href="{{route('editMedicine',['id'=>$medicine->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
                                                 
                                             </div>
                                         </td>

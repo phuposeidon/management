@@ -156,7 +156,7 @@
                                         </td>
                                         <td>
                                             <div style="text-align:center;">
-                                                <a href="user/{{$user->id}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
+                                                <a href="{{route('getUser',['id'=>$user->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$user->id}}"> <i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>

@@ -20,12 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/user', 'UserController@list')->name('listUser');
-Route::get('/user/{id}','UserController@getEdit');
-Route::post('/user/edit','UserController@postEdit')->name('postEdit');
+Route::get('/user/add','UserController@index')->name('addUser');
+Route::post('/user/add','UserController@post')->name('createUser');
+Route::get('/user/{id}','UserController@getEdit')->name('getUser');
+Route::post('/user/{id}','UserController@postEdit')->name('postUser');
 Route::post('/user-delete','UserController@delete');
 Route::post('/user-multidelete', 'UserController@deleteAll');
-Route::get('/add-user','UserController@index')->name('addUser');
-Route::post('/add-user}','UserController@post')->name('postUser');
+
 Route::get('user-login','UserController@getLogin');
 
 
@@ -63,6 +64,8 @@ Route::get('/medicalrecord', function() {
 Route::get('/medicine', 'MedicineController@list')->name('getlist');
 Route::get('/medicine/add','MedicineController@index');
 Route::post('/medicine/add','MedicineController@add')->name('addMedicine');
+Route::get('/medicine/{id}','MedicineController@getEdit')->name('editMedicine');
+Route::post('/medicine/{id}','MedicineController@postMedicine')->name('postMedicine');
 Route::post('/medicine-delete', 'MedicineController@delete');
 Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
 
@@ -84,8 +87,8 @@ Route::get('/ordermedicine', function() {
 Route::get('/patient', 'PatientController@list')->name('patient');
 Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
 Route::post('/patient/{id}','PatientController@postEdit')->name('editPatient');
-Route::get('/add-patient','PatientController@show')->name('showPatient');
-Route::post('/add-patient','PatientController@index')->name('addPatient');
+Route::get('/patient/add','PatientController@show')->name('showPatient');
+Route::post('/patient/add','PatientController@index')->name('addPatient');
 Route::post('/patient-delete', 'PatientController@delete');
 Route::post('/patient-multidelete', 'PatientController@deleteAll');
 
@@ -99,6 +102,9 @@ Route::post('/service-multidelete', 'ServiceController@deleteAll');
 
 Route::get('/service/add','ServiceController@index');
 Route::post('/service/add','ServiceController@add')->name('addService');
+
+Route::get('/service/{id}','ServiceController@getService')->name('getEdit');
+Route::post('/service/{id}','ServiceController@postService')->name('postService');
 
 
 Route::get('/specialization', 'SpecializationController@list');
@@ -140,3 +146,6 @@ Route::post('/post-appointment', 'PageController@postAppointment');
 Route::get('/user-info','PageController@showUserInfo');
 Route::get('/signup', 'PageController@getSignUp');
 Route::post('/signup', 'PageController@postSignUp');
+
+Route::get('/wait-list','MedicalRecordController@list');
+Route::get('/diagnosis','MedicalRecordController@waitList');

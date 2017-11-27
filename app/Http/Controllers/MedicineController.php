@@ -55,4 +55,31 @@ class MedicineController extends Controller
 
 		return view('admin.management.medicine.add',['allUnits' => $allUnits]);
 	}
+
+
+	function getEdit($id){
+		$medicine = Medicine::find($id);
+		$allUnits = Unit::all();
+		return view('admin.management.medicine.edit',['medicine'=>$medicine,'allUnits' => $allUnits]);
+	}
+
+	function postMedicine(Request $req){
+		$medicine = Medicine::find($req->id);
+		$allUnits = Unit::all();
+		$medicine->name = $req->name;
+		$medicine->unitId = $req->unit;
+		$medicine->clinicId = 1;
+		$medicine->madeIn = $req->madeIn;
+		$medicine->price = $req->price;
+		$medicine->expectancy = $req->expectancy;
+		$medicine->concentration = $req->concentration;
+		$medicine->note = $req->note;
+		$medicine->standard = $req->standard;
+		$medicine->save();
+		if($medicine->save()){
+			return redirect()->route('getlist');
+
+		}
+		var_dump($medicine);
+	}
 }

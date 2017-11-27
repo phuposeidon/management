@@ -51,4 +51,24 @@ class ServiceController extends Controller
 
 		return view('admin.management.service.add',['allUser'=>$allUser]);
 	}
+
+	function getService($id){
+		$service = Service::find($id);
+		$allUser = User::all();
+		return view('admin.management.service.edit',['service'=>$service,'allUser'=>$allUser]);
+		var_dump($id);
+	}
+
+	function postService(Request $req){
+		$service = Service::find($req->id);
+		$service->executedById = $req->user;
+		$service->name = $req->name;
+		$service->content = $req->note;
+		$service->price = $req->price;
+		$service->clinicId = 1;
+		$service->save();
+		if ($service->save()) {
+			return redirect()->route('getService');
+		}
+	}
 }

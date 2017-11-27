@@ -132,7 +132,7 @@
              @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-             <form class="form-horizontal" action="{{route('postEdit',['id'=>$user->id])}}" method="POST"  role="form">
+             <form class="form-horizontal" action="{{route('postUser',['id'=>$user->id])}}" method="POST"  role="form">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
                 <div class="col-md-12">

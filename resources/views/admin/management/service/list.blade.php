@@ -151,7 +151,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{route('getEdit',['id'=>$service->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
                                                 
                                             </div>
                                         </td>
