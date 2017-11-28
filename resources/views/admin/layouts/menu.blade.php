@@ -29,18 +29,18 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="page_user_profile_1.html">
-                                <i class="icon-user"></i> My Profile </a>
+                            <a href="{{asset('user/'.Auth::user()->id)}}">
+                                <i class="icon-user"></i> Thông tin cá nhân </a>
                         </li>
                         
                         <li class="divider"> </li>
-                        <li>
+                        <!-- <li>
                             <a href="page_user_lock_1.html">
                                 <i class="icon-lock"></i> Lock Screen </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="{{asset('user-logout')}}">
-                                <i class="icon-key"></i> Log Out </a>
+                                <i class="icon-key"></i> Đăng xuất </a>
                         </li>
                     </ul>
                 </li>

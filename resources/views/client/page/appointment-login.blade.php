@@ -6,7 +6,7 @@
       @include('client.layouts.menu-bar1')
       <div class="container">
         <div class="row">
-          <div class="col-md-offset-3 col-md-6 banner-info-1">
+          <div class="col-md-offset-2 col-md-8 banner-info-1">
             <div class="banner-text">
                 <form action="{{asset('appointments')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -19,22 +19,33 @@
                     <p class="white text-center">Nếu chưa có, vui lòng nhập thông tin để tiếp tục đặt lịch khám.</p>
                     @endif   
 
-                    <div class="form-group" style="margin-top: 40px;">
-                        <label for="" class="label-bottom text-left">Họ Tên: </label>
-                        <input type="text" class="form-control br-radius-zero" name="fullname" required oninvalid="this.setCustomValidity('Vui lòng điền họ tên')"
-    oninput="setCustomValidity('')" value="{{old('fullname')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?> />
+                    <div class="col-md-6">
+                        <div class="form-group" style="margin-top: 40px;">
+                            <label for="" class="label-bottom text-left">Họ Tên: </label>
+                            <input type="text" class="form-control br-radius-zero" name="fullname" required oninvalid="this.setCustomValidity('Vui lòng điền họ tên')"
+        oninput="setCustomValidity('')" value="{{old('fullname')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?> />
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="label-bottom">Điện thoại: </label>
+                            <input type="text" class="form-control br-radius-zero" name="phone" required oninvalid="this.setCustomValidity('Vui lòng điền số điện thoại')"
+        oninput="setCustomValidity('')" value="{{old('phone')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="label-bottom">Điện thoại: </label>
-                        <input type="text" class="form-control br-radius-zero" name="phone" required oninvalid="this.setCustomValidity('Vui lòng điền số điện thoại')"
-    oninput="setCustomValidity('')" value="{{old('phone')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="label-bottom">Email: </label>
-                        
-                        <input type="email" class="form-control br-radius-zero" name="email" required oninvalid="this.setCustomValidity('Vui lòng điền địa chỉ email')"
-    oninput="setCustomValidity('')" value="{{old('email')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
-                        
+                    <div class="col-md-6">
+                        <div class="form-group" style="margin-top: 40px;">
+                            <label for="" class="label-bottom">Email: </label>
+                            
+                            <input type="email" class="form-control br-radius-zero" name="email" required oninvalid="this.setCustomValidity('Vui lòng điền địa chỉ email')"
+        oninput="setCustomValidity('')" value="{{old('email')}}" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>/>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="label-bottom">Giới tính: </label>
+                            
+                            <select name="gender" class="form-control br-radius-zero" <?php if(isset(Auth::guard('patient')->user()->username)) { echo "disabled";} ?>>
+                                <option value="1">Nam</option>
+                                <option value="0" <?php if(old('gender') == 0) echo "selected";?>>Nữ</option>
+                            </select>
+                        </div>
                     </div>
 
                     @if($errors->any())

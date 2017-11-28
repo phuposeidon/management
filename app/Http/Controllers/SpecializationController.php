@@ -9,7 +9,7 @@ use App\Specialization;
 class SpecializationController extends Controller
 {
     function list() {
-        $allSpecialitys = Specialization::paginate(10);
+        $allSpecialitys = Specialization::all();
         $allClinics = Clinic::all();
         return view('admin.management.specialization.list', ['allClinics' => $allClinics, 'allSpecialitys' => $allSpecialitys]);
     }

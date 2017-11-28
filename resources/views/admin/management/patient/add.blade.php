@@ -149,7 +149,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
                                             <input type="text" required name="DOB" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
@@ -238,8 +238,14 @@
                                     <label class="col-md-3 control-label">Nhóm Máu</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="bloodgroup">
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
+                                            <option value="A">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="AB+">AB+</option>
                                         </select>
                                     </div>
                                 </div>
@@ -282,8 +288,8 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Từ Ngày</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
-                                            <input name="todate" required type="text" class="form-control" >
+                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                            <input name="fromdate" required type="text" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -298,18 +304,15 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Nơi ĐK KCB BĐ</label>
                                 <div class="col-md-6">
-                                    <select name="placecheck" class="form-control">
-                                        <option value="TPHCM">TpHCM</option>
-                                        <option value="Hà Nội">Hà Nội</option>
-                                    </select>
+                                    <input name="placecheck" required type="text" class="form-control" >
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Đến Ngày</label>
                                 <div class="col-md-6">
-                                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" >
-                                        <input name="fromdate" required type="text" class="form-control" >
+                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                        <input name="todate" required type="text" class="form-control" >
                                         <span class="input-group-btn">
                                             <button class="btn default" type="button">
                                                 <i class="fa fa-calendar"></i>

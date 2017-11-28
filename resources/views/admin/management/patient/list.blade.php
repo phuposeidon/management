@@ -118,7 +118,7 @@
                                         <td> 
                                             @if ($patient->gender == 1)
                                                 Nam
-                                            @else
+                                            @elseif ($patient->gender == 0)
                                                 Nữ
                                             @endif
                                         </td>
@@ -151,7 +151,7 @@
                                 </tbody>
                             </table>
                             <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
-                            {{$allPatients->links()}}
+                            <!-- $allPatients->links() -->
 
                             <!-- làm modal delete -->
                             <div class="modal fade" id="modal-1" style="margin-top: 12em ">

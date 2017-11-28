@@ -8,7 +8,7 @@ use App\Clinic;
 class ClinicController extends Controller
 {
     function list() {
-        $allClinics = Clinic::paginate(10);
+        $allClinics = Clinic::all();
         return view('admin.management.clinic.list', ['allClinics' => $allClinics]);
     }
 

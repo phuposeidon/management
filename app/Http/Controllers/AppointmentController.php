@@ -12,7 +12,7 @@ use App\Appointment;
 class AppointmentController extends Controller
 {
     function list() {
-        $allAppointments = Appointment::paginate(10);
+        $allAppointments = Appointment::all();
         return view('admin.management.appointment.list', ['allAppointments' => $allAppointments]);
     }
 

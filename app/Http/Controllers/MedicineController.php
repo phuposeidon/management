@@ -10,7 +10,7 @@ use App\Medicine;
 class MedicineController extends Controller
 {
     function list() {
-        $allMedicines = Medicine::paginate(10);
+        $allMedicines = Medicine::all();
         $allUnits = Unit::all();
         return view('admin.management.medicine.list', ['allMedicines' => $allMedicines, 'allUnits' => $allUnits]);
     }

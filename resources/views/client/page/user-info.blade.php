@@ -19,7 +19,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{$getPatientById->fullname}}" disabled>
+                                    <input type="text" class="br-radius-zero reg-input" value="{{$getPatientById->fullname}}" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -28,7 +28,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{Carbon\Carbon::parse($getPatientById->DOB)->format('d-m-Y')}}">
+                                    <input type="text" class="br-radius-zero reg-input" value="{{Carbon\Carbon::parse($getPatientById->DOB)->format('d-m-Y')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -37,7 +37,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{$getPatientById->address}}">
+                                    <input type="text" class="br-radius-zero reg-input" value="{{$getPatientById->address}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -46,7 +46,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="<?php if($getPatientById->gender == 1) echo "Nam"; else echo "Nữ"?>">
+                                    <input type="text" class="br-radius-zero reg-input" value="<?php if($getPatientById->gender == 1) echo "Nam"; else echo "Nữ"?>">
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{$getPatientById->bloodgroup}}">
+                                    <input type="text" class="br-radius-zero reg-input" value="{{$getPatientById->bloodgroup}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -66,7 +66,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{$getPatientById->email}}">
+                                    <input type="text" class="br-radius-zero reg-input" value="{{$getPatientById->email}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -75,7 +75,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{$getPatientById->phone}}">
+                                    <input type="text" class="br-radius-zero reg-input" value="{{$getPatientById->phone}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -84,7 +84,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" value="{{$getPatientById->username}}" disabled>
+                                    <input type="text" class="br-radius-zero reg-input" value="{{$getPatientById->username}}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="password" class="br-radius-zero">
+                                    <input type="password" class="br-radius-zero reg-input">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="password" class="br-radius-zero">
+                                    <input type="password" class="br-radius-zero reg-input">
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="password" class="br-radius-zero">
+                                    <input type="password" class="br-radius-zero reg-input">
                                 </div>
                             </div>
                         </div>

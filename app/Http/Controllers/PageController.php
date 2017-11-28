@@ -38,6 +38,7 @@ class PageController extends Controller
             $newPatient->fullname = $request->fullname;
             $newPatient->email = $request->email;
             $newPatient->phone = $request->phone;
+            $newPatient->gender = $request->gender;
             $newPatient->save();
             $getNewPatientId = $newPatient->id;
         }
@@ -46,12 +47,20 @@ class PageController extends Controller
         return view('client.page.appointment', ['specializations' => $specializations, 'doctors' => $doctors, 'getNewPatientId' => $getNewPatientId]);
     }
 
+    public function getDoctor($specializationId) {  //ajax load doctor
+        $doctor = User::where('specializationId', $specializationId)->get();
+        foreach ($doctor as $doc) {
+            echo '<option value="'.$doc->id.'">'.$doc->fullname.'</option>';
+        }
+    }
+
     public function showHour(Request $request) {
         $appointmentDate = $request->appointmentDate;
+        $doctorId = $request->doctorId;
         $allHours = Hours::all();
 
         //$allAppointments = Appointment::select('appointmentDate')->get();
-        $allAppointments = Appointment::select('id','appointmentDate')->get();
+        $allAppointments = Appointment::select('id','appointmentDate')->where('doctorId', $doctorId)->get();
         
         //get all appointment in selected date
         $selectedDates = [];
@@ -71,7 +80,6 @@ class PageController extends Controller
             $getPatientId = $request->patientId;
         }
         else $getPatientId = Auth::guard('patient')->user()->id;
-        $doctorId = $request->doctorId;
 
         return view('client.page.hours', ['appointmentDate' => $appointmentDate, 'allHours' => $allHours, 'selectedDates' => $selectedDates, 'getPatientId' => $getPatientId, 'doctorId' => $doctorId]);
     }

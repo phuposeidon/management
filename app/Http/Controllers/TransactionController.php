@@ -11,7 +11,7 @@ use App\Transaction;
 class TransactionController extends Controller
 {
     function list() {
-        $allTransactions = Transaction::paginate(10);
+        $allTransactions = Transaction::all();
         return view('admin.management.transaction.list', ['allTransactions' => $allTransactions]);
 	}
 	

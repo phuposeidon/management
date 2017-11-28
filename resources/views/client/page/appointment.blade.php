@@ -19,7 +19,7 @@
 
                     <div class="form-group" style="margin-top: 40px;">
                         <label for="" class="label-bottom">Chọn loại bệnh: </label>
-                        <select name="specializationId" id="" class="form-control br-radius-zero">
+                        <select name="specializationId" class="form-control br-radius-zero" id="Spec">
                             @foreach($specializations as $specialization)
                                 <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                             @endforeach
@@ -27,8 +27,8 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn bác sĩ: </label>
-                        <select name="doctorId" id="" class="form-control br-radius-zero">
-                            <option value="">Bác sĩ bất kỳ</option>
+                        <select name="doctorId" class="form-control br-radius-zero" id="Doctor">
+                            <!-- <option value="">Bác sĩ bất kỳ</option> -->
                             @foreach($doctors as $doctor)
                             <option value="{{$doctor->id}}">{{$doctor->fullname}}</option>
                             @endforeach
@@ -57,6 +57,18 @@
             //active menu bar
             $('#myNavbar ul .indexBtn').removeClass('active');
             $('#myNavbar ul .bookingBtn').addClass('active');
+
+            var id = $('#Spec').val();
+			$.get("ajax/specialization/"+id, function(data){
+					$("#Doctor").html(data);
+				});
+            //Load hotel
+			$("#Spec").change(function(){
+				var idSpecialization = $(this).val();
+				$.get("ajax/specialization/"+idSpecialization, function(data){
+					$("#Doctor").html(data);
+				});
+			});
         });
     </script>
 </body>

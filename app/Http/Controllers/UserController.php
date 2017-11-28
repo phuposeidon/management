@@ -96,7 +96,7 @@ class UserController extends Controller
         $user->note = $req->note;
         $user->specializationId = $req->speciality;
 		$user->active = $req->active;
-		$user->password = $req->password;
+		$user->password = bcrypt($req->password);
 		$user->address = $req->address;
 		$user->username = $req->username;
         $user->save();

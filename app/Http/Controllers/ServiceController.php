@@ -11,7 +11,7 @@ class ServiceController extends Controller
 {
     function list() {
         $allClinics = Clinic::all();
-        $allServices = Service::paginate(10);
+        $allServices = Service::all();
         return view('admin.management.service.list', ['allClinics' => $allClinics, 'allServices' => $allServices]);
     }
 

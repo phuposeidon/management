@@ -11,7 +11,7 @@ use App\User;
 class OrderController extends Controller
 {
     function list() {
-        $allOrders = Order::paginate(10);
+        $allOrders = Order::all();
         return view('admin.management.order.list', ['allOrders' => $allOrders]);
     }
 

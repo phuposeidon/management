@@ -224,6 +224,7 @@
                                     <label class="col-md-3 control-label">Chuyên Khoa</label>
                                     <div class="col-md-6">
                                         <select name="speciality" class="form-control">
+                                            <option value="">Không có</option>
                                             @foreach($specialization as $doc)
                                             <option value="{{$doc->id}}">{{$doc->name}}</option>
                                             @endforeach

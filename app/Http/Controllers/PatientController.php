@@ -33,7 +33,7 @@ class PatientController extends Controller
 		$patient->fullname = $req->fullname;
 		$patient->email = $req->email;
 		$patient->gender = $req->gender;
-		$patient->DOB = $req->DOB;
+		$patient->DOB = Carbon::createFromFormat('d-m-Y',$req->DOB)->format('Y-m-d 00:00:00');
 		$patient->country = $req->country;
 		$patient->religion = $req->religion;
 		$patient->phone = $req->phone;
@@ -46,8 +46,8 @@ class PatientController extends Controller
 		$patient->address = $req->address;
 		
 		$patient->save();
-		$insurrance->toDate = $req->todate;
-		$insurrance->fromDate = $req->fromdate;
+		$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
+		$insurrance->fromDate = Carbon::createFromFormat('d-m-Y',$req->fromdate)->format('Y-m-d 00:00:00');
 		$insurrance->cardCode = $req->cardCode;
 		$insurrance->placeCheck = $req->placecheck;
 		$insurrance->patientId = $patient->id;
@@ -66,7 +66,7 @@ class PatientController extends Controller
 	}
 	
 	function list() {
-		$allPatients = Patient::paginate(10);
+		$allPatients = Patient::all();
 		return view('admin.management.patient.list', ['allPatients' => $allPatients]); 
 	}
 
@@ -111,13 +111,9 @@ class PatientController extends Controller
 
 	function getEdit($id){
 		$patient = Patient::find($id);
-		$insurrance = $patient->Insurance()->get();
-		foreach($insurrance as $a)
-		{
-			return view('admin.management.patient.edit',['patient'=>$patient,'insurance'=>$a]);
+		$insurance = Insurance::where('patientId',$id)->get();
+		return view('admin.management.patient.edit',['patient'=>$patient,'insurance'=>$insurance]);
 			
-		}		
-		
 	}
 
 	function postEdit(Request $req){
@@ -138,12 +134,23 @@ class PatientController extends Controller
 		$patient->bloodgroup = $req->bloodgroup;
 		$patient->active = $req->active;
 		
-		$insurrance->toDate = $req->todate;
-		$insurrance->fromDate = $req->fromdate;
-		$insurrance->cardCode = $req->cardCode;
-		$insurrance->placeCheck = $req->placeCheck;
-		$insurrance->patientId = $patient->id;
-		$insurrance->save();
+		if($insurrance == '')
+		{
+			$insurrance = new Insurance;
+			$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
+			$insurrance->fromDate = Carbon::createFromFormat('d-m-Y',$req->fromdate)->format('Y-m-d 00:00:00');
+			$insurrance->cardCode = $req->cardCode;
+			$insurrance->placeCheck = $req->placeCheck;
+			$insurrance->patientId = $req->id;
+			$insurrance->save();
+		}
+		else {
+			$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
+			$insurrance->fromDate = Carbon::createFromFormat('d-m-Y',$req->fromdate)->format('Y-m-d 00:00:00');
+			$insurrance->cardCode = $req->cardCode;
+			$insurrance->placeCheck = $req->placeCheck;
+			$insurrance->save();
+		}
 		$allPatients = Patient::paginate(10);
 		
 		if($insurrance->save())

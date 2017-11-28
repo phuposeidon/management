@@ -29,7 +29,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" name="fullname" value="{{old('fullname')}}">
+                                    <input type="text" class="br-radius-zero reg-input" name="fullname" value="{{old('fullname')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -38,7 +38,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero datepicker" name="DOB" value="{{old('DOB')}}">
+                                    <input type="text" class="br-radius-zero datepicker reg-input" name="DOB" value="{{old('DOB')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -47,7 +47,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" name="address" value="{{old('address')}}">
+                                    <input type="text" class="br-radius-zero reg-input" name="address" value="{{old('address')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -56,7 +56,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <select class="br-radius-zero" name="gender">
+                                    <select class="br-radius-zero reg-input" name="gender">
                                         <option value="0">Nữ</option>
                                         <option value="1">Nam</option>
                                     </select>
@@ -68,7 +68,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" name="passport" value="{{old('passport')}}">
+                                    <input type="text" class="br-radius-zero reg-input" name="passport" value="{{old('passport')}}">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <select class="br-radius-zero" name="bloodgroup">
+                                    <select class="br-radius-zero reg-input" name="bloodgroup">
                                         <option value="">Chưa biết</option>
                                         <option value="A">A</option>
                                         <option value="B">B</option>
@@ -94,7 +94,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="email" class="br-radius-zero" name="email" value="{{old('email')}}">
+                                    <input type="email" class="br-radius-zero reg-input" name="email" value="{{old('email')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -103,7 +103,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" name="phone" value="{{old('phone')}}">
+                                    <input type="text" class="br-radius-zero reg-input" name="phone" value="{{old('phone')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -112,7 +112,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="text" class="br-radius-zero" name="username" value="{{old('username')}}">
+                                    <input type="text" class="br-radius-zero reg-input" name="username" value="{{old('username')}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -121,7 +121,7 @@
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
-                                    <input type="password" class="br-radius-zero" name="password">
+                                    <input type="password" class="br-radius-zero reg-input" name="password">
                                 </div>
                             </div>
                         </div>

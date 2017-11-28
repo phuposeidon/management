@@ -142,6 +142,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/appointment-login', 'PageController@showAppointmentLogin');
 Route::post('/appointments', 'PageController@showAppointment');
+Route::get('ajax/specialization/{idSpecialization}', 'PageController@getDoctor');
 Route::post('/hours', 'PageController@showHour');
 Route::post('/post-appointment', 'PageController@postAppointment');
 Route::get('/user-info','PageController@showUserInfo');
