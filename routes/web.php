@@ -27,6 +27,15 @@ Route::group(['prefix' => '/', 'middleware' => 'loginAdmin'], function() {
         return view('admin.layouts.master');
     });
 
+Route::get('/user', 'UserController@list')->name('listUser');
+Route::get('/user/add','UserController@index')->name('addUser');
+Route::post('/user/add','UserController@post')->name('createUser');
+Route::get('/user/{id}','UserController@getEdit')->name('getUser');
+Route::post('/user/{id}','UserController@postEdit')->name('postUser');
+Route::post('/user-delete','UserController@delete');
+Route::post('/user-multidelete', 'UserController@deleteAll');
+
+Route::get('user-login','UserController@getLogin');
     Route::get('/user', 'UserController@list')->name('listUser');
     Route::get('/user/{id}','UserController@getEdit');
     Route::post('/user/edit','UserController@postEdit')->name('postEdit');
@@ -73,9 +82,18 @@ Route::group(['prefix' => '/', 'middleware' => 'loginAdmin'], function() {
     Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
 
 
+
+Route::get('/medicine', 'MedicineController@list')->name('getlist');
+Route::get('/medicine/add','MedicineController@index');
+Route::post('/medicine/add','MedicineController@add')->name('addMedicine');
+Route::get('/medicine/{id}','MedicineController@getEdit')->name('editMedicine');
+Route::post('/medicine/{id}','MedicineController@postMedicine')->name('postMedicine');
+Route::post('/medicine-delete', 'MedicineController@delete');
+Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
     Route::get('/order', 'OrderController@list');
     Route::post('/order-delete', 'OrderController@delete');
     Route::post('/order-multidelete', 'OrderController@deleteAll');
+
 
 
     Route::get('/orderitem', function() {
@@ -99,6 +117,19 @@ Route::group(['prefix' => '/', 'middleware' => 'loginAdmin'], function() {
         return view('admin.management.province.list');
     });
 
+
+// PATIENT
+Route::get('/patient', 'PatientController@list')->name('patient');
+Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
+Route::post('/patient/{id}','PatientController@postEdit')->name('editPatient');
+Route::get('/patient/add','PatientController@show')->name('showPatient');
+Route::post('/patient/add','PatientController@index')->name('addPatient');
+Route::post('/patient-delete', 'PatientController@delete');
+Route::post('/patient-multidelete', 'PatientController@deleteAll');
+
+Route::get('/province', function() {
+    return view('admin.management.province.list');
+});
     Route::get('/service','ServiceController@list')->name('getService');
     Route::post('/service-delete', 'ServiceController@delete');
     Route::post('/service-multidelete', 'ServiceController@deleteAll');
@@ -107,11 +138,16 @@ Route::group(['prefix' => '/', 'middleware' => 'loginAdmin'], function() {
     Route::post('/service/add','ServiceController@add')->name('addService');
 
 
+
+Route::get('/service/{id}','ServiceController@getService')->name('getEdit');
+Route::post('/service/{id}','ServiceController@postService')->name('postService');
+
     Route::get('/specialization', 'SpecializationController@list');
     Route::post('/specialization/{id}', 'SpecializationController@post');
     Route::get('/specialization/{id}', 'SpecializationController@ajax');
     Route::post('/specialization-delete', 'SpecializationController@delete');
     Route::post('/specialization-multidelete', 'SpecializationController@deleteAll');
+
 
     Route::post('/specialization','SpecializationController@add' );
 
@@ -148,3 +184,6 @@ Route::post('/post-appointment', 'PageController@postAppointment');
 Route::get('/user-info','PageController@showUserInfo');
 Route::get('/signup', 'PageController@getSignUp');
 Route::post('/signup', 'PageController@postSignUp');
+
+Route::get('/wait-list','MedicalRecordController@list');
+Route::get('/diagnosis','MedicalRecordController@waitList');

@@ -335,9 +335,9 @@
                         <button type="button" class="btn btn-primary">
                             <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
                         </button>
-                        <button type="button" class="btn btn-default" >
+                        <a href="{{route('patient')}}" class="btn btn-default" >
                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

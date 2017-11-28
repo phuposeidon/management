@@ -21,6 +21,7 @@ class UserController extends Controller
     }
 
     function post(Request $req){
+
         $specialization =  Specialization::all();
         $user = new User;
 		if($req->active!=1)
@@ -77,13 +78,18 @@ class UserController extends Controller
 	}
 
 	function postEdit(Request $req){
+
 		$specialization =  Specialization::all();
         $user = User::find($req->id);
 		if($req->active!=1)
 		{
 			$req->active=0;
 		}
+
+		// $user->DOB= Carbon::parse($req->DOB)->format('Y-m-d');
+
 		$user->DOB= Carbon::createFromFormat('d-m-Y',$req->DOB)->toDateTimeString();
+
 		$user->fullname = $req->fullname;
 		$user->usertype = $req->userType;
 		$user->email = $req->email;
@@ -100,7 +106,9 @@ class UserController extends Controller
 		$user->address = $req->address;
 		$user->username = $req->username;
         $user->save();
-		$allUsers = User::paginate(10);
+        if ($user->save()) {
+        	return redirect()->route('listUser');
+        }
 		// if($user->save())
 		// {
 		// 	\Session::flash('flash_message','Sửa thành công');
@@ -116,7 +124,7 @@ class UserController extends Controller
 		// 	\Session::flash('flash_fail','Sửa thất bai');
         // }
         
-        return view('admin.management.user.list',['allUsers'=>$allUsers]);
+        
 	}
 
 	public function getLogin() {

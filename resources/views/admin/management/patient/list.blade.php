@@ -47,7 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a id="sample_editable_1_new" class="btn sbold green" href="../public/add-patient"> Thêm
+                                            <a id="sample_editable_1_new" class="btn sbold green" href="../public/add"> Thêm
                                                 <i class="fa fa-plus"></i>
 </a>
                                         </div>
@@ -140,7 +140,7 @@
                                         <td class="center"> {{$patient->createdAt}} </td> -->
                                         <td style="padding-left:2px;">
                                             <div style="text-align:center;">
-                                                <a href="{{asset('/patient/'.$patient->id)}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
+                                                <a href="{{route('showPatient',['id'=>$patient->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient->id}}"> <i class="fa fa-trash-o"></i></a>
 
                                             </div>

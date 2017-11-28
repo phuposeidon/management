@@ -74,7 +74,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nội Dung</label>
                                     <div class="col-md-6">
-                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
+                                    <textarea rows="5" name="content" class="form-control" style=""></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
