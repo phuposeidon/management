@@ -35,14 +35,6 @@ Route::post('/user/{id}','UserController@postEdit')->name('postUser');
 Route::post('/user-delete','UserController@delete');
 Route::post('/user-multidelete', 'UserController@deleteAll');
 
-Route::get('user-login','UserController@getLogin');
-    Route::get('/user', 'UserController@list')->name('listUser');
-    Route::get('/user/{id}','UserController@getEdit');
-    Route::post('/user/edit','UserController@postEdit')->name('postEdit');
-    Route::post('/user-delete','UserController@delete');
-    Route::post('/user-multidelete', 'UserController@deleteAll');
-    Route::get('/add-user','UserController@index')->name('addUser');
-    Route::post('/add-user}','UserController@post')->name('postUser');
     
     
     Route::get('/add-appointment',function(){

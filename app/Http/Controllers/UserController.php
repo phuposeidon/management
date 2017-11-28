@@ -28,7 +28,7 @@ class UserController extends Controller
 		{
 			$req->active=0;
 		}
-		$user->DOB= $req->DOB;
+		$user->DOB= Carbon::createFromFormat('d-m-Y',$req->DOB)->format('Y-m-d 00:00:00');
 		$user->fullname = $req->fullname;
 		$user->usertype = $req->userType;
 		$user->email = $req->email;
@@ -86,9 +86,8 @@ class UserController extends Controller
 			$req->active=0;
 		}
 
-		// $user->DOB= Carbon::parse($req->DOB)->format('Y-m-d');
-
-		$user->DOB= Carbon::createFromFormat('d-m-Y',$req->DOB)->toDateTimeString();
+		//$user->DOB= Carbon::parse($req->DOB)->format('Y-m-d');
+		$user->DOB= Carbon::createFromFormat('d-m-Y',$req->DOB)->format('Y-m-d 00:00:00');
 
 		$user->fullname = $req->fullname;
 		$user->usertype = $req->userType;
@@ -107,7 +106,7 @@ class UserController extends Controller
 		$user->username = $req->username;
         $user->save();
         if ($user->save()) {
-        	return redirect()->route('listUser');
+        	return redirect('user');
         }
 		// if($user->save())
 		// {

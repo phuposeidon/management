@@ -125,6 +125,7 @@ class PatientController extends Controller
 		}
 		$patient->fullname = $req->fullname;
 		$patient->email = $req->email;
+		$patient->DOB =Carbon::createFromFormat('d-m-Y',$req->birthday)->format('Y-m-d 00:00:00');;
 		$patient->gender = $req->gender;
 		$patient->phone = $req->phone;
 		$patient->username = $req->username;

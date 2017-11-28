@@ -1,5 +1,5 @@
 <!-- BEGIN SIDEBAR -->
-<div class="page-sidebar-wrapper">
+<div class="page-sidebar-wrapper" style="position:fixed;">
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
         <!-- BEGIN SIDEBAR MENU -->
@@ -89,13 +89,16 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-            <!-- <li class="nav-item start">
-                <a href="{{asset('insurrance')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-credit-card"></i>
-                    <span class="title">Thẻ Bảo Hiểm</span>
+            <li class="nav-item 
+            {{ (Request::is('wait-list/*') || Request::is('wait-list') || Request::is('wait-list/*') ? 'active' : '') }}
+            "
+            ">
+                <a href="{{asset('wait-list')}}" class="nav-link nav-toggle">
+                    <i class="fa fa-list"></i>
+                    <span class="title">Danh Sách Khám</span>
                     <span class="selected"></span>
                 </a>
-            </li> -->
+            </li>
             <li class="nav-item 
             {{ (Request::is('medicine/*') || Request::is('medicine') || Request::is('medicine/*') ? 'active' : '') }}
             ">

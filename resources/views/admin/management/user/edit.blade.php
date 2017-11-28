@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
                                             <input type="text" required name="DOB"  value="{{Carbon\Carbon::Parse($user->DOB)->format('d-m-Y')}}"  class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
@@ -195,7 +195,7 @@
     </div>
     <!-- END CONTENT -->
 @endsection
-<script src="global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="{!!url('global/plugins/jquery.min.js')!!}" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         setTimeout(function()

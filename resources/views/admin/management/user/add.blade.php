@@ -155,7 +155,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
-                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
                                             <input type="text" required name="DOB" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">

@@ -134,7 +134,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if(App\Appointment::find($waiter->id)->Patient->status=="new")
+                                            @if(App\Appointment::find($waiter->id)->status=="new")
                                             Đã Tiếp Nhận
                                             @else
                                             Đang Khám
@@ -143,7 +143,7 @@
                                         </td>
                                         <td style="text-align: center;">
                                             <div>
-                                                <a href="#edit" data-toggle="modal" data-target="#edit"   data-id="" class="btn btn-xs green dropdown-toggle edit-modal"><i class="fa fa-stethoscope"></i></a>                                              
+                                                <a href="{{asset('diagnosis')}}" class="btn btn-xs green dropdown-toggle edit-modal"><i class="fa fa-stethoscope"></i></a>                                              
                                             </div>
                                         </td>
                                     </tr>

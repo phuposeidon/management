@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn ngày khám: </label>
-                        <input type="text" class="form-control br-radius-zero datepicker" name="appointmentDate"/>
+                        <input type="text" class="form-control br-radius-zero datepicker" name="appointmentDate" value="{{Carbon\Carbon::today()->format('d-m-Y')}}"/>
                         <!-- required oninvalid="this.setCustomValidity('Vui lòng chọn ngày khám')"
         oninput="setCustomValidity('')" -->
                      </div>
