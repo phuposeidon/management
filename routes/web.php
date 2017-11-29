@@ -156,6 +156,9 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::get('/transaction','TransactionController@list');
     Route::post('/transaction-delete', 'TransactionController@delete');
     Route::post('/transaction-multidelete', 'TransactionController@deleteAll');
+
+    Route::get('/wait-list','MedicalRecordController@list');
+    Route::get('/diagnosis','MedicalRecordController@waitList');
 });
 
 Route::get('/index', function() {
@@ -174,8 +177,7 @@ Route::get('ajax/specialization/{idSpecialization}', 'PageController@getDoctor')
 Route::post('/hours', 'PageController@showHour');
 Route::post('/post-appointment', 'PageController@postAppointment');
 Route::get('/user-info','PageController@showUserInfo');
+Route::post('/user-info','PageController@postEditInfo');
 Route::get('/signup', 'PageController@getSignUp');
 Route::post('/signup', 'PageController@postSignUp');
-
-Route::get('/wait-list','MedicalRecordController@list');
-Route::get('/diagnosis','MedicalRecordController@waitList');
+Route::get('/blog', 'PageController@postBlog');

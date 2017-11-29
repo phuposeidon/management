@@ -35,4 +35,16 @@ class Patient extends Authenticatable
     public function MedicalRecord() {
         return $this->hasMany('App\MedicalRecord', 'patientId', 'id');
     }
+
+    public function PatientMedical() {
+        return $this->hasMany('App\PatientMedical', 'patientId', 'id');
+    }
+
+    public function FamiMedical() {
+        return $this->hasMany('App\FamiMedical', 'patientId', 'id');
+    }
+
+    public function GeneralIndex() {
+        return $this->hasMany('App\GeneralIndex', 'patientId', 'id');
+    }
 }

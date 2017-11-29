@@ -129,7 +129,7 @@
                                         <select name="speciality" class="form-control">
                                             <option value="">Không có</option>
                                             @foreach($specialization as $doc)
-                                            <option value="{{$doc->id}}">{{$doc->name}}</option>
+                                            <option value="{{$doc->id}}" @if($doc->id == $user->id) selected @endif>{{$doc->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

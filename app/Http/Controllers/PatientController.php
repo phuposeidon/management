@@ -97,7 +97,10 @@ class PatientController extends Controller
 		if(Auth::guard('patient')->attempt(['username' => $request->username, 'password' => $request->password])) //Ktra đăng nhập
 		{	
 			$thongbao = 'Chào mừng '.Auth::guard('patient')->user()->fullname.' đã đăng nhập thành công.';
-			return redirect()->back()->with('thongbao', $thongbao);
+			if($_SERVER['HTTP_REFERER'] == "http://localhost/management/public/appointment-login")
+				return redirect()->back()->with('thongbao', $thongbao);
+			else 
+				return redirect('/index')->with('thongbao', $thongbao);
 		}
 		else {
 			return redirect()->back()->with('thongbao', 'Tên tài khoản hoặc mật khẩu không chính xác.');

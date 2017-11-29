@@ -94,15 +94,6 @@ class PageController extends Controller
         return view('client.layouts.index', ['thongbao' => 'Bạn đã đặt lịch khám thành công.']);
     }
 
-    public function showUserInfo() {
-        if(isset(Auth::guard('patient')->user()->id)){
-            $id = Auth::guard('patient')->user()->id;
-            $getPatientById = Patient::find($id);
-            return view('client.page.user-info', ['getPatientById' => $getPatientById]);
-        }
-        else return view('client.layouts.index');
-    }
-
     public function getSignUp() {
         return view('client.page.register');
     }
@@ -137,11 +128,60 @@ class PageController extends Controller
 		$patient->passport = $request->passport;
 		$patient->DOB = Carbon::createFromFormat('d-m-Y',$request->DOB)->format('Y-m-d 00:00:00');
 		$patient->bloodgroup = $request->bloodgroup;
-		// $patient->pet = $request->pet;
-		// $patient->phonepet = $request->petphonenumber;
 		$patient->active = 1;
 		$patient->save();
 
 		return view('client.layouts.index')->with('thongbao', 'Bạn đã đăng ký tài khoản thành công');
-	}
+    }
+    
+    public function showUserInfo() {
+        if(isset(Auth::guard('patient')->user()->id)){
+            $id = Auth::guard('patient')->user()->id;
+            $getPatientById = Patient::find($id);
+            return view('client.page.user-info', ['getPatientById' => $getPatientById]);
+        }
+        else return view('client.layouts.index');
+    }
+
+    public function postEditInfo(Request $request){
+        $this->validate($request, [
+			//'email' => 'required|unique:patient,email',
+			//'passport' => 'required|unique:patient,passport',
+            //'password' => 'required|min:8',
+            'DOB' => 'required',
+        ], [
+            //'email.required' => 'Vui lòng nhập email',
+			//'email.unique' => 'Email đã tồn tại, vui lòng nhập email khác',
+			//'passport.required' => 'Vui lòng nhập CMND',
+			//'passport.unique' => 'CMND đã tồn tại, vui lòng kiểm tra và nhập CMND khác',
+            //'password.required' => 'Vui lòng nhập mật khẩu',
+            //'password.min' => 'Mật khẩu ít nhất phải gồm 8 ký tự',
+            'DOB.required' => 'Vui lòng nhập ngày sinh',
+        ]);
+		$patient = Patient::find($request->id);
+		$patient->email = $request->email;
+		$patient->gender = $request->gender;
+		$patient->phone = $request->phone;
+		$patient->address = $request->address;
+		$patient->username = $request->username;
+		$patient->password = bcrypt($request->password);
+		$patient->passport = $request->passport;
+		$patient->DOB = Carbon::createFromFormat('d-m-Y',$request->DOB)->format('Y-m-d 00:00:00');
+		$patient->bloodgroup = $request->bloodgroup;
+		$patient->active = 1;
+		$patient->save();
+        if( $patient->save())
+		{
+			
+			\Session::flash('flash_message','Bạn đã cập nhật thông tin thành công');
+			
+		}else{
+			\Session::flash('flash_fail','Bạn đã cập nhật thông tin thất bại');
+		}
+		return view('client.page.user-info');
+    }
+    public function postBlog() {
+        $specializations = Specialization::all();
+        return view('client.page.blog', ['specializations' => $specializations]);
+    }
 }

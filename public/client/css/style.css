@@ -286,6 +286,33 @@ services
 .icon-info p{
 	font-size: 15px !important;
 }
+.section-color {
+    background-color: #f1f1f1;
+}
+.blog-border {
+    background: #fff;
+    border: 1px solid #e1e3e6;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+.blog-content {
+    padding: 10px;
+}
+.blog-menu {
+    padding: 0;
+}
+.blog-menu .blog-list {
+    padding: 5px 0;
+}
+.blog-menu .blog-list a {
+    color: #8e8e8e;
+    cursor: pointer;
+    text-decoration: none;
+}
+.blog-menu .blog-list a:hover {
+    color: #00a2a2;
+    text-decoration: none;
+}
 /***************************************
 cta-1
 ***************************************/
