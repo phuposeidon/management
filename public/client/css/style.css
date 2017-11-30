@@ -289,14 +289,132 @@ services
 .section-color {
     background-color: #f1f1f1;
 }
+.row {
+    margin: 0;
+}
+.avatar-user {
+    border: 1px solid lightgray;
+    height: 50px;
+    width: 50px;
+}
+.avatar-user img {
+    height: 20px;
+    width: 100%;
+    border: 1px solid lightgray;
+}
+.title-question {
+    height: 30px;
+    border-bottom: 1px solid lightgray;
+    font-size: 14px;
+    color: #00a2a2;
+    padding-left: 3px;
+    margin-left: 8px;
+}
+.question {
+    height: 120px;
+}
+.question textarea {
+    height: 100%;
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #000;
+    padding-left: 8px;
+    padding-top: 10px;
+}
+.answer {
+    height: 40px;
+}
+.answer textarea {
+    height: 85%;
+    width: 100%;
+    resize: none;
+    border: 1px solid #e1e3e6 ;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    color: #000;
+    padding-left: 8px;
+    padding-top: 6px;
+    margin: 8px 0 0 10px;
+}
+.btn-send {
+    width: 100%;
+    margin-top: 0;
+    padding: 5px 20px;
+    font-size: 12px;
+    background-color: rgba(12, 184, 182, 0.91);
+    border-radius: 3px;
+    color: #fff;
+    border: 1px solid transparent;
+}
+.pad-10 {
+    padding: 10px;
+}
+.blog-footer {
+    color: #000;
+    height: auto;
+    border-top: 1px solid #e1e3e6;
+    font-size: 14px;
+    background: #f6f7f9;
+}
 .blog-border {
     background: #fff;
     border: 1px solid #e1e3e6;
     border-radius: 4px;
-    margin-left: 20px;
+    font-size: 14px;
+}
+.blog-border [class*='col-md'] {
+    padding: 0;
 }
 .blog-content {
     padding: 10px;
+}
+.user-info {
+    height: 50px;
+    margin-bottom: 10px;
+}
+.about-user {
+    padding: 3px 0 0 10px !important;
+}
+.about-user p {
+    margin-bottom: 0;
+}
+.about-user small span {
+    position: relative;
+}
+.about-user small span + span {
+    margin-left: 10px;
+}
+.about-user small span + span::before {
+    background: #737a86;
+    content: '';
+    height: 3px;
+    left: -7px;
+    position: absolute;
+    top: 8px;
+    width: 3px;
+    border-radius: 50%;
+}
+.name {
+    color: #000;
+    font-weight: bold;
+}
+.user-question {
+    border-bottom: 1px solid lightgray;
+}
+.user-question p {
+    color: #000;
+}
+.btn-answser {
+    height: 25px;
+    padding-top: 7px;
+}
+.btn-answser a {
+    text-decoration: none;
+    margin-left: 15px;
 }
 .blog-menu {
     padding: 0;
@@ -308,6 +426,7 @@ services
     color: #8e8e8e;
     cursor: pointer;
     text-decoration: none;
+    font-size: 15px;
 }
 .blog-menu .blog-list a:hover {
     color: #00a2a2;

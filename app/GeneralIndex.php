@@ -8,7 +8,7 @@ class GeneralIndex extends Model
 {
     protected $table = "GeneralIndex";
     
-    public function Patient() {
-        return $this->belongsTo('App\Patient', 'patientId', 'id');
+    public function MedicalRecord() {
+        return $this->belongsTo('App\MedicalRecord', 'medicalRecordId', 'id');
     }
 }

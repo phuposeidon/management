@@ -23,4 +23,8 @@ class MedicalRecord extends Model
     public function User() {
         return $this->belongsTo('App\User', 'doctorId', 'id');
     }
+
+    public function GeneralIndex() {
+        return $this->hasOne('App\GeneralIndex', 'medicalRecordId', 'id');
+    }
 }
