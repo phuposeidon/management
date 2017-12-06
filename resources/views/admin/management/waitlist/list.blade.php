@@ -143,7 +143,7 @@
                                         </td>
                                         <td style="text-align: center;">
                                             <div>
-                                                <a href="{{asset('diagnosis')}}" class="btn btn-xs green dropdown-toggle edit-modal"><i class="fa fa-stethoscope"></i></a>                                              
+                                                <a href="{{asset('diagnosis')}}/{{$waiter->patientId}}" class="btn btn-xs green dropdown-toggle edit-modal"><i class="fa fa-stethoscope"></i></a>                                              
                                             </div>
                                         </td>
                                     </tr>

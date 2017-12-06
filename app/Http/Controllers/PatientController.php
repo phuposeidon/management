@@ -209,4 +209,21 @@ class PatientController extends Controller
 		
 		
 	}
+
+	//postAllergic
+	function postAllergic(Request $req){
+		$patient = Patient::find($req->id);
+		var_dump($req->allergic);
+		if (isset($req->allergic)) {
+			$patient->allergic = $req->allergic;
+		}
+
+		if (isset($req->diff_allergic)) {
+			$patient->diff_allergic = $req->diff_allergic;
+		}
+		$patient->save();
+		if ($patient->save()) {
+			return redirect()->route('diagnosis',['id'=>$req->id]);
+		}
+	}
 }

@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralIndex extends Model
 {
     protected $table = "GeneralIndex";
-    
-    public function MedicalRecord() {
-        return $this->belongsTo('App\MedicalRecord', 'medicalRecordId', 'id');
-    }
+    public $timestamps = false;
+    public function Patient() {
+        return $this->belongsTo('App\Patient', 'patientId', 'id');
 }

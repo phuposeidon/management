@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MedicalRecord extends Model
 {
     protected $table = "MedicalRecord";
+        public $timestamps = false;
     
     public function Order() {
         return $this->hasOne('App\Order', 'medicalRecordId', 'id');
