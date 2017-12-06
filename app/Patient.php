@@ -44,7 +44,4 @@ class Patient extends Authenticatable
         return $this->hasMany('App\FamiMedical', 'patientId', 'id');
     }
 
-    public function GeneralIndex() {
-        return $this->hasMany('App\GeneralIndex', 'patientId', 'id');
-    }
 }

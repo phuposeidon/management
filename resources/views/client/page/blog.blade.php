@@ -39,7 +39,7 @@
       <div class="row">
         <!--menu -->
         <div class="col-md-3 blog-border">
-          <h2 class="ser-title" style="margin-top: 30px;">Các chuyên khoa</h2>
+          <h3 class="ser-title" style="margin-top: 30px;">Chuyên khoa</h3>
           <hr class="botm-line">
           <ul class="blog-menu">
             <li class="row blog-list">
@@ -71,26 +71,78 @@
         </div>
         <!-- end menu -->
         
-        <div class="col-md-8">
+        <div class="col-md-9">
           <!-- post-answer -->
-          <div class="service-info blog-border blog-content">
-            <div class="icon">
-              <i class="fa fa-stethoscope"></i>
+          <div class="service-info blog-border">
+            <div class="row blog-content">
+              <div class="col-md-1 avatar-user">
+                <img src="" alt="">
+              </div>
+              <div class="col-md-11">
+                <div class="title-question">
+                  <i class="fa fa-question-circle"></i> Đặt câu hỏi
+                </div>
+                <div class="question">
+                  <textarea name="" id="" rows="10" placeholder="Bạn muốn hỏi bác sĩ điều gì?"></textarea>
+                </div>
+              </div>
             </div>
-            <div class="icon-info">
-              <h4>Hỗ trợ 24H</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+            <div class="row blog-footer pad-10">
+              <div class="col-md-offset-9 col-md-2">
+                <input type="checkbox"> Đăng ẩn danh
+              </div>
+              <div class="col-md-1">
+                <button class="btn-send">Gửi</button>
+              </div>
             </div>
           </div>
           <!-- end post-answer -->
-          <div class="service-info blog-border blog-content">
-            <div class="icon">
-              <i class="fa fa-ambulance"></i>
+          <div class="service-info blog-border">
+            <div class="row blog-content">
+              <div class="user-info row">
+                <div class="col-md-1 avatar-user"></div>
+                <div class="col-md-10 about-user">
+                  <p> <span class="name"> Nguyễn Văn A</span> <span> đã hỏi</span></p>
+                  <small><span>15 phút</span> <span>Nam</span> <span>30 tuổi</span> <span>TP.HCM</span> </small>
+                </div>
+              </div>
+
+              <div class="user-question row">
+                <p>Bé 9 tháng tuổi bị nổi nhiểu hạch ở hai bên cổ, tình trạng bé đang bị viêm mũi kèm theo sốt. Cho hỏi bị nổi hạch như vậy có nguy hiểm không ah?</p>
+              </div>
+              <div class="btn-answser">
+                <a href=""><i class="fa fa-thumbs-o-up fa-fw"></i> Thích</a>
+                <a href=""><i class="fa fa-comment-o fa-fw"></i> Trả lời</a>
+              </div>
             </div>
-            <div class="icon-info">
-              <h4>Dịch vụ cấp cứu</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+            <div class="blog-footer">
+
+              <div class="user-answer row">
+                <div class="avatar-user col-md-1"></div>
+                <div class="col-md-11 pad-10">
+                  <b>Nightbot</b>
+                  <p>Chào bạn,
+
+Tôi là Đô-rê-mon, robot tư vấn sức khỏe. Trong khi đợi các bác sĩ, chuyên gia và thành viên Cộng đồng ViCare trả lời câu hỏi của bạn, tôi vừa tìm thấy nội dung sau đây từ kho tàng các câu hỏi đáp và bài viết của ViCare. Bạn đọc thử xem nhé:
+
+Thông tin đầy đủ về Bệnh Viêm xoang
+Nếu thông tin này có ích cho bạn thì nhớ bấm "cảm ơn" tôi nha! Nếu bạn chưa hài lòng thì cũng trả lời cho tôi biết nhé. Tôi vẫn đang trong quá trình học hỏi để trở nên thông minh hơn và rất mong được nghe phản hồi của bạn.
+
+Robot Đô-rê-mon xin cảm ơn!</p>
+                </div>
+              </div>
+
+              <div class="post-answer row">
+                <div class="avatar-user col-md-1"></div>
+                <div class="col-md-11 answer">
+                  <textarea name="" id="answer-box" rows="1" placeholder="Viết trả lời ..."></textarea>
+                </div>
+              </div>
+
             </div>
+            
           </div>
           
         </div>
@@ -102,6 +154,15 @@
   <!--/ service-->
   
   @include('client.layouts.footer')
+
+    <script>
+      $(document).ready(function () {
+        //focus answer box
+        $('#answer-box').click(function(){
+          $(this).parent().css('height', '120px');
+        });
+      });
+    </script>
   </body>
 
 </html>
