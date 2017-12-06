@@ -104,20 +104,32 @@ Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
     Route::post('/add-patient','PatientController@index')->name('addPatient');
     Route::post('/patient-delete', 'PatientController@delete');
     Route::post('/patient-multidelete', 'PatientController@deleteAll');
+    Route::post('/patient/{id}/allergic','PatientController@postAllergic')->name('postAllergic');
+
+    // PatientMedical
+    Route::get('/patient-medical','PatientMedicalController@index');
+    Route::post('/patient-medical','PatientMedicalController@add');
 
     Route::get('/province', function() {
         return view('admin.management.province.list');
     });
 
+    //FamiMedical
+    Route::get('/fami-medical','FamimedicalController@index');
+    Route::post('/fami-medical','FamimedicalController@add');
+
+    //General Index
+    Route::get('general-index','GeneralIndexController@index');
+    Route::post('general-index','GeneralIndexController@add')->name('general');
 
 // PATIENT
-Route::get('/patient', 'PatientController@list')->name('patient');
-Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
-Route::post('/patient/{id}','PatientController@postEdit')->name('editPatient');
-Route::get('/patient/add','PatientController@show')->name('showPatient');
-Route::post('/patient/add','PatientController@index')->name('addPatient');
-Route::post('/patient-delete', 'PatientController@delete');
-Route::post('/patient-multidelete', 'PatientController@deleteAll');
+// Route::get('/patient', 'PatientController@list')->name('patient');
+// Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
+// Route::post('/patient/{id}','PatientController@postEdit')->name('editPatient');
+// Route::get('/patient/add','PatientController@show')->name('showPatient');
+// Route::post('/patient/add','PatientController@index')->name('addPatient');
+// Route::post('/patient-delete', 'PatientController@delete');
+// Route::post('/patient-multidelete', 'PatientController@deleteAll');
 
 Route::get('/province', function() {
     return view('admin.management.province.list');
@@ -157,8 +169,10 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::post('/transaction-delete', 'TransactionController@delete');
     Route::post('/transaction-multidelete', 'TransactionController@deleteAll');
 
+    //Medical record
     Route::get('/wait-list','MedicalRecordController@list');
-    Route::get('/diagnosis','MedicalRecordController@waitList');
+    Route::get('/diagnosis/{id}','MedicalRecordController@waitList')->name('diagnosis');
+    Route::post('/medicalrecord','MedicalRecordController@addRecord');
 });
 
 Route::get('/index', function() {
