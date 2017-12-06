@@ -32,7 +32,15 @@
             @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{route('editPatient',['id'=>$patient->id])}}" role="form" method="POST">
+            @if($errors->any())
+                <div class="alert alert-danger col-sm-12" class="reportAdd">
+                    @foreach($errors->all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+                </div>
+
+            @endif
+            <form class="form-horizontal" action="{{route('editPatient',['id'=>$patient->id])}}" role="form" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -49,7 +57,7 @@
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
-                                            <input type="text" value="{{Carbon\Carbon::Parse($patient->DOB)->format('d-m-Y')}}" required name="birthday" class="form-control" >
+                                            <input type="text" value="@if($patient['DOB']) {{Carbon\Carbon::Parse($patient['DOB'])->format('d-m-Y')}} @endif" name="birthday" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -76,7 +84,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">CMND</label>
                                     <div class="col-md-6">
-                                        <input type="number" value="{{$patient->passport}}" required name="passport" class="form-control" placeholder="  ">
+                                        <input type="number" value="{{$patient['passport']}}" name="passport" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -104,11 +112,11 @@
                                 </div>
 
                                 
-                                {{--  <div class="form-group">
+                                <div class="form-group">
                                     <label class="col-md-3 control-label">Mật Khẩu</label>
                                     <div class="col-md-6">
                                         <input type="password" name="password" class="form-control spinner" placeholder="Password"> </div>
-                                </div>  --}}
+                                </div> 
                             </div>
                     </div>
                     <!-- END INFO LEFT -->
@@ -139,14 +147,11 @@
                                     <label class="col-md-3 control-label">Nhóm Máu</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="bloodgroup">
-                                            <option value="A">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB-">AB-</option>
-                                            <option value="AB+">AB+</option>
+                                            <option value="" @if($patient['bloodgroup'] == "") selected @endif>Chưa biết</option>
+                                            <option value="A" @if($patient['bloodgroup'] == "A") selected @endif>A</option>
+                                            <option value="B" @if($patient['bloodgroup'] == "B") selected @endif>B</option>
+                                            <option value="O" @if($patient['bloodgroup'] == "O") selected @endif>O</option>
+                                            <option value="AB" @if($patient['bloodgroup'] == "AB") selected @endif>AB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -155,6 +160,22 @@
                                     <label class="col-md-3 control-label">Dị Ứng</label>
                                     <div class="col-md-6">
                                         <input type="text" value="{{$patient['allergic']}}" name="allergic" class="form-control" placeholder="  ">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ảnh Đại Diện</label>
+                                    <div class="fileinput fileinput-new col-md-6" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="{{asset('img/patient/'.$patient['avatar'])}}" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                        <div>
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new"> Select image </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" name="avatar"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
                                     </div>
                                 </div>
 

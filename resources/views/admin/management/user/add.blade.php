@@ -130,9 +130,17 @@
             <!-- END PAGE HEADER-->
             <!-- CONTENT -->
              @if(Session::has('flash_message'))
-                    <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
+                    <div class="alert alert-success" class="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-             <form class="form-horizontal" action="{{route('createUser')}}" method="POST"  role="form">
+            @if($errors->any())
+                <div class="alert alert-danger col-sm-12" class="reportAdd">
+                    @foreach($errors->all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+                </div>
+
+            @endif
+             <form class="form-horizontal" action="{{route('createUser')}}" method="POST"  role="form"  enctype="multipart/form-data">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
                 <div class="col-md-12">
@@ -141,22 +149,39 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="fullname" class="form-control" placeholder="  ">
+                                        <input type="text" name="fullname" class="form-control" placeholder="  " value="{{old('fullname')}}">
                                     </div>
                                  </div>
 
                                  <div class="form-group">
                                     <label class="col-md-3 control-label">Tài Khoản</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="username" class="form-control" placeholder="  ">
+                                        <input type="text" name="username" class="form-control" placeholder="  " value="{{old('username')}}">
                                     </div>
                                  </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Giới Tính</label>
+                                    <div class="col-md-6">
+                                        <select name="gender" class="form-control">
+                                            <option value="1" @if(old('gender') == 1) selected @endif>Nam</option>
+                                            <option value="0"@if(old('gender') == 0) selected @endif>Nữ</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">CMND</label>
+                                    <div class="col-md-6">
+                                        <input name="passport" type="text" class="form-control" placeholder="  " value="{{old('passport')}}">
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
-                                            <input type="text" required name="DOB" class="form-control" >
+                                            <input type="text" name="DOB" class="form-control" value="{{old('DOB')}}">
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -167,26 +192,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Giới Tính</label>
-                                    <div class="col-md-6">
-                                        <select name="gender" class="form-control">
-                                            <option value="1">Nam</option>
-                                            <option value="0">Nữ</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">CMND</label>
-                                    <div class="col-md-6">
-                                        <input name="passport" type="text" class="form-control" placeholder="  ">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="phone" class="form-control" placeholder="  ">
+                                        <input type="text" name="phone" class="form-control" placeholder="  " value="{{old('phone')}}">
                                     </div>
                                 </div>
 
@@ -195,7 +203,7 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="text" name="email" class="form-control" placeholder=""> </div>
+                                            <input type="email" name="email" class="form-control" placeholder="" value="{{old('email')}}"> </div>
                                     </div>
                                 </div>
 
@@ -213,9 +221,9 @@
                                     <label class="col-md-3 control-label">Chức Vụ</label>
                                     <div class="col-md-6">
                                         <select name="userType" class="form-control">
-                                            <option value="Bác Sĩ">Bác Sĩ</option>
-                                            <option value-"Lễ Tân">Lễ Tân</option>
-                                            <option value="User">User</option>
+                                            <option value="Bác Sĩ" @if(old('userType') == "Bác Sĩ") selected @endif>Bác Sĩ</option>
+                                            <option value="Lễ Tân" @if(old('userType') == "Lễ Tân") selected @endif>Lễ Tân</option>
+                                            <option value="User" @if(old('userType') == "User") selected @endif>User</option>
                                         </select>
                                     </div>
                                 </div>
@@ -226,7 +234,7 @@
                                         <select name="speciality" class="form-control">
                                             <option value="">Không có</option>
                                             @foreach($specialization as $doc)
-                                            <option value="{{$doc->id}}">{{$doc->name}}</option>
+                                            <option value="{{$doc->id}}" @if(old('speciality') == $doc->id) selected @endif>{{$doc->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -241,16 +249,33 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Địa Chỉ</label>
                                     <div class="col-md-6">
-                                        <input name="address" type="text" class="form-control" placeholder="  ">
+                                        <input name="address" type="text" class="form-control" placeholder="  " value="{{old('address')}}">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ghi Chú</label>
                                     <div class="col-md-6">
-                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
+                                    <textarea rows="3" name="note" class="form-control" style="" value="{{old('note')}}"></textarea>
                                     </div>
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ảnh Đại Diện</label>
+                                    <div class="fileinput fileinput-new col-md-6" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                        <div>
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new"> Select image </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" name="avatar"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="col-md-offset-3 col-md-9">
                                         <div class="mt-checkbox-list">
@@ -286,12 +311,12 @@
     </div>
     <!-- END CONTENT -->
 @endsection
-<script src="global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="{{asset('global/plugins/jquery.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         setTimeout(function()
         {
-            $('#reportAdd').fadeOut();
+            $('.reportAdd').fadeOut();
         },4000);
     })
 </script>

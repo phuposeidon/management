@@ -22,6 +22,24 @@ class UserController extends Controller
 
     function post(Request $req){
 
+		$this->validate($req, [
+            'username' => 'required|unique:user,username',
+            'email' => 'required|unique:user,email',
+            'fullname' => 'required',
+            'password' => 'required',
+            'DOB' => 'required',
+        ], [
+            'username.required' => 'Vui lòng nhập username',
+            'username.unique' => 'Username đã tồn tại, vui lòng nhập username khác',
+            'email.required' => 'Vui lòng nhập email',
+            'email.unique' => 'Email đã tồn tại, vui lòng nhập email khác',
+            'fullname.required' => 'Vui lòng nhập tên nhân viên',
+            'password.required' => 'Vui lòng nhập password',
+            'DOB.required' => 'Vui lòng nhập ngày sinh',
+		]);
+		
+		//dd($req->avatar);
+
         $specialization =  Specialization::all();
         $user = new User;
 		if($req->active!=1)
@@ -42,7 +60,19 @@ class UserController extends Controller
 		$user->password = bcrypt($req->password);
 		$user->address = $req->address;
 		$user->username = $req->username;
-        $user->save();
+		if($req->avatar) {
+			$destinationPath = 'img/user/';
+			$file = $req->avatar;
+			$file_extension = $file->getClientOriginalExtension(); //Get file original name
+			$file_name =  "user_".str_random(4). "." . $file_extension;
+			$file->move($destinationPath , $file_name); 
+			$user->avatar = $file_name;
+		}
+		else {
+			$user->avatar = 'img/user/user-default.png';
+		}
+		$user->save();
+		
         if($user->save())
 		{
 			\Session::flash('flash_message','Thêm thành công');
@@ -79,17 +109,28 @@ class UserController extends Controller
 
 	function postEdit(Request $req){
 
+		$this->validate($req, [
+			'email' => ['required',Rule::unique('user')->ignore($req->id, 'id')],
+			'passport' => ['required',Rule::unique('user')->ignore($req->id, 'id')],
+            'DOB' => 'required',
+        ], [
+            'email.required' => 'Vui lòng nhập email',
+			'email.unique' => 'Email đã tồn tại, vui lòng nhập email khác',
+			'passport.required' => 'Vui lòng nhập CMND',
+            'passport.unique' => 'CMND đã tồn tại, vui lòng nhập CMND khác',
+            'DOB.required' => 'Vui lòng nhập ngày sinh',
+		]);
+
 		$specialization =  Specialization::all();
         $user = User::find($req->id);
 		if($req->active!=1)
 		{
 			$req->active=0;
 		}
-
+		//dd($req->avatar);
 		//$user->DOB= Carbon::parse($req->DOB)->format('Y-m-d');
 		$user->DOB= Carbon::createFromFormat('d-m-Y',$req->DOB)->format('Y-m-d 00:00:00');
 
-		$user->fullname = $req->fullname;
 		$user->usertype = $req->userType;
 		$user->email = $req->email;
 		$user->gender = $req->gender;
@@ -101,29 +142,20 @@ class UserController extends Controller
         $user->note = $req->note;
         $user->specializationId = $req->speciality;
 		$user->active = $req->active;
-		$user->password = bcrypt($req->password);
 		$user->address = $req->address;
-		$user->username = $req->username;
+		if($req->avatar) {
+			$destinationPath = 'img/user/';
+			$file = $req->avatar;
+			$file_extension = $file->getClientOriginalExtension(); //Get file original name
+			$file_name =  "user_".str_random(4). "." . $file_extension;
+			$file->move($destinationPath , $file_name); 
+			$user->avatar = $file_name;
+		}
         $user->save();
         if ($user->save()) {
+			\Session::flash('flash_message','Sửa thành công');
         	return redirect('user');
         }
-		// if($user->save())
-		// {
-		// 	\Session::flash('flash_message','Sửa thành công');
-			
-
-		// }else{
-		// 	\Session::flash('flash_fail','Sửa thất bại');
-        // }
-        
-        // return view('admin.management.user.edit',['speciality'=>$speciality]);
-
-		// }else{
-		// 	\Session::flash('flash_fail','Sửa thất bai');
-        // }
-        
-        
 	}
 
 	public function getLogin() {

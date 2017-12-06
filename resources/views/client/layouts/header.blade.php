@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="client/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="client/css/style.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
+  <link href="../public/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
   <!-- =======================================================
     Theme Name: Medilab
     Theme URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/

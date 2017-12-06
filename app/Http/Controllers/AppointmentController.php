@@ -8,12 +8,21 @@ use App\Patient;
 use App\User;
 use App\Speciality;
 use App\Appointment;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
-    function list() {
-        $allAppointments = Appointment::all();
-        return view('admin.management.appointment.list', ['allAppointments' => $allAppointments]);
+    function list(Request $request) {
+		$query = Appointment::query();
+
+		if($request->searchDate != ''){
+			$date = Carbon::createFromFormat('d-m-Y',$request->searchDate)->toDateString();
+			$query->whereDate('appointmentDate', '=' ,$date)->get();
+		}
+		
+		$allAppointments = $query->orderBy('appointmentDate','desc')->get();
+		
+        return view('admin.management.appointment.list', ['allAppointments' => $allAppointments, 'searchDate' => $request->searchDate]);
     }
 
     function delete(Request $request) {

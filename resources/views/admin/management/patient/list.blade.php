@@ -31,7 +31,11 @@
 	        <div class="alert alert-success" id="reportAll" style="display: none">Các bệnh nhân được chọn đã xóa thành công.</div>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
-           
+            
+            @if(Session::has('flash_message'))
+                <div class="alert alert-success" class="reportAdd">{{ Session::get('flash_message')}}</div>
+            @endif
+            
             <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -47,7 +51,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a id="sample_editable_1_new" class="btn sbold green" href="../public/add"> Thêm
+                                            <a id="sample_editable_1_new" class="btn sbold green" href="{{asset('add-patient')}}"> Thêm
                                                 <i class="fa fa-plus"></i>
 </a>
                                         </div>
@@ -84,7 +88,7 @@
                                                 <span></span>
                                             </label>
                                         </th>
-                                        <th> ID </th>
+                                        <th> STT </th>
                                         <th> Họ Tên</th>
                                         <th> Tên Đăng Nhập </th>
                                         <!-- <th> Địa Chỉ </th> -->
@@ -97,6 +101,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1?>
                                     @foreach($allPatients as $patient)
                                     <tr class="odd gradeX" id="tr{{$patient->id}}">
                                         <td>
@@ -105,7 +110,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$patient->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td>
                                             {{$patient->fullname}}
                                         </td>
@@ -146,6 +151,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
                                                     
                                 </tbody>

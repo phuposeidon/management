@@ -102,12 +102,12 @@
                                         <th> Phòng Khám</th>
                                         <th> Ngày Tạo</th>
                                         <!-- <th> Ngày Sửa</th> -->
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Sửa </th>
+                                        <th> Xóa </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <?php $i = 1?>
                                     @foreach($allMedicines as $medicine)
                                     <tr class="odd gradeX" id="tr{{$medicine->id}}">
                                         <td>
@@ -116,7 +116,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$medicine->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td> {{$medicine->name}} </td>
                                         <td> {{$medicine->Unit->name}} </td>
                                         <!-- <td> {{$medicine->bidprice}} </td>
@@ -154,6 +154,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
 
                                 </tbody>

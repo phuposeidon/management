@@ -91,7 +91,6 @@
             </li>
             <li class="nav-item 
             {{ (Request::is('wait-list/*') || Request::is('wait-list') || Request::is('wait-list/*') ? 'active' : '') }}
-            "
             ">
                 <a href="{{asset('wait-list')}}" class="nav-link nav-toggle">
                     <i class="fa fa-list"></i>
@@ -159,6 +158,17 @@
                 <a href="{{asset('transaction')}}" class="nav-link nav-toggle">
                     <i class="fa fa-money"></i>
                     <span class="title">Giao Dịch</span>
+                    <span class="selected"></span>
+                </a>
+                <!-- end receipt  -->
+            </li>
+
+            <li class="nav-item  
+            {{ (Request::is('question/*') || Request::is('question') || Request::is('question/*') ? 'active' : '') }}
+            ">
+                <a href="{{asset('question')}}" class="nav-link nav-toggle">
+                    <i class="fa fa-comments"></i>
+                    <span class="title">Diễn đàn</span>
                     <span class="selected"></span>
                 </a>
                 <!-- end receipt  -->

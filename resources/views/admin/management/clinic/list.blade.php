@@ -85,7 +85,7 @@
                                                 <span></span>
                                             </label>
                                         </th>
-                                        <th> ID </th>
+                                        <th> STT </th>
                                         <th> Tên Phòng Khám </th>
                                         <th> Email </th>
                                         <th> Địa Chỉ</th>
@@ -100,6 +100,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1?>
                                     @foreach($allClinics as $clinic)
                                     <tr class="odd gradeX" id="tr{{$clinic->id}}">
                                         <td>
@@ -108,7 +109,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$clinic->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td> {{$clinic->name}} </td>
                                          <td> {{$clinic->email}} </td>
                                         <td> {{$clinic->address}} </td>
@@ -132,6 +133,7 @@
                                         </td>
                                        
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
 
                                 </tbody>

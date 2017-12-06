@@ -41,6 +41,19 @@
                                 <i class="icon-settings font-dark"></i>
                                 <span class="caption-subject bold uppercase"> DANH SÁCH</span>
                             </div>
+                            <div class="actions">
+                                <form action="{{URL::action('AppointmentController@list')}}" method="get" id="searchForm">
+                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" id="searchDate" name="searchDate" value="{{$searchDate}}" class="form-control" placeholder="Chọn ngày ...">
+                                    
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="portlet-body">
                             <div class="table-toolbar">
@@ -96,6 +109,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1?>
                                     @foreach($allAppointments as $appointment)
                                     <tr class="odd gradeX" id="tr{{$appointment->id}}">
                                         <td>
@@ -104,7 +118,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$appointment->id}} </td>
+                                        <td> {{$i}} </td>
                                         <!-- <td>
                                             {{$appointment->patientId}}
                                         </td> -->
@@ -127,6 +141,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
 
                                     
@@ -195,6 +210,10 @@
     <!-- END CONTENT -->
     <script>
         $(document).ready(function() {
+            //Send search date
+            $('#searchDate').change(function() {
+                $('#searchForm').submit();
+            });
             //Xoá 1 dòng
             $('.delete').on('click',function(e){
                 e.preventDefault();

@@ -44,4 +44,16 @@ class Patient extends Authenticatable
         return $this->hasMany('App\FamiMedical', 'patientId', 'id');
     }
 
+    public function Answer() {
+        return $this->hasMany('App\Answer', 'patientId', 'id');
+    }
+
+    public function Question() {
+        return $this->hasMany('App\Question', 'patientId', 'id');
+    }
+
+    public function Like() {
+        return $this->hasMany('App\Like', 'patientId', 'id');
+    }
+
 }

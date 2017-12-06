@@ -31,8 +31,17 @@
              @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-             <form class="form-horizontal" action="{{route('postUser',['id'=>$user->id])}}" method="POST"  role="form">
+            @if($errors->any())
+                <div class="alert alert-danger col-sm-12" class="reportAdd">
+                    @foreach($errors->all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+                </div>
+
+            @endif
+             <form class="form-horizontal" action="{{route('postUser',['id'=>$user->id])}}" method="POST"  role="form" enctype="multipart/form-data">
               <input type="hidden" name="_token" value="{{csrf_token()}}">
+              <input type="hidden" name="id" value="{{$user->id}}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -40,14 +49,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="fullname" value="{{$user->fullname}}" class="form-control" placeholder="  ">
+                                        <input type="text" name="fullname" value="{{$user->fullname}}" class="form-control" disabled>
                                     </div>
                                  </div>
 
                                  <div class="form-group">
                                     <label class="col-md-3 control-label">Tài Khoản</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="username"  value="{{$user->username}}" class="form-control" placeholder="  ">
+                                        <input type="text" name="username"  value="{{$user->username}}" class="form-control" disabled>
                                     </div>
                                  </div>
 
@@ -116,9 +125,9 @@
                                     <label class="col-md-3 control-label">Chức Vụ</label>
                                     <div class="col-md-6">
                                         <select name="userType" class="form-control">
-                                            <option value="Bác Sĩ">Bác Sĩ</option>
-                                            <option value-"Lễ Tân">Lễ Tân</option>
-                                            <option value="User">User</option>
+                                            <option value="Bác Sĩ" @if($user->userType == 'Bác Sĩ') selected @endif>Bác Sĩ</option>
+                                            <option value-"Lễ Tân" @if($user->userType == 'Lễ Tân') selected @endif>Lễ Tân</option>
+                                            <option value="User" @if($user->userType == 'User') selected @endif>User</option>
                                         </select>
                                     </div>
                                 </div>
@@ -129,7 +138,7 @@
                                         <select name="speciality" class="form-control">
                                             <option value="">Không có</option>
                                             @foreach($specialization as $doc)
-                                            <option value="{{$doc->id}}" @if($doc->id == $user->id) selected @endif>{{$doc->name}}</option>
+                                            <option value="{{$doc->id}}" @if($doc->id == $user->specializationId) selected @endif>{{$doc->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -151,7 +160,22 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Ghi Chú</label>
                                     <div class="col-md-6">
-                                    <textarea rows="5" name="note" class="form-control" style=""></textarea>
+                                    <textarea rows="5" name="note" class="form-control" value="{{$user->note}}" style=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ảnh Đại Diện</label>
+                                    <div class="fileinput fileinput-new col-md-6" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="{{asset('img/user/'.$user->avatar)}}" alt="" style="width:100%; height: 100%"/> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                        <div>
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new"> Select image </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" name="avatar"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">

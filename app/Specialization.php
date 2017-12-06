@@ -16,4 +16,8 @@ class Specialization extends Model
     public function User() {
         return $this->hasMany('App\User', 'specializationId', 'id');
     }
+
+    public function Question() {
+        return $this->hasMany('App\Question', 'specializationId', 'id');
+    }
 }

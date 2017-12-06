@@ -16,9 +16,10 @@
                 <li class=""><a href="#about">Thông tin</a></li>
                 <li class=""><a href="#testimonial">Đánh giá</a></li>
                 <li class=""><a href="#contact">Liên hệ</a></li>
+                <li class=""><a href="{{asset('posts')}}">Bài viết</a></li>
                 @if(isset(Auth::guard('patient')->user()->username))
                 <li class="bookingBtn"><a href="{{asset('appointment-login')}}">Đặt lịch</a></li>
-                <li class=""><a href="">Hỏi / Đáp</a></li>
+                <li class=""><a href="{{asset('blog')}}">Hỏi / Đáp</a></li>
                 <?php
                   $pieces = explode(' ', Auth::guard('patient')->user()->fullname);
                   $last_name = array_pop($pieces);

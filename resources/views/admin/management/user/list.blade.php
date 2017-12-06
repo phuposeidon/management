@@ -31,7 +31,9 @@
             
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
-           
+            @if(Session::has('flash_message'))
+                <div class="alert alert-success" class="reportAdd">{{ Session::get('flash_message')}}</div>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -84,7 +86,7 @@
                                                 <span></span>
                                             </label>
                                         </th>
-                                        <th> ID </th>
+                                        <th> STT </th>
                                         <th> Chức Vụ </th>
                                         <th> Họ Tên</th>
                                         <th> Email </th>
@@ -95,6 +97,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1?>
                                     @foreach($allUsers as $user)
                                     <tr class="odd gradeX" id="tr{{$user->id}}">
                                         <td>
@@ -103,7 +106,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$user->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td> {{$user->userType}} </td>
                                         <td> {{$user->fullname}} </td>
                                         <td> {{$user->email}} </td>
@@ -127,6 +130,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
                                     
                                 </tbody>
@@ -195,6 +199,10 @@
 
     <script>
         $(document).ready(function() {
+            setTimeout(function()
+            {
+                $('.reportAdd').fadeOut();
+            },4000);
             //Xoá 1 dòng
             $('.delete').on('click',function(e){
                 e.preventDefault();

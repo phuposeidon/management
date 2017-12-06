@@ -21,10 +21,12 @@
         <link href="global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
         <link href="global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
         <link href="global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <link href="global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+        <link href="pages/css/blog.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />

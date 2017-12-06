@@ -90,11 +90,12 @@
                                         <th> Số Tiền</th>
                                         <th> Người Tạo</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Sửa </th>
+                                        <th> Xóa </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1?>
                                     @foreach($allTransactions as $transaction)
                                     <tr class="odd gradeX" id="tr{{$transaction->id}}">
                                         <td>
@@ -103,7 +104,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$transaction->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td> {{$transaction->Order->orderCode}} </td>
                                         <td> {{$transaction->Order->MedicalRecord->Patient->fullname}} </td>
                                         <td> {{number_format($transaction->totalAmount).' VNĐ'}} </td>
@@ -121,6 +122,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
                                     
                                 </tbody>

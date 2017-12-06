@@ -19,7 +19,7 @@
 
                             <div class="col-md-6">
                                 <input class="form-control" name="username" value="{{ old('username') }}" required oninvalid="this.setCustomValidity('Vui lòng điền username')"
-        oninput="setCustomValidity('')" autofocus>
+        oninput="setCustomValidity('')">
                             </div>
                         </div>
 

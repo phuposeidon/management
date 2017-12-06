@@ -133,7 +133,15 @@
             @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{route('addPatient')}}" role="form" method="POST">
+            @if($errors->any())
+                <div class="alert alert-danger col-sm-12" class="reportAdd">
+                    @foreach($errors->all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+                </div>
+
+            @endif
+            <form class="form-horizontal" action="{{asset('add-patient')}}" role="form" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -142,7 +150,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Họ Tên</label>
                                     <div class="col-md-6">
-                                        <input type="text" required name="fullname" class="form-control" placeholder="">
+                                        <input type="text" name="fullname" value="{{old('fullname')}}" class="form-control" placeholder="">
                                     </div>
                                  </div>
 
@@ -150,7 +158,7 @@
                                     <label class="col-md-3 control-label">Ngày Sinh</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
-                                            <input type="text" required name="DOB" class="form-control" >
+                                            <input type="text" name="DOB" value="{{old('DOB')}}" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -164,8 +172,8 @@
                                     <label class="col-md-3 control-label">Giới Tính</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="gender">
-                                            <option value="1">Nam</option>
-                                            <option value="0">Nữ</option>
+                                            <option value="1" @if(old('gender') == 1) selected @endif>Nam</option>
+                                            <option value="0" @if(old('gender') == 0) selected @endif>Nữ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -173,14 +181,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">CMND</label>
                                     <div class="col-md-6">
-                                        <input type="number" required name="passport" class="form-control" placeholder="  ">
+                                        <input type="number" name="passport" value="{{old('passport')}}" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Số Điện Thoại</label>
                                     <div class="col-md-6">
-                                        <input type="text" required name="phone" class="form-control" placeholder="  ">
+                                        <input type="text" name="phone" value="{{old('phone')}}" class="form-control" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -189,14 +197,14 @@
                                     <div class="col-md-6">
                                         <div class="input-icon">
                                             <i class="fa fa-envelope"></i>
-                                            <input type="email" required name="email" class="form-control" placeholder=""> </div>
+                                            <input type="email" name="email" value="{{old('email')}}" class="form-control" placeholder=""> </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Username</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="username" class="form-control" placeholder="  ">
+                                        <input type="text" name="username" class="form-control" value="{{old('username')}}" placeholder="  ">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -213,13 +221,13 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tôn Giáo</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="religion" class="form-control" placeholder="  ">
+                                        <input type="text" name="religion" class="form-control" value="{{old('religion')}}" placeholder="  ">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Địa Chỉ</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="address" class="form-control" placeholder="  ">
+                                        <input type="text" name="address" class="form-control" value="{{old('address')}}" placeholder="  ">
                                     </div>
                                 </div>
 
@@ -228,7 +236,6 @@
                                     <div class="col-md-6">
                                         <select class="form-control">
                                             <option>Việt Nam</option>
-                                            <option>Hà Nội</option>
                                         </select>
                                     </div>
                                 </div>
@@ -238,14 +245,11 @@
                                     <label class="col-md-3 control-label">Nhóm Máu</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="bloodgroup">
-                                            <option value="A">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB-">AB-</option>
-                                            <option value="AB+">AB+</option>
+                                            <option value="">Chưa biết</option>
+                                            <option value="A" @if(old('bloodgroup') == "A") selected @endif>A</option>
+                                            <option value="B" @if(old('bloodgroup') == "B") selected @endif>B</option>
+                                            <option value="O" @if(old('bloodgroup') == "O") selected @endif>O</option>
+                                            <option value="AB" @if(old('bloodgroup') == "AB") selected @endif>AB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -253,7 +257,23 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Dị Ứng</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="allergic" class="form-control" placeholder="  ">
+                                        <input type="text" name="allergic" class="form-control" placeholder="  " value="{{old('allergic')}}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ảnh Đại Diện</label>
+                                    <div class="fileinput fileinput-new col-md-6" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                        <div>
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new"> Select image </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" name="avatar"> </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -289,7 +309,7 @@
                                     <label class="col-md-3 control-label">Từ Ngày</label>
                                     <div class="col-md-6">
                                         <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
-                                            <input name="fromdate" required type="text" class="form-control" >
+                                            <input name="fromdate" type="text" class="form-control" >
                                             <span class="input-group-btn">
                                                 <button class="btn default" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -304,7 +324,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Nơi ĐK KCB BĐ</label>
                                 <div class="col-md-6">
-                                    <input name="placecheck" required type="text" class="form-control" >
+                                    <input name="placecheck" type="text" class="form-control" >
                                 </div>
                             </div>
                             
@@ -312,7 +332,7 @@
                                 <label class="col-md-3 control-label">Đến Ngày</label>
                                 <div class="col-md-6">
                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
-                                        <input name="todate" required type="text" class="form-control" >
+                                        <input name="todate" type="text" class="form-control" >
                                         <span class="input-group-btn">
                                             <button class="btn default" type="button">
                                                 <i class="fa fa-calendar"></i>

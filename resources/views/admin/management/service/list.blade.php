@@ -89,11 +89,12 @@
                                         <th> Giá</th>
                                         <th> Phòng Khám </th>
                                         <th> Thực Hiện</th>
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Sửa </th>
+                                        <th> Xóa </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1?>
                                     @foreach($allServices as $service)
                                     <tr class="odd gradeX" id="tr{{$service->id}}">
                                         <td>
@@ -102,7 +103,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$service->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td> {{$service->name}} </td>
                                         <td> {{number_format($service->price).' VNĐ'}} </td>
                                         <td>
@@ -127,6 +128,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
                                 </tbody>
                             </table>

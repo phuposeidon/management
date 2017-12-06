@@ -95,12 +95,12 @@
                                         <th> Lịch Hẹn</th>-->
                                         <th> Ngày Tạo</th>
                                         <!-- <th> Ngày Sửa</th> -->
-                                        <th> Edit </th>
-                                        <th> Delete </th>
+                                        <th> Sửa </th>
+                                        <th> Xóa </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <?php $i = 1?>
                                     @foreach($allOrders as $order)
                                     <tr class="odd gradeX" id="tr{{$order->id}}">
                                         <td>
@@ -109,7 +109,7 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$order->id}} </td>
+                                        <td> {{$i}} </td>
                                         <td> {{$order->orderCode}} </td>
                                         <!-- <td> {{$order->MedicalRecord->Clinic->name}} </td> -->
                                         <td> {{$order->MedicalRecord->Patient->fullname}} </td>
@@ -140,6 +140,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php $i++?>
                                     @endforeach
 
                                 </tbody>

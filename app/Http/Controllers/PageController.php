@@ -7,6 +7,10 @@ use App\User;
 use App\Patient;
 use App\Hours;
 use App\Appointment;
+use App\Question;
+use App\QuestionImage;
+use App\Answer;
+use App\Like;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -103,7 +107,7 @@ class PageController extends Controller
 			'email' => 'required|unique:patient,email',
 			'passport' => 'required|unique:patient,passport',
             'fullname' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|min:6',
             'DOB' => 'required',
         ], [
             'username.required' => 'Vui lòng nhập username',
@@ -114,7 +118,7 @@ class PageController extends Controller
 			'passport.unique' => 'CMND đã tồn tại, vui lòng kiểm tra và nhập CMND khác',
             'fullname.required' => 'Vui lòng nhập họ tên',
             'password.required' => 'Vui lòng nhập mật khẩu',
-            'password.min' => 'Mật khẩu ít nhất phải gồm 8 ký tự',
+            'password.min' => 'Mật khẩu ít nhất phải gồm 6 ký tự',
             'DOB.required' => 'Vui lòng nhập ngày sinh',
         ]);
 		$patient = new Patient;
@@ -180,8 +184,82 @@ class PageController extends Controller
 		}
 		return view('client.page.user-info');
     }
-    public function postBlog() {
+    public function getBlog(Request $request) {
         $specializations = Specialization::all();
-        return view('client.page.blog', ['specializations' => $specializations]);
+        $query = Question::query();
+        $speId = count($specializations);
+        for($i = 1; $i <= $speId; $i++) {
+            if($request->specializationId == $i)
+                $query->where('specializationId', $request->specializationId)->get();
+        }
+        $questions = $query->orderBy('createdAt', 'desc')->paginate(10);
+        //$questions = Question::orderBy('createdAt', 'desc')->get();
+        return view('client.page.blog', ['specializations' => $specializations, 'questions' => $questions]);
     }
+    public function postBlog(Request $request) {
+        //dd($request->all());
+        $question = new Question;
+        $question->patientId = $request->patientId;
+        $question->specializationId = $request->specializationId;
+        if(isset($request->anonymous)) $question->anonymous = 1;
+        $question->content = $request->content;
+        $question->save();
+
+        //$questionImg = new QuestionImage;
+        $picture =[];
+        if ($request->file('image')) {
+            $destinationPath = 'img/questionimage/'.$question->id.'/';
+            $files = $request->file('image'); // will get all files
+            
+            
+            foreach ($files as $file) {//this statement will loop through all files.
+                $file_extension = $file->getClientOriginalExtension(); //Get file original name
+                $file_name =  "qt_".$question->id."_".str_random(4). "." . $file_extension;
+                $file->move($destinationPath , $file_name); // move files to destination folder
+                $picture[] = [
+                    'url' =>$file_name,
+                    'questionId' => $question->id
+                ];
+            }
+        }
+        
+        QuestionImage::insert($picture);
+        \Session::flash('flash_message','Đã gửi câu hỏi thành công.'); 
+        return redirect('blog#service');
+    }
+
+    public function postAnswer(Request $request) {
+        //dd($request->all());
+        $answer = new Answer;
+        $answer->patientId = $request->patientId;
+        $answer->questionId = $request->questionId;
+        $answer->content = $request->content;
+        $answer->save();
+
+        $date_created = Carbon::Parse($answer->crearedAt)->format('d-m-Y H:i');
+
+        $data = [
+            'questionId' => $answer->questionId,
+            'content' => $answer->content,
+            'patient' => $answer->Patient->fullname,
+            'createdAt' => $date_created,
+        ];
+        return json_encode($data);
+    }
+
+    public function postLike(Request $request) {
+        $like = new Like;
+        $like->patientId = $request->patientId;
+        $like->questionId = $request->questionId;
+        $like->save();
+    }
+
+    public function getListPost() {
+        return view('client.page.posts');
+    }
+    
+    public function getPost() {
+        return view('client.page.post');
+    }
+
 }

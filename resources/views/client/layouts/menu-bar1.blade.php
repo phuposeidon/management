@@ -13,7 +13,8 @@
               <ul class="nav navbar-nav">
                 <li class="active indexBtn"><a href="{{asset('index')}}">Trang chủ</a></li>
                 <li class="bookingBtn"><a href="{{asset('appointment-login')}}">Đặt lịch</a></li>
-                <li class="askBtn"><a href="">Hỏi / Đáp</a></li>
+                <li class="askBtn"><a href="{{asset('blog')}}">Hỏi / Đáp</a></li>
+                <li class="postsBtn"><a href="{{asset('posts')}}">Bài viết</a></li>
                 @if(isset(Auth::guard('patient')->user()->username))
                 <?php
                   $pieces = explode(' ', Auth::guard('patient')->user()->fullname);

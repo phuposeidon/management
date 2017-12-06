@@ -17,9 +17,9 @@
             </div>
             <div class="info-sec">
               <ul class="quick-info">
-                <li><a href="index.html"><i class="fa fa-circle"></i>Trang chủ</a></li>
+                <li><a href="{{asset('index')}}"><i class="fa fa-circle"></i>Trang chủ</a></li>
                 <li><a href="#service"><i class="fa fa-circle"></i>Dịch vụ</a></li>
-                <li><a href="#contact"><i class="fa fa-circle"></i>Đặt lịch</a></li>
+                <li><a href="{{asset('appointment-login')}}"><i class="fa fa-circle"></i>Đặt lịch</a></li>
               </ul>
             </div>
           </div>
@@ -48,6 +48,10 @@
   <script src="client/js/bootstrap.min.js"></script>
   <script src="client/js/custom.js"></script>
   <script src="client/contactform/contactform.js"></script>
+  <script type="text/javascript" language="javascript" src="{{asset('ckeditor/ckeditor.js')}}" ></script>
+  <script src="../public/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+  <script src="../public/global/scripts/app.min.js" type="text/javascript"></script>
+  <script src="../public/pages/scripts/components-editors.min.js" type="text/javascript"></script>
   <script type="text/javascript">
       $(function () {
         $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true, changeYear: true,  }).on('changeDate', function (ev) {
@@ -61,6 +65,6 @@
             $('#login-popup').modal('show');
         @endif
     });
-</script>
+  </script>
 
 

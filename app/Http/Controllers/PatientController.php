@@ -24,7 +24,24 @@ class PatientController extends Controller
 	}
 
     function index(Request $req){
-		$insurrance = new Insurance;
+		$this->validate($req, [
+            'username' => 'required|unique:patient,username',
+            'email' => 'required|unique:patient,email',
+            'fullname' => 'required',
+            'password' => 'required',
+			'DOB' => 'required',
+			'phone' => 'required',
+        ], [
+            'username.required' => 'Vui lòng nhập username',
+            'username.unique' => 'Username đã tồn tại, vui lòng nhập username khác',
+            'email.required' => 'Vui lòng nhập email',
+            'email.unique' => 'Email đã tồn tại, vui lòng nhập email khác',
+            'fullname.required' => 'Vui lòng nhập tên nhân viên',
+            'password.required' => 'Vui lòng nhập password',
+			'DOB.required' => 'Vui lòng nhập ngày sinh',
+			'phone.required' => 'Vui lòng nhập số điện thoại',
+		]);
+
 		$patient = new Patient;
 		if($req->active!=1)
 		{
@@ -44,24 +61,31 @@ class PatientController extends Controller
 		$patient->bloodgroup = $req->bloodgroup;
 		$patient->active = $req->active;
 		$patient->address = $req->address;
+		if($req->avatar) {
+			$destinationPath = 'img/patient/';
+			$file = $req->avatar;
+			$file_extension = $file->getClientOriginalExtension(); //Get file original name
+			$file_name =  "pt_".str_random(4). "." . $file_extension;
+			$file->move($destinationPath , $file_name); 
+			$patient->avatar = $file_name;
+		}
+		else {
+			$patient->avatar = 'img/patient/user-default.png';
+		}
 		
 		$patient->save();
-		$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
-		$insurrance->fromDate = Carbon::createFromFormat('d-m-Y',$req->fromdate)->format('Y-m-d 00:00:00');
-		$insurrance->cardCode = $req->cardCode;
-		$insurrance->placeCheck = $req->placecheck;
-		$insurrance->patientId = $patient->id;
-		$insurrance->save();
-		
-		if( $insurrance->save())
+		if($req->todate && $req->fromdate && $req->cardCode && $req->placeCheck)
 		{
-			
-			\Session::flash('flash_message','Thêm bệnh nhân thành công');
-			
-		}else{
-			\Session::flash('flash_fail','Thêm bệnh nhân thất bai');
+			$insurrance = new Insurance;
+			$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
+			$insurrance->fromDate = Carbon::createFromFormat('d-m-Y',$req->fromdate)->format('Y-m-d 00:00:00');
+			$insurrance->cardCode = $req->cardCode;
+			$insurrance->placeCheck = $req->placeCheck;
+			$insurrance->patientId = $req->id;
+			$insurrance->save();
 		}
 
+		\Session::flash('flash_message','Thêm bệnh nhân thành công');
 		return view('admin.management.patient.add');
 	}
 	
@@ -108,7 +132,7 @@ class PatientController extends Controller
 	}
 	public function getLogout(){
         Auth::guard('patient')->logout();
-        return redirect()->back()->with('thongbao', 'Bạn đã đăng xuất thành công');
+        return redirect('/index')->with('thongbao', 'Bạn đã đăng xuất thành công');
 	}
 	
 
@@ -120,7 +144,19 @@ class PatientController extends Controller
 	}
 
 	function postEdit(Request $req){
+
+		$this->validate($req, [
+			'email' => ['required',Rule::unique('patient')->ignore($req->id, 'id')],
+			'passport' => ['required',Rule::unique('patient')->ignore($req->id, 'id')],
+        ], [
+            'email.required' => 'Vui lòng nhập email',
+			'email.unique' => 'Email đã tồn tại, vui lòng nhập email khác',
+			'passport.required' => 'Vui lòng nhập CMND',
+            'passport.unique' => 'CMND đã tồn tại, vui lòng nhập CMND khác',
+		]);
+
 		$patient = Patient::find($req->id);
+		
 		$insurrance = Insurance::where('patientId', $req->id)->first();
 		if($req->active!=1)
 		{
@@ -132,13 +168,24 @@ class PatientController extends Controller
 		$patient->gender = $req->gender;
 		$patient->phone = $req->phone;
 		$patient->username = $req->username;
-		$patient->password = bcrypt($req->password);
+		if($req->password){
+			$patient->password = bcrypt($req->password);
+		}
 		$patient->passport = $req->passport;
 		$patient->allergic = $req->allergic;
 		$patient->bloodgroup = $req->bloodgroup;
 		$patient->active = $req->active;
+		if($req->avatar) {
+			$destinationPath = 'img/patient/';
+			$file = $req->avatar;
+			$file_extension = $file->getClientOriginalExtension(); //Get file original name
+			$file_name =  "pt_".str_random(4). "." . $file_extension;
+			$file->move($destinationPath , $file_name); 
+			$patient->avatar = $file_name;
+		}
+		$patient->save();
 		
-		if($insurrance == '')
+		if($insurrance == '' && $req->todate && $req->fromdate && $req->cardCode && $req->placeCheck)
 		{
 			$insurrance = new Insurance;
 			$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
@@ -148,7 +195,7 @@ class PatientController extends Controller
 			$insurrance->patientId = $req->id;
 			$insurrance->save();
 		}
-		else {
+		elseif($req->todate && $req->fromdate && $req->cardCode && $req->placeCheck) {
 			$insurrance->toDate = Carbon::createFromFormat('d-m-Y',$req->todate)->format('Y-m-d 00:00:00');
 			$insurrance->fromDate = Carbon::createFromFormat('d-m-Y',$req->fromdate)->format('Y-m-d 00:00:00');
 			$insurrance->cardCode = $req->cardCode;
@@ -157,14 +204,8 @@ class PatientController extends Controller
 		}
 		$allPatients = Patient::paginate(10);
 		
-		if($insurrance->save())
-		{
-			$patient->save();
-			\Session::flash('flash_message','Sửa thông tin bệnh nhân thành công');
-			return redirect()->route('patient', ['allPatients' => $allPatients]);
-		}else{
-			\Session::flash('flash_fail','Sửa thông tin bệnh nhân thất bại');
-		}
+		\Session::flash('flash_message','Sửa thông tin bệnh nhân thành công');
+		return redirect()->route('patient', ['allPatients' => $allPatients]);
 		
 		
 	}
