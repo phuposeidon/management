@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = "Order";
-    
+     public $timestamps = false;
 
     public function OrderMedicine() {
         return $this->hasMany('App\OrderMedicine', 'orderId', 'id');

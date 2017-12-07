@@ -79,6 +79,8 @@ Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
     Route::post('/order-delete', 'OrderController@delete');
     Route::post('/order-multidelete', 'OrderController@deleteAll');
 
+//Ordermedicine
+    Route::post('/order-medicine','OrderMedicineController@add');
 
 
     Route::get('/orderitem', function() {
@@ -175,6 +177,8 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
 
     Route::get('/diagnosis/{id}','MedicalRecordController@waitList')->name('diagnosis');
     Route::post('/medicalrecord','MedicalRecordController@addRecord');
+
+    Route::get('/history/{id}','MedicalRecordController@history')->name('history');
 
 });
 //CLOSE ADMIN PAGE

@@ -10,4 +10,5 @@ class GeneralIndex extends Model
     public $timestamps = false;
     public function Patient() {
         return $this->belongsTo('App\Patient', 'patientId', 'id');
+    }
 }

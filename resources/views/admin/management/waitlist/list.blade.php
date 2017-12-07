@@ -81,9 +81,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a id="sample_editable_1_new" data-toggle="modal" href="#draggable" class="btn sbold green"> Thêm
+                                            <!-- <a id="sample_editable_1_new" data-toggle="modal" href="#draggable" class="btn sbold green"> Thêm
                                                 <i class="fa fa-plus"></i>
-                                            </a>
+                                            </a> -->
                                         </div>
                                     </div>
                                     <div class="col-md-6">
