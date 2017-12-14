@@ -2,7 +2,7 @@
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
-    <div class="page-content" style="min-height:900px">
+    <div class="page-content" >
         <!-- BEGIN TAB PORTLET-->
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -57,7 +57,7 @@
             </div>
         @endif
         <h1 class="page-title"> KHÁM BỆNH</h1>
-        <div class="portlet light bordered" style="height: 100%;">
+        <div class="portlet light bordered">
             <div class="portlet-title tabbable-line">
 
                 <ul class="nav nav-tabs" style="float:none;">
@@ -79,7 +79,7 @@
                 <div id="load-content" class="tab-content">
                     <div class="tab-pane active" id="portlet_tab1">
                         <!--  Thông tin benh nhan -->
-                        <div class="portlet light bordered" style="height: 80%;">
+                        <div class="portlet light bordered" >
                             <div class="portlet-title tabbable-line">
 
                                 <ul class="nav nav-tabs" style="float:none;">
@@ -357,19 +357,26 @@
                                     <div class="col-md-6">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-                                        <div class="form-group" style="margin-bottom: 10px;">
-                                            <label class="col-md-4 control-label">Lý do tới khám</label>
-                                            <div class="col-md-6">
-                                                <input type="text" id="reason" class="form-control" placeholder="Lý do tới khám">
+                                       <div class="form-group">
+                                            <label class="col-md-4 control-label">Chọn Dịch Vụ</label>
+                                            <div class="col-md-6" style="margin-top: 10px;">
+                                                <select id="chose_service" class="form-control" >
+                                                    <option value="Chọn">Chọn DV</option>
+                                                    @foreach($services as $service)
+                                                    <option value="{{$service->id}}">{{$service->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Mẫu Bệnh Án</label>
                                             <div class="col-md-6" style="margin-top: 10px;">
-                                                <select class="form-control" >
-                                                    <option value="A">Bệnh Án Tai Mũi Họng</option>
-                                                    <option value="B">B</option>
+                                                <select id="mau_benh_an" class="form-control" >
+                                                    <option value="A">Chọn mẫu</option>
+                                                    @foreach($records as $record)
+                                                    <option value="{{$record->id}}">{{$record->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -407,24 +414,8 @@
                                 <div class="form-group col-md-12">
                                     <div class="col-md-12">
                                         <label>Khám Bệnh</label>
-                                        <textarea cols="80" id="editor1" rows="10">
-                                            <p>
-                                                1 TAI: * Trái :-ống tai sạch , màng nhĩ căng bóng , không thủng * Phải: ống tai sạch thoáng màng nhĩ không thủng .
-                                            </p>
-                                            <p>
-                                                2 MŨI : * - phải: niêm mạc hồng ,vác ngăn thẳng ,hốc mũi sạch không phù nề , khe giữa không tụ dịch , không polyp * Trái
-                                                : giống trên
-                                            </p>
-                                            <p>
-                                                3- VÒM HỌNG: niêm mạc viêm tụ dịch, không U . Gờ vòi tai thoáng
-                                            </p>
-                                            <p>
-                                                4-HỌNG: - Niêm mạc lưỡi sạch không dơ, -Amidan viêm hốc mủ mạn tính quá phát 2 bên -Hạ họng đáy lưỡi tăng sản mô lim phô
-                                                cuống lưỡi 2 bên -Dây thanh căng bóng không hạt xơ , không polyp
-                                            </p>
-                                            <p>
-                                                5-KẾT LUẬN : -Viêm amidan mạn tính, viêm mô vòm , viêm hạ họng đáy lưỡi, GERD
-                                            </p>
+                                        <textarea cols="100" id="editor1" rows="20">
+                                           
                                         </textarea>
                                         <script>
                                             CKEDITOR.replace('editor1');
@@ -563,7 +554,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <input type="hidden" id="orderId" name="">
                             <div class="form-group" style="margin-top: 50px;">
                                 <input type="hidden" id="getId" name="">
                                 <div class="table-responsive">
@@ -784,6 +775,21 @@
                         <h4 class="modal-title">Toa Thuốc Cũ</h4>
                     </div>
                     <div class="modal-body"> 
+                         <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"></label>
+                                        <div class="col-md-4">
+                                            <select id="choose_ordermedicine" class="form-control" name="">
+                                                <option>Chọn</option>
+                                                @foreach($orders as $order)
+                                                <option value="{{$order->id}}">Toa {{$order->orderCode}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="row">
                             <div class="col col-md-12">
                                 <div class="form-group" style="margin-top: 50px;">
@@ -811,57 +817,10 @@
 
                                             </tr>
                                         </thead>
-                                         @if(isset($medicine_history) )
-                                        <tbody id="render_medicine">
-                                            @foreach($medicine_history as $key => $doc)
-                                            <tr ng-repeat="item in selectedMeds" class="ng-scope">
-                                                <td width="15%"  >
-                                                   {{$b[$key]['name']}}
-                                                </td>
-                                                <td width="8%">
-                                                    <span  >Viên</span>
-                                                </td>
-                                                <td width="8%">
-                                                    <span  >Viên</span>
-
-                                                </td>
-
-
-                                                <td width="3%">
-                                                    <span  >{{$doc->morning}}</span>
-
-                                                </td>
-                                                <td width="3%">
-                                                    <span  >{{$doc->afternoon}}</span>
-
-                                                </td>
-                                                <td width="3%">
-                                                    <span  >{{$doc->evening}}</span>
-
-                                                </td>
-                                                <td width="3%">
-                                                    <span  >{{$doc->night}}</span>
-
-                                                </td>
-
-
-                                                <td width="5%">
-                                                    <span  >{{$doc->amount}}</span>
-                                                </td>
-
-                                                <td width="15%">
-                                                    <span  >{{$doc->using_med}}</span>
-
-                                                </td>
-                                                <td width="15%">
-                                                    <span  >{{$doc->note}}</span>
-
-                                                </td>
-                                            </tr>
-                                            @endforeach
-
+                                        <tbody id="history_medicine">
+                                          
                                         </tbody>
-                                        @endif
+
                                     </table>
                                     
                                 </div>
@@ -893,6 +852,20 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+         //Mẫu bệnh án
+         $('#mau_benh_an').on('change', function(event) {
+             event.preventDefault();
+             var id = $('#mau_benh_an').val();
+             $.get('/management/public/medical-record/'+id, function(data) {
+                 // $( 'textarea#editor1' ).html(data);
+                 CKEDITOR.instances.editor1.insertHtml(data);
+             });
+             
+         });
+
+
+
 
         //Patient Medical
          $('.add_patient_medical').on('click', function(event) {
@@ -949,20 +922,24 @@
        
         $('#save_diagnosis').click(function(){
             var diagnosis = $('#diagnosis').val();
-            var ckeditor = $( 'textarea#editor1' ).val();
+            var ckeditor = CKEDITOR.instances.editor1.getData();
             var meeting = $('#meeting').val();
+             var chose_service = $('#chose_service').val();
             var dataSource = {
                     diagnosis: diagnosis,
                     ckeditor:ckeditor,
                     id:{{$id}},
-                    meeting:meeting
+                    meeting:meeting,
+                    serviceId:chose_service
                 };
+           
 
             $.post('medicalrecord', dataSource, function(data) {
                 var a = data.success;
                 console.log(a);
                 if(data.success=200)
-                {
+                {   
+                    $('#orderId').val(data.orderId);
                     $('#medicalRecord').css({
                         display: 'block'
                     });
@@ -997,6 +974,15 @@
 
             
         });
+//Toa thuốc cũ
+        $('#choose_ordermedicine').on('change', function(event) {
+            event.preventDefault();
+            var id = $("#choose_ordermedicine").val();
+            $.get('order-medicine/'+id, function(data) {
+                $('#history_medicine').html(data);
+            });
+            
+        });
             
         $('#add_medicine').on('click',function(event) {
             var name = $("#medicine").val();
@@ -1025,7 +1011,8 @@
                 expireDay:expireDay,
                 using_med:using_med,
                 note:note,
-                price:price
+                price:price,
+                orderId:$('#orderId').val()
             };
             console.log(dataSource);
             $.post('order-medicine', dataSource, function(data, textStatus, xhr) {

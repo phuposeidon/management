@@ -341,7 +341,7 @@
                                             <div class="form-group" style="margin-bottom: 10px;">
                                                 <label class="col-md-4 control-label">Chuẩn Đoán</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" value="{{$record->diagnosis}}" required id="diagnosis"  class="form-control" placeholder="Chuẩn Đoán">
+                                                    <input type="text" value="{{$record['diagnosis']}}" required id="diagnosis"  class="form-control" placeholder="Chuẩn Đoán">
                                                 </div>
                                             </div>
 
@@ -349,7 +349,7 @@
                                                 <label class="col-md-4 control-label">Tái Khám</label>
                                                 <div class="col-md-6" style="margin-top: 10px;">
                                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
-                                                        <input  id="meeting" value="{{$record-> appoimentDate}}" type="text" class="form-control">
+                                                        <input  id="meeting" value="{{$record['appoimentDate']}}" type="text" class="form-control">
                                                         <span class="input-group-btn">
                                                             <button class="btn default" type="button">
                                                                 <i class="fa fa-calendar"></i>

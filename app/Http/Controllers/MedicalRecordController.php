@@ -13,6 +13,10 @@ use App\Order;
 use App\Medicine;
 use App\OrderMedicine;
 use App\GeneralIndex;
+use App\Specialization;
+use App\Service;
+use App\Insurance;
+use App\Record;
 class MedicalRecordController extends Controller
 {
     function list(){
@@ -22,43 +26,42 @@ class MedicalRecordController extends Controller
     	return view('admin.management.waitlist.list',['waiters'=>$waiters,'i'=>$waiters->count()]);
     }
 
+    function chosen($id){
+        $medicines = OrderMedicine::where('orderId','=',$id)->get();
+        foreach ($medicines  as $history_medicine) {
+            
+            $medicine =  Medicine::find($history_medicine->medicineId);
+            echo "<tr>
+                    <td>".$medicine->name."</td>
+                    <td>Viên</td>
+                    <td>".$history_medicine->morning."</td>
+                    <td>".$history_medicine->afternoon."</td>
+                    <td>".$history_medicine->evening."</td>
+                   <td>".$history_medicine->night."</td>
+                   <td>".$history_medicine->evening."</td>
+                    <td>".$history_medicine->amount."</td>
+                   <td>".$history_medicine->using_med."</td>
+                   <td>".$history_medicine->note."</td>
+                </tr>";
+        }
+    }
+
     function waitList($id){
-		
+		$services= Service::all();
 		$patient = Patient::find($id);
         $medicines = Medicine::all();
         $patient_medicals = PatientMedical::where('patientId','=',$id)->get();
         $fami_medicals = FamiMedical::where('patientId','=',$id)->get();
         $record = MedicalRecord::where('patientId',$id)->first();
+        $orders = Order::where('patientId','=',$id)->get();
+        $records = Record::all();
 
-        if($record!=null)
-        {
-            $order = Order::where('medicalRecordId','=',$record->id)->get();
-
-            $medicine_history = OrderMedicine::where('orderId','=',$order[0]->id)->get();
-            $b =[];
-            // for($i=0;$i<count($medicine_history);$i++){
-            //     $b[] = Medicine::where('id','=',$medicine_history[$i]->medicineId)->get();
-            // }
-            foreach($medicine_history as  $value) {
-                $a = Medicine::where('id','=',$value->medicineId)->select('name')->get()->toArray();
-                $b[] = $a[0];
-            }
-            // foreach ($medicine_history as $value) {
-
-                
-                
-            // }
-            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'medicine_history'=>$medicine_history,'b'=>$b]);
-        }else{
-            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines]);
-        }
-        // return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines]);
-    	
+            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'services'=>$services,'orders'=>$orders,'records'=>$records]);
     }
 
     function addRecord(Request $req)
     {
-
+        $service = Service::find($req->serviceId);
         $order = new Order;
         $medicalrecord = new MedicalRecord;
         $medicalrecord->patientId = $req->id;
@@ -70,12 +73,23 @@ class MedicalRecordController extends Controller
 
         $medicalrecord->save();
         if ( $medicalrecord->save()) {
-            $order->medicalRecordId = $medicalrecord->id;
-            $order->orderCode = "HM-004";
-            $order->createdAt = Carbon::now();
-            $order->updatedAt = Carbon::now();
-             $order->totalAmount = 0;
-            $order->save();
+            $insurrance = Insurance::where('patientId',$req->id)->get();
+            if(isset($insurrance[0]['cardCode'])){
+                $order->totalAmount = ($service->price)/0.2;
+                $order->medicalRecordId = $medicalrecord->id;
+                $order->orderCode = "HD".rand(10,1000);
+                $order->createdAt = Carbon::now();
+                $order->updatedAt = Carbon::now();
+                $order->save();
+            }else{
+                 $order->medicalRecordId = $medicalrecord->id;
+                $order->orderCode = "HD".rand(10,1000);
+                $order->createdAt = Carbon::now();
+                $order->updatedAt = Carbon::now();
+                 $order->totalAmount = $service->price;
+                $order->save();
+            }
+           
 
             return  response()->json(["success"=>200,"orderId"=>$order->id]);
                  }

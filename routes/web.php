@@ -82,7 +82,6 @@ Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
 //Ordermedicine
     Route::post('/order-medicine','OrderMedicineController@add');
 
-
     Route::get('/orderitem', function() {
         return view('admin.management.orderitem.list');
     });
@@ -179,6 +178,11 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::post('/medicalrecord','MedicalRecordController@addRecord');
 
     Route::get('/history/{id}','MedicalRecordController@history')->name('history');
+    Route::get('/order-medicine/{id}','MedicalRecordController@chosen')->name('chosen');//toa thuốc cũ
+    //record
+    Route::get('/record',"RecordController@list")->name('viewrecord');
+    Route::post('/record',"RecordController@add");
+    Route::get('/medical-record/{id}',"RecordController@getRecord")->name('getRecord');
 
 });
 //CLOSE ADMIN PAGE
