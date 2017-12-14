@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Unit;
 use App\Clinic;
 use App\Medicine;
+use App\Insurance;
 
 class MedicineController extends Controller
 {
