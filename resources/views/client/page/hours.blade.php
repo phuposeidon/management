@@ -24,11 +24,11 @@
                             <p>{{substr($hour->hour, 0 , 5)}}</p>
                             <span class="seat">
                                 <?php 
-                                    $i = "Còn chỗ";
+                                    $i = "Còn chỗ";                                   
                                     foreach($selectedDates as $appointment)
                                     {
                                         if($appointment['hour'] != $hour->hour )
-                                            $i = "Còn chỗ"; 
+                                            $i = "Còn chỗ";
                                         else
                                         {
                                             $i = "Hết chỗ";
@@ -41,81 +41,7 @@
                             <input type="hidden" name="selected-hour" value="{{Carbon\Carbon::createFromFormat('d-m-Y H:i:s',$appointmentDate.' '.$hour->hour)->toDateTimeString()}}"> 
                         </li>
                         @endforeach
-                        <!-- <li class="hours-box">
-                            <p>8:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box hours-noslot">
-                            <p>8:30</p>
-                            <span>Hết chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>9:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>9:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>10:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>10:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>11:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>13:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>13:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>14:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>14:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>15:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>15:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>16:00</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li>
-                        <li class="hours-box">
-                            <p>16:30</p>
-                            <span>Còn chỗ</span>
-                            <input type="hidden" name="" value="">
-                        </li> -->
+                        
                     </ul>
 
                     <button id="selectBtn" type="submit" class="btn btn-appoint">Chọn giờ</button>
@@ -172,13 +98,6 @@
         $val = $(".hours-selected input[type=hidden][name=selected-hour]").val();
         $('input[name="appointmentDate"]').val($val);
       });
-
-      //show modal booking success
-    //   $('#selectBtn').click(function() {
-    //     if($('.hours-board li').hasClass('hours-selected')) {
-    //       $('#modal-success').modal();
-    //     }
-    //   });
 
       
     });

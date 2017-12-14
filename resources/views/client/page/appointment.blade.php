@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn ngày khám: </label>
-                        <input type="text" class="form-control br-radius-zero datepicker" name="appointmentDate" value="{{Carbon\Carbon::today()->format('d-m-Y')}}"/>
+                        <input type="text" class="form-control br-radius-zero datepicker" id="selectedDate" name="appointmentDate" value="{{Carbon\Carbon::today()->format('d-m-Y')}}"/>
                         <!-- required oninvalid="this.setCustomValidity('Vui lòng chọn ngày khám')"
         oninput="setCustomValidity('')" -->
                      </div>
@@ -55,6 +55,7 @@
     <script>
         $('document').ready(function() {
             //active menu bar
+
             $('#myNavbar ul .indexBtn').removeClass('active');
             $('#myNavbar ul .bookingBtn').addClass('active');
 
@@ -69,6 +70,9 @@
 					$("#Doctor").html(data);
 				});
 			});
+
+            //Select booking date (the next day at default)
+            $('#selectedDate').datepicker("option", "minDate", 1);
         });
     </script>
 </body>

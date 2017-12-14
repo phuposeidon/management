@@ -35,138 +35,88 @@
   <!--/ banner-->
   <!--service-->
   <section id="service" class="section-padding section-color">
-    <div class="container">
-      <div class="row">
-        <!--menu -->
-        <div class="col-md-4">
-            <div class="blog-border col-md-12">
-                <h3 class="ser-title" style="margin-top: 30px;">Chuyên mục</h3>
-                <hr class="botm-line">
-                <ul class="blog-menu">
-                    
-                    <li class="row blog-list">
-                        <div class="col-md-8">
-                            <a href="{{asset('posts#service')}}">Tất cả</a>
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i> <!-- count(App\Question::get()) -->
-                            
-                        </div>
-                    </li>
-                    <!-- foreach($specializations as $spe) -->
-                    <li class="row blog-list">
-                        <div class="col-md-8">
-                            <a href="">Y tế</a>
-                            <!-- $spe->name -->
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i>
-                            <!-- count(App\Question::where('specializationId', $spe->id)->get()) -->
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-8">
-                            <a href="">Y tế</a>
-                            <!-- $spe->name -->
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i>
-                            <!-- count(App\Question::where('specializationId', $spe->id)->get()) -->
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-8">
-                            <a href="">Y tế</a>
-                            <!-- $spe->name -->
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i>
-                            <!-- count(App\Question::where('specializationId', $spe->id)->get()) -->
-                        </div>
-                    </li>
-                    <!-- endforeach -->
-                </ul>
+    <div class="container" style="background-color: #fff;">
+      <!-- new post -->
+      <div class="posts" style="border-top: #fff;">
+
+        <div class="bread-crumb"><a href="{{asset('index')}}">Trang chủ</a> . <a href="">Bài viết</a></div>
+        
+        <div class="new-post row">
+            <div class="col-md-8 img-npost">
+                <a href="{{asset('post/'.$newPost->id.'#service')}}"><img src="{{asset('img/post/'.$newPost->avatar)}}" alt=""></a>
             </div>
 
-            <div class="blog-border  col-md-12" style="margin-top: 30px;">
-                <h3 class="ser-title" style="margin-top: 30px;">Bài viết nổi bật</h3>
-                <hr class="botm-line">
-                <ul class="blog-menu">
-                    
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <!-- foreach($specializations as $spe) -->
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <!-- endforeach -->
-                </ul>
+            <div class="col-md-4">
+                <a href="{{asset('post/'.$newPost->id.'#service')}}" class="title-npost">{{$newPost->name}}</a>
+                <p class="content-npost text-justify">Ung thư thực quản là loại ung thư phổ biến và có tỉ lệ ngày 
+                    càng tăng lên trong những năm gần đây. Theo thông tin từ trang blogsuckhoe 
+                    cho biết: “Nếu như năm 2000 chỉ có hơn 800 ca ung thư thực quản thì sau 10 năm 
+                    con số này đã tăng gấp 5 lần và hiện nay vẫn tăng lên”.</p>
             </div>
-
         </div>
-        <!-- end menu -->
-        
-        <div class="col-md-8 post-content">
-            <h1>Title post</h1>
-            <small>
-                <span><i class="fa fa-user"></i> Tên người post</span>
-                <span style="padding-left: 30px"><i class="fa fa-calendar"></i>  12/12/2017</span>
-                <span style="padding-left: 30px"><i class="fa fa-eye"></i>  12</span>
-            </small>
-            <p class="txt-post text-justify">Với chế độ ăn ngày càng đa dạng như hiện này, nhiều người thường gặp các bệnh liên quan đến đường tiêu hóa. Trào ngược axit dạ dày, bị loét dạ dày tá tràng, mắc hội chứng ruột kích thích và bệnh không dung nạp lactose...là các bệnh tiêu hóa thường gặp ở người trưởng thành.</p>
 
-            <ul class="list-url">
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-            </ul>
-        </div>
-        
-        
+        <ul class="new-post-list row">
+          @foreach($allPosts as $npost)
+          <li class="col-md-3 post-list">
+              <a href="{{asset('post/'.$npost->id.'#service')}}">
+                  <img src="{{asset('img/post/'.$npost->avatar)}}" alt="" class="img-listpost">
+                  <p>{{$npost->name}}</p>
+              </a>
+          </li>
+          @endforeach
+
+          <!-- <li class="col-md-3 post-list">
+              <a href="">
+                  <img src="{{asset('img/img_1.jpg')}}" alt="" class="img-listpost">
+                  <p>Dấu hiệu ung thư thực quản ở từng giai đoạn bệnh</p>
+              </a>
+          </li> -->
+
+        </ul>
       </div>
+      <!-- end new post -->
+      
+      @foreach($allCategories as $category)
+      <div class="posts">
+        <div class="bread-crumb"><a href="{{asset('cate/'.$category->id.'#service')}}" class="category-post">{{$category->name}}</a></div>
+
+        <ul class="new-post-list row" style="margin-top: 0">
+            <?php 
+              $newCatePosts = App\Post::where('categoryId', $category->id)->orderBy('createdAt','desc')->take(2)->get();
+              $newCatePostIds = [];
+            ?>
+            @foreach($newCatePosts as $catePost)
+            <li class="col-md-5 post-list">
+                <a href="{{asset('post/'.$catePost->id.'#service')}}">
+                  <p>{{$catePost->name}}</p>
+                  <div class="row show-list">
+                    <div class="col-md-7">
+                      <img src="{{asset('img/post/'.$catePost->avatar)}}" alt="" class="img-listpost">
+                    </div>
+
+                    <div class="col-md-5 text-justify">
+                      <small>Bệnh lao phổi rất dễ xảy ra biến chứng trong quá trình điều trị do khuẩn lao khó kiểm soát 
+                        và dễ dàng xâm nhập sâu hơn vào cơ thể bệnh nhân, gây ra các bệnh ...</small>
+                    </div>
+                  </div>
+                  
+                </a>
+            </li>
+            <?php $newCatePostIds[] = $catePost->id;?>
+            @endforeach
+
+            <?php $catePosts = App\Post::where('categoryId', $category->id)->whereNotIn('id', $newCatePostIds)->orderBy('createdAt','desc')->take(4)->get();?>
+            <ul class="col-md-2 sub-list">
+              @foreach($catePosts as $cpost)
+              <li><a href="{{asset('post/'.$cpost->id.'#service')}}">{{$cpost->name}}</a></li>
+              @endforeach
+            </ul>
+            
+        </ul>
+
+      </div>
+      @endforeach
+
     </div>
   </section>
   <!--/ service-->

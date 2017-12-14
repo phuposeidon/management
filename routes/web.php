@@ -174,11 +174,20 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::get('/question','QuestionController@showList');
     Route::get('/question/{id}','QuestionController@getAnswer');
     Route::post('ajax/question/post','QuestionController@postAnswer');
+    Route::post('ajax/question/searchUrl','QuestionController@searchUrl');
+    Route::post('ajax/question/addUrl','QuestionController@addUrl');
 
     Route::get('/diagnosis/{id}','MedicalRecordController@waitList')->name('diagnosis');
     Route::post('/medicalrecord','MedicalRecordController@addRecord');
 
     Route::get('/history/{id}','MedicalRecordController@history')->name('history');
+
+    //Posts
+    Route::get('/category', 'PostController@listCategory');
+    Route::get('/category/{id}', 'PostController@listPost');
+    Route::post('/category/add', 'PostController@addCategory');
+    Route::get('/adminpost/add', 'PostController@getAdd');
+    Route::post('/adminpost/add', 'PostController@postAdd');
 
 });
 //CLOSE ADMIN PAGE
@@ -202,7 +211,8 @@ Route::post('/hours', 'PageController@showHour');
 Route::post('/post-appointment', 'PageController@postAppointment');
 
 Route::get('/posts', 'PageController@getListPost');
-Route::get('/post', 'PageController@getPost');
+Route::get('/post/{id}', 'PageController@getPost');
+Route::get('/cate/{id}', 'PageController@getCate');
 
 Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     

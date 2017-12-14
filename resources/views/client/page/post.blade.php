@@ -10,7 +10,7 @@
         <div class="row">
           <div class="banner-info">
             <div class="banner-logo text-center">
-              <img src="client/img/logo.png" class="img-responsive">
+              <img src="{{asset('client/img/logo.png')}}" class="img-responsive">
             </div>
             <div class="banner-text text-center">
               <h1 class="white">Hỏi đáp cùng bác sĩ</h1>
@@ -49,42 +49,23 @@
                             <a href="{{asset('posts#service')}}">Tất cả</a>
                         </div>
                         <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i> <!-- count(App\Question::get()) -->
+                            <i class="fa fa-comments"> {{count(App\Post::all())}} </i> <!-- count(App\Question::get()) -->
                             
                         </div>
                     </li>
-                    <!-- foreach($specializations as $spe) -->
+                    @foreach($allCategories as $cate)
                     <li class="row blog-list">
                         <div class="col-md-8">
-                            <a href="">Y tế</a>
+                            <a href="{{asset('cate/'.$cate->id.'#service')}}">{{$cate->name}}</a>
                             <!-- $spe->name -->
                         </div>
                         <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i>
+                            <?php $catePosts = App\Post::where('categoryId', $cate->id)->get();?>
+                            <i class="fa fa-comments"> {{count($catePosts)}} </i>
                             <!-- count(App\Question::where('specializationId', $spe->id)->get()) -->
                         </div>
                     </li>
-                    <li class="row blog-list">
-                        <div class="col-md-8">
-                            <a href="">Y tế</a>
-                            <!-- $spe->name -->
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i>
-                            <!-- count(App\Question::where('specializationId', $spe->id)->get()) -->
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-8">
-                            <a href="">Y tế</a>
-                            <!-- $spe->name -->
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <i class="fa fa-comments"> 15 </i>
-                            <!-- count(App\Question::where('specializationId', $spe->id)->get()) -->
-                        </div>
-                    </li>
-                    <!-- endforeach -->
+                    @endforeach
                 </ul>
             </div>
 
@@ -93,44 +74,17 @@
                 <hr class="botm-line">
                 <ul class="blog-menu">
                     
+                    @foreach($topPosts as $topPost)
                     <li class="row blog-list">
                         <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
+                            <img src="{{asset('img/post/'.$topPost->avatar)}}" alt="">
                         </div>
                         <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
+                            <a href="{{asset('post/'.$topPost->id.'#service')}}"><b>{{$topPost->name}}</b></a>
                             <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
                         </div>
                     </li>
-                    <!-- foreach($specializations as $spe) -->
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <li class="row blog-list">
-                        <div class="col-md-1 avatar-post">
-                            <img src="{{asset('img/patient/user-default.png')}}" alt="">
-                        </div>
-                        <div class="col-md-10 title-post">
-                            <a><b>Ngày hội tư vấn dinh dưỡng và tiêm chủng đang diễn ra trên Medilab</b></a>
-                            <p><small> Xã hội ngày càng phát triển, cùng với đó chất lượng y...</small></p>
-                        </div>
-                    </li>
-                    <!-- endforeach -->
+                    @endforeach
                 </ul>
             </div>
 
@@ -138,30 +92,20 @@
         <!-- end menu -->
         
         <div class="col-md-8 post-content">
-            <h1>Title post</h1>
+            <h1>{{$post->name}}</h1>
             <small>
-                <span><i class="fa fa-user"></i> Tên người post</span>
-                <span style="padding-left: 30px"><i class="fa fa-calendar"></i>  12/12/2017</span>
-                <span style="padding-left: 30px"><i class="fa fa-eye"></i>  12</span>
+                <span><i class="fa fa-user"></i> {{$post->User->fullname}}</span>
+                <span style="padding-left: 30px"><i class="fa fa-calendar"></i>  {{Carbon\Carbon::parse($post->createdAt)->format('d-m-Y')}}</span>
+                <span style="padding-left: 30px"><i class="fa fa-eye"></i>  {{$post->views}}</span>
             </small>
-            <p class="txt-post text-justify">Với chế độ ăn ngày càng đa dạng như hiện này, nhiều người thường gặp các bệnh liên quan đến đường tiêu hóa. Trào ngược axit dạ dày, bị loét dạ dày tá tràng, mắc hội chứng ruột kích thích và bệnh không dung nạp lactose...là các bệnh tiêu hóa thường gặp ở người trưởng thành.</p>
+            <p class="txt-post text-justify">{!! $post->content !!}</p>
 
             <ul class="list-url">
+                @foreach($recomendPosts as $recomendPost)
                 <li class="sub-url">
-                    <a href="">Bài viết A</a>
+                    <a href="{{asset('post/'.$recomendPost->id.'#service')}}">{{$recomendPost->name}}</a>
                 </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
-                <li class="sub-url">
-                    <a href="">Bài viết A</a>
-                </li>
+                @endforeach
             </ul>
         </div>
         

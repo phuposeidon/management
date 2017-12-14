@@ -13,7 +13,7 @@
   
         <!-- BEGIN CORE PLUGINS -->
         
-        
+        <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="global/plugins/js.cookie.min.js" type="text/javascript"></script>
         <script src="global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -74,10 +74,14 @@
         <script src=" global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
         <script src=" global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
         <script src=" global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+        <script src=" global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
+        <script src=" global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src=" global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
+        <script src=" pages/scripts/components-editors.min.js" type="text/javascript"></script>
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src=" pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
 

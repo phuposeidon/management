@@ -14,7 +14,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Dịch vụ</a>
+                        <a href="#">Bài viết</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -24,7 +24,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title"> DANH SÁCH DỊCH VỤ
+            <h1 class="page-title"> DANH SÁCH CHUYÊN MỤC
             </h1>
             <div class="alert alert-success" id="report" style="display: none">Đã xóa dịch vụ thành công.</div>
 	        <div class="alert alert-success" id="reportAll" style="display: none">Các dịch vụ được chọn đã xóa thành công.</div>
@@ -47,7 +47,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a id="sample_editable_1_new" href="{{route('addService')}}" class="btn sbold green"> Thêm
+                                            <a id="sample_editable_1_new" data-toggle="modal" href="#draggable" class="btn sbold green"> Thêm Chuyên Mục
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a id="sample_editable" class="btn sbold blue" href={{asset('adminpost/add')}}> Thêm Bài Viết
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </div>
@@ -85,46 +90,26 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Tên Dịch Vụ </th>
-                                        <th> Giá</th>
-                                        <th> Phòng Khám </th>
-                                        <th> Chuyên Khoa</th>
-                                        <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <th> Tên Chuyên Mục </th>
+                                        <th> Chi Tiết </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1?>
-                                    @foreach($allServices as $service)
-                                    <tr class="odd gradeX" id="tr{{$service->id}}">
+                                    @foreach($allCategory as $category)
+                                    <tr class="odd gradeX" id="tr{{$category->id}}">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="{{$service->id}}" />
+                                                <input type="checkbox" class="checkboxes" value="{{$category->id}}" />
                                                 <span></span>
                                             </label>
                                         </td>
                                         <td> {{$i}} </td>
-                                        <td> {{$service->name}} </td>
-                                        <td> {{number_format($service->price).' VNĐ'}} </td>
-                                        <td>
-                                        @if(isset($service->clinicId))
-                                            {{$service->Clinic->name}} 
-                                        @endif
-                                        </td>
-                                        <td> 
-                                        @if(isset($service->specializationId))
-                                            {{$service->Specialization->name}} 
-                                        @endif
-                                        </td>
+                                        <td> {{$category->name}} </td>
                                         <td>
                                             <div>
-                                                <a href="{{route('getEdit',['id'=>$service->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{asset('category/'.$category->id)}}" class="btn btn-xs green dropdown-toggle"> Xem</a>
                                                 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$service->id}}"> Xóa</a>                             
                                             </div>
                                         </td>
                                     </tr>
@@ -134,6 +119,52 @@
                             </table>
                             <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
                             <!-- $allServices->links() -->
+
+                            <!-- add category -->
+                            <div class="modal fade draggable-modal in" id="draggable" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">Thêm Chuyên Mục</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+
+                                                <label class="control-label col-sm-3 ng-binding">Chuyên Mục </label>
+
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="category" class="form-control " required="">
+                                                </div>
+                                            </div>
+
+                                            <!-- ngIf: isFMP -->
+
+                                            <div class="form-group">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <div class="mt-checkbox-list">
+                                                        <label class="mt-checkbox mt-checkbox-outline">
+                                                            <input id="active" checked="" value="1" type="checkbox">Hoạt Động
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">Hủy</button>
+                                            <button type="button" id="save_cate" class="btn green">Lưu</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                        <!-- /.modal-dialog -->
+                            </div>
+                            <!-- end add category -->
 
                             <!-- làm modal delete -->
                             <div class="modal fade" id="modal-1" style="margin-top: 12em ">
@@ -195,6 +226,31 @@
 
     <script>
         $(document).ready(function() {
+            //Add category
+            $('#save_cate').click(function(){
+                var category = $('#category').val();
+                var active = $('#active').val();
+
+               $.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$.ajax({
+					type: 'POST',
+					url: 'category/add',
+					dataType: 'text',
+					data: {category: category,active:active},
+					success:function(data){
+						if(data){
+                            location.reload();
+                        }else{
+                            alert('Thêm không thành công!');
+                        }
+					}
+				});
+            })
+
             //Xoá 1 dòng
             $('.delete').on('click',function(e){
                 e.preventDefault();

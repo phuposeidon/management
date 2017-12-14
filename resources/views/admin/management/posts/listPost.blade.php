@@ -14,7 +14,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Dịch vụ</a>
+                        <a href="#">Bài viết</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -24,7 +24,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title"> DANH SÁCH DỊCH VỤ
+            <h1 class="page-title"> DANH SÁCH BÀI VIẾT
             </h1>
             <div class="alert alert-success" id="report" style="display: none">Đã xóa dịch vụ thành công.</div>
 	        <div class="alert alert-success" id="reportAll" style="display: none">Các dịch vụ được chọn đã xóa thành công.</div>
@@ -47,7 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a id="sample_editable_1_new" href="{{route('addService')}}" class="btn sbold green"> Thêm
+                                            <a id="sample_editable" class="btn sbold blue" href={{asset('adminpost/add')}}> Thêm Bài Viết
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </div>
@@ -85,46 +85,32 @@
                                             </label>
                                         </th>
                                         <th> STT </th>
-                                        <th> Tên Dịch Vụ </th>
-                                        <th> Giá</th>
-                                        <th> Phòng Khám </th>
-                                        <th> Chuyên Khoa</th>
-                                        <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <th> Tên Bài Viết</th>
+                                        <th> Chuyên Mục </th>
+                                        <th> Lượt Xem </th>
+                                        <th> Ngày Tạo </th>
+                                        <th> Chi Tiết </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1?>
-                                    @foreach($allServices as $service)
-                                    <tr class="odd gradeX" id="tr{{$service->id}}">
+                                    @foreach($allPosts as $post)
+                                    <tr class="odd gradeX" id="tr{{$post->id}}">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="{{$service->id}}" />
+                                                <input type="checkbox" class="checkboxes" value="{{$post->id}}" />
                                                 <span></span>
                                             </label>
                                         </td>
                                         <td> {{$i}} </td>
-                                        <td> {{$service->name}} </td>
-                                        <td> {{number_format($service->price).' VNĐ'}} </td>
-                                        <td>
-                                        @if(isset($service->clinicId))
-                                            {{$service->Clinic->name}} 
-                                        @endif
-                                        </td>
-                                        <td> 
-                                        @if(isset($service->specializationId))
-                                            {{$service->Specialization->name}} 
-                                        @endif
-                                        </td>
+                                        <td> {{$post->name}} </td>
+                                        <td> {{$post->Category->name}} </td>
+                                        <td> {{$post->views}} </td>
+                                        <td> {{Carbon\Carbon::Parse($post->createdAt)->format('d-m-Y H:i:s')}} </td>
                                         <td>
                                             <div>
-                                                <a href="{{route('getEdit',['id'=>$service->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="" class="btn btn-xs green dropdown-toggle"> Xem</a>
                                                 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$service->id}}"> Xóa</a>                             
                                             </div>
                                         </td>
                                     </tr>
@@ -134,6 +120,7 @@
                             </table>
                             <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
                             <!-- $allServices->links() -->
+                           
 
                             <!-- làm modal delete -->
                             <div class="modal fade" id="modal-1" style="margin-top: 12em ">
@@ -195,6 +182,7 @@
 
     <script>
         $(document).ready(function() {
+            
             //Xoá 1 dòng
             $('.delete').on('click',function(e){
                 e.preventDefault();

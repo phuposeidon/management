@@ -20,4 +20,8 @@ class Specialization extends Model
     public function Question() {
         return $this->hasMany('App\Question', 'specializationId', 'id');
     }
+
+    public function Service() {
+        return $this->hasMany('App\Service', 'specializationId', 'id');
+    }
 }

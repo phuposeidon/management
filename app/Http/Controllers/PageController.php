@@ -11,6 +11,8 @@ use App\Question;
 use App\QuestionImage;
 use App\Answer;
 use App\Like;
+use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -255,11 +257,38 @@ class PageController extends Controller
     }
 
     public function getListPost() {
-        return view('client.page.posts');
+        $allCategories = Category::all();
+
+        $newPost = Post::orderBy('createdAt', 'desc')->first();
+        $allPosts = Post::where('id', '!=', $newPost->id)->orderBy('createdAt', 'desc')->take(4)->get();
+        return view('client.page.posts', ['allPosts'=>$allPosts,  'newPost' => $newPost, 'allCategories' => $allCategories]);
     }
     
-    public function getPost() {
-        return view('client.page.post');
+    public function getPost($id) {
+        $allCategories = Category::all();
+        $post = Post::find($id);
+        $post->views += 1;
+        $post->save();
+
+        $recomendPosts = Post::where('categoryId', $post->categoryId)->where('id', '!=', $post->id)->orderBy('createdAt', 'desc')->take(5)->get();
+        $topPosts = Post::orderBy('views', 'desc')->take(4)->get();
+        return view('client.page.post', ['post' => $post, 'recomendPosts' => $recomendPosts, 'allCategories' => $allCategories, 'topPosts' => $topPosts]);
+    }
+
+    public function getCate($id) {
+        $category = Category::find($id);
+        $allCategories = Category::all();
+        $newPost = Post::where('categoryId', $id)->orderBy('createdAt', 'desc')->first();
+        // /dd($newPost);
+        if($newPost != '') {
+            $allPosts = Post::where('categoryId', $id)->where('id', '!=', $newPost->id)->orderBy('createdAt', 'desc')->paginate(10);
+            return view('client.page.category', ['category' => $category,'allPosts'=>$allPosts,  'newPost' => $newPost, 'allCategories' => $allCategories]); 
+        }
+        else {
+            $allPosts = '';
+            return view('client.page.category', ['category' => $category,'allPosts'=>$allPosts, 'allCategories' => $allCategories]); 
+        }
+        
     }
 
 }

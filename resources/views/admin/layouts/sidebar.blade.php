@@ -168,7 +168,18 @@
             ">
                 <a href="{{asset('question')}}" class="nav-link nav-toggle">
                     <i class="fa fa-comments"></i>
-                    <span class="title">Diễn đàn</span>
+                    <span class="title">Diễn Đàn</span>
+                    <span class="selected"></span>
+                </a>
+                <!-- end receipt  -->
+            </li>
+
+            <li class="nav-item  
+            {{ (Request::is('category/*') || Request::is('category') || Request::is('category/*') || Request::is('adminpost/*') || Request::is('adminpost') || Request::is('adminpost/*')? 'active' : '') }}
+            ">
+                <a href="{{asset('category')}}" class="nav-link nav-toggle">
+                    <i class="fa fa-comment"></i>
+                    <span class="title">Bài Viết</span>
                     <span class="selected"></span>
                 </a>
                 <!-- end receipt  -->

@@ -379,7 +379,7 @@
                                         <div class="form-body">
 
                                             <div class="form-group" style="margin-bottom: 10px;">
-                                                <label class="col-md-4 control-label">Chuẩn Đoán</label>
+                                                <label class="col-md-4 control-label">Chẩn Đoán</label>
                                                 <div class="col-md-6">
                                                     <input type="text" required id="diagnosis"  class="form-control" placeholder="Chuẩn Đoán">
                                                 </div>
@@ -1000,7 +1000,6 @@
             
         $('#add_medicine').on('click',function(event) {
             var name = $("#medicine").val();
-            alert(name);
             var medicine = $("#medicine").attr('data-id');
             var id =$('#getId').val();
             var amount   = $("#amount").val();

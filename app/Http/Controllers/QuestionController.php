@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Answer;
+use App\Post;
 use Carbon\Carbon;
 
 class QuestionController extends Controller
@@ -38,6 +39,19 @@ class QuestionController extends Controller
             'createdAt' => $date_created,
         ];
         //dd($data);
+        return json_encode($data);
+    }
+
+    public function searchUrl(Request $request) {
+        $urls = Post::where('name', "like", "%". trim($request->searchUrl). "%")->take(3)->get();
+        $data = [];
+        foreach($urls as $url) {
+            $data[] = [
+                'name' => $url->name,
+                'id' => $url->id,
+            ];
+        }
+        if($request->searchUrl == '') $data = '';
         return json_encode($data);
     }
 }
