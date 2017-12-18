@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use App\MedicalRecord;
 use App\Appointment;
 use Carbon\Carbon;
@@ -17,6 +20,9 @@ use App\Specialization;
 use App\Service;
 use App\Insurance;
 use App\Record;
+use App\CDHAImage;
+use App\CDHA;
+
 class MedicalRecordController extends Controller
 {
     function list(){
@@ -47,7 +53,8 @@ class MedicalRecordController extends Controller
     }
 
     function waitList($id){
-		$services= Service::all();
+		$services= Service::where('serviceCode','=','BT')->get();
+        $service_cdha = Service::where('serviceCode','=','CDHA')->get();
 		$patient = Patient::find($id);
         $medicines = Medicine::all();
         $patient_medicals = PatientMedical::where('patientId','=',$id)->get();
@@ -56,7 +63,7 @@ class MedicalRecordController extends Controller
         $orders = Order::where('patientId','=',$id)->get();
         $records = Record::all();
 
-            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'services'=>$services,'orders'=>$orders,'records'=>$records]);
+            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'services'=>$services,'orders'=>$orders,'records'=>$records,'service_cdha'=>$service_cdha]);
     }
 
     function addRecord(Request $req)
@@ -77,13 +84,15 @@ class MedicalRecordController extends Controller
             if(isset($insurrance[0]['cardCode'])){
                 $order->totalAmount = ($service->price)/0.2;
                 $order->medicalRecordId = $medicalrecord->id;
+                $order->patientId = $req->id;
                 $order->orderCode = "HD".rand(10,1000);
                 $order->createdAt = Carbon::now();
                 $order->updatedAt = Carbon::now();
                 $order->save();
             }else{
                  $order->medicalRecordId = $medicalrecord->id;
-                $order->orderCode = "HD".rand(10,1000);
+                 $order->patientId = $req->id;
+                $order->orderCode = "HD-".rand(10,1000);
                 $order->createdAt = Carbon::now();
                 $order->updatedAt = Carbon::now();
                  $order->totalAmount = $service->price;
@@ -104,5 +113,56 @@ class MedicalRecordController extends Controller
         $record = MedicalRecord::where('patientId',$id)->first();
         return view('admin.management.medicalrecord.history',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'general'=>$general,"record"=>$record]);
     }
-    
+    //Upload image CDHA
+    function getCDHA(Request $req){
+        $content = Service::find($req->id);
+        echo $content->content;
+    }
+
+    function upload(Request $req){
+       $input=$req->all();
+       $cdha_image = new CDHAImage;
+       $content = htmlspecialchars($_POST['content']);
+       $cdha = new CDHA;
+       $cdha->serviceId = $req->mau_cdha_id;
+       $cdha->result = $content;
+       $cdha->patientId = $req->patient_id;
+       $cdha->save();
+  
+       if($cdha->save())
+       {
+            $images=array();
+             $picture =[];
+        if($files=$req->file('images')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $file->move('image',$name);
+                $picture[] = [
+                    'url' =>'image/'.$name,
+                    'cdhaId' => $cdha->id
+                ];
+                $images[]=$name;
+            }
+           CDHAImage::insert($picture );
+           return back()->with('cdha',"Lưu Chẩn đoán hình ảnh thành công");
+        }
+       }
+        
+        // echo htmlspecialchars($_POST['content']);
+    }
+    //End cdha
+
+    function search(Request $req){
+        $term = $req->term;
+        $queries = DB::table('medicine')
+        ->where('name', 'LIKE', '%'.$term.'%')
+        ->orWhere('price', 'LIKE', '%'.$term.'%')
+        ->take(5)->get();
+
+        foreach ($queries as $query)
+    {
+        $results[] = [ 'id' => $query->id, 'value' => $query->name,'price'=>$query->price];
+    }
+    return Response::json($results);
+    }
 }

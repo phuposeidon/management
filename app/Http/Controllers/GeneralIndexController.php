@@ -23,6 +23,7 @@ class GeneralIndexController extends Controller
 		$general->bloodsugar = $req->bloodsugar;
 		$general->weight = $req->weight;
 		$general->height = $req->height;
+		$general->bmi = $req->bmi;
 		$general->save();
 		if ($general->save()) {
 			return redirect('diagnosis/'.$req->id)->with('status', 'Success !');

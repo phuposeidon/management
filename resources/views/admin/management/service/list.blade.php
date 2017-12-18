@@ -113,7 +113,7 @@
                                         </td>
                                         <td> 
                                         @if(isset($service->clinicId))
-                                            {{$service->User->fullname}} 
+                                            {{$service->Specialization->name}} 
                                         @endif
                                         </td>
                                         <td>

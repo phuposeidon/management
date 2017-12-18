@@ -47,9 +47,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
+                                           <!--  <button id="sample_editable_1_new" class="btn sbold green"> Thêm
                                                 <i class="fa fa-plus"></i>
-                                            </button>
+                                            </button> -->
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -88,37 +88,40 @@
                                         <th> Mã Hóa Đơn </th>
                                         <th> Bệnh nhân</th>
                                         <th> Số Tiền</th>
-                                        <th> Người Tạo</th>
                                         <th> Ngày Tạo</th>
-                                        <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <th> Trạng Thái</th>
+                                        <th> Hành Động </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1?>
-                                    @foreach($allTransactions as $transaction)
-                                    <tr class="odd gradeX" id="tr{{$transaction->id}}">
+                                    @foreach($orders as $order)
+                                    <tr class="odd gradeX">
                                         <td>
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                <input type="checkbox" class="checkboxes" value="{{$transaction->id}}" />
+                                                <input type="checkbox" class="checkboxes" />
                                                 <span></span>
                                             </label>
                                         </td>
                                         <td> {{$i}} </td>
-                                        <td> {{$transaction->Order->orderCode}} </td>
-                                        <td> {{$transaction->Order->MedicalRecord->Patient->fullname}} </td>
-                                        <td> {{number_format($transaction->totalAmount).' VNĐ'}} </td>
-                                        <td> {{\App\Http\Controllers\TransactionController::getUser($transaction->createdById)}}  </td>
-                                        <td class="center"> {{Carbon\Carbon::parse($transaction->createdAt)->format('d-m-Y H:i:s')}} </td>
-                                        <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                
-                                            </div>
+                                        <td> {{$order->orderCode}} </td>
+                                        <td> {{$order->MedicalRecord->Patient['fullname']}} </td>
+                                        <td id="totalAmount"> {{number_format($order->totalAmount).' VNĐ'}} </td>
+                                        <td class="center"> {{Carbon\Carbon::parse($order->createdAt)->format('d-m-Y H:i:s')}} </td>
+                                        <td class="td{{$order->id}}">
+                                            @if($order->status=="new")
+                                            <span style="margin-left: 20px;" class="label label-warning">Hóa đơn mới</span>
+                                            @elseif($order->status=="confirm")
+                                            <span style="margin-left: 20px;" class="label label-success">Đã thanh toán</span>
+                                            @elseif($order->status=="cancel")
+                                            <span style="margin-left: 20px;" class="label label-danger">Đã hủy</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$transaction->id}}"> Xóa</a>                               
+                                                <a data-id="{{$order->id}}" class="btn btn-xs green dropdown-toggle payment"> Thanh Toán</a>
+                                                <a class="btn btn-xs red dropdown-toggle cancel" data-id="{{$order->id}}"> Hủy</a>
+                                                
                                             </div>
                                         </td>
                                     </tr>
@@ -128,7 +131,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                           
                             <!-- $allTransactions->links() -->
 
                             <!-- làm modal delete -->
@@ -190,76 +193,113 @@
     <!-- END CONTENT --><script>
         $(document).ready(function() {
             //Xoá 1 dòng
-            $('.delete').on('click',function(e){
-                e.preventDefault();
-                var id = $(this).data('id');
-                $('#modal-1').data('id',id).modal('show');
-            });
-            $("#report").hide();
-            $('#yesBtn').click(function(){
-                var id = $('#modal-1').data('id');
-                $('#modal-1').modal('hide');
-                $.ajaxSetup({
+            // $('.delete').on('click',function(e){
+            //     e.preventDefault();
+            //     var id = $(this).data('id');
+            //     $('#modal-1').data('id',id).modal('show');
+            // });
+            // $("#report").hide();
+            // $('#yesBtn').click(function(){
+            //     var id = $('#modal-1').data('id');
+            //     $('#modal-1').modal('hide');
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //     });
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: 'transaction-delete',
+            //         dataType: 'text',
+            //         data: {id: id},
+            //         success:function(data){
+            //             $('#tr' + id).fadeOut();
+            //             $('#tr' + id).remove();
+            //             $("#report").show();
+            //             setTimeout(function()
+            //                 {
+            //                     $('#report').fadeOut();
+            //                 },4000);
+            //         }
+            //     });
+            // });
+
+            //Xoá tất cả
+			// $('#deleteAll').on('click',function(e){
+			// 	e.preventDefault();
+			// 	$('#modal-all').modal('show');
+			// });
+			// $("#reportAll").hide();
+			// $('#yesBtnAll').click(function(){
+			// 	$('#modal-all').modal('hide');
+			// 	var val = [];
+			// 	$(':checkbox:checked').each(function(i){
+			// 		val[i] = $(this).val();			//get id của từng row       	
+			// 	});
+			// 	if(val[0] == 'on') {				//Nếu th đã check thì bỏ qua
+			// 		val.shift();
+			// 	}
+			// 	$.ajaxSetup({
+			// 		headers: {
+			// 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			// 		}
+			// 	});
+			// 	$.ajax({
+			// 		type: 'POST',
+			// 		url: 'transaction-multidelete',
+			// 		dataType: 'text',
+			// 		data: {id: val},
+			// 		success:function(data){
+			// 			for(var i = 0; i < val.length; i++) {
+			// 				$('#tr' + val[i]).fadeOut();
+			// 				$('#tr' + val[i]).remove();
+			// 				$("#reportAll").show();
+			// 				setTimeout(function()
+   //                          {
+   //                          	$('#reportAll').fadeOut();
+   //                          },4000);
+			// 			}
+			// 		}
+			// 	});
+			// });
+
+            //Thanh toán
+            $('.payment').on('click', function(event) {
+                event.preventDefault();
+                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $.ajax({
-                    type: 'POST',
-                    url: 'transaction-delete',
-                    dataType: 'text',
-                    data: {id: id},
-                    success:function(data){
-                        $('#tr' + id).fadeOut();
-                        $('#tr' + id).remove();
-                        $("#report").show();
-                        setTimeout(function()
-                            {
-                                $('#report').fadeOut();
-                            },4000);
-                    }
+
+                var id = $(this).data('id');
+                $.post('transaction/payment', {id: id}, function(data) {
+                    $('.td'+id).html(data);
                 });
+
             });
 
-            //Xoá tất cả
-			$('#deleteAll').on('click',function(e){
-				e.preventDefault();
-				$('#modal-all').modal('show');
-			});
-			$("#reportAll").hide();
-			$('#yesBtnAll').click(function(){
-				$('#modal-all').modal('hide');
-				var val = [];
-				$(':checkbox:checked').each(function(i){
-					val[i] = $(this).val();			//get id của từng row       	
-				});
-				if(val[0] == 'on') {				//Nếu th đã check thì bỏ qua
-					val.shift();
-				}
-				$.ajaxSetup({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					}
-				});
-				$.ajax({
-					type: 'POST',
-					url: 'transaction-multidelete',
-					dataType: 'text',
-					data: {id: val},
-					success:function(data){
-						for(var i = 0; i < val.length; i++) {
-							$('#tr' + val[i]).fadeOut();
-							$('#tr' + val[i]).remove();
-							$("#reportAll").show();
-							setTimeout(function()
-                            {
-                            	$('#reportAll').fadeOut();
-                            },4000);
-						}
-					}
-				});
-			});
+            //Hủy thanh toán
+            $('.cancel').on('click', function(e) {
+                 e.preventDefault();
+                var id = $(this).data('id');
+                $('#modal-1').data('id',id).modal('show');
+            });
+            //End
+            $('#yesBtn').click(function(){
+                     event.preventDefault();
+                     $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
 
+                    var id = $('#modal-1').data('id');
+                    $('#modal-1').modal('hide');
+                    $.post('transaction/cancel', {id: id}, function(data) {
+                        $('.td'+id).html(data);
+                    });
+                })
 
         })
     </script>

@@ -13,8 +13,8 @@ class Service extends Model
         return $this->belongsTo('App\Clinic', 'clinicId', 'id');
     }
 
-    public function User() {
-        return $this->belongsTo('App\User', 'executedById', 'id');
+    public function Specialization() {
+        return $this->belongsTo('App\Specialization', 'specializationId', 'id');
     }
 
     public function OrderService() {

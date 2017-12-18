@@ -13,8 +13,8 @@ class Specialization extends Model
         return $this->belongsTo('App\Clinic', 'clinicId', 'id');
     }
 
-    public function User() {
-        return $this->hasMany('App\User', 'specializationId', 'id');
+    public function Service() {
+        return $this->hasMany('App\Service', 'specializationId', 'id');
     }
 
     public function Question() {
