@@ -269,6 +269,15 @@ li.menu-list a:hover {
     padding-top: 8px;
     display: inline-block;
 }
+.badge-custom {
+    background-color: #36c6d3; 
+    border-radius: 50%; 
+    height: 5px; 
+    width: 5px;
+    min-width: 5px;
+    padding: 0;
+    margin-top: -15px;
+}
 /***************************************
 services
 ***************************************/
@@ -354,6 +363,27 @@ services
     border-radius: 3px;
     color: #fff;
     border: 1px solid transparent;
+}
+.selected-links, .selected-links-1 {
+    padding: 0; 
+    margin-top: 6px;
+    font-style: italic;
+}
+.selected-link a, .selected-link-1 a {
+    color: #333;
+    font-weight: bold;
+}
+.selected-link a:hover, .selected-link-1 a:hover {
+    color: #36c6d3;
+    text-decoration: none;
+}
+.selected-link i, .selected-link-1 i {
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+} 
+.selected-link i:hover, .selected-link-1 i:hover {
+    color: red;
 }
 .pad-10 {
     padding: 10px !important;
@@ -578,6 +608,50 @@ services
 .like-selected {
     color: rgb(221, 115, 136) !important;
 }
+.cate-list {
+    padding: 10px 0;
+    border-bottom: 1.5px solid #e8e8e8;    
+}
+.cate-list a {
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+}
+.cate-list a:hover {
+    color: #00a2a2;
+    text-decoration: none;
+}
+.cate-list i {
+    color: #000;
+    font-size: 12px;
+}
+.cate-posts {
+    padding: 0;
+}
+.cate-post {
+    margin-bottom: 20px;
+}
+.cate-post-img {
+    height: 155px;
+    border-radius: 5px;
+}
+.cate-post-img img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+.cate-title {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+.cate-title:hover {
+    color: #00a2a2;
+}
+.cate-posts small {
+    color: #333;
+    font-size: 14px;
+}
 .blog-menu {
     padding: 0;
 }
@@ -624,7 +698,6 @@ services
 }
 .post-content {
     font-size: 14px;
-    padding: 0 50px;
 }
 .txt-post {
     padding: 20px 0 10px 0;
@@ -646,6 +719,112 @@ li.sub-url {
 .sub-url a:hover {
     text-decoration: none;
     color: #00a2a2;
+}
+
+.posts {
+    width: 100%;
+    border-top: 1px solid #00a2a2;
+    color: #333;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 20px;
+}
+.bread-crumb {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.bread-crumb a {
+    color: #333;
+    font-size: 13px;
+}
+.category-post {
+    font-size: 15px !important;
+    font-weight: bold;
+    color: #00a2a2 !important;
+}
+.bread-crumb a:hover {
+    color: #00a2a2;
+    text-decoration: none;
+}
+.new-post {
+    height: 450px;
+}
+.newPost-content {
+    max-height: 420px;
+}
+.img-npost {
+    height: 100%;
+}
+.new-post img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+.title-npost {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    line-height: 35px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", "Times", serif;
+}
+.title-npost:hover {
+    color: #00a2a2;
+    text-decoration: none;
+}
+.content-npost {
+    line-height: 25px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.new-post-list {
+    margin-top: 40px;
+    padding: 0;
+}
+.show-list.row [class*="col-md-7"] {
+    padding: 0;
+}
+.show-list.row [class*="col-md-"] small {
+    font-weight: normal;
+}
+.post-list img {
+    height: 170px;
+}
+.post-list a {
+    color: #333;
+    font-weight: bold;
+    line-height: 22px;
+}
+.post-list a:hover {
+    color: #00a2a2;
+    text-decoration: none;
+}
+.post-list a:hover img.img-listpost {
+    background-color: #00a2a2;
+}
+.post-list a:hover small {
+    color: #333;
+}
+.img-listpost {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+}
+.sub-list {
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+}
+.sub-list li {
+    margin: 5px 0;
+}
+.sub-list a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+.sub-list a:hover {
+    color: #00a2a2;
+    text-decoration: none;
 }
 /***************************************
 cta-1

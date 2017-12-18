@@ -42,16 +42,16 @@
   </footer>
   <!--/ footer-->
 
-  <script src="client/js/jquery.min.js"></script>
-  <script src="client/js/jquery.easing.min.js"></script>
+  <script src="{{ asset('client/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('client/js/jquery.easing.min.js') }}"></script>
   <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
-  <script src="client/js/bootstrap.min.js"></script>
-  <script src="client/js/custom.js"></script>
-  <script src="client/contactform/contactform.js"></script>
+  <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('client/js/custom.js') }}"></script>
+  <script src="{{ asset('client/contactform/contactform.js') }}"></script>
   <script type="text/javascript" language="javascript" src="{{asset('ckeditor/ckeditor.js')}}" ></script>
-  <script src="../public/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
-  <script src="../public/global/scripts/app.min.js" type="text/javascript"></script>
-  <script src="../public/pages/scripts/components-editors.min.js" type="text/javascript"></script>
+  <script src="{{ asset('global/plugins/bootstrap-summernote/summernote.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('global/scripts/app.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('pages/scripts/components-editors.min.js') }}" type="text/javascript"></script>
   <script type="text/javascript">
       $(function () {
         $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true, changeYear: true,  }).on('changeDate', function (ev) {

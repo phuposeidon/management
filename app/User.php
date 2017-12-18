@@ -28,9 +28,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function Service() {
-        return $this->hasMany('App\Service', 'executedById', 'id');
-    }
 
     public function Transaction() {
         return $this->hasMany('App\Transaction', 'createdById', 'id');
@@ -52,6 +49,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Answer', 'doctorId', 'id');
     }
 
-    
+    public function Post() {
+        return $this->hasMany('App\Post', 'userId', 'id');
+    }
 
 }

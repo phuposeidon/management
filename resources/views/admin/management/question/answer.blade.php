@@ -89,30 +89,18 @@
                                                 <a href="#">
                                                     <img class="media-object" alt="" src="@if(isset($answer->Patient->fullname)) {{asset('img/patient/'.$answer->Patient->avatar)}} @else {{asset('img/user/'.$answer->User->avatar)}} @endif"> </a>
                                             </div>
-                                            <div class="media-body">
+                                            <div class="media-body content-text">
                                                 <h4 class="media-heading">
                                                     @if(isset($answer->Patient->fullname))
-                                                        <a href="#">{{$answer->Patient->fullname}}</a>
+                                                        <a href="">{{$answer->Patient->fullname}}</a>
                                                     @else
-                                                        <a href="#"><i class="fa fa-user-md"></i> Bác sĩ {{$answer->User->fullname}}</a>
+                                                        <a href=""><i class="fa fa-user-md"></i> Bác sĩ {{$answer->User->fullname}}</a>
                                                     @endif
                                                     <span class="c-date">{{Carbon\Carbon::Parse($answer->createdAt)->format('d-m-Y H:i')}}</span>
-                                                </h4> {!!$answer->content!!} </div>
+                                                </h4> {!!$answer->content!!} 
+                                            </div>
                                         </div>
                                         @endforeach
-                                        <!-- <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="" src="pages/img/avatars/team3.jpg"> </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">
-                                                    <a href="#">Strong Strong</a> on
-                                                    <span class="c-date">21 May 2015, 11:40AM</span>
-                                                </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <h3 class="sbold blog-comments-title">Trả Lời</h3>
                                     <!-- <form action="ajax/question/post" method="post" id="answerForm"> -->
@@ -124,8 +112,15 @@
                                             <div class="col-md-1">
                                                 <img src="{{asset('img/user/'.Auth::user()->avatar)}}" alt="" class="ava-user">
                                             </div>
-                                            <div class="form-group col-md-10">
-                                                <textarea rows="2" name="content" placeholder="Trả lời tại đây ..." class="form-control c-square"></textarea>
+                                            <div class="form-group col-md-9">
+                                                <textarea rows="2" id="answerContent" name="content" placeholder="Trả lời tại đây ..." class="form-control c-square"></textarea>
+                                                <ul class="selected-links">Liên kết đã chọn:
+                                                    
+                                                </ul>
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <a href="#myModal_autocomplete" role="button" class="btn green uppercase btn-md sbold" data-toggle="modal"> <i class="fa fa-paperclip" style="font-size: 22px;"></i></a>
+                                                
                                             </div>
                                             <div class="form-group col-md-1">
                                                 <button id="sendAnswer" type="submit" class="btn blue uppercase btn-md sbold btn-block">Gửi</button>
@@ -136,6 +131,47 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- modal-autocomplete -->
+                        <div id="myModal_autocomplete" class="modal fade" role="dialog" aria-hidden="true" style="margin: 140px 0 0 50px;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                        <h4 class="modal-title">Tìm kiếm bài viết liên quan</h4>
+                                    </div>
+                                    <div class="modal-body form">
+                                        <form action="#" class="form-horizontal form-row-seperated">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">URL:</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <a class="refresh-input"><i class="fa fa-refresh"></i></a>
+                                                        </span>
+                                                        <input type="text" id="searchUrl" name="searchUrl" class="form-control"/> 
+                                                        <input type="hidden" id="urlId">
+                                                    </div>
+                                                    <ul class="list-result">
+                                                        <!-- <li class="url-result">
+                                                            <p>Link bất kỳ</p>
+                                                        </li> -->
+                                                    </ul>
+                                                    <p class="help-block"> Nhập các từ khóa để lọc đường dẫn </p>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn grey-salsa btn-outline" data-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn green" id="addUrl">
+                                            <i class="fa fa-check"></i> Thêm </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end-modal-autocomplete -->
                     
                     <!-- END EXAMPLE TABLE PORTLET-->
                 </div>
@@ -166,11 +202,22 @@
             //ajax send answer
             $('#sendAnswer').click(function (){
                 //url = $('#answerForm').attr('action');
+                $('.selected-links .selected-link i').replaceWith('');
+                urls = $('.selected-links').html().replace(' đã chọn','').replace('selected-link', 'selected-link-1');
+                
                 _token = $('#answerForm input[name="_token"]').val();
                 doctorId = $('#answerForm input[name="doctorId"]').val();
                 questionId = $('#answerForm input[name="questionId"]').val();
                 text = $('#answerForm textarea[name="content"]').val();
-                content = text.replace(/\n\r?/g, '<br />');
+                if($('#answerForm .selected-link').length > 0) {    
+                    content = text.replace(/\n\r?/g, '<br />');
+                    content += '<ul class="selected-links-1">';
+                    content += urls;
+                    content += '</ul">';
+                }
+                else {
+                    content = text.replace(/\n\r?/g, '<br />');
+                }
                 var posting = $.post({
                     url: 'ajax/question/post',
                     type: "POST",
@@ -187,9 +234,9 @@
                                 <a href="#">
                                     <img class="media-object" alt="" src="{{asset('img/user/'.Auth::user()->avatar)}}"> </a>
                             </div>
-                            <div class="media-body">
+                            <div class="media-body content-text">
                                 <h4 class="media-heading">
-                                    <a href="#"><i class="fa fa-user-md"></i> Bác sĩ `+doctor+`</a>
+                                    <a href=""><i class="fa fa-user-md"></i> Bác sĩ `+doctor+`</a>
                                     <span class="c-date">`+createdAt+`</span>
                                 </h4> `+content+`
                                 
@@ -197,8 +244,71 @@
                         </div>
                     `);
                     $('#answerForm textarea[name="content"]').val('');
+                    $('.selected-links .selected-link').remove();
                 });
             });
+
+            //Search URL
+            // $( "#searchUrl" ).on( "autocompletechange", function( event, ui ) {
+            //     $('.list-result').css('display', 'block');
+            // } );
+            $('#searchUrl').change(function() {
+                $('.list-result').css('display', 'block');
+                $('.url-result').remove();
+                searchUrl = $('#searchUrl').val();
+
+                $.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$.ajax({
+					type: 'POST',
+					url: 'ajax/question/searchUrl',
+					dataType: 'text',
+					data: {searchUrl: searchUrl},
+					success:function(data){
+						if(data){
+                            var arrs = jQuery.parseJSON(data);
+                            for(i = 0; i < arrs.length; i++) {
+                                $('.list-result').append(
+                                    `<li class="url-result">
+                                        <p id="url-`+arrs[i].id+`">`+ arrs[i].name +`</p>
+                                    </li>`
+                                );
+                            }
+                            $('.list-result .url-result').click(function(){
+                                text = $(this).children().text();
+                                id = $(this).children().attr('id');
+                                text = text.replace(/\s\s+/g, ' ');
+                                $('.list-result').css('display', 'none');
+                                $('#searchUrl').val(text);
+                                $('#urlId').val(id);
+                            });
+                        }else{
+                            alert('Thêm không thành công!');
+                        }
+					}
+                });
+
+            });
+            $('.refresh-input').click(function() {
+                $('#searchUrl').val('');
+            });
+
+            //Add URL to textarea
+            $('#addUrl').click(function(){
+                postId = $('#urlId').val().replace('url-','');
+                postName = $('#searchUrl').val();
+                $('.selected-links').append(`<li class="selected-link"><i class="fa fa-minus delete-url"></i><a href="{{asset('post/`+postId+`#service')}}" target="_blank">`+postName+`</a></li>`);
+                $('#myModal_autocomplete').modal('hide');
+                $('#searchUrl').val('');
+                //delete added url 
+                $('.delete-url').click(function (){
+                    $(this).parent().remove();
+                }); 
+            });     
+                  
 
             //Xoá 1 dòng
             $('.delete').on('click',function(e){

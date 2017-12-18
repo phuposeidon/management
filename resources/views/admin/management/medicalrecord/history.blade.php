@@ -339,7 +339,7 @@
                                         <div class="form-body">
 
                                             <div class="form-group" style="margin-bottom: 10px;">
-                                                <label class="col-md-4 control-label">Chuẩn Đoán</label>
+                                                <label class="col-md-4 control-label">Chẩn Đoán</label>
                                                 <div class="col-md-6">
                                                     <input type="text" value="{{$record['diagnosis']}}" required id="diagnosis"  class="form-control" placeholder="Chuẩn Đoán">
                                                 </div>
