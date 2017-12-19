@@ -1023,7 +1023,6 @@ function preview_images()
                  var relationship = $('#relationship').val();
                  var disease = $('#disease').val();
                  var note = $('textarea#note_fami').val();
-                 alert(note);
                  var socialproblem = $('#socialproblem').val();
                  $.post('fami-medical', {id:id, relationship:relationship, disease:disease , note:note , socialproblem:socialproblem }, function(data) {
                         $('#fami_body').html(data);

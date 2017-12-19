@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Bác Sĩ Thực Hiện</label>
+                                    <label class="col-md-3 control-label">Chuyên Khoa</label>
                                     <div class="col-md-6">
                                         <select name="user" class="form-control">
                                         @foreach($allSpecialization as $specialization)
