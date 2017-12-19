@@ -103,7 +103,7 @@
                                         <th> Ngày Tạo</th>
                                         <!-- <th> Ngày Sửa</th> -->
                                         <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <!-- <th> Xóa </th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,15 +144,15 @@
                                         <!-- <td class="center"> {{$medicine->updatedAt}} </td> -->
                                         <td>
                                             <div>
-                                            <a href="{{route('editMedicine',['id'=>$medicine->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                            <a href="{{route('editMedicine',['id'=>$medicine->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
                                             </div>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <div>
-                                            <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$medicine->id}}"> Xóa</a>                               
+                                            <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$medicine->id}}"> <i class="fa fa-trash-o"></i></a>                               
                                             </div>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     <?php $i++?>
                                     @endforeach
@@ -160,7 +160,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                            <!-- <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button> -->
                             <!-- $allMedicines->links() -->
 
                             <!-- làm modal delete -->

@@ -91,7 +91,7 @@
                                         <th> Người Tạo</th>
                                         <th> Ngày Tạo</th>
                                         <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <!-- <th> Xóa </th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,15 +112,15 @@
                                         <td class="center"> {{Carbon\Carbon::parse($transaction->createdAt)->format('d-m-Y H:i:s')}} </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
                                             </div>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$transaction->id}}"> Xóa</a>                               
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$transaction->id}}"> <i class="fa fa-trash-o"></i></a>                               
                                             </div>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     <?php $i++?>
                                     @endforeach
@@ -128,7 +128,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                            <!-- <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button> -->
                             <!-- $allTransactions->links() -->
 
                             <!-- làm modal delete -->

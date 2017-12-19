@@ -1,5 +1,5 @@
 <!-- BEGIN SIDEBAR -->
-<div class="page-sidebar-wrapper" style="position:fixed;">
+<div class="page-sidebar-wrapper" style="position:fixed; z-index: 1">
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
         <!-- BEGIN SIDEBAR MENU -->
@@ -90,7 +90,7 @@
                 <!-- end receipt  -->
             </li>
             <li class="nav-item 
-            {{ (Request::is('wait-list/*') || Request::is('wait-list') || Request::is('wait-list/*') ? 'active' : '') }}
+            {{ (Request::is('wait-list/*') || Request::is('wait-list') || Request::is('wait-list/*') || Request::is('diagnosis/*') || Request::is('diagnosis') || Request::is('diagnosis/*') ? 'active' : '') }}
             ">
                 <a href="{{asset('wait-list')}}" class="nav-link nav-toggle">
                     <i class="fa fa-list"></i>

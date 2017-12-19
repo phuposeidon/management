@@ -60,9 +60,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -104,7 +102,7 @@
                                         <th> Bác Sĩ</th>
                                         <th> Ngày </th>
                                         <th> Giờ </th>
-                                        <th> Sửa </th>
+                                        <!-- <th> Sửa </th> -->
                                         <th> Xóa </th>
                                     </tr>
                                 </thead>
@@ -129,15 +127,15 @@
                                         <td> {{$appointment->User->fullname}} </td>
                                         <td class="center">{{Carbon\Carbon::Parse($appointment->appointmentDate)->format('d-m-Y')}}</td>
                                         <td> {{Carbon\Carbon::Parse($appointment->appointmentDate)->format('H:i')}} </td>
-                                        <td>
+                                        <!-- <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
                                             </div>
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$appointment->id}}"> Xóa</a>                            
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$appointment->id}}"> <i class="fa fa-trash-o"></i></a>                            
                                             </div>
                                         </td>
                                     </tr>

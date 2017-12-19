@@ -95,8 +95,8 @@
                                         <th> Lịch Hẹn</th>-->
                                         <th> Ngày Tạo</th>
                                         <!-- <th> Ngày Sửa</th> -->
-                                        <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <th> Xem </th>
+                                        <!-- <th> Xóa </th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -130,15 +130,15 @@
                                         <td class="center"> {{$order->appointmentDate}} </td> -->
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{asset('order/'.$order->id)}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
                                             </div>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$order->id}}"> Xóa</a>                               
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$order->id}}"> <i class="fa fa-trash-o"></i></a>                               
                                             </div>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     <?php $i++?>
                                     @endforeach
@@ -146,7 +146,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                            <!-- <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button> -->
                             <!-- $allOrders->links() -->
 
                             <!-- làm modal delete -->

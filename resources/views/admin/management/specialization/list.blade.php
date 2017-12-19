@@ -107,12 +107,12 @@
                                         
                                         <td>
                                             <div>
-                                                <a href="#edit" data-toggle="modal" data-target="#edit"   data-id="{{$speciality->id}}" class="btn btn-xs green dropdown-toggle edit-modal"> Sửa</a>                                              
+                                                <a href="#edit" data-toggle="modal" data-target="#edit"   data-id="{{$speciality->id}}" class="btn btn-xs green dropdown-toggle edit-modal"> <i class="fa fa-edit"></i></a>                                              
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$speciality->id}}"> Xóa</a>
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$speciality->id}}"> <i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>
                                     </tr>

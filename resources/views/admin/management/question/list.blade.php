@@ -84,7 +84,7 @@
                                         <th> Câu Hỏi</th>
                                         <th> Khoa </th>
                                         <th> Tạo Lúc </th>
-                                        <th> Sửa </th>
+                                        <th> Trả Lời </th>
                                         <th> Xóa </th>
                                     </tr>
                                 </thead>
@@ -107,13 +107,13 @@
                                         <td class="center">{{Carbon\Carbon::Parse($qt->createdAt)->format('d-m-Y')}}</td>
                                         <td>
                                             <div>
-                                                <a href="{{asset('question/'.$qt->id)}}" class="btn btn-xs green dropdown-toggle"> Trả lời</a>
+                                                <a href="{{asset('question/'.$qt->id)}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$qt->id}}"> Xóa</a>                            
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$qt->id}}"> <i class="fa fa-trash-o"></i></a>                            
                                             </div>
                                         </td>
                                     </tr>
@@ -124,7 +124,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                            
                             <!-- $allAppointments->links() -->
 
                             <!-- làm modal delete -->
@@ -148,30 +148,7 @@
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
-                            <!-- end modal delete -->
-
-                            <!-- làm modal delete all row-->
-                            <div class="modal fade" id="modal-all" style="margin-top: 12em ">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                <span class="sr-only">Close</span>
-                                            </button>
-                                            <h4 class="modal-title">Xóa các câu hỏi đã chọn?</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Bạn muốn xóa các câu hỏi đã chọn?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-                                            <button type="button" class="btn btn-primary" id="yesBtnAll">Có</button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-                            <!-- end modal delete all row-->   
+                            <!-- end modal delete --> 
 
 
                         </div>
@@ -219,44 +196,7 @@
                 });
             });
 
-            //Xoá tất cả
-			$('#deleteAll').on('click',function(e){
-				e.preventDefault();
-				$('#modal-all').modal('show');
-			});
-			$("#reportAll").hide();
-			$('#yesBtnAll').click(function(){
-				$('#modal-all').modal('hide');
-				var val = [];
-				$(':checkbox:checked').each(function(i){
-					val[i] = $(this).val();			//get id của từng row       	
-				});
-				if(val[0] == 'on') {				//Nếu th đã check thì bỏ qua
-					val.shift();
-				}
-				$.ajaxSetup({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					}
-				});
-				$.ajax({
-					type: 'POST',
-					url: 'question-multidelete',
-					dataType: 'text',
-					data: {id: val},
-					success:function(data){
-						for(var i = 0; i < val.length; i++) {
-							$('#tr' + val[i]).fadeOut();
-							$('#tr' + val[i]).remove();
-							$("#reportAll").show();
-							setTimeout(function()
-                            {
-                            	$('#reportAll').fadeOut();
-                            },4000);
-						}
-					}
-				});
-			});
+
 
 
         })

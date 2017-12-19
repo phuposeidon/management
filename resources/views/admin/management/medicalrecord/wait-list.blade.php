@@ -382,13 +382,14 @@
                                         </div>
                                     </div>
                                     <!-- END INFO LEFT -->
+                                    <input type="hidden" id="doctorId" value="{{Auth::user()->id}}">
                                     <div class="col-md-6">
                                         <div class="form-body">
 
                                             <div class="form-group" style="margin-bottom: 10px;">
                                                 <label class="col-md-4 control-label">Chẩn Đoán</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" required id="diagnosis"  class="form-control" placeholder="Chuẩn Đoán">
+                                                    <input type="text" required id="diagnosis"  class="form-control" placeholder="Chẩn Đoán">
                                                 </div>
                                             </div>
 
@@ -921,6 +922,7 @@
        
        
         $('#save_diagnosis').click(function(){
+            var doctorId = $('#doctorId').val();
             var diagnosis = $('#diagnosis').val();
             var ckeditor = CKEDITOR.instances.editor1.getData();
             var meeting = $('#meeting').val();
@@ -928,6 +930,7 @@
             var dataSource = {
                     diagnosis: diagnosis,
                     ckeditor:ckeditor,
+                    doctorId:doctorId,
                     id:{{$id}},
                     meeting:meeting,
                     serviceId:chose_service

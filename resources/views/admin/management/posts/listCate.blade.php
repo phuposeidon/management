@@ -28,7 +28,9 @@
             </h1>
             <div class="alert alert-success" id="report" style="display: none">Đã xóa dịch vụ thành công.</div>
 	        <div class="alert alert-success" id="reportAll" style="display: none">Các dịch vụ được chọn đã xóa thành công.</div>
-            
+            @if(Session::has('flash_message'))
+                <div class="alert alert-success" class="reportAdd">{{ Session::get('flash_message')}}</div>
+            @endif
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
            
@@ -108,7 +110,7 @@
                                         <td> {{$category->name}} </td>
                                         <td>
                                             <div>
-                                                <a href="{{asset('category/'.$category->id)}}" class="btn btn-xs green dropdown-toggle"> Xem</a>
+                                                <a href="{{asset('category/'.$category->id)}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-eye"></i></a>
                                                 
                                             </div>
                                         </td>
@@ -117,7 +119,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
+                            <!-- <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button> -->
                             <!-- $allServices->links() -->
 
                             <!-- add category -->

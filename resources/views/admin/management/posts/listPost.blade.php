@@ -89,7 +89,8 @@
                                         <th> Chuyên Mục </th>
                                         <th> Lượt Xem </th>
                                         <th> Ngày Tạo </th>
-                                        <th> Chi Tiết </th>
+                                        <th> Sửa </th>
+                                        <th> Xóa </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,15 +103,20 @@
                                                 <span></span>
                                             </label>
                                         </td>
-                                        <td> {{$i}} </td>
+                                        <td class="index"> {{$i}} </td>
                                         <td> {{$post->name}} </td>
                                         <td> {{$post->Category->name}} </td>
                                         <td> {{$post->views}} </td>
                                         <td> {{Carbon\Carbon::Parse($post->createdAt)->format('d-m-Y H:i:s')}} </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs green dropdown-toggle"> Xem</a>
+                                                <a href="{{asset('adminpost/'.$post->id)}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$post->id}}"> <i class="fa fa-trash-o"></i></a>                            
                                             </div>
                                         </td>
                                     </tr>
@@ -131,10 +137,10 @@
                                                 <span aria-hidden="true">&times;</span>
                                                 <span class="sr-only">Close</span>
                                             </button>
-                                            <h4 class="modal-title">Xóa dịch vụ</h4>
+                                            <h4 class="modal-title">Xóa bài viết</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Bạn muốn xóa dịch vụ?</p>
+                                            <p>Bạn muốn xóa bài viết?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
@@ -144,30 +150,6 @@
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
                             <!-- end modal delete -->
-
-                            <!-- làm modal delete all row-->
-                            <div class="modal fade" id="modal-all" style="margin-top: 12em ">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                <span class="sr-only">Close</span>
-                                            </button>
-                                            <h4 class="modal-title">Xóa các dịch vụ đã chọn?</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Bạn muốn xóa các dịch vụ đã chọn?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-                                            <button type="button" class="btn btn-primary" id="yesBtnAll">Có</button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-                            <!-- end modal delete all row-->
-
 
                         </div>
                     </div>
@@ -200,7 +182,7 @@
                 });
                 $.ajax({
                     type: 'POST',
-                    url: 'service-delete',
+                    url: 'post-delete',
                     dataType: 'text',
                     data: {id: id},
                     success:function(data){
@@ -214,45 +196,6 @@
                     }
                 });
             });
-
-            //Xoá tất cả
-			$('#deleteAll').on('click',function(e){
-				e.preventDefault();
-				$('#modal-all').modal('show');
-			});
-			$("#reportAll").hide();
-			$('#yesBtnAll').click(function(){
-				$('#modal-all').modal('hide');
-				var val = [];
-				$(':checkbox:checked').each(function(i){
-					val[i] = $(this).val();			//get id của từng row       	
-				});
-				if(val[0] == 'on') {				//Nếu th đã check thì bỏ qua
-					val.shift();
-				}
-				$.ajaxSetup({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					}
-				});
-				$.ajax({
-					type: 'POST',
-					url: 'service-multidelete',
-					dataType: 'text',
-					data: {id: val},
-					success:function(data){
-						for(var i = 0; i < val.length; i++) {
-							$('#tr' + val[i]).fadeOut();
-							$('#tr' + val[i]).remove();
-							$("#reportAll").show();
-							setTimeout(function()
-                            {
-                            	$('#reportAll').fadeOut();
-                            },4000);
-						}
-					}
-				});
-			});
 
 
         })

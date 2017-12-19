@@ -12,6 +12,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Carbon\Carbon;
 use App\User;
 use App\Specialization;
+use App\Salary;
+use App\MedicalRecord;
+use App\Order;
+use App\Transaction;
 
 class UserController extends Controller
 {
@@ -21,7 +25,7 @@ class UserController extends Controller
     }
 
     function post(Request $req){
-
+		
 		$this->validate($req, [
             'username' => 'required|unique:user,username',
             'email' => 'required|unique:user,email',
@@ -69,9 +73,16 @@ class UserController extends Controller
 			$user->avatar = $file_name;
 		}
 		else {
-			$user->avatar = 'img/user/user-default.png';
+			$user->avatar = 'user-default.png';
 		}
 		$user->save();
+
+		$salary = new Salary;
+		$salary->userId = $user->id;
+		$salary->level = $req->level;
+		$salary->coefficient = $req->coefficient;
+		$salary->basicWage = str_replace(',','',$req->basicWage);
+		$salary->save();
 		
         if($user->save())
 		{
@@ -85,7 +96,7 @@ class UserController extends Controller
     }
 
     function list() {
-        $allUsers = User::paginate(10);
+        $allUsers = User::all();
         return view('admin.management.user.list', ['allUsers' => $allUsers]);
     }
 
@@ -104,7 +115,20 @@ class UserController extends Controller
 	function getEdit($id){
 		$specialization =  Specialization::all();
 		$user = User::find($id);
-		return view('admin.management.user.edit',['user'=>$user,'specialization'=>$specialization]);
+		$salary = Salary::where('userId', $id)->first();
+
+		//Salary in month
+		$today = Carbon::now();
+		$getMonth = $today->month;
+		$firstday = Carbon::today();
+		$firstday->day = 1;
+
+		$getMRs = MedicalRecord::select('id')->where('doctorId', $id)->whereBetween('createdAt', array($firstday,$today))->get();
+		$getOrders = Order::select('id')->whereIn('medicalRecordId', $getMRs)->get();
+		$getOrdersPaid = Transaction::select(DB::raw('SUM(totalAmount) as total'))->whereIn('orderId', $getOrders)->first()->toArray();
+		$extraSalary = intval($getOrdersPaid['total']);
+
+		return view('admin.management.user.edit',['user'=>$user,'specialization'=>$specialization , 'salary' => $salary, 'extraSalary' => $extraSalary]);
 	}
 
 	function postEdit(Request $req){
@@ -122,6 +146,8 @@ class UserController extends Controller
 		]);
 
 		$specialization =  Specialization::all();
+		$salary = Salary::where('userId', $req->id)->first();
+		
         $user = User::find($req->id);
 		if($req->active!=1)
 		{
@@ -151,11 +177,26 @@ class UserController extends Controller
 			$file->move($destinationPath , $file_name); 
 			$user->avatar = $file_name;
 		}
-        $user->save();
-        if ($user->save()) {
-			\Session::flash('flash_message','Sửa thành công');
-        	return redirect('user');
-        }
+		$user->save();
+		if(count($salary) > 0) 
+		{
+			$salary->level = $req->level;
+			$salary->coefficient = $req->coefficient;
+			$salary->basicWage = str_replace(',','',$req->basicWage);
+			$salary->save();
+		}
+		else 
+		{
+			$salary = new Salary;
+			$salary->userId = $req->id;
+			$salary->level = $req->level;
+			$salary->coefficient = $req->coefficient;
+			$salary->basicWage = str_replace(',','',$req->basicWage);
+			$salary->save();
+		}
+		
+		\Session::flash('flash_message','Sửa thành công');
+		return redirect('user');
 	}
 
 	public function getLogin() {
