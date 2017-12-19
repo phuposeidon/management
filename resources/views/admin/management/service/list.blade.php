@@ -112,6 +112,7 @@
                                         @endif
                                         </td>
                                         <td> 
+
                                         @if(isset($service->specializationId))
                                             {{$service->Specialization->name}} 
                                         @endif

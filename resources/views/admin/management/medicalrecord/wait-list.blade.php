@@ -1,5 +1,18 @@
 @extends('admin.layouts.master') @section('content')
 <!-- BEGIN CONTENT -->
+<script>
+function preview_images() 
+{
+ var total_file=document.getElementById("images").files.length;
+ for(var i=0;i<total_file;i++)
+ {
+  $('#image_preview').append("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+ }
+}
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content" >
@@ -56,7 +69,14 @@
                 {{ session('status') }}
             </div>
         @endif
-        <h1 class="page-title"> KHÁM BỆNH</h1>
+        <h1 class="page-title"> KHÁM BỆNH </h1>
+        
+
+        @if (session('cdha'))
+        <div id="notifi_cdha" class="alert alert-success">
+            {{ session('cdha') }}
+            </div>
+        @endif
         <div class="portlet light bordered">
             <div class="portlet-title tabbable-line">
 
@@ -73,6 +93,11 @@
                     <li>
                         <a href="#portlet_tab4" data-toggle="tab"> Toa Thuốc </a>
                     </li>
+
+                    <li>
+                        <a href="#portlet_tab5" data-toggle="tab"> CĐHA </a>
+                    </li>
+
                 </ul>
             </div>
             <div class="portlet-body">
@@ -299,14 +324,14 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Cân Nặng</label>
                                                 <div class="col-md-6">
-                                                    <input type="number"  name="weight" class="form-control" placeholder="Cân Nặng (kg)">
+                                                    <input type="number" id="weight"  name="weight" class="form-control" placeholder="Cân Nặng (kg)">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Chiều Cao</label>
                                                 <div class="col-md-6">
-                                                    <input type="number" name="height" class="form-control" placeholder="Chiều Cao (cm)">
+                                                    <input type="number" id="height" name="height" class="form-control" placeholder="Chiều Cao (cm)">
                                                 </div>
                                             </div>
 
@@ -314,19 +339,9 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">BMI</label>
                                                 <div class="col-md-6">
-                                                    <input type="number" name="price" class="form-control" placeholder="  ">
+                                                    <input type="number" id="bmi" name="bmi" class="form-control" placeholder="  ">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label">Nhóm Máu</label>
-                                                <div class="col-md-6">
-                                                    <select class="form-control" >
-                                                        <option value="A">A</option>
-                                                        <option value="B">B</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -452,13 +467,9 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Chọn thuốc</label>
-                                        <div class="col-md-4">
-                                            <select id="choose_medicine" class="form-control" name="">
-                                                <option>Chọn</option>
-                                                @foreach($medicines as $medicine)
-                                                <option value="{{$medicine->id}}">{{$medicine->name}}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="col-md-4 ui-widget">
+                                            <input id="cities" type="search" class="form-control" >
+                                            <input type="text" hidden="" id="price" name="">
                                         </div>
                                     </div>
                                 </div>
@@ -582,85 +593,116 @@
                                         <tbody id="render_medicine">
 
                                             <!-- ngRepeat: item in selectedMeds -->
-<!--                                             <tr ng-repeat="item in selectedMeds" class="ng-scope">
-                                                <td width="3%"  >1</td>
-                                                <td width="15%"  >
-                                                    Aceclofenac
-                                                </td>
-                                                <td width="8%">
-                                                    <span  >Viên</span>
-                                                </td>
-                                                <td width="8%">
-                                                    <span  >Viên</span>
 
-                                                </td>
-
-
-                                                <td width="3%">
-                                                    <span  >1</span>
-
-                                                </td>
-                                                <td width="3%">
-                                                    <span  >0</span>
-
-                                                </td>
-                                                <td width="3%">
-                                                    <span  >1</span>
-
-                                                </td>
-                                                <td width="3%">
-                                                    <span  >0</span>
-
-                                                </td>
-
-
-                                                <td width="5%">
-                                                    <span  >1</span>
-                                                </td>
-
-
-                                                <td width="10%">
-                                                    <span  >1</span>
-
-                                                </td>
-                                                <td width="15%">
-                                                    <span  ></span>
-
-                                                </td>
-                                                <td width="15%">
-                                                    <span  ></span>
-
-                                                </td>
-                                                <td ng-if="!isDiagnosisHistoryForm" width="5%" class="ng-scope">
-                                                    <button type="button" class="btn btn-xs btn-danger" id="add_medicine">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr> -->
-                                            <!-- end ngRepeat: item in selectedMeds -->
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <!-- <div class="row">
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane" id="portlet_tab5">
+
+                        <form action="{{route('upload_image')}}" method="POST" enctype="multipart/form-data" class="form-horizontal"  >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+                                        <div class="form-group" style="margin-bottom: 10px;">
+                                            <label class="col-md-4 control-label">Tên bệnh nhân</label>
+                                            <div class="col-md-6">
+                                                <input type="text" disabled="" value="{{$patient->fullname}}" name="patientName"  class="form-control" placeholder="Chuẩn Đoán">
+                                                <input type="hidden" value="{{$id}}" name="patient_id">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Chọn dịch vụ CĐHA</label>
+                                            <div class="col-md-6" style="margin-top: 10px;">
+                                                <select id="mau_cdha" name="mau_cdha_id" class="form-control" >
+                                                    <option value="A">Chọn mẫu</option>
+                                                    @foreach($service_cdha as $cdha)
+                                                    <option value="{{$cdha->id}}">{{$cdha->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END INFO LEFT -->
+                                    <div class="col-md-6">
+                                        <div class="form-body">
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Giới Tính</label>
+                                                <div class="col-md-6">
+                                                    <select disabled="" name="gender" class="form-control">
+                                                        <option value="1" @if($patient->gender == 1)
+                                                        selected 
+                                                    @endif>Nam</option>
+                                                        <option value="0" @if($patient->gender == 0)
+                                                        selected 
+                                                    @endif>Nữ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                           <div class="form-group" style="margin-bottom: 10px;">
+                                                <label class="col-md-3 control-label">Ngày sinh</label>
+                                                <div class="col-md-6">
+                                                     <input disabled="" type="text" value="@if($patient['DOB']) {{Carbon\Carbon::Parse($patient['DOB'])->format('d-m-Y')}} @endif" name="birthday" class="form-control" >
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class="col-md-12">
+                                        <label>Nội dung</label>
+                                        <textarea cols="100" name="content" id="editor2" rows="20">
+                                           
+                                        </textarea>
+                                        <script>
+                                            CKEDITOR.replace('editor2');
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                      <div class="col-md-6">
+                                          <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
+                                      </div>
+                                      <!-- <div class="col-md-6">
+                                          <input type="submit" class="btn btn-primary" name='submit_image' value="Upload Multiple Image"/>
+                                      </div> -->
+                             </div>
+                             <div class="row" id="image_preview"></div>
+
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="text-center" style="margin-top:30px;">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button id="save_diagnosis" class="btn btn-primary">
                                             <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
                                         </button>
-                                        <button type="button" class="btn btn-primary">
-                                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh
-                                        </button>
+                                        <a href="{{route('history',['id'=>$id])}}" type="button" class="btn btn-default">
+                                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Xem Lịch Sử Khám
+                                        </a>
                                         <a href="{{route('list')}}" class="btn btn-default">
                                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                                         </a>
                                     </div>
                                 </div>
-                            </div> -->
-
-                        </div>
-
+                            </div>
+                        </form>
                     </div>
 
 
@@ -678,7 +720,7 @@
                         <div id="test"></div>
                     </div>
                     <div class="modal-body">
-                        <div class="form form-horizontal">
+                        <form id="reset_patientmedical" class="form form-horizontal">
                             <fieldset>
                                 <div class="form-group">
 
@@ -700,7 +742,7 @@
 
                                 <!-- ngIf: isFMP -->
                             </fieldset>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="save_patient" class="btn green">Lưu</button>
@@ -721,7 +763,7 @@
                         <div id="test"></div>
                     </div>
                     <div class="modal-body">
-                        <div class="form form-horizontal">
+                        <form class="form form-horizontal" id="reset_famimedical">
                             <fieldset>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3 ng-binding">Tên Quan Hệ </label>
@@ -749,13 +791,13 @@
                                     <label class="control-label col-sm-3 ng-binding">Ghi Chú </label>
 
                                     <div class="col-sm-8">
-                                        <textarea id="note" value="" rows="5" class="form-control" style=""></textarea>
+                                        <textarea id="note_fami" value="" rows="5" class="form-control" style=""></textarea>
                                     </div>
                                 </div>
 
                                 <!-- ngIf: isFMP -->
                             </fieldset>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="fami_medical_2" class="btn green">Lưu</button>
@@ -842,10 +884,88 @@
     </div>
 </div>
 <!-- END CONTENT -->
+
 @endsection
+
+
 
 <script src="{!!url('global/plugins/jquery.min.js')!!}" type="text/javascript"></script>
 <script src="{!!url('ckeditor/ckeditor.js')!!}"></script>
+<script type="text/javascript">
+     $('#add_more').click(function() {
+          "use strict";
+          $(this).before($("<div/>", {
+            id: 'filediv'
+          }).fadeIn('slow').append(
+            $("<input/>", {
+              name: 'file[]',
+              type: 'file',
+              id: 'file',
+              multiple: 'multiple',
+              accept: 'image/*'
+            })
+          ));
+        });
+
+        $('#upload').click(function(e) {
+          "use strict";
+          e.preventDefault();
+
+          if (window.filesToUpload.length === 0 || typeof window.filesToUpload === "undefined") {
+            alert("No files are selected.");
+            return false;
+          }
+
+          // Now, upload the files below...
+          // https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications#Handling_the_upload_process_for_a_file.2C_asynchronously
+        });
+
+        deletePreview = function (ele, i) {
+          "use strict";
+          try {
+            $(ele).parent().remove();
+            window.filesToUpload.splice(i, 1);
+          } catch (e) {
+            console.log(e.message);
+          }
+        }
+
+        $("#file").on('change', function() {
+          "use strict";
+
+          // create an empty array for the files to reside.
+          window.filesToUpload = [];
+
+          if (this.files.length >= 1) {
+            $("[id^=previewImg]").remove();
+            $.each(this.files, function(i, img) {
+              var reader = new FileReader(),
+                newElement = $("<div id='previewImg" + i + "' class='previewBox'><img /></div>"),
+                deleteBtn = $("<span class='delete' onClick='deletePreview(this, " + i + ")'>X</span>").prependTo(newElement),
+                preview = newElement.find("img");
+
+              reader.onloadend = function() {
+                preview.attr("src", reader.result);
+                preview.attr("alt", img.name);
+              };
+
+              try {
+                window.filesToUpload.push(document.getElementById("file").files[i]);
+              } catch (e) {
+                console.log(e.message);
+              }
+
+              if (img) {
+                reader.readAsDataURL(img);
+              } else {
+                preview.src = "";
+              }
+
+              newElement.appendTo("#filediv");
+            });
+          }
+        });
+</script>
 <script>
     $(document).ready(function(){
          $.ajaxSetup({
@@ -853,8 +973,18 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
-         //Mẫu bệnh án
+         //Tính BMI generalIndex
+         
+         $('#height, #weight').on('keyup', function(event) {
+             event.preventDefault();
+             var height = ($('#height').val())/100;
+                var weight = $('#weight').val();
+             /* Act on the event */
+             var bmi = weight/(height*height);
+             $('#bmi').val(Math.round(bmi));
+         });
+         
+         //Mẫu bệnh Án
          $('#mau_benh_an').on('change', function(event) {
              event.preventDefault();
              var id = $('#mau_benh_an').val();
@@ -878,6 +1008,9 @@
                  $.post('patient-medical', {id: id,name:base_name,note:base_note}, function(data) {
                         $('#table_body').html(data);
                         $('#patient_medical').modal('toggle');
+                         setTimeout(function(){
+                            $('#reset_patientmedical')[0].reset();
+                        },2000);
                  });
              });
          });
@@ -889,11 +1022,16 @@
              $('#fami_medical_2').click(function(event) {
                  var relationship = $('#relationship').val();
                  var disease = $('#disease').val();
-                 var note = $('#note').val();
+                 var note = $('textarea#note_fami').val();
+                 alert(note);
                  var socialproblem = $('#socialproblem').val();
                  $.post('fami-medical', {id:id, relationship:relationship, disease:disease , note:note , socialproblem:socialproblem }, function(data) {
                         $('#fami_body').html(data);
+                        
                         $('#fami_medical').modal('toggle');
+                        setTimeout(function(){
+                            $('#reset_famimedical')[0].reset();
+                        },2000);
 
                      
                  });
@@ -999,7 +1137,7 @@
             var expireDay = $('#expireDay').val();
             var using_med = $('#using_med').val();
             var note     = $('#note').val();
-            var price = {{$medicine->price}};
+            var price = $('#price').val();
 
             var dataSource = {
                 id:id,
@@ -1022,6 +1160,39 @@
             });
 
         });
+
+        //CĐHA
+        $('#mau_cdha').on('change', function(event) {
+            event.preventDefault();
+            var id = $("#mau_cdha").val();
+            $.get('cdha/'+id, function(data) {
+                CKEDITOR.instances.editor2.insertHtml(data);
+            });
+            
+        });
+
+
+        if($('#notifi_cdha').text())
+        {
+            setTimeout(function() {
+                $('#notifi_cdha').attr({
+                    hidden: ''
+                });
+            }, 3000);
+        }
+
+
+        $( "#cities" ).autocomplete({
+            source: '{{route("autocomplete")}}',
+            select: function (event, ui) {
+                    $("#cities").val(ui.item.value);
+                    $("#medicine").val(ui.item.value);
+                    $("#medicine").attr({
+                        "data-id":ui.item.id
+                    }); // display the selected text
+                    $('#price').val(ui.item.price);
+                }
+            });
 
     });
 </script>

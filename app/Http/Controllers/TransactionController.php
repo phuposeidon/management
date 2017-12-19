@@ -5,30 +5,54 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Clinic;
 use App\User;
-use App\Province;
+use App\Order;
 use App\Transaction;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
     function list() {
-        $allTransactions = Transaction::all();
-        return view('admin.management.transaction.list', ['allTransactions' => $allTransactions]);
+        $orders = Order::all();
+        return view('admin.management.transaction.list', ['orders' => $orders]);
 	}
 	
-	public static function getUser($id) {
-		$getUserById = User::where('id', $id)->select('fullname')->get();
-		return $getUserById[0]['fullname'];
-	}
+	// public static function getUser($id) {
+	// 	$getUserById = Patient::where('id', $id)->select('fullname')->get();
+	// 	dd($getUserById);
+	// 	return $getUserById[0]['fullname'];
+	// }
 
-    function delete(Request $request) {
-		$id = $request->id;
-		Transaction::find($id)->delete();
-	}
+    function payment(Request $req)
+    {
+    	$userId = Auth::id();
+    	$order = Order::find($req->id);
+    	$order->status = "confirm";
+    	$order->save();
+    	$transaction = new Transaction;
+    	$transaction->orderId = $order->id;
+    	$transaction->totalAmount = $order->totalAmount;
+    	$transaction->createdById = $userId;
+    	$transaction->save();
+    	if ($transaction->save()) {
+    		 $orders = Order::all();
+        	echo '<span style="margin-left: 20px;" class="label label-success">Đã thanh toán</span>';
+    	}
 
-	function deleteAll(Request $request) {
-		$ids = $request->id;
-		foreach($ids as $id) {
-			Transaction::find($id)->delete();
-		}
-	}
+    }
+    //Hủy
+     function cancel(Request $req)
+    {
+    	$order = Order::find($req->id);
+    	$order->status = "cancel";
+    	$order->save();
+    	if ($order->save()) {
+    		 $orders = Order::all();
+        	echo '<span style="margin-left: 20px;" class="label label-danger">Đã hủy</span>';
+    	}
+
+    }
 }

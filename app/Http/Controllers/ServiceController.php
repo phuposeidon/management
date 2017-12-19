@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Clinic;
 use App\Service;
-use App\User;
+use App\Specialization;
 
 class ServiceController extends Controller
 {
@@ -28,14 +28,14 @@ class ServiceController extends Controller
 	}
 
 	function index(){
-		$allUser = User::all();
-		return view('admin.management.service.add',['allUser'=>$allUser]);
+		$allSpecialization = Specialization::all();
+		return view('admin.management.service.add',['allSpecialization'=>$allSpecialization]);
 	}
 
 	function add(Request $req){
 		$service = new Service;
-		$allUser = User::all();
-		$service->executedById = $req->user;
+		$allSpecialization = Specialization::all();
+		$service->specializationId = $req->user;
 		$service->name = $req->name;
 		$service->content = $req->note;
 		$service->price = $req->price;
@@ -49,19 +49,19 @@ class ServiceController extends Controller
 			\Session::flash('flash_fail','Thêm dịch vụ thất bại');
 		}
 
-		return view('admin.management.service.add',['allUser'=>$allUser]);
+		return view('admin.management.service.add',['allSpecialization'=>$allSpecialization]);
 	}
 
 	function getService($id){
 		$service = Service::find($id);
-		$allUser = User::all();
-		return view('admin.management.service.edit',['service'=>$service,'allUser'=>$allUser]);
+		$allSpecialization = Specialization::all();
+		return view('admin.management.service.edit',['service'=>$service,'allSpecialization'=>$allSpecialization]);
 		var_dump($id);
 	}
 
 	function postService(Request $req){
 		$service = Service::find($req->id);
-		$service->executedById = $req->user;
+		$service->specializationId = $req->user;
 		$service->name = $req->name;
 		$service->content = $req->note;
 		$service->price = $req->price;

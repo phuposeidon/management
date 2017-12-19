@@ -151,10 +151,10 @@
                                     <label class="col-md-3 control-label">Bác Sĩ Thực Hiện</label>
                                     <div class="col-md-6">
                                         <select name="user" class="form-control">
-                                        @foreach($allUser as $user)
-                                            <option <?php if($user->id == $service->executedById) 
+                                        @foreach($allSpecialization as $specialization)
+                                            <option <?php if($specialization->id == $service->specializationId) 
                                                 echo "selected='selected'";
-                                             ?> value="{{$user->id}}">{{$user->fullname}}</option>
+                                             ?> value="{{$specialization->id}}">{{$specialization->name}}</option>
                                         @endforeach
                                         </select>
                                     </div>

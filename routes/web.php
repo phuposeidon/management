@@ -162,9 +162,10 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
         return view('admin.management.testresult.list');
     });
 
-    Route::get('/transaction','TransactionController@list');
-    Route::post('/transaction-delete', 'TransactionController@delete');
-    Route::post('/transaction-multidelete', 'TransactionController@deleteAll');
+    //Transaction
+    Route::get('/transaction','TransactionController@list')->name('listTransaction');
+    Route::post('/transaction/payment','TransactionController@payment')->name('transactionPayment');
+    Route::post('/transaction/cancel','TransactionController@cancel')->name('transactionCancel');
 
     //Medical record
     Route::get('/wait-list','MedicalRecordController@list');
@@ -183,10 +184,18 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
 
     Route::get('/history/{id}','MedicalRecordController@history')->name('history');
     Route::get('/order-medicine/{id}','MedicalRecordController@chosen')->name('chosen');//toa thuốc cũ
+
+    //Chọn thuốc
+    Route::get('/search/autocomplete','MedicalRecordController@search')->name('autocomplete');
+
+    //Chẩn đoán hình ảnh
+     Route::get('/cdha/{id}','MedicalRecordController@getCDHA')->name('getCDHA');
     //record
     Route::get('/record',"RecordController@list")->name('viewrecord');
     Route::post('/record',"RecordController@add");
     Route::get('/medical-record/{id}',"RecordController@getRecord")->name('getRecord');
+    //Upload CDHA
+    Route::post('/cdha',"MedicalRecordController@upload")->name("upload_image");
 
     //Posts
     Route::get('/category', 'PostController@listCategory');

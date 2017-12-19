@@ -50,8 +50,8 @@
                                     <label class="col-md-3 control-label">Bác Sĩ Thực Hiện</label>
                                     <div class="col-md-6">
                                         <select name="user" class="form-control">
-                                        @foreach($allUser as $user)
-                                            <option value="{{$user->id}}">{{$user->fullname}}</option>
+                                        @foreach($allSpecialization as $specialization)
+                                            <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                         @endforeach
                                         </select>
                                     </div>
