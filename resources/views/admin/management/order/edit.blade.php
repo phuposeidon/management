@@ -97,26 +97,13 @@
                 </ul>
                 <div class="page-toolbar">
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+                        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Công cụ
                             <i class="fa fa-angle-down"></i>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li>
-                                <a href="#">
-                                    <i class="icon-bell"></i> Action</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-shield"></i> Another action</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-user"></i> Something else here</a>
-                            </li>
-                            <li class="divider"> </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-bag"></i> Separated link</a>
+                                <a href="{{asset('export-order/'.$getOrderById->id)}}">
+                                    <i class="icon-bell"></i> Xuất hóa đơn </a>
                             </li>
                         </ul>
                     </div>
@@ -173,7 +160,7 @@
                                     <div class="col-md-6" style="padding-top: 10px">
                                         @if($getOrderById->status == "new")
                                             <span class="label label-warning">Hóa đơn mới</span>
-                                        @elseif($getOrderById->status == "confirmed")
+                                        @elseif($getOrderById->status == "confirm")
                                             <span class="label label-success">Đã thanh toán</span>
                                         @else
                                             <span class="label label-danger">Đã hủy</span>

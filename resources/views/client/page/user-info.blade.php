@@ -178,7 +178,7 @@
                             <tr style="color: #333">
                                 <th>{{$i}}</th>
                                 <th>{{Carbon\Carbon::Parse($order->createdAt)->format('d-m-Y')}}</th>
-                                <th>{{$order->MedicalRecord->User->fullname}}</th>
+                                <th><a href="{{asset('feedback/'.$order->MedicalRecord->User->id)}}">{{$order->MedicalRecord->User->fullname}}</a></th>
                                 <th>{{$order->MedicalRecord->User->Specialization->name}}</th>
                                 <th>{{number_format($order->totalAmount)}}đ</th>
                                 <th><a href="#modal-{{$order->id}}" data-toggle="modal" class="btn btn-appoint" style="margin-top: 0"><i class="fa fa-eye"></i></a></th>

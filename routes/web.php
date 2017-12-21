@@ -207,12 +207,13 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::post('/adminpost/edit', 'PostController@postEdit');
     Route::post('/post-delete', 'PostController@delete');
 
+    //Export order
+    Route::get('export-order/{id}','OrderController@exportOrder');
+
 });
 //CLOSE ADMIN PAGE
 
-Route::get('/index', function() {
-    return view('client.layouts.index');
-});
+Route::get('/index', 'PageController@index');
 Route::get('plogin', 'PatientController@getLogin');
 Route::post('plogin', 'PatientController@postLogin');
 Route::get('plogout', 'PatientController@getLogout');

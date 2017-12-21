@@ -21,32 +21,6 @@
                         <span>Danh sách</span>
                     </li>
                 </ul>
-                <div class="page-toolbar">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                            <i class="fa fa-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li>
-                                <a href="#">
-                                    <i class="icon-bell"></i> Action</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-shield"></i> Another action</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-user"></i> Something else here</a>
-                            </li>
-                            <li class="divider"> </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-bag"></i> Separated link</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
@@ -67,14 +41,6 @@
                                 <i class="icon-settings font-dark"></i>
                                 <span class="caption-subject bold uppercase"> DANH SÁCH</span>
                             </div>
-                            <div class="actions">
-                                <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                    <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
-                                        <input type="radio" name="options" class="toggle" id="option1">Actions</label>
-                                    <label class="btn btn-transparent dark btn-outline btn-circle btn-sm">
-                                        <input type="radio" name="options" class="toggle" id="option2">Settings</label>
-                                </div>
-                            </div>
                         </div>
                         <div class="portlet-body">
                             <div class="table-toolbar">
@@ -88,7 +54,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="btn-group pull-right">
-                                            <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                            <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Công cụ
                                                 <i class="fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu pull-right">
@@ -124,7 +90,7 @@
                                     @foreach($waiters as $key => $waiter)
                                     <tr>
                                         <td>{{$i--}}</td>
-                                        <td>{{$waiter->appointmentDate}}</td>
+                                        <td>{{Carbon\Carbon::Parse($waiter->appointmentDate)->format('d-m-Y H:i:s')}}</td>
                                         <td>{{App\Appointment::find($waiter->id)->Patient->fullname}}</td>
                                         <td>
                                             @if(App\Appointment::find($waiter->id)->Patient->gender==0)

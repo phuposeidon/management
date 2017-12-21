@@ -63,7 +63,7 @@
                                                         <i class="fa fa-print"></i> In </a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:;">
+                                                    <a href="{{asset('export-order/4')}}">
                                                         <i class="fa fa-file-pdf-o"></i> Lưu thành PDF </a>
                                                 </li>
                                                 <li>
@@ -117,7 +117,7 @@
                                         <td> 
                                         @if($order->status == "new")
                                             <span class="label label-warning">Hóa đơn mới</span>
-                                        @elseif($order->status == "confirmed")
+                                        @elseif($order->status == "confirm")
                                             <span class="label label-success">Đã thanh toán</span>
                                         @else
                                             <span class="label label-danger">Đã hủy</span>

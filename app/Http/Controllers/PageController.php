@@ -31,7 +31,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-
+    public function index() {
+        return view('client.layouts.index');
+    }
     public function showAppointmentLogin() {
         return view('client.page.appointment-login');
     }

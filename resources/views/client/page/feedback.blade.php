@@ -40,15 +40,15 @@
                                 <ul class="doctor-info">
                                     <li class="doctor-list">
                                         <label for="" class="label-bottom">Chuyên Khoa: </label>
-                                        <input type="text" class="form-control" value="{{$doctor->Specialization->name}}">
+                                        <input type="text" class="form-control" value="{{$doctor->Specialization->name}}" disabled>
                                     </li>
                                     <li class="doctor-list">
                                         <label for="" class="label-bottom">Ngày sinh: </label>
-                                        <input type="text" class="form-control" value="{{Carbon\Carbon::Parse($doctor->DOB)->format('d-m-Y')}}">
+                                        <input type="text" class="form-control" value="{{Carbon\Carbon::Parse($doctor->DOB)->format('d-m-Y')}}" disabled>
                                     </li>
                                     <li class="doctor-list">
                                         <label for="" class="label-bottom">Email: </label>
-                                        <input type="text" class="form-control" value="{{$doctor->email}}">
+                                        <input type="text" class="form-control" value="{{$doctor->email}}" disabled>
                                     </li>
                                 </ul>
                             </div>
@@ -64,7 +64,7 @@
                                         btn-success
                                         @endif
                                     ">
-                                        <p class="point text-center">{{$pointAvg}}</p>
+                                        <p class="point text-center">{{round($pointAvg, 2)}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                         <div class="testi-details col-md-10">
                             <h4>{{$fb->title}}</h4>
                             <!-- Paragraph -->
-                            <p>{{$fb->content}}</p>
+                            <p>{!!$fb->content!!}</p>
                         </div>
                         <div class="col-md-2">
                             <div class="doctor-point
