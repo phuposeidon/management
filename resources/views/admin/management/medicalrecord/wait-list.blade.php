@@ -104,7 +104,7 @@ function preview_images()
                 <div id="load-content" class="tab-content">
                     <div class="tab-pane active" id="portlet_tab1">
                         <!--  Thông tin benh nhan -->
-                        <div class="portlet light bordered" >
+                        <div class="portlet light bordered" style="height: 100%;">
                             <div class="portlet-title tabbable-line">
 
                                 <ul class="nav nav-tabs" style="float:none;">
@@ -253,11 +253,24 @@ function preview_images()
                                                             <th >Giới Tính</th>
                                                             <th  >Số Điện Thoại</th>
                                                             <th  >Ghi chú</th>
-                                                            <th>Chi tiết</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <!-- ngRepeat: item in BSGD.TCBT -->
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>{{$patient->fullname}}</td>
+                                                            <td>
+                                                                @if($patient->gender == 1)
+                                                                Nam
+                                                                @else
+                                                                    Nữ
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                {{$patient->phone}}
+                                                            </td>
+                                                            <td>{{$patient['note']}}</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -388,7 +401,7 @@ function preview_images()
                                             <label class="col-md-4 control-label">Mẫu Bệnh Án</label>
                                             <div class="col-md-6" style="margin-top: 10px;">
                                                 <select id="mau_benh_an" class="form-control" >
-                                                    <option value="A">Chọn mẫu</option>
+                                                    <option value="">Chọn mẫu</option>
                                                     @foreach($records as $record)
                                                     <option value="{{$record->id}}">{{$record->name}}</option>
                                                     @endforeach
@@ -754,7 +767,7 @@ function preview_images()
             <!-- /.modal-dialog -->
         </div>
         {{--  END Tiền căn bản thân  --}}
-        <div class="modal fade draggable-modal" data-id="" id="fami_medical" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal fade draggable-modal" data-id="{{$id}}" id="fami_medical" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -999,43 +1012,40 @@ function preview_images()
 
 
         //Patient Medical
-         $('.add_patient_medical').on('click', function(event) {
-             event.preventDefault();
-             var id = $(this).data('id');
-             $('#save_patient').click(function(event) {
+        $('#save_patient').on('click',function(event) {
+                 var id = $('#patient_medical').data('id');
                  var base_name = $('#base_name').val();
                     var base_note = $('#base_note').val();
                  $.post('patient-medical', {id: id,name:base_name,note:base_note}, function(data) {
-                        $('#table_body').html(data);
-                        $('#patient_medical').modal('toggle');
-                         setTimeout(function(){
-                            $('#reset_patientmedical')[0].reset();
-                        },2000);
+                       if(data)
+                       {
+                         $('#table_body').html(data);
+                        $('#reset_patientmedical').trigger("reset");
+                        $('#patient_medical').modal('hide');
+                    }else{
+                        alert('something went wrong');
+                    }
                  });
              });
-         });
          //====================================
          //Fami Medical
-         $('.add_fami_medical').on('click', function(event) {
-             event.preventDefault();
-             var id = $(this).data('id');
+       
              $('#fami_medical_2').click(function(event) {
                  var relationship = $('#relationship').val();
                  var disease = $('#disease').val();
                  var note = $('textarea#note_fami').val();
+                  var id = $('#fami_medical').data('id');
+
                  var socialproblem = $('#socialproblem').val();
                  $.post('fami-medical', {id:id, relationship:relationship, disease:disease , note:note , socialproblem:socialproblem }, function(data) {
                         $('#fami_body').html(data);
-                        
+                        $('#reset_famimedical')[0].reset();
                         $('#fami_medical').modal('toggle');
-                        setTimeout(function(){
-                            $('#reset_famimedical')[0].reset();
-                        },2000);
+                        
 
                      
                  });
              }); 
-         });
          //End
          $('#status').hide(3000,function(){
             $(this).remove();

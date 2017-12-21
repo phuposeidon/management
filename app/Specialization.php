@@ -21,4 +21,6 @@ class Specialization extends Model
         return $this->hasMany('App\Question', 'specializationId', 'id');
     }
 
+
+
 }
