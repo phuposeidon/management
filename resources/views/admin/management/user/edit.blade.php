@@ -195,7 +195,67 @@
                     </div>
                 </div>
             </div>
-             <div class="row">
+            
+            <!-- *********** add "wage-disable" if user is not ADMIN **********-->
+            <div class="col-md-12"> 
+                <h1 class="page-title">Quản Lý Lương</h1>
+                
+                <!-- Left side WAGE -->
+                <div class="col-md-6">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="" class="col-md-3">Lương Cơ Bản </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control wage-child" id="basicWage" name="basicWage" value="{{number_format($salary->basicWage)}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-md-3">Lương Tháng Này </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" value="{{number_format($salary->basicWage * $salary['coefficient'] + 0.2 * $extraSalary)}}" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End left side WAGE -->
+
+                <!-- Right side WAGE -->
+                <div class="col-md-6">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="" class="col-md-3">Bậc Lương(B.Sĩ) </label>
+                            <div class="col-md-6">
+                                <select name="level" id="level" class="form-control wage-child">
+                                    <option value="0">Nhân viên khác</option>
+                                    @for($i = 1; $i <= 8; $i ++)
+                                    <option value="{{$i}}" 
+                                        @if($salary['level'] == $i) 
+                                        selected 
+                                        @endif
+                                    >Bậc {{$i}}</option>
+                                    <!--  -->
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-md-3">Hệ Số Lương </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control wage-child" name="coefficient" id="coefficient" value="{{$salary['coefficient']}}">
+                                <!--  -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End right side WAGE -->
+
+            </div>
+            
+            <div class="row">
                 <div class="col-md-12">
                     <div class="text-center" style="margin-top:30px;">
                         <button  type="submit" class="btn btn-primary" >
@@ -212,7 +272,8 @@
                     </div>
                 </div>
             </div>
-             </form>
+            </form>
+
              <!-- END CONTENT -->
         </div>
         <!-- END CONTENT BODY -->
@@ -226,5 +287,26 @@
         {
             $('#reportAdd').fadeOut();
         },4000);
+
+        $('#basicWage').number( true, 0 );
+
+        $('#level').on('change', function () {
+            level = $(this).val();
+            if( level == 0) {
+                $('#coefficient').val('1');
+            }
+            else {
+                for(i = 1; i <= 8; i++) {
+                    if(level == i) coefficient = 4.4 + 0.34 * (i - 1);
+                }
+                coefficient = Math.round(coefficient * 100) / 100;
+                $('#coefficient').val(coefficient);
+            }
+        });
+
+        //disable all input WAGE
+        if($('.wage-disable').length > 0 ) {
+            $('.wage-child').attr('disabled',"");
+        }
     })
 </script>

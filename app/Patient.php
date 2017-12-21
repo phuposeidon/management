@@ -56,4 +56,8 @@ class Patient extends Authenticatable
         return $this->hasMany('App\Like', 'patientId', 'id');
     }
 
+    public function Feedback() {
+        return $this->hasMany('App\Feedback', 'patientId', 'id');
+    }
+
 }

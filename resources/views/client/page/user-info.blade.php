@@ -37,7 +37,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label for="" class="label-bottom label-textright">Ngày Sinh:</label>
+                                    <label for="" class="label-bottom label-textright">NgàySinh:</label>
                                 </div>
                                 
                                 <div class="col-md-9 form-group">
@@ -109,7 +109,7 @@
 
                     <h3 class="white"> Đổi mật khẩu</h4>
 
-                    <div class="row user-info">
+                    <div class="col-md-12 user-info">
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-3 form-group">
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row user-info">
+                    <div class="col-md-12 user-info">
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-3 form-group">
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-appoint">Cập nhật</button>
+                    <button type="submit" class="btn btn-appoint" style="margin-top: 10px">Cập nhật</button>
                 </form>
             </div>
 
@@ -155,6 +155,132 @@
         </div>
       </div>
     </div>
+  </section>
+  <section id="service" class="section-padding section-color">
+    <div class="container">
+        <h1>Lịch sử khám</h1>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <table class="table table-striped table-bordered table-hover" >
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Ngày Khám</th>
+                            <th>Bác Sĩ</th>
+                            <th>Khoa</th>
+                            <th>Tổng Tiền</th>
+                            <th>Xem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;?>
+                        @foreach($getOrders as $order)
+                            <tr style="color: #333">
+                                <th>{{$i}}</th>
+                                <th>{{Carbon\Carbon::Parse($order->createdAt)->format('d-m-Y')}}</th>
+                                <th>{{$order->MedicalRecord->User->fullname}}</th>
+                                <th>{{$order->MedicalRecord->User->Specialization->name}}</th>
+                                <th>{{number_format($order->totalAmount)}}đ</th>
+                                <th><a href="#modal-{{$order->id}}" data-toggle="modal" class="btn btn-appoint" style="margin-top: 0"><i class="fa fa-eye"></i></a></th>
+                            </tr>
+                        <?php $i++;?>
+                        @endforeach
+                    
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- modal order -->
+    @foreach($getOrders as $order)
+    <div class="modal fade" id="modal-{{$order->id}}" style="margin-top: 2em ">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Mã hóa đơn {{$order->orderCode}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Bác Sĩ: <span style="color: #333">{{$order->MedicalRecord->User->fullname}}</span></label>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Ngày Khám: <span style="color: #333">{{Carbon\Carbon::Parse($order->createdAt)->format('d-m-Y')}}</span></label>
+                        </div>
+                    </div>
+                    <h3>Dịch vụ sử dụng</h3>
+
+                    <table class="table table-striped table-bordered table-hover" >
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Dịch vụ</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                $getServices = App\OrderService::where('orderId', $order->id)->get();
+                                $t = 1;
+                            ?>
+                            @foreach($getServices as $service)
+                                <tr style="color: #333">
+                                    <th>{{$t}}</th>
+                                    <th>{{$service->Service->name}}</th>
+                                    <th>{{number_format($service->Service->price)}}đ</th>
+                                </tr>
+                            <?php $t++; ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <h3>Danh sách thuốc</h3>
+
+                    <table class="table table-striped table-bordered table-hover" >
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên Thuốc</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                $getMedicines = App\OrderMedicine::where('orderId', $order->id)->get();
+                                $j = 1;
+                            ?>
+                            @foreach($getMedicines as $medicine)
+                            <tr style="color: #333;">
+                                <th>{{$j}}</th>
+                                <th>{{$medicine->Medicine->name}}</th>
+                                <th>{{number_format($medicine->totalPrice)}}đ</th>
+                            </tr>
+                            <?php $j++; ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <h3>Tổng cộng: <span style="color: red">{{number_format($order->totalAmount)}}đ</span></h3>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    @endforeach
+    <!-- end modal order -->
+
+
   </section>
     @include('client.layouts.footer')
 

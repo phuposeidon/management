@@ -33,12 +33,12 @@
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
             <!-- CONTENT -->
-            @if(Session::has('flash_message'))
-                <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
+             @if(Session::has('flash_message'))
+                    <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{asset('adminpost/add')}}" role="form" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{URL::action('PostController@postEdit')}}" role="form" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" name="userId" value="{{Auth::user()->id}}">
+            <input type="hidden" name="id" value="{{$getPostById->id}}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-body">
@@ -47,24 +47,20 @@
                             <div class="col-md-4">
                                 <select name="categoryId" id="" class="form-control">
                                     @foreach($allCategory as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option value="{{$category->id}}"
+                                        @if($getPostById->categoryId == $category->id)
+                                            selected
+                                        @endif
+                                    >{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">Tên Bài Viết</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="Nhập Tên Bài Viết" name="name" value="{{old('name')}}">
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="col-md-2 control-label">Ảnh Bài Viết</label>
                             <div class="fileinput fileinput-new col-md-6" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                    <img src="{{asset('img/post/'.$getPostById->avatar)}}" alt="" /> </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                 <div>
                                     <span class="btn default btn-file">
@@ -75,11 +71,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tên Bài Viết</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Nhập Tên Bài Viết" name="name" value="{{$getPostById->name}}">
+                            </div>
+                        </div>
                                 
                         <div class="form-group">
                             <label class="col-md-2 control-label">Nội Dung</label>
                             <div class="col-md-8">
-                                <textarea name="content" class="summernote form-control" placeholder="Nhập Nội Dung Bài Viết" rows="10" value="{{old('content')}}"></textarea>
+                                <textarea name="content" class="summernote form-control" rows="10" >{!!$getPostById->content!!}</textarea>
                             </div>
                             
                         </div>
@@ -96,7 +98,7 @@
                             <button type="button" class="btn btn-primary">
                                 <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
                             </button>
-                            <a href="{{asset('category')}}">
+                            <a href="{{asset('category/'.$getPostById->categoryId)}}">
                                 <button type="button" class="btn btn-default" >
                                 <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                             </button>

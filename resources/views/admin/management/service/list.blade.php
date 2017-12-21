@@ -119,13 +119,13 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <a href="{{route('getEdit',['id'=>$service->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
+                                                <a href="{{route('getEdit',['id'=>$service->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
                                                 
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$service->id}}"> Xóa</a>                             
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$service->id}}"> <i class="fa fa-trash-o"></i></a>                             
                                             </div>
                                         </td>
                                     </tr>

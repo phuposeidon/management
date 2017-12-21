@@ -13,8 +13,8 @@
               <img src="{{asset('client/img/logo.png')}}" class="img-responsive">
             </div>
             <div class="banner-text text-center">
-              <h1 class="white">Hỏi đáp cùng bác sĩ</h1>
-              <p>Nơi bạn đặt ra những câu hỏi, vấn đề bạn và người thân mắc phải<br>Đội ngũ y sĩ của chúng tôi sẽ sẵn sàng trả lời.</p>
+              <h1 class="white">Lời khuyên Bác sĩ</h1>
+              <p>Nơi đội ngũ bác sĩ của chúng tôi chia sẽ kinh nghiệm, kiến thức <br> Để bạn và người thân có thể phòng và chữa bệnh tại nhà.</p>
               @if(isset(Auth::guard('patient')->user()->username))
               <form action="{{asset('appointments')}}" method="post">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">

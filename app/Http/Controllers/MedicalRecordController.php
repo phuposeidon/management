@@ -72,7 +72,7 @@ class MedicalRecordController extends Controller
         $order = new Order;
         $medicalrecord = new MedicalRecord;
         $medicalrecord->patientId = $req->id;
-        $medicalrecord->doctorId = 1;
+        $medicalrecord->doctorId = $req->doctorId;
         $medicalrecord->clinicId = 1;
         $medicalrecord->diagnosis = $req->diagnosis;
         $medicalrecord->conclusion = $req->ckeditor;

@@ -137,7 +137,7 @@
                             </table>
 
                             <button type="button" id="deleteAll" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"> </span>  Xóa tất cả</button>
-                            {{$allUsers->links()}}
+                            <!-- $allUsers->links()}} -->
 
                             <!-- làm modal delete -->
                             <div class="modal fade" id="modal-1" style="margin-top: 12em ">

@@ -13,8 +13,8 @@
               <img src="client/img/logo.png" class="img-responsive">
             </div>
             <div class="banner-text text-center">
-              <h1 class="white">Hỏi đáp cùng bác sĩ</h1>
-              <p>Nơi bạn đặt ra những câu hỏi, vấn đề bạn và người thân mắc phải<br>Đội ngũ y sĩ của chúng tôi sẽ sẵn sàng trả lời.</p>
+              <h1 class="white">Lời khuyên Bác sĩ</h1>
+              <p>Nơi đội ngũ bác sĩ của chúng tôi chia sẽ kinh nghiệm, kiến thức <br> Để bạn và người thân có thể phòng và chữa bệnh tại nhà.</p>
               @if(isset(Auth::guard('patient')->user()->username))
               <form action="{{asset('appointments')}}" method="post">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -48,10 +48,11 @@
 
             <div class="col-md-4">
                 <a href="{{asset('post/'.$newPost->id.'#service')}}" class="title-npost">{{$newPost->name}}</a>
-                <p class="content-npost text-justify">Ung thư thực quản là loại ung thư phổ biến và có tỉ lệ ngày 
+                <!-- <p class="content-npost text-justify">Ung thư thực quản là loại ung thư phổ biến và có tỉ lệ ngày 
                     càng tăng lên trong những năm gần đây. Theo thông tin từ trang blogsuckhoe 
                     cho biết: “Nếu như năm 2000 chỉ có hơn 800 ca ung thư thực quản thì sau 10 năm 
-                    con số này đã tăng gấp 5 lần và hiện nay vẫn tăng lên”.</p>
+                    con số này đã tăng gấp 5 lần và hiện nay vẫn tăng lên”.</p> -->
+                <p class="content-npost text-justify cut-content"><small>{{Illuminate\Support\Str::limit($newPost->content, $limit = 500, $end = '...')}}</small></p>
             </div>
         </div>
 
@@ -94,9 +95,10 @@
                       <img src="{{asset('img/post/'.$catePost->avatar)}}" alt="" class="img-listpost">
                     </div>
 
-                    <div class="col-md-5 text-justify">
-                      <small>Bệnh lao phổi rất dễ xảy ra biến chứng trong quá trình điều trị do khuẩn lao khó kiểm soát 
-                        và dễ dàng xâm nhập sâu hơn vào cơ thể bệnh nhân, gây ra các bệnh ...</small>
+                    <div class="col-md-5 text-justify cut-content">
+                      <!-- <small>Bệnh lao phổi rất dễ xảy ra biến chứng trong quá trình điều trị do khuẩn lao khó kiểm soát 
+                        và dễ dàng xâm nhập sâu hơn vào cơ thể bệnh nhân, gây ra các bệnh ...</small> -->
+                        <small>{{Illuminate\Support\Str::limit($catePost->content, $limit = 260, $end = '...')}}</small>
                     </div>
                   </div>
                   
@@ -129,7 +131,11 @@
         $('#myNavbar ul .indexBtn').removeClass('active');
         $('#myNavbar ul .postsBtn').addClass('active');
       
-        
+        //cut content
+        $('.cut-content').each(function(){
+          $(this).children().html($(this).find('small:first-child').text());    
+        });
+
       });
     </script>
   </body>

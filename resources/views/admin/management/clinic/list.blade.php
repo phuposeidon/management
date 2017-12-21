@@ -127,8 +127,8 @@
 
                                         <td>
                                             <div>
-                                                <a href="{{route('editClinic', ['id' => $clinic->id])}}" class="btn btn-xs green dropdown-toggle"> Sửa</a>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$clinic->id}}"> Xóa</a>
+                                                <a href="{{route('editClinic', ['id' => $clinic->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
+                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$clinic->id}}"> <i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>
                                        

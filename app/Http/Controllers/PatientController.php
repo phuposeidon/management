@@ -70,7 +70,7 @@ class PatientController extends Controller
 			$patient->avatar = $file_name;
 		}
 		else {
-			$patient->avatar = 'img/patient/user-default.png';
+			$patient->avatar = 'user-default.png';
 		}
 		
 		$patient->save();

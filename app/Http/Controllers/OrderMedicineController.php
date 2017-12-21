@@ -13,11 +13,11 @@ class OrderMedicineController extends Controller
         $order = Order::find($req->orderId);
     	$id = $req->id ? $req->id :'';
         $medicine = $req->medicine ?$req->medicine:'';
-        $amount = $req->amount ? $req->amount :'' ;
-        $morning = $req->morning ? $req->morning:'';
-        $afternoon = $req->afternoon ? $req->afternoon:'';
-        $evening = $req->evening ? $req->evening :'';
-        $night = $req->night ?  $req->night : '';
+        $amount = $req->amount ? $req->amount :0 ;
+        $morning = $req->morning ? $req->morning:0 ;
+        $afternoon = $req->afternoon ? $req->afternoon:0;
+        $evening = $req->evening ? $req->evening :0;
+        $night = $req->night ?  $req->night : 0;
         $expireDay = $req->expireDay ? $req->expireDay:'';
         $using_med = $req->using_med ? $req->using_med :'';
         $note = $req->note ?  $req->note :'';

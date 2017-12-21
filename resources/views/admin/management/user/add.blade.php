@@ -289,7 +289,60 @@
                     </div>
                 </div>
             </div>
-             <div class="row">
+
+            <div class="col-md-12">
+                <h1 class="page-title">Quản Lý Lương</h1>
+                
+                <!-- Left side WAGE -->
+                <div class="col-md-6">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="" class="col-md-3">Lương Cơ Bản </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="basicWage" id="basicWage" value="">
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-md-3">Bậc Lương(B.Sĩ)</label>
+                        <div class="col-md-6">
+                            <select name="level" id="level" class="form-control">
+                                <option value="0">Nhân viên khác</option>
+                                @for($i = 1; $i <= 8; $i ++)
+                                <option value="{{$i}}">Bậc {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+                <!-- End left side WAGE -->
+
+                <!-- Right side WAGE -->
+                <div class="col-md-6">
+                    <div class="form-body">
+                        <div class="form-group" style="visibility: hidden;">
+                            <label for="" class="col-md-3"> </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-md-3">Hệ Số Lương </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="coefficient" id="coefficient" value="1">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End right side WAGE -->
+
+            </div>
+
+            <div class="row">
                 <div class="col-md-12">
                     <div class="text-center" style="margin-top:30px;">
                         <button  type="submit" class="btn btn-primary" >
@@ -318,5 +371,21 @@
         {
             $('.reportAdd').fadeOut();
         },4000);
+
+        $('#basicWage').number( true, 0 );
+
+        $('#level').on('change', function () {
+            level = $(this).val();
+            if( level == 0) {
+               $('#coefficient').val('1');
+            }
+            else {
+                for(i = 1; i <= 8; i++) {
+                    if(level == i) coef = 4.4 + 0.34 * (i - 1);
+                }
+                coef = Math.round(coef * 100) / 100;
+                $('#coefficient').val(coef);
+            }
+        });
     })
 </script>

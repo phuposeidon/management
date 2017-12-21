@@ -12,7 +12,13 @@ use App\QuestionImage;
 use App\Answer;
 use App\Like;
 use App\Post;
+use App\Feedback;
 use App\Category;
+use App\MedicalRecord;
+use App\Order;
+use App\OrderMedicine;
+use App\OrderService;
+use App\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -141,12 +147,44 @@ class PageController extends Controller
     }
     
     public function showUserInfo() {
-        if(isset(Auth::guard('patient')->user()->id)){
-            $id = Auth::guard('patient')->user()->id;
-            $getPatientById = Patient::find($id);
-            return view('client.page.user-info', ['getPatientById' => $getPatientById]);
-        }
-        else return view('client.layouts.index');
+        $id = Auth::guard('patient')->user()->id;
+        $getPatientById = Patient::find($id);
+        $getOrders = Order::where('patientId', $id)->orderBy('createdAt','desc')->paginate(10);
+        return view('client.page.user-info', [
+            'getPatientById' => $getPatientById,
+            'getOrders' => $getOrders,
+            ]);
+    }
+
+    public function doctorFeedback($id) {
+        $doctor = User::find($id);
+        $allFeedbacks = Feedback::where('doctorId', $id)->orderBy('createdAt','desc')->paginate(5);
+        $pointAvg = $allFeedbacks->avg('point');
+        return view('client.page.feedback',['doctor' => $doctor, 'allFeedbacks' => $allFeedbacks, 'pointAvg'=>$pointAvg]);
+    }
+
+    public function postFeedback(Request $request) {
+        // /dd($request->all());
+        $feedback = new Feedback;
+        $feedback->doctorId = $request->doctorId;
+        $feedback->patientId = $request->patientId;
+        $feedback->title = $request->subject;
+        $feedback->point = $request->point;
+        $feedback->anonymous = $request->anonymous;
+        $feedback->content = $request->content;
+        $feedback->save();
+
+        $date_created = Carbon::Parse($feedback->crearedAt)->format('d-m-Y H:i');
+
+        $data = [
+            'title' => $feedback->title,
+            'point' => $feedback->point,
+            'content' => $feedback->content,
+            'patient' => $feedback->Patient->fullname,
+            'createdAt' => $date_created,
+            'anonymous' => $feedback->anonymous
+        ];
+        return json_encode($data);
     }
 
     public function postEditInfo(Request $request){

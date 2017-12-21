@@ -104,6 +104,7 @@
                                             </label>
                                         </td>
                                         <td> {{$i}} </td>
+
                                         <td> {{$order->orderCode}} </td>
                                         <td> {{$order->MedicalRecord->Patient['fullname']}} </td>
                                         <td id="totalAmount"> {{number_format($order->totalAmount).' VNĐ'}} </td>
@@ -116,9 +117,11 @@
                                             @elseif($order->status=="cancel")
                                             <span style="margin-left: 20px;" class="label label-danger">Đã hủy</span>
                                             @endif
+
                                         </td>
                                         <td>
                                             <div>
+
                                                 <a data-id="{{$order->id}}" class="btn btn-xs green dropdown-toggle payment"> Thanh Toán</a>
                                                 <a class="btn btn-xs red dropdown-toggle cancel" data-id="{{$order->id}}"> Hủy</a>
                                                 
@@ -131,7 +134,7 @@
                                 </tbody>
                             </table>
 
-                           
+
                             <!-- $allTransactions->links() -->
 
                             <!-- làm modal delete -->
@@ -143,10 +146,10 @@
                                                 <span aria-hidden="true">&times;</span>
                                                 <span class="sr-only">Close</span>
                                             </button>
-                                            <h4 class="modal-title">Xóa giao dịch</h4>
+                                            <h4 class="modal-title">Hủy giao dịch</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Bạn muốn xóa giao dịch?</p>
+                                            <p>Bạn muốn hủy giao dịch?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>

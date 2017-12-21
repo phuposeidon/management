@@ -24,4 +24,8 @@ class Order extends Model
     public function OrderService() {
         return $this->hasMany('App\OrderService', 'orderId', 'id');
     }
+
+    public function Patient() {
+        return $this->belongsTo('App\Patient', 'patientId', 'id');
+    }
 }

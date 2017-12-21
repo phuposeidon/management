@@ -76,6 +76,7 @@ Route::post('/medicine/{id}','MedicineController@postMedicine')->name('postMedic
 Route::post('/medicine-delete', 'MedicineController@delete');
 Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
     Route::get('/order', 'OrderController@list');
+    Route::get('/order/{id}', 'OrderController@getEdit');
     Route::post('/order-delete', 'OrderController@delete');
     Route::post('/order-multidelete', 'OrderController@deleteAll');
 
@@ -176,6 +177,7 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::post('ajax/question/post','QuestionController@postAnswer');
     Route::post('ajax/question/searchUrl','QuestionController@searchUrl');
     Route::post('ajax/question/addUrl','QuestionController@addUrl');
+    Route::post('/question-delete', 'QuestionController@delete');
 
     Route::get('/diagnosis/{id}','MedicalRecordController@waitList')->name('diagnosis');
     Route::post('/medicalrecord','MedicalRecordController@addRecord');
@@ -201,6 +203,9 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::post('/category/add', 'PostController@addCategory');
     Route::get('/adminpost/add', 'PostController@getAdd');
     Route::post('/adminpost/add', 'PostController@postAdd');
+    Route::get('/adminpost/{id}', 'PostController@getEdit');
+    Route::post('/adminpost/edit', 'PostController@postEdit');
+    Route::post('/post-delete', 'PostController@delete');
 
 });
 //CLOSE ADMIN PAGE
@@ -231,7 +236,8 @@ Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     
     Route::get('/user-info','PageController@showUserInfo');
     Route::post('/user-info','PageController@postEditInfo');
-    
+    Route::get('/feedback/{id}', 'PageController@doctorFeedback');
+    Route::post('/ajax/feedback/patient-post', 'PageController@postFeedback');
     Route::get('/blog', 'PageController@getBlog');
     Route::post('/blog', 'PageController@postBlog');
     Route::post('/like', 'PageController@postLike');

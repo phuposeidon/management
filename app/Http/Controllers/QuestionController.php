@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\QuestionImage;
 use App\Answer;
 use App\Post;
+use App\Like;
 use Carbon\Carbon;
 
 class QuestionController extends Controller
@@ -54,4 +56,13 @@ class QuestionController extends Controller
         if($request->searchUrl == '') $data = '';
         return json_encode($data);
     }
+
+    public function delete(Request $request) {
+        $id = $request->id;
+        QuestionImage::where('questionId', $id)->delete();
+        Like::where('questionId', $id)->delete();
+        Answer::where('questionId', $id)->delete();
+		Question::find($id)->delete();
+	}
+
 }

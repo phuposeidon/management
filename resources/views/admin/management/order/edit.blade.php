@@ -88,11 +88,11 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="#">Thuốc</a>
+                        <a href="#">Hóa Đơn</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <span>Thêm Thuốc</span>
+                        <span>Chi Tiết Hóa Đơn</span>
                     </li>
                 </ul>
                 <div class="page-toolbar">
@@ -124,7 +124,7 @@
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title">Thông Tin Dịch Vụ
+            <h1 class="page-title">Thông Tin Hóa Đơn
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -132,7 +132,7 @@
              @if(Session::has('flash_message'))
                     <div class="alert alert-success" id="reportAdd">{{ Session::get('flash_message')}}</div>
             @endif
-            <form class="form-horizontal" action="{{route('postService',['id'=>$service->id])}}" method="POST" role="form">
+            <form class="form-horizontal" action="" method="POST" role="form">
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -141,22 +141,16 @@
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên Dịch Vụ</label>
+                                    <label class="col-md-3 control-label">Mã Hóa Đơn</label>
                                     <div class="col-md-6">
-                                        <input type="text" value="{{$service->name}}" required name="name" class="form-control" placeholder="  ">
+                                        <input type="text" value="{{$getOrderById->orderCode}}" required name="orderCode" class="form-control" disabled="">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Chuyên Khoa</label>
+                                    <label class="col-md-3 control-label">Bệnh Nhân</label>
                                     <div class="col-md-6">
-                                        <select name="user" class="form-control">
-                                        @foreach($allSpecialization as $specialization)
-                                            <option <?php if($specialization->id == $service->specializationId) 
-                                                echo "selected='selected'";
-                                             ?> value="{{$specialization->id}}">{{$specialization->name}}</option>
-                                        @endforeach
-                                        </select>
+                                        <input type="text" value="{{$getOrderById->Patient->fullname}}" required name="patientId" class="form-control" disabled="">
                                     </div>
                                 </div>
 
@@ -167,45 +161,106 @@
                             <div class="form-body">
                                 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Giá</label>
+                                    <label class="col-md-3 control-label">Tổng Cộng</label>
                                     <div class="col-md-6">
-                                        <input type="number" value="{{$service->price}}" required name="price" class="form-control" placeholder="  ">
+                                        <input type="text" value="{{number_format($getOrderById->totalAmount)}}đ" required name="price" class="form-control" disabled="">
                                     </div>
                                 </div>
 
                                 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Nội Dung</label>
-                                    <div class="col-md-6">
-                                    <textarea rows="5" name="content"  class="form-control" style="">{{$service->content}}</textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <div class="mt-checkbox-list">
-                                            <label class="mt-checkbox mt-checkbox-outline">
-                                                <input checked type="checkbox">Hoạt Động
-                                                <span></span>
-                                            </label>
-                                        </div>
+                                    <label class="col-md-3 control-label">Trạng Thái</label>
+                                    <div class="col-md-6" style="padding-top: 10px">
+                                        @if($getOrderById->status == "new")
+                                            <span class="label label-warning">Hóa đơn mới</span>
+                                        @elseif($getOrderById->status == "confirmed")
+                                            <span class="label label-success">Đã thanh toán</span>
+                                        @else
+                                            <span class="label label-danger">Đã hủy</span>
+                                        @endif
                                     </div>
                                 </div>
 
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12">
+                <h1 class="page-title">Dịch Vụ Sử Dụng</h1>
+                
+                @foreach($services as $service)
+                <!-- Left side order service -->
+                <div class="col-md-6">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="" class="col-md-3 control-label">Tên Dịch Vụ </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" disabled="" value="{{$service->Service->name}}">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End left side order service -->
+
+                <!-- Right side order service -->
+                <div class="col-md-6">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="" class="col-md-3 control-label"> Giá</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" value="{{number_format($service->Service->price)}}đ" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End right side order service -->
+                @endforeach
+
+            </div>
+
+            <div class="col-md-12">
+                <h1 class="page-title">Toa Thuốc</h1>
+                
+                <table class="table table-striped table-bordered table-hover" >
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Thuốc</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Tổng Tiền</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    @if(count($medicines) > 0)
+                        <?php $i = 1;?>
+                        @foreach($medicines as $medicine)
+                            <tr>
+                                <th>{{$i}}</th>
+                                <th>{{$medicine->Medicine->name}}</th>
+                                <th>{{$medicine->amount}}</th>
+                                <th>{{number_format($medicine->Medicine->price)}}đ</th>
+                                <th>{{number_format($medicine->totalPrice)}}đ</th>
+                            </tr>
+                        <?php $i++; ?>
+                        @endforeach
+                    @else
+                        <tr><th colspan='5'> <center>Không có thuốc được chọn</center></th></tr>
+                    @endif
+                    </tbody>
+                </table>
+            </div>
+
+            
              <!-- END CONTENT -->
              <div class="row">
                 <div class="col-md-12">
                     <div class="text-center" style="margin-top:30px;">
-                        <button  type="submit" class="btn btn-primary" >
-                            <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh 
-                        </button>
-                        <a href="{{route('getService')}}" class="btn btn-default" >
-                            <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
+                        <a href="{{asset('order')}}" class="btn btn-default" >
+                            <i class="fa fa-lg fa-fw x fa fa-times"></i>Quay Lại
                         </a>
                     </div>
                 </div>
