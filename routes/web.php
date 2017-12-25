@@ -42,8 +42,12 @@ Route::post('/user-multidelete', 'UserController@deleteAll');
     });
 
     Route::get('/appointment', 'AppointmentController@list');
+    Route::get('/appointment/search', 'AppointmentController@search');
     Route::post('/appointment-delete','AppointmentController@delete');
     Route::post('/appointment-multidelete', 'AppointmentController@deleteAll');
+    Route::post('/appointment/change-status','AppointmentController@changeStatus')->name('changeStatus');
+    Route::post('/appointment/cancel','AppointmentController@cancel');
+
 
 
     Route::get('/clinic', 'ClinicController@list')->name('list');
@@ -208,7 +212,7 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::post('/post-delete', 'PostController@delete');
 
     //Export order
-    Route::get('export-order/{id}','OrderController@exportOrder');
+    Route::get('export-order/{id}','OrderController@exportOrder')->name('exportOrder');
 
 });
 //CLOSE ADMIN PAGE

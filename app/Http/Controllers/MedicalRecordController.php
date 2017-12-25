@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\MedicalRecord;
 use App\Appointment;
 use Carbon\Carbon;
@@ -45,7 +49,7 @@ class MedicalRecordController extends Controller
                     <td>".$history_medicine->evening."</td>
                    <td>".$history_medicine->night."</td>
                    <td>".$history_medicine->evening."</td>
-                    <td>".$history_medicine->amount."</td>
+                    <td>".$history_medicine->expireDay."</td>
                    <td>".$history_medicine->using_med."</td>
                    <td>".$history_medicine->note."</td>
                 </tr>";
@@ -53,6 +57,8 @@ class MedicalRecordController extends Controller
     }
 
     function waitList($id){
+        $userId = Auth::id();
+        $user = User::find($userId);
 		$services= Service::where('serviceCode','=','BT')->get();
         $service_cdha = Service::where('serviceCode','=','CDHA')->get();
 		$patient = Patient::find($id);
@@ -63,7 +69,7 @@ class MedicalRecordController extends Controller
         $orders = Order::where('patientId','=',$id)->get();
         $records = Record::all();
 
-            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'services'=>$services,'orders'=>$orders,'records'=>$records,'service_cdha'=>$service_cdha]);
+            return view('admin.management.medicalrecord.wait-list',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'services'=>$services,'orders'=>$orders,'records'=>$records,'service_cdha'=>$service_cdha,'user'=>$user]);
     }
 
     function addRecord(Request $req)
