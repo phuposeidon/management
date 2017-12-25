@@ -13,8 +13,8 @@
               <ul class="nav navbar-nav">
                 <li class="active"><a href="{{asset('index')}}">Trang chủ</a></li>
                 <li class=""><a href="#service">Dịch vụ</a></li>
-                <li class=""><a href="#about">Thông tin</a></li>
-                <li class=""><a href="#testimonial">Đánh giá</a></li>
+                <li class=""><a href="#testimonial">Thông tin</a></li>
+                <li class=""><a href="#doctor-team">Đội ngũ</a></li>
                 <li class=""><a href="#contact">Liên hệ</a></li>
                 <li class=""><a href="{{asset('posts')}}">Bài viết</a></li>
                 @if(isset(Auth::guard('patient')->user()->username))

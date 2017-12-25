@@ -23,7 +23,7 @@
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="{{asset('img/user/'.Auth::user()->avatar)}}" />
+                        <img alt="" class="img-circle" src="{{asset('img/user/'.Auth::user()->avatar)}}" width="29px"/>
                         <span class="username username-hide-on-mobile"> Xin chào, {{Auth::user()->fullname}} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>

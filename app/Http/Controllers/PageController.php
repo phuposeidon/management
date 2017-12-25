@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PatientFeedback;
 use App\Specialization;
 use App\User;
 use App\Patient;
@@ -32,7 +34,18 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function index() {
-        return view('client.layouts.index');
+        $topDoctors = User::rightJoin('feedback', 'user.id','=','feedback.doctorId')
+        ->selectRaw('user.userType, user.specializationId, avatar, fullname, user.id , AVG(point) as avgPoint')
+        ->groupBy('doctorId', 'user.id', 'fullname', 'specializationId', 'userType', 'avatar')
+        ->orderBy('avgPoint','DESC')
+        ->take(4)->get();
+
+        $newPosts = Post::orderBy('createdAt', 'desc')->take(3)->get()->toArray();
+        $newestPost = array_slice($newPosts,0,1);
+        $newerPosts = array_slice($newPosts,1,2);
+        //dd($newestPost);
+
+        return view('client.layouts.index', ['topDoctors' => $topDoctors, 'newestPost' => $newestPost, 'newerPosts' => $newerPosts]);
     }
     public function showAppointmentLogin() {
         return view('client.page.appointment-login');
@@ -69,6 +82,7 @@ class PageController extends Controller
     }
 
     public function showHour(Request $request) {
+
         $appointmentDate = $request->appointmentDate;
         $doctorId = $request->doctorId;
         $allHours = Hours::all();
@@ -105,7 +119,7 @@ class PageController extends Controller
         $appointment->appointmentDate = $request->appointmentDate;
         $appointment->save();
 
-        return view('client.layouts.index', ['thongbao' => 'Bạn đã đặt lịch khám thành công.']);
+        return redirect('index')->with('thongbao',  'Bạn đã đặt lịch khám thành công.');
     }
 
     public function getSignUp() {
@@ -176,6 +190,9 @@ class PageController extends Controller
         $feedback->content = $request->content;
         $feedback->save();
 
+        $pointAvg = Feedback::where('doctorId', $request->doctorId)->avg('point');
+        $pointAvg = round($pointAvg, 2);
+
         $date_created = Carbon::Parse($feedback->crearedAt)->format('d-m-Y H:i');
 
         $data = [
@@ -184,7 +201,8 @@ class PageController extends Controller
             'content' => $feedback->content,
             'patient' => $feedback->Patient->fullname,
             'createdAt' => $date_created,
-            'anonymous' => $feedback->anonymous
+            'anonymous' => $feedback->anonymous,
+            'pointAvg' => $pointAvg
         ];
         return json_encode($data);
     }
@@ -330,5 +348,11 @@ class PageController extends Controller
         }
         
     }
+
+    // public function postPatientFeedback() {
+    //     $data = ['hoten' => 'Khương'];
+    //     $patient = Auth::guard('patient')->user();
+    //     Mail::to($patient)->send(new PatientFeedback($patient));
+    // }
 
 }
