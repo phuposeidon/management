@@ -45,14 +45,44 @@
                         <div class="portlet-body">
                             <div class="table-toolbar">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="btn-group">
-                                           <!--  <button id="sample_editable_1_new" class="btn sbold green"> Thêm
-                                                <i class="fa fa-plus"></i>
-                                            </button> -->
-                                        </div>
+                                    <div class="col-md-10">
+                                        <form class="form-horizontal">
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Từ ngày</label>
+                                                    <div class="col-md-8">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                        <input name="fromDate" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Đến ngày</label>
+                                                    <div class="col-md-8">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                        <input  name="toDate" type="text" class="form-control">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="btn-group pull-right">
                                             <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Công cụ
                                                 <i class="fa fa-angle-down"></i>
@@ -75,7 +105,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <table class="table table-striped table-bordered table-hover table-checkable order-column" >
                                 <thead>
                                     <tr>
                                         <th>
@@ -133,7 +163,7 @@
                                     
                                 </tbody>
                             </table>
-
+                           <div style="text-align: center;"> {{ $orders->links() }}</div>
 
                             <!-- $allTransactions->links() -->
 

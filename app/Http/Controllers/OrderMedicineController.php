@@ -18,14 +18,15 @@ class OrderMedicineController extends Controller
         $afternoon = $req->afternoon ? $req->afternoon:0;
         $evening = $req->evening ? $req->evening :0;
         $night = $req->night ?  $req->night : 0;
-        $expireDay = $req->expireDay ? $req->expireDay:'';
+        $expireDay = $req->expireDay ? $req->expireDay:0;
         $using_med = $req->using_med ? $req->using_med :'';
         $note = $req->note ?  $req->note :'';
+        $dosage = $req->dosage ?  $req->dosage : 0;
 
         $insurance = Insurance::where('patientId','=',$order->patientId)->get();
         if(isset($insurance->cardCode)){
             $s = Medicine::find($medicine); 
-            $total = ($amount*$order->totalAmount) + $s->price;
+            $total = ($amount*$s->price)+ $order->totalAmount;
             $order->totalAmount = $total/0.2;
             $order->save();
             $order_medicine = new OrderMedicine;
@@ -38,6 +39,7 @@ class OrderMedicineController extends Controller
             $order_medicine->night = $night;
             $order_medicine->using_med = $using_med;
             $order_medicine->note = $note;
+             $order_medicine->dosage = $dosage;
             $order_medicine->totalPrice = $s->price;
 
             $order_medicine->save();
@@ -72,10 +74,6 @@ class OrderMedicineController extends Controller
                         </td>
                         <td width="8%">
                             <span  >Viên</span>
-                        </td>
-                        <td width="8%">
-                            <span  >Viên</span>
-
                         </td>
 
 
