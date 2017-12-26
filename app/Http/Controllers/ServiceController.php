@@ -34,10 +34,12 @@ class ServiceController extends Controller
 
 	function add(Request $req){
 		$service = new Service;
+		$content = htmlspecialchars($_POST['content']);
 		$allSpecialization = Specialization::all();
 		$service->specializationId = $req->user;
 		$service->name = $req->name;
-		$service->content = $req->note;
+		$service->serviceCode = $req->serviceCode;
+		$service->content = $content;
 		$service->price = $req->price;
 		$service->clinicId = 1;
 		$service->save();
@@ -62,8 +64,9 @@ class ServiceController extends Controller
 	function postService(Request $req){
 		$service = Service::find($req->id);
 		$service->specializationId = $req->user;
+		$content = $_POST['content'];
 		$service->name = $req->name;
-		$service->content = $req->note;
+		$service->content = $content;
 		$service->price = $req->price;
 		$service->clinicId = 1;
 		$service->save();

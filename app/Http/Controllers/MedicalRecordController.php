@@ -19,6 +19,7 @@ use App\FamiMedical;
 use App\Order;
 use App\Medicine;
 use App\OrderMedicine;
+use App\OrderService;
 use App\GeneralIndex;
 use App\Specialization;
 use App\Service;
@@ -86,6 +87,7 @@ class MedicalRecordController extends Controller
 
         $medicalrecord->save();
         if ( $medicalrecord->save()) {
+
             $insurrance = Insurance::where('patientId',$req->id)->get();
             if(isset($insurrance[0]['cardCode'])){
                 $order->totalAmount = ($service->price)/0.2;
@@ -94,7 +96,12 @@ class MedicalRecordController extends Controller
                 $order->orderCode = "HD".rand(10,1000);
                 $order->createdAt = Carbon::now();
                 $order->updatedAt = Carbon::now();
+                $order->totalAmount = $service->price;
                 $order->save();
+                $orderService = new OrderService;
+                $orderService->orderId = $order->id;
+                $orderService->serviceId = $req->serviceId;
+                $orderService->save();
             }else{
                  $order->medicalRecordId = $medicalrecord->id;
                  $order->patientId = $req->id;
@@ -103,6 +110,11 @@ class MedicalRecordController extends Controller
                 $order->updatedAt = Carbon::now();
                  $order->totalAmount = $service->price;
                 $order->save();
+
+                $orderService = new OrderService;
+                $orderService->orderId = $order->id;
+                $orderService->serviceId = $req->serviceId;
+                $orderService->save();
             }
            
 
