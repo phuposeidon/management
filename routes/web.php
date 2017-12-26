@@ -49,13 +49,13 @@ Route::post('/user-multidelete', 'UserController@deleteAll')->middleware(['can:a
 
 
     Route::get('/clinic', 'ClinicController@list')->name('list');
-    Route::get('/add-clinic','ClinicController@index')->name('add');
+    Route::get('/add-clinic','ClinicController@index')->name('add')->middleware(['can:admin']);
     Route::post('/clinic','ClinicController@add')->name('addClinic');
-    Route::get('/clinic/edit/{id}','ClinicController@getEdit');
+    Route::get('/clinic/edit/{id}','ClinicController@getEdit')->middleware(['can:admin']);
     Route::post('/clinic/edit/{id}','ClinicController@edit')->name('editClinic');
 
-    Route::post('/clinic-delete','ClinicController@delete');
-    Route::post('/clinic-multidelete', 'ClinicController@deleteAll');
+    Route::post('/clinic-delete','ClinicController@delete')->middleware(['can:admin']);
+    Route::post('/clinic-multidelete', 'ClinicController@deleteAll')->middleware(['can:admin']);
 
     Route::get('/medicalrecord', function() {
         return view('admin.management.medicalrecord.list');
