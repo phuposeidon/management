@@ -173,9 +173,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="table_body">
+                                                    <?php $i = 0?>
                                                     @foreach($patient_medicals as $patient_medical)
                                                     <tr>
-                                                        <td>{{$patient_medical->id}}</td>
+                                                        <td>{{++$i}}</td>
                                                         <td>{{$patient_medical->disease}}</td>
                                                         <td>{{$patient_medical->note}}</td>
                                                         <td>
@@ -213,9 +214,10 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="fami_body">
+                                                         <?php $i = 0?>
                                                         @foreach($fami_medicals as $fami)
                                                         <tr>
-                                                            <td></td>
+                                                            <td>{{++$i}}</td>
                                                             <td>{{$fami->relationship}}</td>
                                                             <td>{{$fami->disease}}</td>
                                                             <td>{{$fami->socialproblem}}</td>
@@ -340,7 +342,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">BMI</label>
                                                 <div class="col-md-6">
-                                                    <input type="number" id="bmi" name="bmi" class="form-control" placeholder="  ">
+                                                    <input disabled type="number" id="bmi" name="bmi" class="form-control" placeholder="  ">
                                                 </div>
                                             </div>
                                         </div>
@@ -1155,7 +1157,6 @@
             var evening = $('#evening').val();
             var night = $('#night').val();
             var amount = parseInt(morning) + parseInt(afternoon) + parseInt(evening) + parseInt(night);
-            alert(amount);
             var expireDay = $('#expireDay').val();
             var using_med = $('#using_med').val();
             var note = $('#note').val();

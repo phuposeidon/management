@@ -30,7 +30,7 @@ class FamiMedicalController extends Controller
 			$data = FamiMedical::where('patientId',$patientId)->get();
 			foreach ($data as $key => $value) {
 				echo "<tr>
-                    <td>".$key."</td>
+                    <td>".++$key."</td>
                     <td>".$value->relationship."</td>
                     <td>".$value->disease."</td>
                     <td>".$value->socialproblem."</td>

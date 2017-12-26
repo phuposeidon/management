@@ -23,7 +23,7 @@ class PatientMedicalController extends Controller
 			$data = PatientMedical::where('patientId',$id)->get();
 			foreach ($data as $key => $value) {
 				echo "<tr>
-                    <td>".$key."</td>
+                    <td>".++$key."</td>
                     <td>".$value->disease."</td>
                     <td>".$value->note."</td>
                     <td>
