@@ -417,8 +417,6 @@
                                                 <label class="col-md-4 control-label">Tái Khám</label>
                                                 <div class="col-md-6" style="margin-top: 10px;">
                                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
-                                                        <input required="" id="meeting" type="text" class="form-control">
-
                                                         <span class="input-group-btn">
                                                             <button class="btn default" type="button">
                                                                 <i class="fa fa-calendar"></i>
@@ -499,9 +497,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Liều Dùng</label>
+                                                <label class="col-md-3 control-label">Số ngày</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" id="dosage" name="dosage" class="form-control">
+                                                    <input type="number" id="dosage" name="dosage" class="form-control">
                                                 </div>
                                             </div>
 
@@ -531,16 +529,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label ng-binding">Số Ngày</label>
-                                            <div class="col-sm-3">
-                                                <input type="number" id="expireDay" value="0" class="form-control" style="">
-                                            </div>
-                                            <label class="col-sm-3 control-label ng-binding">Tổng</label>
-                                            <div class="col-sm-3">
-                                                <input type="number" name="amount" id="amount" value="0" class="form-control">
-                                            </div>
-                                        </div>
+                                        
 
                                     </div>
 
@@ -1157,7 +1146,6 @@
             var evening = $('#evening').val();
             var night = $('#night').val();
             var amount = parseInt(morning) + parseInt(afternoon) + parseInt(evening) + parseInt(night);
-            var expireDay = $('#expireDay').val();
             var using_med = $('#using_med').val();
             var note = $('#note').val();
             var price = $('#price').val();
@@ -1171,7 +1159,6 @@
                 afternoon: afternoon,
                 evening: evening,
                 night: night,
-                expireDay: expireDay,
                 using_med: using_med,
                 note: note,
                 price: price,
