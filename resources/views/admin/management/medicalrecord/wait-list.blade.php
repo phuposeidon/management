@@ -418,11 +418,14 @@
                                                 <div class="col-md-6" style="margin-top: 10px;">
                                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
                                                         <input required="" id="meeting" type="text" class="form-control">
+
                                                         <span class="input-group-btn">
                                                             <button class="btn default" type="button">
                                                                 <i class="fa fa-calendar"></i>
                                                             </button>
                                                         </span>
+                                                        <input  id="meeting" type="text" class="form-control">
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

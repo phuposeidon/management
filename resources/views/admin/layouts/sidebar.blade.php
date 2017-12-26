@@ -32,6 +32,17 @@
             </li>
 
             <li class="nav-item start
+            {{ (Request::is('dashboard/*') || Request::is('dashboard') || Request::is('dashboard/*') ? 'active' : '') }}
+            ">
+                <a href="{{asset('dashboard')}}" class="nav-link nav-toggle">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="title">Trang Chủ</span>
+                    <span class="selected"></span>
+                </a>
+                <!-- end receipt  -->
+            </li>
+
+            <li class="nav-item
             {{ (Request::is('user/*') || Request::is('user') || Request::is('user/*') ? 'active' : '') }}
             ">
                 <a href="{{asset('user')}}" class="nav-link nav-toggle">

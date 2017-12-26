@@ -127,7 +127,8 @@
                                         <select name="userType" class="form-control">
                                             <option value="Bác Sĩ" @if($user->userType == 'Bác Sĩ') selected @endif>Bác Sĩ</option>
                                             <option value-"Lễ Tân" @if($user->userType == 'Lễ Tân') selected @endif>Lễ Tân</option>
-                                            <option value="User" @if($user->userType == 'User') selected @endif>User</option>
+                                            <option value="Thu Ngân" @if($user->userType == "Thu Ngân") selected @endif>Thu Ngân</option>
+                                            <option value="Admin" @if($user->userType == 'Admin') selected @endif>Admin</option>
                                         </select>
                                     </div>
                                 </div>
@@ -206,14 +207,14 @@
                         <div class="form-group">
                             <label for="" class="col-md-3">Lương Cơ Bản </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control wage-child" id="basicWage" name="basicWage" value="{{number_format($salary->basicWage)}}">
+                                <input type="text" class="form-control wage-child" id="basicWage" name="basicWage" value="{{number_format($salary['basicWage'])}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="" class="col-md-3">Lương Tháng Này </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" value="{{number_format($salary->basicWage * $salary['coefficient'] + 0.2 * $extraSalary)}}" disabled>
+                                <input type="text" class="form-control" value="{{number_format($salary['basicWage'] * $salary['coefficient'] + 0.2 * $extraSalary)}}" disabled>
                             </div>
                         </div>
 

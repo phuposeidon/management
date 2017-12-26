@@ -223,7 +223,8 @@
                                         <select name="userType" class="form-control">
                                             <option value="Bác Sĩ" @if(old('userType') == "Bác Sĩ") selected @endif>Bác Sĩ</option>
                                             <option value="Lễ Tân" @if(old('userType') == "Lễ Tân") selected @endif>Lễ Tân</option>
-                                            <option value="User" @if(old('userType') == "User") selected @endif>User</option>
+                                            <option value="Thu Ngân" @if(old('userType') == "Thu Ngân") selected @endif>Thu Ngân</option>
+                                            <option value="Admin" @if(old('userType') == "Admin") selected @endif>Admin</option>
                                         </select>
                                     </div>
                                 </div>

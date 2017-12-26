@@ -223,6 +223,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Dịch vụ</th>
+                                <th>Loại DV</th>
                                 <th>Thành Tiền</th>
                             </tr>
                         </thead>
@@ -231,14 +232,24 @@
                                 $getServices = App\OrderService::where('orderId', $order->id)->get();
                                 $t = 1;
                             ?>
-                            @foreach($getServices as $service)
+                            @if(count($getServices) > 0)
+                                @foreach($getServices as $service)
+                                    <tr style="color: #333">
+                                        <th>{{$t}}</th>
+                                        <th>{{$service->Service->name}}</th>
+                                        <th>{{$service->Service->serviceCode}}</th>
+                                        <th>{{number_format($service->Service->price)}}đ</th>
+                                    </tr>
+                                <?php $t++; ?>
+                                @endforeach
+                            @else
                                 <tr style="color: #333">
                                     <th>{{$t}}</th>
-                                    <th>{{$service->Service->name}}</th>
-                                    <th>{{number_format($service->Service->price)}}đ</th>
+                                    <th>Khám thường</th>
+                                    <th>BT</th>
+                                    <th>250,000đ</th>
                                 </tr>
-                            <?php $t++; ?>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
 
@@ -249,6 +260,9 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên Thuốc</th>
+                                <th>ĐVT</th>
+                                <th>SL</th>
+                                <th>Đơn Giá</th>
                                 <th>Thành Tiền</th>
                             </tr>
                         </thead>
@@ -261,6 +275,9 @@
                             <tr style="color: #333;">
                                 <th>{{$j}}</th>
                                 <th>{{$medicine->Medicine->name}}</th>
+                                <th>{{$medicine->Medicine->Unit->name}}</th>
+                                <th>{{$medicine->amount}}</th>
+                                <th>{{number_format($medicine->Medicine->price)}}đ</th>
                                 <th>{{number_format($medicine->totalPrice)}}đ</th>
                             </tr>
                             <?php $j++; ?>

@@ -64,7 +64,7 @@
                                         btn-success
                                         @endif
                                     ">
-                                        <p class="point text-center">{{round($pointAvg, 2)}}</p>
+                                        <p class="point text-center" id="pointAvg">{{round($pointAvg, 2)}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -234,6 +234,7 @@
                     var point = arr.point;
                     var content = arr.content;
                     var createdAt = arr.createdAt;
+                    var pointAvg = arr.pointAvg;
                     if(arr.anonymous == 1) {
                         image = "{{asset('img/patient/user-default.png')}}"
                         patient = "Bệnh nhân giấu tên";
@@ -269,7 +270,8 @@
                             <h3>`+patient+` <small>`+createdAt+`</small></h3>
                         </div>
                     </div>
-                    `);                   
+                    `);      
+                    $('#pointAvg').text(pointAvg);             
                     $('.contact-info input[name="point"]').val('');
                     $('.contact-info input[name="subject"]').val('');
                     $('.contact-info textarea[name="message"]').val('');

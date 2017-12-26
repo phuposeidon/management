@@ -30,6 +30,7 @@
         <link href="global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
         <link href="pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+        <link href="pages/css/error.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
@@ -37,6 +38,7 @@
         <link href="layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> 
+        {!! Charts::styles() !!}
     </head>
     <!-- END HEAD -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->

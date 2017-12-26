@@ -49,7 +49,7 @@
             </div>
             <div class="icon-info">
               <h4>Hỗ trợ 24H</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              
             </div>
           </div>
           <div class="service-info">
@@ -57,8 +57,8 @@
               <i class="fa fa-ambulance"></i>
             </div>
             <div class="icon-info">
-              <h4>Dịch vụ cấp cứu</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <h4>Đặt lịch nhanh chóng</h4>
+              
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="icon-info">
               <h4>Tư vấn tận tình</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              
             </div>
           </div>
           <div class="service-info">
@@ -78,7 +78,7 @@
             </div>
             <div class="icon-info">
               <h4>Chăm sóc tận tâm</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              
             </div>
           </div>
         </div>
@@ -114,15 +114,11 @@
                 <tbody>
                   <tr>
                     <td>Thứ 2 - Thứ 6</td>
-                    <td>8.00 - 17.00</td>
+                    <td>7.30 - 17.00</td>
                   </tr>
                   <tr>
-                    <td>Thứ 7</td>
-                    <td>9.30 - 17.30</td>
-                  </tr>
-                  <tr>
-                    <td>Chủ nhật</td>
-                    <td>9.30 - 15.00</td>
+                    <td>Thứ 7 - CN</td>
+                    <td>Không hoạt động</td>
                   </tr>
                 </tbody>
               </table>
@@ -134,33 +130,41 @@
   </section>
   <!--cta-->
   <!--about-->
-  <section id="about" class="section-padding">
+  <section id="testimonial" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-4 col-xs-12">
           <div class="section-title">
-            <h2 class="head-title lg-line"> Medilap cụm Phòng khám hàng đầu VN</h2>
+            <h2 class="head-title lg-line"> {{$newestPost[0]['name']}}</h2>
             <hr class="botm-line">
-            <p class="sec-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
-            <a href="" style="color: #0cb8b6; padding-top:10px;">Know more..</a>
+            <p class="sec-para cut-content text-justify">
+              {{Illuminate\Support\Str::limit($newestPost[0]['content'], $limit = 250, $end = '...')}}
+            </p>
+            <a href="{{asset('post/'.$newestPost[0]['id'].'#service')}}" style="color: #0cb8b6; padding-top:10px;">Chi tiết...</a>
           </div>
         </div>
+
         <div class="col-md-9 col-sm-8 col-xs-12">
-          <div style="visibility: visible;" class="col-sm-9 more-features-box">
+          <div style="visibility: visible;" class="col-sm-12 more-features-box">
+            @foreach($newerPosts as $nPost)
             <div class="more-features-box-text">
+              <div class="more-features-box-text-icon"> <i class="fa fa-angle-right" aria-hidden="true"></i> </div>
+              <div class="more-features-box-text-description">
+                <h3>{{$nPost['name']}}</h3>
+                <p class="cut-content text-justify">
+                {{Illuminate\Support\Str::limit($nPost['content'], $limit = 250, $end = '...')}}
+                </p>
+                <a href="{{asset('post/'.$nPost['id'].'#service')}}" style="color: #0cb8b6; padding-top:10px;">Chi tiết...</a>
+              </div>
+            </div>
+            @endforeach
+            <!-- <div class="more-features-box-text">
               <div class="more-features-box-text-icon"> <i class="fa fa-angle-right" aria-hidden="true"></i> </div>
               <div class="more-features-box-text-description">
                 <h3>Những điều cần biết về phòng khám</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.</p>
               </div>
-            </div>
-            <div class="more-features-box-text">
-              <div class="more-features-box-text-icon"> <i class="fa fa-angle-right" aria-hidden="true"></i> </div>
-              <div class="more-features-box-text-description">
-                <h3>Những điều cần biết về phòng khám</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.</p>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -175,21 +179,20 @@
           <h2 class="ser-title">Đội ngũ bác sĩ hàng đầu</h2>
           <hr class="botm-line">
         </div>
+
+        @foreach($topDoctors as $doc)
         <div class="col-md-3 col-sm-3 col-xs-6">
           <div class="thumbnail">
-            <img src="client/img/doctor1.jpg" alt="..." class="team-img">
+            <img src="{{asset('img/user/'.$doc->avatar)}}" alt="..." class="team-img" style="height:245px; width:245px">
             <div class="caption">
-              <h3>Jessica Wally</h3>
-              <p>Bác sĩ</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
+              <h3>{{$doc->fullname}}</h3>
+              <p>{{$doc->userType}}</p>
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-6">
+        @endforeach
+
+        <!-- <div class="col-md-3 col-sm-3 col-xs-6">
           <div class="thumbnail">
             <img src="client/img/doctor2.jpg" alt="..." class="team-img">
             <div class="caption">
@@ -230,58 +233,13 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
   <!--/ doctor team-->
   <!--testimonial-->
-  <section id="testimonial" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="ser-title">cảm nhận của bệnh nhân</h2>
-          <hr class="botm-line">
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="testi-details">
-            <!-- Paragraph -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-          <div class="testi-info">
-            <!-- User Image -->
-            <a href="#"><img src="client/img/thumb.png" alt="" class="img-responsive"></a>
-            <!-- User Name -->
-            <h3>Alex<span>Texas</span></h3>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="testi-details">
-            <!-- Paragraph -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-          <div class="testi-info">
-            <!-- User Image -->
-            <a href="#"><img src="client/img/thumb.png" alt="" class="img-responsive"></a>
-            <!-- User Name -->
-            <h3>Alex<span>Texas</span></h3>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="testi-details">
-            <!-- Paragraph -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-          <div class="testi-info">
-            <!-- User Image -->
-            <a href="#"><img src="client/img/thumb.png" alt="" class="img-responsive"></a>
-            <!-- User Name -->
-            <h3>Alex<span>Texas</span></h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
   <!--/ testimonial-->
   <!--cta 2-->
   <section id="cta-2" class="section-padding">
@@ -292,8 +250,8 @@
           <h2 class="section-title white lg-line">« Về chúng tôi »</h2>
         </div>
         <div class="col-md-4 col-sm-5">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a typek
-          <p class="text-right text-primary"><i>— Medilap Healthcare</i></p>
+          Với tâm nguyện phục vụ cho bệnh nhân một cách tốt nhất, phòng khám của chúng tôi sở hữu một đội ngũ y sĩ có chuyên môn, tận tâm với nghề, luôn phục vụ người bệnh với phương châm "Lương y như từ mẫu".
+          <p class="text-right text-primary"><i>— VietCare</i></p>
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -323,7 +281,8 @@
             <div class="space"></div>
             <div id="sendmessage">Đã gửi thành công!</div>
             <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
+            <form action="{!! url('patient-feedback') !!}" method="post" >
+              <input type="hidden" name="_token" value="{{csrf_token()}}">
               <div class="form-group">
                 <input type="text" name="name" class="form-control br-radius-zero" id="name" placeholder="Họ tên" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                 <div class="validation"></div>
@@ -352,6 +311,15 @@
   </section>
   <!--/ contact-->
   @include('client.layouts.footer')
+  <script>
+    $(document).ready(function() {
+      
+      $('.cut-content').each(function(){
+        $(this).html($(this).text());    
+      });
+
+    });
+  </script>
   </body>
 
 </html>

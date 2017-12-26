@@ -16,6 +16,7 @@
                     @endif
 
                     <h1 class="white">Đặt lịch khám </h1>
+                    
 
                     <div class="form-group" style="margin-top: 40px;">
                         <label for="" class="label-bottom">Chọn loại bệnh: </label>
@@ -36,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="label-bottom">Chọn ngày khám: </label>
-                        <input type="text" class="form-control br-radius-zero datepicker" id="selectedDate" name="appointmentDate" value="{{Carbon\Carbon::today()->format('d-m-Y')}}"/>
+                        <input type="text" class="form-control br-radius-zero datepicker" id="selectedDate" name="appointmentDate" value="{{Carbon\Carbon::today()->format('d-m-Y')}}" readonly=""/>
                         <!-- required oninvalid="this.setCustomValidity('Vui lòng chọn ngày khám')"
         oninput="setCustomValidity('')" -->
                      </div>
@@ -72,7 +73,14 @@
 			});
 
             //Select booking date (the next day at default)
+            $('#selectedDate').datepicker('option', 'beforeShowDay', function(date) {
+                    var day = date.getDay();
+                    return [(day != 0 && day != 6), ''];
+                }
+            );
             $('#selectedDate').datepicker("option", "minDate", 1);
+            
+            
         });
     </script>
 </body>

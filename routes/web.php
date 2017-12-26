@@ -23,17 +23,15 @@ Route::group(['prefix' => '/', 'middleware' => 'loginAdmin'], function() {
     //     return view('admin.clinic');
     // });
 
-    Route::get('dashboard', function () {
-        return view('admin.layouts.master');
-    });
+    Route::get('dashboard', 'HomeController@dashboard');
 
 Route::get('/user', 'UserController@list')->name('listUser');
-Route::get('/user/add','UserController@index')->name('addUser');
+Route::get('/user/add','UserController@index')->name('addUser')->middleware(['can:admin']);
 Route::post('/user/add','UserController@post')->name('createUser');
 Route::get('/user/{id}','UserController@getEdit')->name('getUser');
 Route::post('/user/{id}','UserController@postEdit')->name('postUser');
-Route::post('/user-delete','UserController@delete');
-Route::post('/user-multidelete', 'UserController@deleteAll');
+Route::post('/user-delete','UserController@delete')->middleware(['can:admin']);
+Route::post('/user-multidelete', 'UserController@deleteAll')->middleware(['can:admin']);
 
     
     
@@ -41,7 +39,7 @@ Route::post('/user-multidelete', 'UserController@deleteAll');
         return view('admin.management.appointment.add');
     });
 
-    Route::get('/appointment', 'AppointmentController@list');
+    Route::get('/appointment', 'AppointmentController@list');//->middleware(['can:receptionist']);
     Route::get('/appointment/search', 'AppointmentController@search');
     Route::post('/appointment-delete','AppointmentController@delete');
     Route::post('/appointment-multidelete', 'AppointmentController@deleteAll');
@@ -58,14 +56,6 @@ Route::post('/user-multidelete', 'UserController@deleteAll');
 
     Route::post('/clinic-delete','ClinicController@delete');
     Route::post('/clinic-multidelete', 'ClinicController@deleteAll');
-
-    Route::get('/district', function() {
-        return view('admin.management.district.list');
-    });
-
-    Route::get('/insurrance', function() {
-        return view('admin.management.insurrance.list');
-    });
 
     Route::get('/medicalrecord', function() {
         return view('admin.management.medicalrecord.list');
@@ -214,6 +204,11 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     //Export order
     Route::get('export-order/{id}','OrderController@exportOrder')->name('exportOrder');
 
+    //403 error
+    Route::get('403', function() {
+        return view('errors.403');
+    });
+
 });
 //CLOSE ADMIN PAGE
 
@@ -236,6 +231,8 @@ Route::post('/post-appointment', 'PageController@postAppointment');
 Route::get('/posts', 'PageController@getListPost');
 Route::get('/post/{id}', 'PageController@getPost');
 Route::get('/cate/{id}', 'PageController@getCate');
+
+Route::post('/patient-feedback','PageController@postPatientFeedback');
 
 Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     
