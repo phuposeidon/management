@@ -182,7 +182,7 @@
 
         @foreach($topDoctors as $doc)
         <div class="col-md-3 col-sm-3 col-xs-6">
-          <div class="thumbnail">
+          <div class="thumbnail" style="height: 400px">
             <img src="{{asset('img/user/'.$doc->avatar)}}" alt="..." class="team-img" style="height:245px; width:245px">
             <div class="caption">
               <h3>{{$doc->fullname}}</h3>

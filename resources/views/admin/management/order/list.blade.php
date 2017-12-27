@@ -47,9 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <button id="sample_editable_1_new" class="btn sbold green"> Thêm
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -78,7 +76,7 @@
                             <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <th style="display: none">
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                 <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
                                                 <span></span>
@@ -103,7 +101,7 @@
                                     <?php $i = 1?>
                                     @foreach($allOrders as $order)
                                     <tr class="odd gradeX" id="tr{{$order->id}}">
-                                        <td>
+                                        <td style="display: none">
                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                 <input type="checkbox" class="checkboxes" value="{{$order->id}}" />
                                                 <span></span>

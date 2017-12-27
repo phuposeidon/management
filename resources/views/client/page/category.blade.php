@@ -67,7 +67,7 @@
         <!-- end menu -->
         
         @if(isset($newPost))
-        <div class="col-md-9 post-content">
+        <div class="col-md-9 post-content" style="background-color: transparent; border: none">
             <div class="new-post row" style="height: 400px;">
                 <div class="col-md-8 img-npost">
                     <a href="{{asset('post/'.$newPost->id.'#service')}}"><img src="{{asset('img/post/'.$newPost->avatar)}}" alt="" style="height: 75%;"></a>

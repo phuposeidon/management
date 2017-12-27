@@ -16,7 +16,7 @@ use Dompdf\Dompdf;
 class OrderController extends Controller
 {
     function list() {
-        $allOrders = Order::all();
+        $allOrders = Order::orderBy('createdAt', 'desc')->get();
         return view('admin.management.order.list', ['allOrders' => $allOrders]);
 	}
 	

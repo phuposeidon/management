@@ -233,6 +233,9 @@ Route::get('/post/{id}', 'PageController@getPost');
 Route::get('/cate/{id}', 'PageController@getCate');
 
 Route::post('/patient-feedback','PageController@postPatientFeedback');
+Route::get('404', function() {
+    return view('errors.404');
+});
 
 Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     
@@ -244,6 +247,7 @@ Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     Route::post('/blog', 'PageController@postBlog');
     Route::post('/like', 'PageController@postLike');
     Route::post('ajax/question/patient-post','PageController@postAnswer');
+    Route::get('/doctors/{id}', 'PageController@getDoctors');
 });
 
 

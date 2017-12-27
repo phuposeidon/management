@@ -32,7 +32,7 @@ class OrderMedicineController extends Controller
             $order_medicine = new OrderMedicine;
             $order_medicine->orderId = $id;
             $order_medicine->medicineId =$medicine;
-            $order_medicine->amount = $amount;
+            $order_medicine->amount = $amount * $dosage;
             $order_medicine->morning = $morning;
             $order_medicine->afternoon =$afternoon;
             $order_medicine->evening = $evening;
@@ -40,7 +40,7 @@ class OrderMedicineController extends Controller
             $order_medicine->using_med = $using_med;
             $order_medicine->note = $note;
              $order_medicine->dosage = $dosage;
-            $order_medicine->totalPrice = ($s->price) * $amount*$dosage;
+            $order_medicine->totalPrice = ($s->price) * $amount * $dosage;
 
             $order_medicine->save();
         }else{
@@ -51,7 +51,7 @@ class OrderMedicineController extends Controller
             $order_medicine = new OrderMedicine;
             $order_medicine->orderId = $id;
             $order_medicine->medicineId =$medicine;
-            $order_medicine->amount = $amount;
+            $order_medicine->amount = $amount * $dosage;
             $order_medicine->morning = $morning;
             $order_medicine->afternoon =$afternoon;
             $order_medicine->evening = $evening;
@@ -59,7 +59,7 @@ class OrderMedicineController extends Controller
             $order_medicine->using_med = $using_med;
             $order_medicine->note = $note;
             $order_medicine->dosage = $dosage;
-            $order_medicine->totalPrice = ($s->price) * $amount*$dosage;
+            $order_medicine->totalPrice = ($s->price) * $amount * $dosage;
 
             $order_medicine->save();
         }

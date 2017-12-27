@@ -349,6 +349,21 @@ class PageController extends Controller
         
     }
 
+    public function getDoctors($id) {
+        $specializations = Specialization::all();
+        $specialization = Specialization::find($id);
+        $doctors = User::where('userType', 'Bác sĩ')->get();
+        $topDoctors = User::where('specializationId', $id)->rightJoin('feedback', 'user.id','=','feedback.doctorId')
+                ->selectRaw('user.userType, user.specializationId, avatar, fullname, user.id , AVG(point) as avgPoint')
+                ->groupBy('doctorId', 'user.id', 'fullname', 'specializationId', 'userType', 'avatar')
+                ->orderBy('avgPoint','DESC')
+                ->paginate(12);
+        return view('client.page.list-doctor', [
+            'specializations' => $specializations, 
+            'topDoctors' => $topDoctors,
+            'specialization' => $specialization
+            ]);
+    }
     // public function postPatientFeedback() {
     //     $data = ['hoten' => 'Khương'];
     //     $patient = Auth::guard('patient')->user();

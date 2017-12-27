@@ -271,7 +271,11 @@
                         </div>
                     </div>
                     `);      
-                    $('#pointAvg').text(pointAvg);             
+                    $('#pointAvg').text(pointAvg);  
+                    if(pointAvg <= 5) color = "btn-danger";
+                    else if(pointAvg < 8) color = "btn-warning";
+                    else color = "btn-success";   
+                    $('#pointAvg').parent().addClass(color);        
                     $('.contact-info input[name="point"]').val('');
                     $('.contact-info input[name="subject"]').val('');
                     $('.contact-info textarea[name="message"]').val('');

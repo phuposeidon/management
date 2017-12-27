@@ -16,7 +16,7 @@ use Carbon\Carbon;
 class TransactionController extends Controller
 {
     function list() {
-        $orders = Order::paginate(5);
+        $orders = Order::orderBy('createdAt', 'desc')->paginate(5);
         return view('admin.management.transaction.list', ['orders' => $orders]);
 	}
 	
