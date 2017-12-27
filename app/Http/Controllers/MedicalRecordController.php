@@ -75,15 +75,25 @@ class MedicalRecordController extends Controller
 
     function addRecord(Request $req)
     {
-        $service = Service::find($req->serviceId);
+        if(!isset($req->serviceId)){
+            return  response()->json(["success"=>false,"message"=>"Vui lòng chọn dịch vụ"]);
+        }else{
+            $service = Service::find($req->serviceId);
         $order = new Order;
         $medicalrecord = new MedicalRecord;
         $medicalrecord->patientId = $req->id;
         $medicalrecord->doctorId = $req->doctorId;
         $medicalrecord->clinicId = 1;
-        $medicalrecord->diagnosis = $req->diagnosis;
-        $medicalrecord->conclusion = $req->ckeditor;
-        $medicalrecord->appoimentDate = Carbon::createFromFormat('d-m-Y',$req->meeting)->format('Y-m-d 00:00:00');
+        $medicalrecord->diagnosis = $req->diagnosis?$req->diagnosis : '';
+        $medicalrecord->conclusion = $req->ckeditor ?$req->ckeditor:'';
+       
+        if (isset($req->meeting)) {
+             $meeting = $req->meeting ;
+            $medicalrecord->appoimentDate = Carbon::createFromFormat('d-m-Y',$meeting)->format('Y-m-d 00:00:00');
+        }else{
+            $medicalrecord->appoimentDate =null;
+        }
+       
 
         $medicalrecord->save();
         if ( $medicalrecord->save()) {
@@ -120,6 +130,8 @@ class MedicalRecordController extends Controller
 
             return  response()->json(["success"=>200,"orderId"=>$order->id]);
                  }
+        }
+        
     }
 
     function history($id){
