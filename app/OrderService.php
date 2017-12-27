@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderService extends Model
 {
     protected $table = "OrderService";
+    public $timestamps = false;
     
     public function Order() {
         return $this->belongsTo('App\Order', 'orderId', 'id');
