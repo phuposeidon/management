@@ -378,8 +378,8 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Chọn Dịch Vụ</label>
                                             <div class="col-md-6" style="margin-top: 10px;">
-                                                <select id="chose_service" class="form-control">
-                                                    <option value="Chọn">Chọn DV</option>
+                                                <select  id="chose_service" class="form-control">
+                                                    <option value="">Chọn DV</option>
                                                     @foreach($services as $service)
                                                     @if($user->specializationId==$service->specializationId)
                                                     <option value="{{$service->id}}">{{$service->name}}</option>
@@ -1064,7 +1064,10 @@
             var ckeditor = CKEDITOR.instances.editor1.getData();
             var meeting = $('#meeting').val();
             var chose_service = $('#chose_service').val();
-            var dataSource = {
+            if (chose_service==null || chose_service=='') {
+                alert('vui lòng chọn dịch vụ');
+            }else{
+                var dataSource = {
                 diagnosis: diagnosis,
                 ckeditor: ckeditor,
                 doctorId: doctorId,
@@ -1100,6 +1103,8 @@
                     });
                 }
             });
+            }
+            
         });
 
         $('#export').css({
