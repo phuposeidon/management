@@ -52,12 +52,13 @@
                                                     <label class="col-md-4 control-label">Từ ngày</label>
                                                     <div class="col-md-8">
                                                     <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
-                                                        <span class="input-group-btn">
+                                                       
+                                                        <input name="fromDate" type="text" class="form-control">
+                                                         <span class="input-group-btn">
                                                             <button class="btn default" type="button">
                                                                 <i class="fa fa-calendar"></i>
                                                             </button>
                                                         </span>
-                                                        <input name="fromDate" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                                 </div>

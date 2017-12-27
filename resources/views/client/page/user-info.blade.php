@@ -158,7 +158,7 @@
   </section>
   <section id="service" class="section-padding section-color">
     <div class="container">
-        <h1 class="text-center">Lịch sử khám</h1>
+        <h1>Lịch sử khám</h1>
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
                 <table class="table table-striped table-bordered table-hover" >
@@ -180,12 +180,8 @@
                                 <th>{{Carbon\Carbon::Parse($order->createdAt)->format('d-m-Y')}}</th>
                                 <th><a href="{{asset('feedback/'.$order->MedicalRecord->User->id)}}">{{$order->MedicalRecord->User->fullname}}</a></th>
                                 <th>{{$order->MedicalRecord->User->Specialization->name}}</th>
-                                <th class="text-right">{{number_format($order->totalAmount)}}đ</th>
-                                <th>
-                                    <a href="#order-{{$order->id}}" data-toggle="modal" class="btn btn-info" style="margin-top: 0"><i class="fa fa-money"></i></a>
-                                    <a href="#medicine-{{$order->id}}" data-toggle="modal" class="btn btn-primary" style="margin-top: 0"><i class="fa fa-eye"></i></a>
-                                
-                                </th>
+                                <th>{{number_format($order->totalAmount)}}đ</th>
+                                <th><a href="#modal-{{$order->id}}" data-toggle="modal" class="btn btn-appoint" style="margin-top: 0"><i class="fa fa-eye"></i></a></th>
                             </tr>
                         <?php $i++;?>
                         @endforeach
@@ -200,7 +196,7 @@
 
     <!-- modal order -->
     @foreach($getOrders as $order)
-    <div class="modal fade" id="order-{{$order->id}}" style="margin-top: 2em ">
+    <div class="modal fade" id="modal-{{$order->id}}" style="margin-top: 2em ">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -290,74 +286,6 @@
                     </table>
 
                     <h3>Tổng cộng: <span style="color: red">{{number_format($order->totalAmount)}}đ</span></h3>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    @endforeach
-    <!-- end modal order -->
-
-    <!-- modal order -->
-    @foreach($getOrders as $order)
-    <div class="modal fade" id="medicine-{{$order->id}}" style="margin-top: 2em">
-        <div class="modal-dialog" role="document" style="width: 800px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title">Mã hóa đơn {{$order->orderCode}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="">Bác Sĩ: <span style="color: #333">{{$order->MedicalRecord->User->fullname}}</span></label>
-                            
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Chẩn Đoán: <span style="color: #333">{{$order->MedicalRecord->diagnosis}}</span></label>
-                        </div>
-                    </div>
-                    <h3>Hướng dẫn sử dụng</h3>
-
-                    <table class="table table-striped table-bordered table-hover" >
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Tên Thuốc</th>
-                                <th>ĐVT</th>
-                                <th>Cách Dùng</th>
-                                <th>Sáng</th>
-                                <th>Trưa</th>
-                                <th>Chiều</th>
-                                <th>Tối</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                                $getMedicines = App\OrderMedicine::where('orderId', $order->id)->get();
-                                $j = 1;
-                            ?>
-                            @foreach($getMedicines as $medicine)
-                            <tr style="color: #333;">
-                                <th>{{$j}}</th>
-                                <th>{{$medicine->Medicine->name}}</th>
-                                <th>{{$medicine->Medicine->Unit->name}}</th>
-                                <th>{{$medicine->using_med}}</th>
-                                <th>{{$medicine->morning}}</th>
-                                <th>{{$medicine->afternoon}}</th>
-                                <th>{{$medicine->evening}}</th>
-                                <th>{{$medicine->night}}</th>
-                            </tr>
-                            <?php $j++; ?>
-                            @endforeach
-                        </tbody>
-                    </table>
 
                 </div>
                 <div class="modal-footer">

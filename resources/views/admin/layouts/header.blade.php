@@ -52,6 +52,11 @@
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+        <style type="text/css">
+            .page-header.navbar.navbar-fixed-top{
+                z-index: 10;
+            }
+        </style>
         <!-- END PAGE LEVEL SCRIPTS -->
 
         
