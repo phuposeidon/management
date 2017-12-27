@@ -97,7 +97,7 @@ class OrderMedicineController extends Controller
 
 
                         <td width="5%">
-                            <span  >'.$value->amount.'</span>
+                            <span  >'.$value->dosage.'</span>
                         </td>
 
                         <td width="15%">
