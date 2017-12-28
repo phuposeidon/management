@@ -98,6 +98,7 @@ Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
     // PatientMedical
     Route::get('/patient-medical','PatientMedicalController@index');
     Route::post('/patient-medical','PatientMedicalController@add');
+    Route::post('/patient-medical/{id}','PatientMedicalController@delete')->name("deletePatientMedical");
 
     Route::get('/province', function() {
         return view('admin.management.province.list');
@@ -107,6 +108,7 @@ Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
     //FamiMedical
     Route::get('/fami-medical','FamimedicalController@index');
     Route::post('/fami-medical','FamimedicalController@add');
+    Route::post('/fami-medical/{id}','FamimedicalController@delete')->name("deleteFami");
 
     //General Index
     Route::get('general-index','GeneralIndexController@index');
@@ -160,9 +162,10 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::get('/transaction','TransactionController@list')->name('listTransaction');
     Route::post('/transaction/payment','TransactionController@payment')->name('transactionPayment');
     Route::post('/transaction/cancel','TransactionController@cancel')->name('transactionCancel');
+    Route::post('/transaction/search','TransactionController@search')->name('transactionSearch');
 
     //Medical record
-    Route::get('/wait-list','MedicalRecordController@list');
+    Route::get('/wait-list','MedicalRecordController@list')->name('backWaitlist');
 
     Route::get('/diagnosis','MedicalRecordController@waitList');
 

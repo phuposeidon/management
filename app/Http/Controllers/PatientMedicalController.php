@@ -22,13 +22,13 @@ class PatientMedicalController extends Controller
 		if ($patient_medical->save()) {
 			$data = PatientMedical::where('patientId',$id)->get();
 			foreach ($data as $key => $value) {
-				echo "<tr>
+				echo "<tr id='".$value->id."'>
                     <td>".++$key."</td>
                     <td>".$value->disease."</td>
                     <td>".$value->note."</td>
                     <td>
-                        <div>
-                            <a href='' class='btn btn-xs red dropdown-toggle delete' data-id=''> Xóa</a>
+                        <div id='deleteRow'>
+                            <a  class='btn btn-xs red dropdown-toggle delete' data-id='".$value->id."'> <i class='fa fa-trash-o'></i></a>                             
                         </div>
                     </td>
                 </tr>";
@@ -37,6 +37,11 @@ class PatientMedicalController extends Controller
 		}
 	}
 
+	function delete(Request $request) {
+		var_dump($request->id);
+		$id = $request->id;
+		PatientMedical::find($id)->delete();
+	}
 
 
 }

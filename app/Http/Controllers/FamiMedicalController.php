@@ -29,7 +29,7 @@ class FamiMedicalController extends Controller
 		if ($fami_medical->save()) {
 			$data = FamiMedical::where('patientId',$patientId)->get();
 			foreach ($data as $key => $value) {
-				echo "<tr>
+				echo "<tr id='".$value->id."'>
                     <td>".++$key."</td>
                     <td>".$value->relationship."</td>
                     <td>".$value->disease."</td>
@@ -37,7 +37,7 @@ class FamiMedicalController extends Controller
                     <td>".$value->note."</td>
                     <td>
                         <div>
-                            <a href='' class='btn btn-xs red dropdown-toggle delete' data-id=''> Xóa</a>
+                            <a href='' class='btn btn-xs red dropdown-toggle delete' data-id='".$value->id."'> Xóa</a>
                         </div>
                     </td>
                 </tr>";
@@ -45,7 +45,13 @@ class FamiMedicalController extends Controller
 			
 		}
 
+	}
 
+	function delete(Request $req)
+	{
+		var_dump($req->id);
+		$id = $req->id;
+		FamiMedical::find($id)->delete();
 	}
 
 }

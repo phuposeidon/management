@@ -141,7 +141,17 @@ class MedicalRecordController extends Controller
         $patient_medicals = PatientMedical::where('patientId','=',$id)->get();
         $fami_medicals = FamiMedical::where('patientId','=',$id)->get();
         $record = MedicalRecord::where('patientId',$id)->first();
-        return view('admin.management.medicalrecord.history',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'general'=>$general,"record"=>$record]);
+        $orderId = Order::where('patientId',$id)->select('id')->get();
+        
+        $arrayId =[];
+        foreach ($orderId as  $value) {
+            $arrayId[] = $value->id;
+        }
+
+        $history_medicine = OrderMedicine::whereIn('orderId',$arrayId)->paginate(5);
+
+
+        return view('admin.management.medicalrecord.history',['id'=>$id,'allergic'=>$patient->allergic,'diff_allergic'=>$patient->diff_allergic,'patient_medicals'=>$patient_medicals,'patient'=>$patient,'fami_medicals'=>$fami_medicals,'medicines'=>$medicines,'general'=>$general,"record"=>$record,'history_medicine'=>$history_medicine]);
     }
     //Upload image CDHA
     function getCDHA(Request $req){
