@@ -314,6 +314,16 @@ class PageController extends Controller
         $like->save();
     }
 
+    public function getQuestion($id) {
+        $specializations = Specialization::all();
+        $question = Question::find($id);
+
+        return view('client.page.question', [
+            'question' => $question,
+            'specializations' => $specializations
+        ]);
+    }
+
     public function getListPost() {
         $allCategories = Category::all();
 
@@ -364,6 +374,7 @@ class PageController extends Controller
             'specialization' => $specialization
             ]);
     }
+
     // public function postPatientFeedback() {
     //     $data = ['hoten' => 'Khương'];
     //     $patient = Auth::guard('patient')->user();

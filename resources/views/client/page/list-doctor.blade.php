@@ -76,12 +76,14 @@
                     <div class="thumbnail"  style="height: 400px">
                         <img src="{{asset('img/user/'.$doc->avatar)}}" alt="..." class="team-img" style="height:245px; width:245px">
                         <div class="caption">
-                            <h3>{{$doc->fullname}}</h3>
+                            <h3><a href="{{asset('feedback/'.$doc->id)}}" style="text-deconration: none; color: #222222">{{$doc->fullname}}</a></h3>
                             <p>{{$doc->userType}}</p>
                         </div>
                     </div>
                 </div>
                 @endforeach
+
+                <div class="col-md-12"><center>{{$topDoctors->fragment('service')->links()}}</center></div>
 
             </div>
 

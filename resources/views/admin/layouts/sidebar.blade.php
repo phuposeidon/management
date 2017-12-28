@@ -63,22 +63,7 @@
                 <!-- end receipt  -->
             </li>
                 
-            <!-- <li class="nav-item start">
-                <a href="{{asset('province')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-globe"></i>
-                    <span class="title">Tỉnh / Thành Phố</span>
-                    <span class="selected"></span>
-                </a>
-            </li>
-
-            <li class="nav-item start">
-                <a href="{{asset('district')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-map-signs"></i>
-                    <span class="title">Quận / Huyện</span>
-                    <span class="selected"></span>
-                </a>
-            </li> -->
-
+            @can('admin')
             <li class="nav-item 
             {{ (Request::is('clinic/*') || Request::is('clinic') || Request::is('clinic/*') ? 'active' : '') }}
             ">
@@ -100,14 +85,15 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-            <li class="nav-item 
-            {{ (Request::is('wait-list/*') || Request::is('wait-list') || Request::is('wait-list/*') || Request::is('diagnosis/*') || Request::is('diagnosis') || Request::is('diagnosis/*') ? 'active' : '') }}
-            ">
-                <a href="{{asset('wait-list')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-list"></i>
-                    <span class="title">Danh Sách Khám</span>
+            <li class="nav-item
+             {{ (Request::is('service/*') || Request::is('service') || Request::is('service/*') ? 'active' : '') }}
+             ">
+                <a href="{{asset('service')}}" class="nav-link nav-toggle">
+                    <i class="fa fa-stethoscope"></i>
+                    <span class="title">Dịch Vụ</span>
                     <span class="selected"></span>
                 </a>
+                <!-- end receipt  -->
             </li>
             <li class="nav-item 
             {{ (Request::is('medicine/*') || Request::is('medicine') || Request::is('medicine/*') ? 'active' : '') }}
@@ -119,6 +105,19 @@
                 </a>
                 <!-- end receipt  -->
             </li>
+            @endcan
+            @can('doctor')
+            <li class="nav-item 
+            {{ (Request::is('wait-list/*') || Request::is('wait-list') || Request::is('wait-list/*') || Request::is('diagnosis/*') || Request::is('diagnosis') || Request::is('diagnosis/*') ? 'active' : '') }}
+            ">
+                <a href="{{asset('wait-list')}}" class="nav-link nav-toggle">
+                    <i class="fa fa-list"></i>
+                    <span class="title">Danh Sách Khám</span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+            @endcan
+            
             <li class="nav-item 
             {{ (Request::is('order/*') || Request::is('order') || Request::is('order/*') ? 'active' : '') }}
             ">
@@ -136,16 +135,8 @@
                     <span class="selected"></span>
                 </a>
             </li> -->
-             <li class="nav-item
-             {{ (Request::is('service/*') || Request::is('service') || Request::is('service/*') ? 'active' : '') }}
-             ">
-                <a href="{{asset('service')}}" class="nav-link nav-toggle">
-                    <i class="fa fa-stethoscope"></i>
-                    <span class="title">Dịch Vụ</span>
-                    <span class="selected"></span>
-                </a>
-                <!-- end receipt  -->
-            </li>
+             
+            @can('receptionist')
             <li class="nav-item 
             {{ (Request::is('appointment/*') || Request::is('appointment') || Request::is('appointment/*') ? 'active' : '') }}
             ">
@@ -155,6 +146,7 @@
                     <span class="selected"></span>
                 </a>
             </li>
+            @endcan
             <!-- <li class="nav-item start">
                 <a href="{{asset('medicalrecord')}}" class="nav-link nav-toggle">
                     <i class="fa fa-heart"></i>

@@ -10,7 +10,7 @@
         <div class="row">
           <div class="banner-info">
             <div class="banner-logo text-center">
-              <img src="client/img/logo.png" class="img-responsive">
+              <img src="../client/img/logo.png" class="img-responsive">
             </div>
             <div class="banner-text text-center">
               <h1 class="white">Hỏi đáp cùng bác sĩ</h1>
@@ -69,59 +69,7 @@
         <!-- end menu -->
         
         <div class="col-md-9">
-          <form action="{{asset('blog')}}" method="post" enctype="multipart/form-data" >
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" name="patientId" value="@if(Auth::guard('patient')->check()) {{Auth::guard('patient')->user()->id}} @endif">
-            <!-- post-question -->
-            <div class="service-info blog-border">
-              <div class="row blog-content">
-                <div class="col-md-1 avatar-user">
-                  <img src="{{asset('img/patient/'.Auth::guard('patient')->user()->avatar)}}" alt="">
-                </div>
-                <div class="col-md-11">
-                  <div class="title-question">
-                    <i class="fa fa-question-circle"></i> Đặt câu hỏi
-                  </div>
-                  <div class="question">
-                    <textarea class="" name="content"  rows="10" placeholder="Bạn muốn hỏi bác sĩ điều gì?"></textarea>
-                  </div>
 
-                  <div class="question-pic" id="gallery"></div>
-
-                  <button type="button" class="btn btn-danger" id="del-btn"><i class="fa fa-trash-o"></i></button>
-                </div>
-              </div>
-
-              <div class="row blog-footer pad-10">
-                <div class="col-md-3">
-                  <select name="specializationId" class="form-control">
-                    @foreach($specializations as $spe)
-                    <option value="{{$spe->id}}">{{$spe->name}}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-md-offset-5 col-md-1 image-upload">
-                  <center> 
-                    <label for="gallery-photo-add">
-                      <i class="fa fa-camera"> </i> 
-                    </label>
-                  </center>
-                  <input type="file" id="gallery-photo-add" name="image[]"  multiple="">
-                            
-                </div>
-                
-                <div class="col-md-2">
-                  <input type="checkbox" name="anonymous"> Đăng ẩn danh
-                </div>
-                <div class="col-md-1">
-                  <button type="submit" class="btn-send">Gửi</button>
-                </div>
-              </div>
-            </div>
-            <!-- end post-question -->
-          </form>
-
-          @foreach($questions as $question)
           <!-- posted question -->
           <div class="service-info blog-border" id="post-{{$question->id}}">
             <div class="row blog-content">
@@ -216,7 +164,6 @@
                   @endif
                 </a>
                 <a id="reply-post-{{$question->id}}" class="qt-reply"><i class="fa fa-comment-o fa-fw"></i> Trả lời</a>
-                <a href="{{asset('question/'.$question->id.'#service')}}"><i class="fa fa-eye fa-fw"></i> Chi tiết</a>
               </div>
             </div>
             
@@ -276,9 +223,7 @@
             
           </div>
           <!-- end posted question -->
-          @endforeach
 
-          <center>{{$questions->links()}}</center>
           
         </div>
         
@@ -295,48 +240,12 @@
         //active menu bar
         $('#myNavbar ul .indexBtn').removeClass('active');
         $('#myNavbar ul .askBtn').addClass('active');
-      
-        // Multiple images preview in browser
-        var imagesPreview = function(input, placeToInsertImagePreview) {
-      
-          if (input.files) {
-              var filesAmount = input.files.length;
-
-              for (i = 0; i < filesAmount; i++) {
-                  var reader = new FileReader();
-
-                  reader.onload = function(event) {
-                      $($.parseHTML('<img>')).attr('src', event.target.result).addClass('input-image').appendTo(placeToInsertImagePreview);
-                  }
-
-                  reader.readAsDataURL(input.files[i]);
-              }
-          }
-
-        };
-        
-        $('#del-btn').hide();
-
-        $('#gallery-photo-add').on('change', function() {
-            imagesPreview(this, 'div#gallery');
-            if(this.files.length > 0)
-            {
-              $('#del-btn').show();
-            }
-        });
         
         //save line break textarea
         $('.btn-send').click(function() {
           var text = $('.question textarea').val();
           text = text.replace(/\n\r?/g, '<br />');
           $('.question textarea').val(text);
-        });
-        
-        //delete all image select
-        $('#del-btn').click(function () {
-          $('#gallery-photo-add').val('');
-          $('.input-image').fadeOut();
-          $('#del-btn').hide();
         });
         
         //show less reply //'#post-' + id
@@ -382,7 +291,7 @@
           if($(this).hasClass('like-selected')) {}
           else {
             $(this).addClass('like-selected').html('<i class="fa fa-thumbs-o-up fa-fw"></i> Đã Thích');
-            $.post( "../public/like", $( "#likeform"+questionId ).serialize() );
+            $.post( "../../public/like", $( "#likeform"+questionId ).serialize() );
             likenum = parseInt($('#question-like-'+questionId).text()) + 1;
             $('#question-like-'+questionId).text(likenum);
           }
@@ -397,7 +306,7 @@
             text = $('#a'+id+' textarea[name="content"]').val();
             content = text.replace(/\n\r?/g, '<br />');
             var posting = $.post({
-                url: 'ajax/question/patient-post',
+                url: '../ajax/question/patient-post',
                 type: "POST",
                 data: {_token:_token, patientId: patientId, questionId: questionId, content: content}
             });
