@@ -55,4 +55,37 @@ class TransactionController extends Controller
     	}
 
     }
+
+    //Search
+
+    function search(Request $req)
+    {
+        if(isset($req->fromDate))
+        {
+            $fromDate = Carbon::createFromFormat('d-m-Y', $req->fromDate)->toDateTimeString();
+        }else{
+            $fromDate =Carbon::now()->toDateTimeString();
+        }
+        
+        if ($req->toDate) {
+             $toDate = Carbon::createFromFormat('d-m-Y', $req->toDate)->toDateTimeString();
+        }else{
+             $toDate=Carbon::now()->toDateTimeString();
+        }
+       
+        $query = Order::query();
+
+        var_dump($fromDate);
+        if( isset($fromDate) && isset($toDate))
+            $query->whereBetween("createdAt", [$fromDate, $toDate])->get();
+
+        // if($fromDate != "" && $toDate == "")
+        //     $query::whereDate('createdAt', '=', $fromDate)->get();
+
+        // if($fromDate == "" && $toDate != "")
+        //     $query::whereDate('createdAt', '=', $toDate)->get();
+        $query->orderBy("createdAt", 'desc')->get();
+        $orders =   $query->paginate(5);
+        return view('admin.management.transaction.list',['orders'=>$orders]);
+    }
 }

@@ -144,10 +144,8 @@
                                                         <button type="submit" class="btn btn-primary">
                                                             <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
                                                         </button>
-                                                        <button type="button" class="btn btn-primary">
-                                                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh
-                                                        </button>
-                                                        <a href="{{route('list')}}" class="btn btn-default">
+ 
+                                                        <a href="{{route('backWaitlist')}}" class="btn btn-default">
                                                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                                                         </a>
                                                     </div>
@@ -175,16 +173,38 @@
                                                 <tbody id="table_body">
                                                     <?php $i = 0?>
                                                     @foreach($patient_medicals as $patient_medical)
-                                                    <tr>
+                                                    <tr id="tr{{$patient_medical->id}}">
                                                         <td>{{++$i}}</td>
                                                         <td>{{$patient_medical->disease}}</td>
                                                         <td>{{$patient_medical->note}}</td>
                                                         <td>
-                                                            <div>
-                                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id=""> Xóa</a>
+                                                            <div id="deleteRow">
+                                                                <a  class="btn btn-xs red dropdown-toggle delete" data-id="{{$patient_medical->id}}"> <i class="fa fa-trash-o"></i></a>                             
                                                             </div>
                                                         </td>
                                                     </tr>
+
+                                                    <!-- làm modal delete -->
+                                                    <div class="modal fade" id="modal-1" style="margin-top: 12em ">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                        <span class="sr-only">Close</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title">Xóa tiền căn</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Bạn muốn xóa tiền căn bản thân ?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                                                                    <button type="button" class="btn btn-primary" id="yesBtn">Có</button>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -216,7 +236,7 @@
                                                     <tbody id="fami_body">
                                                          <?php $i = 0?>
                                                         @foreach($fami_medicals as $fami)
-                                                        <tr>
+                                                        <tr id="tr{{$fami->id}}">
                                                             <td>{{++$i}}</td>
                                                             <td>{{$fami->relationship}}</td>
                                                             <td>{{$fami->disease}}</td>
@@ -224,10 +244,32 @@
                                                             <td>{{$fami->note}}</td>
                                                             <td>
                                                                 <div>
-                                                                    <a href="" class="btn btn-xs red dropdown-toggle delete" data-id=""> Xóa</a>
+                                                                    <a href="" class="btn btn-xs red dropdown-toggle deleteFami" data-id="{{$fami->id}}"> Xóa</a>
                                                                 </div>
                                                             </td>
                                                         </tr>
+
+                                                         <!-- làm modal delete -->
+                                                    <div class="modal fade" id="modal-2" style="margin-top: 12em ">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                        <span class="sr-only">Close</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title">Xóa tiền căn</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Bạn muốn xóa tiền căn gia đình ?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                                                                    <button type="button" class="btn btn-primary" id="yesDelete">Có</button>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
                                                         @endforeach
                                                     </tbody>
                                                 </table>
@@ -235,35 +277,160 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane" id="patient_4">
+                                   <div class="tab-pane" id="patient_4">
 
                                         <div class="col-sm-12" style="margin-top: 20px;">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-hover" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>STT</th>
-                                                            <th>Bệnh Nhân</th>
-                                                            <th>Giới Tính</th>
-                                                            <th>Số Điện Thoại</th>
-                                                            <th>Ghi chú</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>{{$patient->fullname}}</td>
-                                                            <td>
-                                                                @if($patient->gender == 1) Nam @else Nữ @endif
-                                                            </td>
-                                                            <td>
-                                                                {{$patient->phone}}
-                                                            </td>
-                                                            <td>{{$patient['note']}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <form class="form-horizontal">
+
+                                                <div class="col-md-6">
+                                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                    <div class="form-body">
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Họ Tên</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" value="{{$patient['fullname']}}" required name="fullname" class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Ngày Sinh</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" value="@if($patient['DOB']) {{Carbon\Carbon::Parse($patient['DOB'])->format('d-m-Y')}} @endif" name="birthday"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Giới Tính</label>
+                                                            <div class="col-md-6">
+                                                                <select name="gender" class="form-control">
+                                                                    <option value="1" @if($patient->gender == 1) selected @endif>Nam
+                                                                    </option>
+                                                                    <option value="0" @if($patient->gender == 0) selected @endif>Nữ
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">CMND</label>
+                                                            <div class="col-md-6">
+                                                                <input type="number" value="{{$patient['passport']}}" name="passport" class="form-control" placeholder="  ">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Số Điện Thoại</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" value="{{$patient->phone}}" required name="phone" class="form-control" placeholder="  ">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Username</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" name="username" value="{{$patient->username}}" class="form-control" placeholder="  ">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Email</label>
+                                                            <div class="col-md-6">
+                                                                <div class="input-icon">
+                                                                    <i class="fa fa-envelope"></i>
+                                                                    <input value="{{$patient['email']}}" type="email" required name="email" class="form-control" placeholder=""> </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- END INFO LEFT -->
+                                                <div class="col-md-6">
+                                                    <form class="form-horizontal" role="form">
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                <label class="col-md-3 control-label">Tôn Giáo</label>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" value="{{$patient['religion']}}" name="religion" class="form-control" placeholder="  ">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-3 control-label">Quốc Gia</label>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" value="Việt Nam" disabled name="religion" class="form-control" placeholder="  ">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-3 control-label">Địa chỉ</label>
+                                                                <div class="col-md-6">
+                                                                    <textarea name="address" class="form-control" rows="5">{{$patient['address']}}</textarea>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-3 control-label">Nhóm Máu</label>
+                                                                <div class="col-md-6">
+                                                                    <select class="form-control" name="bloodgroup">
+                                                                        <option value="" @if($patient[ 'bloodgroup']=="" ) selected @endif>Chưa biết</option>
+                                                                        <option value="A" @if($patient[ 'bloodgroup']=="A" ) selected @endif>A</option>
+                                                                        <option value="B" @if($patient[ 'bloodgroup']=="B" ) selected @endif>B</option>
+                                                                        <option value="O" @if($patient[ 'bloodgroup']=="O" ) selected @endif>O</option>
+                                                                        <option value="AB" @if($patient[ 'bloodgroup']=="AB" ) selected @endif>AB</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-3 control-label">Dị Ứng</label>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" value="{{$patient['allergic']}}" name="allergic" class="form-control" placeholder="  ">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-group">
+                                                                <div class="col-md-offset-3 col-md-9">
+                                                                    <div class="mt-checkbox-list">
+                                                                        <label class="mt-checkbox mt-checkbox-outline">
+                                                                            <input name="active" value="1" @if($patient->active==1) checked @endif type="checkbox">Hoạt
+                                                                            Động
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                </div>
+
+                                                </form>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-hover" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>STT</th>
+                                                                <th>Bệnh Nhân</th>
+                                                                <th>Giới Tính</th>
+                                                                <th>Số Điện Thoại</th>
+                                                                <th>Ghi chú</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>{{$patient->fullname}}</td>
+                                                                <td>
+                                                                    @if($patient->gender == 1) Nam @else Nữ @endif
+                                                                </td>
+                                                                <td>
+                                                                    {{$patient->phone}}
+                                                                </td>
+                                                                <td>{{$patient['note']}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                         </div>
                                     </div>
 
@@ -355,10 +522,8 @@
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fa fa-lg fa-fw x fa fa-floppy-o"></i>Lưu
                                         </button>
-                                        <button type="button" class="btn btn-primary">
-                                            <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Refresh
-                                        </button>
-                                        <a href="{{route('list')}}" class="btn btn-default">
+
+                                        <a href="{{route('backWaitlist')}}" class="btn btn-default">
                                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                                         </a>
                                     </div>
@@ -455,7 +620,7 @@
                                         <a href="{{route('history',['id'=>$id])}}" type="button" class="btn btn-default">
                                             <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Xem Lịch Sử Khám
                                         </a>
-                                        <a href="{{route('list')}}" class="btn btn-default">
+                                        <a href="{{route('backWaitlist')}}" class="btn btn-default">
                                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                                         </a>
                                     </div>
@@ -690,7 +855,7 @@
                                         <a href="{{route('history',['id'=>$id])}}" type="button" class="btn btn-default">
                                             <i class="fa fa-lg fa-fw x fa fa-refresh"></i>Xem Lịch Sử Khám
                                         </a>
-                                        <a href="{{route('list')}}" class="btn btn-default">
+                                        <a href="{{route('backWaitlist')}}" class="btn btn-default">
                                             <i class="fa fa-lg fa-fw x fa fa-times"></i>Đóng
                                         </a>
                                     </div>
@@ -1208,6 +1373,71 @@
                 $('#price').val(ui.item.price);
             }
         });
+
+
+         //Xoá 1 dòng tiền căn
+            $('.delete').on('click',function(e){
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#modal-1').data('id',id).modal('show');
+            });
+            $("#report").hide();
+            $('#yesBtn').click(function(){
+                var id = $('#modal-1').data('id');
+                $('#modal-1').modal('hide');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: 'patient-medical/'+id,
+                    dataType: 'text',
+                    data: {id: id},
+                    success:function(data){
+                        $('#tr' + id).fadeOut();
+                        $('#tr' + id).remove();
+                        $("#report").show();
+                        setTimeout(function()
+                            {
+                                $('#report').fadeOut();
+                            },4000);
+                    }
+                });
+            });
+
+            //Xoá 1 dòng tiền căn
+            $('.deleteFami').on('click',function(e){
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#modal-2').data('id',id).modal('show');
+            });
+            $("#report").hide();
+            $('#yesDelete').click(function(){
+                var id = $('#modal-2').data('id');
+                $('#modal-2').modal('hide');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: 'fami-medical/'+id,
+                    dataType: 'text',
+                    data: {id: id},
+                    success:function(data){
+                        $('#tr' + id).fadeOut();
+                        $('#tr' + id).remove();
+                        $("#report").show();
+                        setTimeout(function()
+                            {
+                                $('#report').fadeOut();
+                            },4000);
+                    }
+                });
+            });
 
     });
 </script>

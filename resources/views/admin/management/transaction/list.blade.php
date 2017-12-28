@@ -46,7 +46,8 @@
                             <div class="table-toolbar">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" action="{{route('transactionSearch')}}" method="POST">
+                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <div class="col-sm-5">
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Từ ngày</label>
@@ -63,9 +64,8 @@
                                                 </div>
                                                 </div>
                                             </div>
-                                        </form>
 
-                                        <div class="col-sm-5">
+                                            <div class="col-sm-5">
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Đến ngày</label>
                                                     <div class="col-md-8">
@@ -81,29 +81,16 @@
                                                 </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-2">
+                                            <div class="btn-group pull-left">
+                                                <button type="submit" class="btn green  btn-outline dropdown-toggle" ><i class="fa fa-search"></i>Tìm kiếm
+                                                </button>
+                                                
+                                            </div>
+                                             </div>
                                         </form>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Công cụ
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-print"></i> In </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-pdf-o"></i> Lưu thành PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-excel-o"></i> Xuất sang Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <table class="table table-striped table-bordered table-hover table-checkable order-column" >
