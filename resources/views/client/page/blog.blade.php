@@ -216,6 +216,7 @@
                   @endif
                 </a>
                 <a id="reply-post-{{$question->id}}" class="qt-reply"><i class="fa fa-comment-o fa-fw"></i> Trả lời</a>
+                <a href="{{asset('question/'.$question->id.'#service')}}"><i class="fa fa-eye fa-fw"></i> Chi tiết</a>
               </div>
             </div>
             

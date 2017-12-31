@@ -39,12 +39,12 @@ Route::post('/user-multidelete', 'UserController@deleteAll')->middleware(['can:a
         return view('admin.management.appointment.add');
     });
 
-    Route::get('/appointment', 'AppointmentController@list');//->middleware(['can:receptionist']);
-    Route::get('/appointment/search', 'AppointmentController@search');
-    Route::post('/appointment-delete','AppointmentController@delete');
+    Route::get('/appointment', 'AppointmentController@list')->middleware(['can:receptionist']);
+    Route::get('/appointment/search', 'AppointmentController@search')->middleware(['can:receptionist']);
+    Route::post('/appointment-delete','AppointmentController@delete')->middleware(['can:receptionist']);
     Route::post('/appointment-multidelete', 'AppointmentController@deleteAll');
-    Route::post('/appointment/change-status','AppointmentController@changeStatus')->name('changeStatus');
-    Route::post('/appointment/cancel','AppointmentController@cancel');
+    Route::post('/appointment/change-status','AppointmentController@changeStatus')->name('changeStatus')->middleware(['can:receptionist']);
+    Route::post('/appointment/cancel','AppointmentController@cancel')->middleware(['can:receptionist']);
 
 
 
@@ -63,9 +63,9 @@ Route::post('/user-multidelete', 'UserController@deleteAll')->middleware(['can:a
 
 
 Route::get('/medicine', 'MedicineController@list')->name('getlist');
-Route::get('/medicine/add','MedicineController@index');
+Route::get('/medicine/add','MedicineController@index')->middleware(['can:admin']);;
 Route::post('/medicine/add','MedicineController@add')->name('addMedicine');
-Route::get('/medicine/{id}','MedicineController@getEdit')->name('editMedicine');
+Route::get('/medicine/{id}','MedicineController@getEdit')->name('editMedicine')->middleware(['can:admin']);;
 Route::post('/medicine/{id}','MedicineController@postMedicine')->name('postMedicine');
 Route::post('/medicine-delete', 'MedicineController@delete');
 Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
@@ -87,9 +87,9 @@ Route::post('/medicine-multidelete', 'MedicineController@deleteAll');
 
     // PATIENT
     Route::get('/patient', 'PatientController@list')->name('patient');
-    Route::get('/patient/{id}','PatientController@getEdit')->name('edit');
+    Route::get('/patient/{id}','PatientController@getEdit')->name('edit')->middleware(['can:admin']);
     Route::post('/patient/{id}','PatientController@postEdit')->name('editPatient');
-    Route::get('/add-patient','PatientController@show')->name('showPatient');
+    Route::get('/add-patient','PatientController@show')->name('showPatient')->middleware(['can:admin']);
     Route::post('/add-patient','PatientController@index')->name('addPatient');
     Route::post('/patient-delete', 'PatientController@delete');
     Route::post('/patient-multidelete', 'PatientController@deleteAll');
@@ -160,9 +160,11 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
 
     //Transaction
     Route::get('/transaction','TransactionController@list')->name('listTransaction');
-    Route::post('/transaction/payment','TransactionController@payment')->name('transactionPayment');
-    Route::post('/transaction/cancel','TransactionController@cancel')->name('transactionCancel');
-    Route::post('/transaction/search','TransactionController@search')->name('transactionSearch');
+
+    Route::post('/transaction/payment','TransactionController@payment')->name('transactionPayment');//->middleware(['can:cashier']);
+    Route::post('/transaction/cancel','TransactionController@cancel')->name('transactionCancel');//->middleware(['can:cashier']);
+    Route::post('/transaction/search','TransactionController@search')->name('transactionSearch');//->middleware(['can:cashier']);
+
 
     //Medical record
     Route::get('/wait-list','MedicalRecordController@list')->name('backWaitlist');
@@ -251,6 +253,7 @@ Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     Route::post('/like', 'PageController@postLike');
     Route::post('ajax/question/patient-post','PageController@postAnswer');
     Route::get('/doctors/{id}', 'PageController@getDoctors');
+    Route::get('/question/{id}', 'PageController@getQuestion');
 });
 
 

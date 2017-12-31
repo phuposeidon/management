@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="" class="label-bottom">Chọn bác sĩ: </label>
+                        <label for="" class="label-bottom">Chọn bác sĩ: <a target="_blank" href="{{asset('doctors/1#service')}}" class="btn btn-info" id="feedback"><i class="fa fa-comment"></i></a></label>
                         <select name="doctorId" class="form-control br-radius-zero" id="Doctor">
                             <!-- <option value="">Bác sĩ bất kỳ</option> -->
                             @foreach($doctors as $doctor)
@@ -68,6 +68,8 @@
 			$("#Spec").change(function(){
 				var idSpecialization = $(this).val();
 				$.get("ajax/specialization/"+idSpecialization, function(data){
+                    var href = "doctors/" + idSpecialization +"#service";
+                    $('#feedback').attr('href',href);
 					$("#Doctor").html(data);
 				});
 			});
