@@ -22,12 +22,10 @@ class OrderMedicineController extends Controller
         $using_med = $req->using_med ? $req->using_med :'';
         $note = $req->note ?  $req->note :'';
         $dosage = $req->dosage ?  $req->dosage : 0;
-
-        $insurance = Insurance::where('patientId','=',$order->patientId)->get();
-        if(isset($insurance->cardCode)){
+        if($order->isInsurance){
             $s = Medicine::find($medicine); 
             $total = ($amount*$dosage*$s->price)+ $order->totalAmount;
-            $order->totalAmount = $total/0.2;
+            $order->totalAmount = $total - ($total*0.2);
             $order->save();
             $order_medicine = new OrderMedicine;
             $order_medicine->orderId = $id;

@@ -668,6 +668,13 @@
                                                 </div>
                                             </div>
 
+                                             <div class="form-group">
+                                                <label class="col-md-3 control-label">Tổng</label>
+                                                <div class="col-md-8">
+                                                    <input type="number" id="amount"  class="form-control">
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <!-- END INFO LEFT -->
@@ -786,7 +793,7 @@
                                             <label class="col-md-4 control-label">Chọn dịch vụ CĐHA</label>
                                             <div class="col-md-6" style="margin-top: 10px;">
                                                 <select id="mau_cdha" name="mau_cdha_id" class="form-control">
-                                                    <option value="A">Chọn mẫu</option>
+                                                    <option value="">Chọn mẫu</option>
                                                     @foreach($service_cdha as $cdha)
                                                     <option value="{{$cdha->id}}">{{$cdha->name}}</option>
                                                     @endforeach
@@ -835,6 +842,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" id="orderCdha" name="orderCdha">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -1247,6 +1255,7 @@
                 console.log(a);
                 if (data.success = 200) {
                     $('#orderId').val(data.orderId);
+                    $('#orderCdha').val(data.orderId);
                     $('#medicalRecord').css({
                         display: 'block'
                     });
@@ -1315,7 +1324,7 @@
             var afternoon = $('#afternoon').val();
             var evening = $('#evening').val();
             var night = $('#night').val();
-            var amount = parseInt(morning) + parseInt(afternoon) + parseInt(evening) + parseInt(night);
+            var amount = $('#amount').val();
             var using_med = $('#using_med').val();
             var note = $('#note').val();
             var price = $('#price').val();
@@ -1346,8 +1355,10 @@
         $('#mau_cdha').on('change', function (event) {
             event.preventDefault();
             var id = $("#mau_cdha").val();
+
             $.get('cdha/' + id, function (data) {
                 CKEDITOR.instances.editor2.insertHtml(data);
+
             });
 
         });

@@ -98,37 +98,41 @@ class MedicalRecordController extends Controller
         $medicalrecord->save();
         if ( $medicalrecord->save()) {
 
-            $insurrance = Insurance::where('patientId',$req->id)->get();
+            $insurrance = Insurance::where('patientId',$req->id)->whereDate('toDate','>=',Carbon::now())->get();
             if(isset($insurrance[0]['cardCode'])){
-                $order->totalAmount = ($service->price)/0.2;
+                $order->totalAmount = $service->price;
                 $order->medicalRecordId = $medicalrecord->id;
                 $order->patientId = $req->id;
                 $order->orderCode = "HD".rand(10,1000);
                 $order->createdAt = Carbon::now();
                 $order->updatedAt = Carbon::now();
                 $order->totalAmount = $service->price;
+                $order->isInsurance = 1;
                 $order->save();
                 $orderService = new OrderService;
                 $orderService->orderId = $order->id;
                 $orderService->serviceId = $req->serviceId;
                 $orderService->save();
+                return  response()->json(["success"=>200,"orderId"=>$order->id]);
             }else{
-                 $order->medicalRecordId = $medicalrecord->id;
-                 $order->patientId = $req->id;
+                $order->medicalRecordId = $medicalrecord->id;
+                $order->patientId = $req->id;
                 $order->orderCode = "HD-".rand(10,1000);
                 $order->createdAt = Carbon::now();
                 $order->updatedAt = Carbon::now();
                  $order->totalAmount = $service->price;
+                 $order->isInsurance = 0;
                 $order->save();
 
                 $orderService = new OrderService;
                 $orderService->orderId = $order->id;
                 $orderService->serviceId = $req->serviceId;
                 $orderService->save();
+                return  response()->json(["success"=>200,"orderId"=>$order->id]);
             }
            
 
-            return  response()->json(["success"=>200,"orderId"=>$order->id]);
+            
                  }
         }
         
@@ -160,33 +164,93 @@ class MedicalRecordController extends Controller
     }
 
     function upload(Request $req){
-       $input=$req->all();
        $cdha_image = new CDHAImage;
-       $content = htmlspecialchars($_POST['content']);
-       $cdha = new CDHA;
-       $cdha->serviceId = $req->mau_cdha_id;
-       $cdha->result = $content;
-       $cdha->patientId = $req->patient_id;
-       $cdha->save();
-  
-       if($cdha->save())
-       {
-            $images=array();
-             $picture =[];
-        if($files=$req->file('images')){
-            foreach($files as $file){
-                $name=$file->getClientOriginalName();
-                $file->move('image',$name);
-                $picture[] = [
-                    'url' =>'image/'.$name,
-                    'cdhaId' => $cdha->id
-                ];
-                $images[]=$name;
+       $order = Order::find($req->orderCdha);
+       $service = Service::find($req->mau_cdha_id);
+       if($order->isInsurance){
+            $order->totalAmount = $order->totalAmount+($service['price']-($service['price']*0.2));
+            $order->save();
+            $content = htmlspecialchars($_POST['content']);
+           $cdha = new CDHA;
+           $cdha->serviceId = $req->mau_cdha_id;
+           $cdha->result = $content;
+
+           $cdha->patientId = $req->patient_id;
+           $cdha->save();
+            if($cdha->save())
+           {
+                $images=array();
+                 $picture =[];
+            if($files=$req->file('images')){
+                foreach($files as $file){
+                    $name=$file->getClientOriginalName();
+                    $file->move('image',$name);
+                    $picture[] = [
+                        'url' =>'image/'.$name,
+                        'cdhaId' => $cdha->id
+                    ];
+                    $images[]=$name;
+                }
+               CDHAImage::insert($picture );
+               return back()->with('cdha',"Lưu Chẩn đoán hình ảnh thành công");
             }
-           CDHAImage::insert($picture );
-           return back()->with('cdha',"Lưu Chẩn đoán hình ảnh thành công");
-        }
+           }
+
+       }else{
+         $order->totalAmount = $order->totalAmount + $service['price'];
+            $order->save();
+            $content = htmlspecialchars($_POST['content']);
+           $cdha = new CDHA;
+           $cdha->serviceId = $req->mau_cdha_id;
+           $cdha->result = $content;
+
+           $cdha->patientId = $req->patient_id;
+           $cdha->save();
+            if($cdha->save())
+           {
+                $images=array();
+                 $picture =[];
+            if($files=$req->file('images')){
+                foreach($files as $file){
+                    $name=$file->getClientOriginalName();
+                    $file->move('image',$name);
+                    $picture[] = [
+                        'url' =>'image/'.$name,
+                        'cdhaId' => $cdha->id
+                    ];
+                    $images[]=$name;
+                }
+               CDHAImage::insert($picture );
+               return back()->with('cdha',"Lưu Chẩn đoán hình ảnh thành công");
+            }
+           }
        }
+       // $content = htmlspecialchars($_POST['content']);
+       // $cdha = new CDHA;
+       // $cdha->serviceId = $req->mau_cdha_id;
+       // $cdha->result = $content;
+
+       // $cdha->patientId = $req->patient_id;
+       // $cdha->save();
+  
+       // if($cdha->save())
+       // {
+       //      $images=array();
+       //       $picture =[];
+       //  if($files=$req->file('images')){
+       //      foreach($files as $file){
+       //          $name=$file->getClientOriginalName();
+       //          $file->move('image',$name);
+       //          $picture[] = [
+       //              'url' =>'image/'.$name,
+       //              'cdhaId' => $cdha->id
+       //          ];
+       //          $images[]=$name;
+       //      }
+       //     CDHAImage::insert($picture );
+       //     return back()->with('cdha',"Lưu Chẩn đoán hình ảnh thành công");
+       //  }
+       // }
         
         // echo htmlspecialchars($_POST['content']);
     }

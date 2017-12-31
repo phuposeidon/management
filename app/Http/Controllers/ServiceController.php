@@ -34,7 +34,7 @@ class ServiceController extends Controller
 
 	function add(Request $req){
 		$service = new Service;
-		$content = htmlspecialchars($_POST['content']);
+		$content = $_POST['content'];
 		$allSpecialization = Specialization::all();
 		$service->specializationId = $req->user;
 		$service->name = $req->name;
