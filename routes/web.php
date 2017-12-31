@@ -253,7 +253,7 @@ Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     Route::post('/like', 'PageController@postLike');
     Route::post('ajax/question/patient-post','PageController@postAnswer');
     Route::get('/doctors/{id}', 'PageController@getDoctors');
-    Route::get('/question/{id}', 'PageController@getQuestion');
+    Route::get('/qt/{id}', 'PageController@getQuestion');
 });
 
 

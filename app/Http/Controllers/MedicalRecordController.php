@@ -32,7 +32,7 @@ class MedicalRecordController extends Controller
 {
     function list(){
     	$currentDate = Carbon::now()->toDateTimeString();
-    	$waiters = Appointment::whereDate('appointmentDate', '=', Carbon::today()->toDateString())->orderBy('appointmentDate','desc')->paginate(10);
+    	$waiters = Appointment::where('doctorId',Auth::user()->id)->whereDate('appointmentDate', '=', Carbon::today()->toDateString())->orderBy('appointmentDate','desc')->paginate(10);
     	$i=1;
     	return view('admin.management.waitlist.list',['waiters'=>$waiters,'i'=>$waiters->count()]);
     }
