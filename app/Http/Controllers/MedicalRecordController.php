@@ -179,6 +179,10 @@ class MedicalRecordController extends Controller
            $cdha->save();
             if($cdha->save())
            {
+                $orderService = new OrderService;
+                $orderService->orderId = $req->orderCdha;
+                $orderService->serviceId = $req->mau_cdha_id;
+                $orderService->save();
                 $images=array();
                  $picture =[];
             if($files=$req->file('images')){
@@ -208,6 +212,10 @@ class MedicalRecordController extends Controller
            $cdha->save();
             if($cdha->save())
            {
+                 $orderService = new OrderService;
+                $orderService->orderId = $req->orderCdha;
+                $orderService->serviceId = $req->mau_cdha_id;
+                $orderService->save();
                 $images=array();
                  $picture =[];
             if($files=$req->file('images')){
@@ -225,34 +233,7 @@ class MedicalRecordController extends Controller
             }
            }
        }
-       // $content = htmlspecialchars($_POST['content']);
-       // $cdha = new CDHA;
-       // $cdha->serviceId = $req->mau_cdha_id;
-       // $cdha->result = $content;
-
-       // $cdha->patientId = $req->patient_id;
-       // $cdha->save();
-  
-       // if($cdha->save())
-       // {
-       //      $images=array();
-       //       $picture =[];
-       //  if($files=$req->file('images')){
-       //      foreach($files as $file){
-       //          $name=$file->getClientOriginalName();
-       //          $file->move('image',$name);
-       //          $picture[] = [
-       //              'url' =>'image/'.$name,
-       //              'cdhaId' => $cdha->id
-       //          ];
-       //          $images[]=$name;
-       //      }
-       //     CDHAImage::insert($picture );
-       //     return back()->with('cdha',"Lưu Chẩn đoán hình ảnh thành công");
-       //  }
-       // }
-        
-        // echo htmlspecialchars($_POST['content']);
+       
     }
     //End cdha
 

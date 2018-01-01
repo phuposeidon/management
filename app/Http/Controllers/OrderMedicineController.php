@@ -30,7 +30,7 @@ class OrderMedicineController extends Controller
             $order_medicine = new OrderMedicine;
             $order_medicine->orderId = $id;
             $order_medicine->medicineId =$medicine;
-            $order_medicine->amount = $amount * $dosage;
+            $order_medicine->amount = $amount;
             $order_medicine->morning = $morning;
             $order_medicine->afternoon =$afternoon;
             $order_medicine->evening = $evening;
