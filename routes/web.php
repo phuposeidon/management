@@ -63,7 +63,7 @@ Route::post('/user-multidelete', 'UserController@deleteAll')->middleware(['can:a
 
 
 Route::get('/medicine', 'MedicineController@list')->name('getlist');
-Route::get('/medicine/add','MedicineController@index')->middleware(['can:admin']);;
+Route::get('/medicine/add','MedicineController@index')->middleware(['can:admin']);
 Route::post('/medicine/add','MedicineController@add')->name('addMedicine');
 Route::get('/medicine/{id}','MedicineController@getEdit')->name('editMedicine')->middleware(['can:admin']);;
 Route::post('/medicine/{id}','MedicineController@postMedicine')->name('postMedicine');
