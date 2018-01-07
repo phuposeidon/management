@@ -89,8 +89,9 @@
                                         <th> Giá</th>
                                         <th> Phòng Khám </th>
                                         <th> Chuyên Khoa</th>
-                                        <th> Sửa </th>
-                                        <th> Xóa </th>
+                                        <th> Trang thái</th>
+                                        <th> Hành dộng </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -117,17 +118,22 @@
                                             {{$service->Specialization->name}} 
                                         @endif
                                         </td>
+                                        <td class="td{{$service->id}}">
+                                            @if($service->active==1)
+                                                <span style="margin-left: 20px;" class="label label-success">Hoạt động</span>
+                                            @else
+                                                <span style="margin-left: 20px;" class="label label-danger">Ngưng hoạt động</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div>
                                                 <a href="{{route('getEdit',['id'=>$service->id])}}" class="btn btn-xs green dropdown-toggle"> <i class="fa fa-edit"></i></a>
+
+                                                 <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$service->id}}"> <i class="fa fa-trash-o"></i></a>                             
                                                 
                                             </div>
                                         </td>
-                                        <td>
-                                            <div>
-                                                <a href="" class="btn btn-xs red dropdown-toggle delete" data-id="{{$service->id}}"> <i class="fa fa-trash-o"></i></a>                             
-                                            </div>
-                                        </td>
+                                       
                                     </tr>
                                     <?php $i++?>
                                     @endforeach
@@ -145,10 +151,10 @@
                                                 <span aria-hidden="true">&times;</span>
                                                 <span class="sr-only">Close</span>
                                             </button>
-                                            <h4 class="modal-title">Xóa dịch vụ</h4>
+                                            <h4 class="modal-title">Thay đổi trạng thái dịch vụ</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Bạn muốn xóa dịch vụ?</p>
+                                            <p>Bạn muốn thay đổi trạng thái dịch vụ?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
@@ -217,13 +223,7 @@
                     dataType: 'text',
                     data: {id: id},
                     success:function(data){
-                        $('#tr' + id).fadeOut();
-                        $('#tr' + id).remove();
-                        $("#report").show();
-                        setTimeout(function()
-                            {
-                                $('#report').fadeOut();
-                            },4000);
+                        $('.td'+id).html(data);
                     }
                 });
             });

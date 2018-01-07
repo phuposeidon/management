@@ -17,7 +17,23 @@ class ServiceController extends Controller
 
     function delete(Request $request) {
 		$id = $request->id;
-		Service::find($id)->delete();
+		$service = Service::find($id);
+		
+		if ($service->active ==1) {
+			$service->active = 0;
+			$service->save();
+			if ($service->save()) {
+			echo '<span style="margin-left: 20px;" class="label label-danger">Ngưng hoạt động</span>';
+			}
+		}else{
+			$service->active = 1;
+			$service->save();
+			if ($service->save()) {
+			echo '<span style="margin-left: 20px;" class="label label-success">Hoạt động</span>';
+			}
+		}
+		
+		
 	}
 
 	function deleteAll(Request $request) {
