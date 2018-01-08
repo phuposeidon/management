@@ -285,8 +285,10 @@ class PageController extends Controller
         
         QuestionImage::insert($picture);
         \Session::flash('flash_message','Đã gửi câu hỏi thành công.'); 
-        return redirect('blog#service');
+        return redirect('blog#service')->with('questionId',$question->id );
     }
+
+
 
     public function postAnswer(Request $request) {
         //dd($request->all());
@@ -295,14 +297,17 @@ class PageController extends Controller
         $answer->questionId = $request->questionId;
         $answer->content = $request->content;
         $answer->save();
-
+        $patient = Patient::find($request->patientId);
         $date_created = Carbon::Parse($answer->crearedAt)->format('d-m-Y H:i');
 
         $data = [
             'questionId' => $answer->questionId,
             'content' => $answer->content,
             'patient' => $answer->Patient->fullname,
-            'createdAt' => $date_created,
+            'doctor'=>'',
+            'patient_avatar'=>$patient->avatar,
+            'user_avatar'=>'',
+            'createdAt' => $date_created
         ];
         return json_encode($data);
     }

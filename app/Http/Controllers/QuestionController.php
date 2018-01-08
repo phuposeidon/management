@@ -8,6 +8,7 @@ use App\QuestionImage;
 use App\Answer;
 use App\Post;
 use App\Like;
+use App\User;
 use Carbon\Carbon;
 
 class QuestionController extends Controller
@@ -29,16 +30,19 @@ class QuestionController extends Controller
         $answer->questionId = $request->questionId;
         $answer->content = $request->content;
         $answer->save();
-
+        $user = User::find($request->doctorId);
         //$date_created = Carbon::Parse($answer->createdAt)->format('d-m-Y H:i');
         $old= Carbon::Parse($answer->createdAt)->format('d-m-Y H:i');
         $hour= Carbon::Parse($answer->createdAt)->format('H');
         $date_created = substr_replace($old, $hour + 7 , 11, 2);
-
         $data = [
             'content' => $answer->content,
             'doctor' => $answer->User->fullname,
             'createdAt' => $date_created,
+            'patient'=>'',
+            'patient_avatar'=>'',
+            'user_avatar'=>$user->avatar,
+            'questionId'=>$request->questionId
         ];
         //dd($data);
         return json_encode($data);

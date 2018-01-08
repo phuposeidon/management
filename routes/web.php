@@ -172,7 +172,7 @@ Route::post('/service/{id}','ServiceController@postService')->name('postService'
     Route::get('/diagnosis','MedicalRecordController@waitList');
 
     Route::get('/question','QuestionController@showList');
-    Route::get('/question/{id}','QuestionController@getAnswer');
+    Route::get('/question/{id}','QuestionController@getAnswer')->name('questionId');
     Route::post('ajax/question/post','QuestionController@postAnswer');
     Route::post('ajax/question/searchUrl','QuestionController@searchUrl');
     Route::post('ajax/question/addUrl','QuestionController@addUrl');
@@ -250,10 +250,14 @@ Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     Route::post('/ajax/feedback/patient-post', 'PageController@postFeedback');
     Route::get('/blog', 'PageController@getBlog');
     Route::post('/blog', 'PageController@postBlog');
+    Route::get('/question2', 'PageController@getTest');
     Route::post('/like', 'PageController@postLike');
     Route::post('ajax/question/patient-post','PageController@postAnswer');
     Route::get('/doctors/{id}', 'PageController@getDoctors');
-    Route::get('/question/{id}', 'PageController@getQuestion');
+    Route::get('/qt/{id}', 'PageController@getQuestion');
+    Route::get('/forum',function(){
+        return view('client.page.forum');
+    });
 });
 
 

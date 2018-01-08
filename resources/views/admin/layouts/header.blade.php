@@ -10,6 +10,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- <base href="{{asset('')}}"> -->
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="css/jquery.toast.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="{!!url('global/plugins/font-awesome/css/font-awesome.min.css')!!}" rel="stylesheet" type="text/css" />
         <link href="global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
@@ -25,6 +26,9 @@
         <link href="global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
         <link href="global/plugins/typeahead/typeahead.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
+        <!-- END PAGE LEVEL PLUGINS -->
+                <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
