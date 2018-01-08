@@ -155,6 +155,7 @@
                 </a>
             </li> -->
             
+            @can('cashier')
             <li class="nav-item  
             {{ (Request::is('transaction/*') || Request::is('transaction') || Request::is('transaction/*') ? 'active' : '') }}
             ">
@@ -165,7 +166,7 @@
                 </a>
                 <!-- end receipt  -->
             </li>
-
+            @endcan
             <li class="nav-item  
             {{ (Request::is('question/*') || Request::is('question') || Request::is('question/*') ? 'active' : '') }}
             ">

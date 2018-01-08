@@ -201,7 +201,7 @@
     <!-- modal order -->
     @foreach($getOrders as $order)
     <div class="modal fade" id="order-{{$order->id}}" style="margin-top: 2em ">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="width: 700px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -242,7 +242,7 @@
                                         <th>{{$t}}</th>
                                         <th>{{$service->Service->name}}</th>
                                         <th>{{$service->Service->serviceCode}}</th>
-                                        <th>{{number_format($service->Service->price)}}đ</th>
+                                        <th class="text-right">{{number_format($service->Service->price)}}đ</th>
                                     </tr>
                                 <?php $t++; ?>
                                 @endforeach
@@ -251,7 +251,7 @@
                                     <th>{{$t}}</th>
                                     <th>Khám thường</th>
                                     <th>BT</th>
-                                    <th>250,000đ</th>
+                                    <th class="text-right">250,000đ</th>
                                 </tr>
                             @endif
                         </tbody>
@@ -281,15 +281,21 @@
                                 <th>{{$medicine->Medicine->name}}</th>
                                 <th>{{$medicine->Medicine->Unit->name}}</th>
                                 <th>{{$medicine->amount}}</th>
-                                <th>{{number_format($medicine->Medicine->price)}}đ</th>
-                                <th>{{number_format($medicine->totalPrice)}}đ</th>
+                                <th class="text-right">{{number_format($medicine->Medicine->price)}}đ</th>
+                                <th class="text-right">{{number_format($medicine->totalPrice)}}đ</th>
                             </tr>
                             <?php $j++; ?>
                             @endforeach
                         </tbody>
                     </table>
 
-                    <h3>Tổng cộng: <span style="color: red">{{number_format($order->totalAmount)}}đ</span></h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Giảm giá BHYT: <span style="color: red">0đ</span></h4>
+                            <h3>Tổng cộng: <span style="color: red">{{number_format($order->totalAmount)}}đ</span></h3>
+                        </div>
+                    </div>
+                    
 
                 </div>
                 <div class="modal-footer">

@@ -63,7 +63,7 @@ Route::post('/user-multidelete', 'UserController@deleteAll')->middleware(['can:a
 
 
 Route::get('/medicine', 'MedicineController@list')->name('getlist');
-Route::get('/medicine/add','MedicineController@index')->middleware(['can:admin']);;
+Route::get('/medicine/add','MedicineController@index')->middleware(['can:admin']);
 Route::post('/medicine/add','MedicineController@add')->name('addMedicine');
 Route::get('/medicine/{id}','MedicineController@getEdit')->name('editMedicine')->middleware(['can:admin']);;
 Route::post('/medicine/{id}','MedicineController@postMedicine')->name('postMedicine');
@@ -255,9 +255,7 @@ Route::group(['prefix' => '', 'middleware' => 'loginClient'], function() {
     Route::post('ajax/question/patient-post','PageController@postAnswer');
     Route::get('/doctors/{id}', 'PageController@getDoctors');
     Route::get('/qt/{id}', 'PageController@getQuestion');
-    Route::get('/forum',function(){
-        return view('client.page.forum');
-    });
+
 });
 
 

@@ -58,20 +58,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-                    </div>
-                    <!-- END INFO LEFT -->
-                    <div class="col-md-6">
-                            <div class="form-body">
-                                
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Tổng Cộng</label>
-                                    <div class="col-md-6">
-                                        <input type="text" value="{{number_format($getOrderById->totalAmount)}}đ" required name="price" class="form-control" disabled="">
-                                    </div>
-                                </div>
-
-                                
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Trạng Thái</label>
                                     <div class="col-md-6" style="padding-top: 10px">
@@ -82,6 +68,37 @@
                                         @else
                                             <span class="label label-danger">Đã hủy</span>
                                         @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                    <!-- END INFO LEFT -->
+                    <div class="col-md-6">
+                            <div class="form-body">
+                                
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">BHYT</label>
+                                    <div class="col-md-6" style="padding-top: 10px">
+                                        <!-- if($getOrderById->status == "new") -->
+                                            <!-- <span class="label label-success">Áp dụng</span> -->
+                                        <!-- else -->
+                                            <span class="label label-danger">Không</span>
+                                        <!-- endif -->
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Giảm BHYT</label>
+                                    <div class="col-md-6">
+                                        <input type="text" value="{{number_format(0)}}đ" required name="price" class="form-control" disabled="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tổng Cộng</label>
+                                    <div class="col-md-6">
+                                        <input type="text" value="{{number_format($getOrderById->totalAmount)}}đ" required name="price" class="form-control" disabled="">
                                     </div>
                                 </div>
 

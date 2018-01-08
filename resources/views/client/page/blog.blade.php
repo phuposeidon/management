@@ -218,10 +218,12 @@
                   <i class="fa fa-thumbs-o-up fa-fw"></i>
                   @if(isset($like[0])) Đã Thích @else Thích @endif
                 </a>
+
                 <a id="reply-post-{{$question->id}}" class="qt-reply">
                   <i class="fa fa-comment-o fa-fw"></i> Trả lời</a>
                 <a href="{{asset('qt/'.$question->id.'#service')}}">
                   <i class="fa fa-eye fa-fw"></i> Chi tiết</a>
+
               </div>
             </div>
 
