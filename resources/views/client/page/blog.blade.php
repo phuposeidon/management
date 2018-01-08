@@ -494,7 +494,7 @@
           socket.emit('answer', answer);
         });
       });
-
+      //asdasd
       socket.on('answerSuccess', function (answer) {
        if(answer.doctor=='')
        {
