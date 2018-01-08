@@ -83,13 +83,46 @@ class PageController extends Controller
 
     public function showHour(Request $request) {
 
+        // $appointmentDate = $request->appointmentDate;
+        $doctorId = $request->doctorId;
+        $allHours = Hours::all();
+
+        //$allAppointments = Appointment::select('id','appointmentDate')->where('doctorId', $doctorId)->get();
+        
+        //get all appointment in selected date
+        // $selectedDates = [];
+        // foreach($allAppointments as $appointment)
+        // {
+        //     $appo = Carbon::Parse($appointment['appointmentDate'])->format('d-m-Y');
+        //     if($appo == $appointmentDate) {
+        //         $selectedDates[] = array(
+        //             'id' => $appointment['id'],
+        //             'hour' => Carbon::Parse($appointment['appointmentDate'])->format('H:i:s'),
+        //         );
+        //     }
+        // }
+        //$selectedDates = Appointment::whereIn('id', $date_array)->get();
+        if(isset($request->patientId))
+        {
+            $getPatientId = $request->patientId;
+        }
+        else $getPatientId = Auth::guard('patient')->user()->id;
+
+        return view('client.page.hours', [
+            // 'appointmentDate' => $appointmentDate, 
+            // 'allHours' => $allHours, 
+            // 'selectedDates' => $selectedDates, 
+            'getPatientId' => $getPatientId, 
+            'doctorId' => $doctorId]);
+    }
+    public function getHours(Request $request){
+        //dd($request->all());
+        $data = [];
         $appointmentDate = $request->appointmentDate;
         $doctorId = $request->doctorId;
         $allHours = Hours::all();
 
-        //$allAppointments = Appointment::select('appointmentDate')->get();
         $allAppointments = Appointment::select('id','appointmentDate')->where('doctorId', $doctorId)->get();
-        
         //get all appointment in selected date
         $selectedDates = [];
         foreach($allAppointments as $appointment)
@@ -102,21 +135,32 @@ class PageController extends Controller
                 );
             }
         }
-        //$selectedDates = Appointment::whereIn('id', $date_array)->get();
-        if(isset($request->patientId))
-        {
-            $getPatientId = $request->patientId;
+        for($i = 0; $i < count($allHours); $i++) {
+            $data[$i]['hour'] = substr($allHours[$i]['hour'],0,5);
+            $data[$i]['seat'] = "Còn chỗ";
+            foreach($selectedDates as $appointment)
+            {
+                if($appointment['hour'] != $allHours[$i]['hour'] )
+                    $data[$i]['seat'] = "Còn chỗ";
+                else
+                {
+                    $data[$i]['seat'] = "Hết chỗ";
+                    break;
+                }
+            }
         }
-        else $getPatientId = Auth::guard('patient')->user()->id;
-
-        return view('client.page.hours', ['appointmentDate' => $appointmentDate, 'allHours' => $allHours, 'selectedDates' => $selectedDates, 'getPatientId' => $getPatientId, 'doctorId' => $doctorId]);
+        // echo "<pre>";
+        // var_dump($selectedDates);
+        return json_encode($data);
     }
     public function postAppointment(Request $request) {
+        //dd($request->all());
+        
         $appointment = new Appointment;
         $appointment->clinicId = 1;
         $appointment->doctorId = $request->doctorId;
         $appointment->patientId = $request->patientId;
-        $appointment->appointmentDate = $request->appointmentDate;
+        $appointment->appointmentDate = Carbon::createFromFormat('d-m-Y H:i:s',$request->appointmentDate)->toDateTimeString();
         $appointment->save();
 
         return redirect('index')->with('thongbao',  'Bạn đã đặt lịch khám thành công.');

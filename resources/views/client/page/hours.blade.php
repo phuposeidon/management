@@ -8,43 +8,37 @@
         <div class="row">
           <div class="col-md-offset-3 col-md-6 banner-info-1">
             <div class="banner-text text-center">
-                <form action="{{asset('post-appointment')}}" method="POST">
+                <form action="{{asset('post-appointment')}}" method="POST" id="postAppointment">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="patientId" value="{{$getPatientId}}">
                     <input type="hidden" name="doctorId" value="{{$doctorId}}">
                     <input type="hidden" name="appointmentDate">
 
                     <h1 class="white">Chọn khung giờ khám </h1>
+                    
+                    <div class="row">
+                        <label class="col-md-offset-1 col-md-3 text-right" style="margin-top: 10px;">Bác sĩ:</label> 
+                        <div class="col-md-6"> 
+                            <input type="text" class="form-control br-radius-zero text-center" value="{{App\User::find($doctorId)->fullname}}" readonly=""/></p>
+                        </div>
+                    <!-- $appointmentDate  -->
+                    </div>
 
-                    <p>Ngày khám: {{$appointmentDate}} </p>
+                    <div class="row">
+                        <label for="appointment-date" class="col-md-offset-1 col-md-3 text-right" style="margin-top: 10px;">Ngày khám:</label> 
+                        <div class="col-md-6"> 
+                            <input type="text" class="form-control br-radius-zero datepicker text-center" id="selectedDate" name="appointment-date" value="{{Carbon\Carbon::today()->format('d-m-Y')}}" readonly=""/></p>
+                        </div>
+                    <!-- $appointmentDate  -->
+                    </div>
+                    
 
                     <ul class="hours-board">
-                        @foreach($allHours as $hour)
-                        <li class="hours-box">
-                            <p>{{substr($hour->hour, 0 , 5)}}</p>
-                            <span class="seat">
-                                <?php 
-                                    $i = "Còn chỗ";                                   
-                                    foreach($selectedDates as $appointment)
-                                    {
-                                        if($appointment['hour'] != $hour->hour )
-                                            $i = "Còn chỗ";
-                                        else
-                                        {
-                                            $i = "Hết chỗ";
-                                            break;
-                                        }
-                                    }
-                                    echo $i;
-                                ?>
-                            </span>
-                            <input type="hidden" name="selected-hour" value="{{Carbon\Carbon::createFromFormat('d-m-Y H:i:s',$appointmentDate.' '.$hour->hour)->toDateTimeString()}}"> 
-                        </li>
-                        @endforeach
+                        
                         
                     </ul>
 
-                    <button id="selectBtn" type="submit" class="btn btn-appoint">Chọn giờ</button>
+                    <button id="selectBtn" type="button" class="btn btn-appoint">Chọn giờ</button>
                     <!-- data-toggle="modal" data-target="#modal-success" -->
                 </form>
             </div>
@@ -84,20 +78,64 @@
       $('#myNavbar ul .indexBtn').removeClass('active');
       $('#myNavbar ul .bookingBtn').addClass('active');
 
-      $(".seat:contains('Hết chỗ')").parent('li.hours-box').addClass('hours-noslot');
-    
-      $val = 0;
-      $('.hours-box').click(function(){
+      //Select booking date (the next day at default)
+      $('#selectedDate').datepicker('option', 'beforeShowDay', function(date) {
+                var day = date.getDay();
+                return [(day != 0 && day != 6), ''];
+            }
+        );
+        $('#selectedDate').datepicker("option", "minDate", 1);
+
+        $('#selectedDate').change(function() {
+            $('.hours-box').remove();
+            _token = $('input[name="_token"]').val();
+            doctorId = $('input[name="doctorId"]').val();
+            appointmentDate = $('#selectedDate').val();
+            var posting = $.post({
+                url: 'ajax/get-hours',
+                type: "POST",
+                data: {_token:_token, appointmentDate: appointmentDate,doctorId:doctorId}
+            });
+            posting.done(function(data){
+                hours = jQuery.parseJSON( data );
+                array = '';
+                console.log(appointmentDate);
+                for(i = 0; i < hours.length;i++) {
+                    date = appointmentDate + " " + hours[i].hour + ":00";
+                    array += `
+                    <li class="hours-box">
+                        <p>`+ hours[i].hour+`</p>
+                        <span class="seat">`+hours[i].seat+`</span>
+                        <input type="hidden" name="selected-hour" value="`+date+`"> 
+                    </li>
+                    `;
+                }
+                $('.hours-board').append(array);
+                $(".seat:contains('Hết chỗ')").parent('li.hours-box').addClass('hours-noslot');
+                $val = 0;
+                $('.hours-box').click(function(){
+                    
+                    $('.hours-board li').removeClass('hours-selected');
+                    $(this).addClass('hours-selected');
+                    if($(this).hasClass('hours-noslot')) {
+                    $(this).removeClass('hours-selected');
+                    }
+                    //get selected hour 
+                    $val = $(".hours-selected input[type=hidden][name=selected-hour]").val();
+                    $('input[name="appointmentDate"]').val($val);
+                });
+            });
+        });
         
-        $('.hours-board li').removeClass('hours-selected');
-        $(this).addClass('hours-selected');
-        if($(this).hasClass('hours-noslot')) {
-          $(this).removeClass('hours-selected');
-        }
-        //get selected hour 
-        $val = $(".hours-selected input[type=hidden][name=selected-hour]").val();
-        $('input[name="appointmentDate"]').val($val);
-      });
+        $('#selectBtn').click(function(){
+            value = $('input[name="appointmentDate"]').val();
+            if(jQuery.isEmptyObject(value)) {
+                alert("Vui lòng chọn giờ khám.");
+            }
+            else {
+                $('#postAppointment').submit();
+            }
+        });
 
       
     });

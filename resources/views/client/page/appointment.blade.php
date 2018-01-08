@@ -27,7 +27,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="" class="label-bottom">Chọn bác sĩ: <a target="_blank" href="{{asset('doctors/1#service')}}" class="btn btn-info" id="feedback"><i class="fa fa-comment"></i></a></label>
+                        <label for="" class="label-bottom">Chọn bác sĩ: 
+                        @if(Auth::guard('patient')->user())
+                        <a target="_blank" href="{{asset('doctors/1#service')}}" class="btn btn-info" id="feedback"><i class="fa fa-comment"></i></a>
+                        @endif
+                        </label>
                         <select name="doctorId" class="form-control br-radius-zero" id="Doctor">
                             <!-- <option value="">Bác sĩ bất kỳ</option> -->
                             @foreach($doctors as $doctor)
@@ -35,12 +39,12 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="" class="label-bottom">Chọn ngày khám: </label>
                         <input type="text" class="form-control br-radius-zero datepicker" id="selectedDate" name="appointmentDate" value="{{Carbon\Carbon::today()->format('d-m-Y')}}" readonly=""/>
-                        <!-- required oninvalid="this.setCustomValidity('Vui lòng chọn ngày khám')"
-        oninput="setCustomValidity('')" -->
-                     </div>
+                        required oninvalid="this.setCustomValidity('Vui lòng chọn ngày khám')"
+        oninput="setCustomValidity('')" 
+                     </div> -->
 
                     <button type="submit" class="btn btn-appoint">Chọn giờ</button>
                 </form>
@@ -75,12 +79,12 @@
 			});
 
             //Select booking date (the next day at default)
-            $('#selectedDate').datepicker('option', 'beforeShowDay', function(date) {
-                    var day = date.getDay();
-                    return [(day != 0 && day != 6), ''];
-                }
-            );
-            $('#selectedDate').datepicker("option", "minDate", 1);
+            // $('#selectedDate').datepicker('option', 'beforeShowDay', function(date) {
+            //         var day = date.getDay();
+            //         return [(day != 0 && day != 6), ''];
+            //     }
+            // );
+            // $('#selectedDate').datepicker("option", "minDate", 1);
             
             
         });
