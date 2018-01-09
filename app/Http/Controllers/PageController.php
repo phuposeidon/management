@@ -154,7 +154,6 @@ class PageController extends Controller
         return json_encode($data);
     }
     public function postAppointment(Request $request) {
-        //dd($request->all());
         
         $appointment = new Appointment;
         $appointment->clinicId = 1;
@@ -163,7 +162,10 @@ class PageController extends Controller
         $appointment->appointmentDate = Carbon::createFromFormat('d-m-Y H:i:s',$request->appointmentDate)->toDateTimeString();
         $appointment->save();
 
-        return redirect('index')->with('thongbao',  'Bạn đã đặt lịch khám thành công.');
+        $request->appointmentDate = Carbon::createFromFormat('d-m-Y H:i:s',$request->appointmentDate)->format('d-m-Y');
+        $array = $this->getHours($request);
+        
+        return $array;
     }
 
     public function getSignUp() {

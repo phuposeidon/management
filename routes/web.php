@@ -232,7 +232,8 @@ Route::post('/appointments', 'PageController@showAppointment');
 Route::get('ajax/specialization/{idSpecialization}', 'PageController@getDoctor');
 Route::post('/hours', 'PageController@showHour');
 Route::post('ajax/get-hours', 'PageController@getHours');
-Route::post('/post-appointment', 'PageController@postAppointment');
+Route::post('ajax/post-appointment', 'PageController@postAppointment');
+//Route::post('/post-appointment', 'PageController@postAppointment');
 
 Route::get('/posts', 'PageController@getListPost');
 Route::get('/post/{id}', 'PageController@getPost');

@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-md-offset-3 col-md-6 banner-info-1">
             <div class="banner-text text-center">
-                <form action="{{asset('post-appointment')}}" method="POST" id="postAppointment">
+                <!-- <form action="{{asset('post-appointment')}}" method="POST" id="postAppointment"> -->
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="patientId" value="{{$getPatientId}}">
                     <input type="hidden" name="doctorId" value="{{$doctorId}}">
@@ -40,7 +40,7 @@
 
                     <button id="selectBtn" type="button" class="btn btn-appoint">Chọn giờ</button>
                     <!-- data-toggle="modal" data-target="#modal-success" -->
-                </form>
+                <!-- </form> -->
             </div>
 
           </div>
@@ -133,7 +133,43 @@
                 alert("Vui lòng chọn giờ khám.");
             }
             else {
-                $('#postAppointment').submit();
+                //$('#postAppointment').submit();
+                
+
+                _token = $('input[name="_token"]').val();
+                doctorId = $('input[name="doctorId"]').val();
+                patientId = $('input[name="patientId"]').val();
+                appointmentDate = $('input[name="appointmentDate"]').val();
+                var posting = $.post({
+                    url: 'ajax/post-appointment',
+                    type: "POST",
+                    data: {_token:_token, appointmentDate: appointmentDate,doctorId:doctorId,patientId:patientId}
+                });
+                posting.done(function(data){
+                    $('.hours-box').remove();
+                    hours = jQuery.parseJSON( data );
+                    array = '';
+                    console.log(appointmentDate);
+                    for(i = 0; i < hours.length;i++) {
+                        date = appointmentDate + " " + hours[i].hour + ":00";
+                        array += `
+                        <li class="hours-box">
+                            <p>`+ hours[i].hour+`</p>
+                            <span class="seat">`+hours[i].seat+`</span>
+                            <input type="hidden" name="selected-hour" value="`+date+`"> 
+                        </li>
+                        `;
+                    }
+                    $('.hours-board').append(array);
+                    $(".seat:contains('Hết chỗ')").parent('li.hours-box').addClass('hours-noslot');
+
+                    alert("Chúc mừng bạn đã đặt lịch thành công!");
+
+                    setTimeout(function () {
+                        location.href = "index";
+                    }, 5000);
+                });
+
             }
         });
 
