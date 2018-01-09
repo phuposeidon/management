@@ -13,6 +13,7 @@
                     <input type="hidden" name="patientId" value="{{$getPatientId}}">
                     <input type="hidden" name="doctorId" value="{{$doctorId}}">
                     <input type="hidden" name="appointmentDate">
+                    <input type="hidden" name="seatId">
 
                     <h1 class="white">Chọn khung giờ khám </h1>
                     
@@ -103,7 +104,7 @@
                 for(i = 0; i < hours.length;i++) {
                     date = appointmentDate + " " + hours[i].hour + ":00";
                     array += `
-                    <li class="hours-box">
+                    <li class="hours-box" id="`+ hours[i].seatId+`">
                         <p>`+ hours[i].hour+`</p>
                         <span class="seat">`+hours[i].seat+`</span>
                         <input type="hidden" name="selected-hour" value="`+date+`"> 
@@ -123,6 +124,7 @@
                     //get selected hour 
                     $val = $(".hours-selected input[type=hidden][name=selected-hour]").val();
                     $('input[name="appointmentDate"]').val($val);
+                    $('input[name="seatId"]').val($(this).attr('id'));
                 });
             });
         });
@@ -146,22 +148,8 @@
                     data: {_token:_token, appointmentDate: appointmentDate,doctorId:doctorId,patientId:patientId}
                 });
                 posting.done(function(data){
-                    $('.hours-box').remove();
-                    hours = jQuery.parseJSON( data );
-                    array = '';
-                    console.log(appointmentDate);
-                    for(i = 0; i < hours.length;i++) {
-                        date = appointmentDate + " " + hours[i].hour + ":00";
-                        array += `
-                        <li class="hours-box">
-                            <p>`+ hours[i].hour+`</p>
-                            <span class="seat">`+hours[i].seat+`</span>
-                            <input type="hidden" name="selected-hour" value="`+date+`"> 
-                        </li>
-                        `;
-                    }
-                    $('.hours-board').append(array);
-                    $(".seat:contains('Hết chỗ')").parent('li.hours-box').addClass('hours-noslot');
+                    seatId = $('input[name="seatId"]').val();
+                    $('#' + seatId).addClass('hours-noslot');
 
                     alert("Chúc mừng bạn đã đặt lịch thành công!");
 

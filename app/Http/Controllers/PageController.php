@@ -138,6 +138,7 @@ class PageController extends Controller
         for($i = 0; $i < count($allHours); $i++) {
             $data[$i]['hour'] = substr($allHours[$i]['hour'],0,5);
             $data[$i]['seat'] = "Còn chỗ";
+            $data[$i]['seatId'] = $allHours[$i]['id'];
             foreach($selectedDates as $appointment)
             {
                 if($appointment['hour'] != $allHours[$i]['hour'] )
