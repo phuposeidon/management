@@ -234,10 +234,11 @@
   <!--/ service-->
   
   @include('client.layouts.footer')
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script>
       $(document).ready(function () {
         //active menu bar
+        var socket = io(':3001');
         $('#myNavbar ul .indexBtn').removeClass('active');
         $('#myNavbar ul .askBtn').addClass('active');
         
@@ -286,16 +287,30 @@
         });
 
         //like selected
-        $('.btn-answer .like').click(function () {
-          questionId = $(this).attr('id');
-          if($(this).hasClass('like-selected')) {}
-          else {
-            $(this).addClass('like-selected').html('<i class="fa fa-thumbs-o-up fa-fw"></i> Đã Thích');
-            $.post( "../../public/like", $( "#likeform"+questionId ).serialize() );
-            likenum = parseInt($('#question-like-'+questionId).text()) + 1;
-            $('#question-like-'+questionId).text(likenum);
-          }
-        });
+      $('.btn-answer .like').click(function () {
+        var questionId = $(this).attr('id');
+        if ($(this).hasClass('like-selected')) {} else {
+          $(this).addClass('like-selected').html('<i class="fa fa-thumbs-o-up fa-fw"></i> Đã Thích');
+          $.post("../../public/like", $("#likeform" + questionId).serialize(), function (data) {
+            likenum = parseInt($('#question-like-' + questionId).text()) + 1;
+
+            var like = {
+              likenum: likenum,
+              questionId: questionId
+            };
+
+            socket.emit('like', like);
+
+          });
+
+        }
+      });
+
+
+      //Like socket 
+      socket.on('likeSuccess', function (count) {
+        $('#question-like-' + count.questionId).text(count.likenum);
+      });
 
         //ajax send answer
         $('.sendAnswer').click(function (){
@@ -310,25 +325,63 @@
                 type: "POST",
                 data: {_token:_token, patientId: patientId, questionId: questionId, content: content}
             });
-            posting.done(function(data){
-                var arr = jQuery.parseJSON(data);
-                var questionId = arr.questionId;
-                var content = arr.content;
-                var patient = arr.patient;
-                var createdAt = arr.createdAt;
-                $('#question-'+questionId).append(`
+            posting.done(function (data) {
+              var arr = jQuery.parseJSON(data);
+              var questionId = arr.questionId;
+              var content = arr.content;
+              var patient = arr.patient;
+              var createdAt = arr.createdAt;
+              var doctor =  arr.doctor;
+              var patient_avatar =  arr.patient_avatar;
+              var user_avatar = arr.user_avatar;
+              var answer = {
+                questionId: questionId,
+                content: content,
+                patient: patient,
+                doctor:doctor,
+                createdAt: createdAt,
+                patient_avatar:patient_avatar,
+                user_avatar:user_avatar
+           };
+          socket.emit('answer', answer);
+        });
+      });
+      //asdasd
+      socket.on('answerSuccess', function (answer) {
+       if(answer.doctor=='')
+       {
+          $('#question-' + answer.questionId).append(
+          `
                 <div class="user-answer blog-content row">
-                  <div class="avatar-user col-md-1"><img src="{{asset('img/patient/'.Auth::guard('patient')->user()->avatar)}}" alt=""></div>
+                  <div class="avatar-user col-md-1"><img src="/management/public/img/patient/`+answer.patient_avatar+`" alt=""></div>
                   <div class="col-md-11 pad-10">
-                    <b>`+patient+`</b>
-                    <p class="text-justify">`+content+`</p>
+                    <b>` +
+          answer.patient + `</b>
+                    <p class="text-justify">` + answer.content +
+          `</p>
                   </div>
                 </div>
                 `);
-                $('#answer-box-'+questionId).val('');
-                replynum = parseInt($('#question-reply-'+questionId).text()) + 1;
-                $('#question-reply-'+questionId).text(replynum);
-            });
+        $('#answer-box-' + answer.questionId).val('');
+        replynum = parseInt($('#question-reply-' + answer.questionId).text()) + 1;
+        $('#question-reply-' + answer.questionId).text(replynum);
+       }else{
+          $('#question-' + answer.questionId).append(
+          `
+                <div class="user-answer blog-content row">
+                  <div class="avatar-user col-md-1"><img src="img/user/`+answer.user_avatar+`" alt=""></div>
+                  <div class="col-md-11 pad-10">
+                    <b><i class="fa fa-user-md" style="color: #5cb85c; font-size: 25px"></i> Bác sĩ` +
+          answer.doctor + `</b>
+                    <p class="text-justify">` + answer.content +
+          `</p>
+                  </div>
+                </div>
+                `);
+        $('#answer-box-' + answer.questionId).val('');
+        replynum = parseInt($('#question-reply-' + answer.questionId).text()) + 1;
+        $('#question-reply-' + answer.questionId).text(replynum);
+       }
         });
 
       });

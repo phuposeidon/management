@@ -71,10 +71,10 @@
 
   </section>
     @include('client.layouts.footer')
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
   <script>
     $(document).ready(function() {
-
+        var socket = io(':3001');
         //active menu bar
       $('#myNavbar ul .indexBtn').removeClass('active');
       $('#myNavbar ul .bookingBtn').addClass('active');
@@ -149,18 +149,23 @@
                 });
                 posting.done(function(data){
                     seatId = $('input[name="seatId"]').val();
-                    $('#' + seatId).addClass('hours-noslot');
-
-                    alert("Chúc mừng bạn đã đặt lịch thành công!");
-
                     setTimeout(function () {
                         location.href = "index";
                     }, 5000);
+                    socket.emit('appointment',seatId);
+                    
                 });
 
             }
         });
 
+        socket.on('response_hour',function(msg){
+            $('#' + msg).addClass('hours-noslot');
+
+                    alert("Chúc mừng bạn đã đặt lịch thành công!");
+
+                    
+        })
       
     });
   </script>
