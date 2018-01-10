@@ -51,15 +51,18 @@ io.on('connection', function (socket) {
         console.log(count);
         io.sockets.emit('likeSuccess',count);
     });
-
+    //notification
     socket.on('notification',function(notification){
         io.sockets.emit('notifi_success',notification);
         console.log(notification);
-    })
-
+    });
+    //Appointment
+    socket.on('appointment',function(msg){
+        io.sockets.emit('response_hour',msg);
+    });
     socket.on('disconnect', function () {
         console.log('user is disconnected');
-    })
+    });
 
 
 });
