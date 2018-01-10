@@ -8,7 +8,7 @@
               <h4 class="white no-padding">Về chúng tôi</h4>
             </div>
             <div class="info-sec">
-              <p>Praesent convallis tortor et enim laoreet, vel consectetur purus latoque penatibus et dis parturient.</p>
+              <p class="text-justify">Với tâm nguyện phục vụ cho bệnh nhân một cách tốt nhất, phòng khám của chúng tôi sở hữu một đội ngũ y sĩ có chuyên môn, tận tâm với nghề, luôn phục vụ người bệnh với phương châm "Lương y như từ mẫu".</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-4 marb20">
