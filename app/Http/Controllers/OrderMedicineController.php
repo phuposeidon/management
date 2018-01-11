@@ -11,7 +11,8 @@ class OrderMedicineController extends Controller
 {
     function add(Request $req){
         $order = Order::find($req->orderId);
-    	$id = $req->id ? $req->id :'';
+        $id = $req->id ? $req->id :'';
+        $unit = $req->unit ? $req->unit :'';
         $medicine = $req->medicine ?$req->medicine:'';
         $amount = $req->amount ? $req->amount :0 ;
         $morning = $req->morning ? $req->morning:0 ;
@@ -72,7 +73,7 @@ class OrderMedicineController extends Controller
                             <!-- ngIf: item.ingredientObjs -->
                         </td>
                         <td width="8%">
-                            <span  >Viên</span>
+                            <span  >'.$unit.'</span>
                         </td>
 
 

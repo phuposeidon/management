@@ -23,6 +23,7 @@ use App\OrderService;
 use App\GeneralIndex;
 use App\Specialization;
 use App\Service;
+use App\Unit;
 use App\Insurance;
 use App\Record;
 use App\CDHAImage;
@@ -31,9 +32,10 @@ use App\CDHA;
 class MedicalRecordController extends Controller
 {
     function list(){
-    	$currentDate = Carbon::now()->toDateTimeString();
+        $currentDate = Carbon::now()->toDateTimeString();
+        
     	$waiters = Appointment::where('doctorId',Auth::user()->id)->whereDate('appointmentDate', '=', Carbon::today()->toDateString())->orderBy('appointmentDate','desc')->paginate(10);
-    	$i=1;
+        $i=1;
     	return view('admin.management.waitlist.list',['waiters'=>$waiters,'i'=>$waiters->count()]);
     }
 
@@ -44,13 +46,11 @@ class MedicalRecordController extends Controller
             $medicine =  Medicine::find($history_medicine->medicineId);
             echo "<tr>
                     <td>".$medicine->name."</td>
-                    <td>Viên</td>
                     <td>".$history_medicine->morning."</td>
                     <td>".$history_medicine->afternoon."</td>
                     <td>".$history_medicine->evening."</td>
                    <td>".$history_medicine->night."</td>
-                   <td>".$history_medicine->evening."</td>
-                    <td>".$history_medicine->expireDay."</td>
+                    <td>".$history_medicine->dosage."</td>
                    <td>".$history_medicine->using_med."</td>
                    <td>".$history_medicine->note."</td>
                 </tr>";
@@ -246,7 +246,8 @@ class MedicalRecordController extends Controller
 
         foreach ($queries as $query)
     {
-        $results[] = [ 'id' => $query->id, 'value' => $query->name,'price'=>$query->price];
+        $unit = Unit::where('id','=',$query->unitId)->first();
+        $results[] = [ 'id' => $query->id, 'value' => $query->name,'price'=>$query->price,'unit'=>$unit->name,'unitId'=>$query->unitId];
     }
     return Response::json($results);
     }

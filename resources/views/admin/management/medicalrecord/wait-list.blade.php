@@ -667,9 +667,17 @@
                                                     <input type="number" id="dosage" name="dosage" class="form-control">
                                                 </div>
                                             </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Đơn vị</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="unit"  class="form-control">
+                                                </div>
+                                            </div>
 
-                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Tổng</label>
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Số lượng</label>
                                                 <div class="col-md-8">
                                                     <input type="number" id="amount"  class="form-control">
                                                 </div>
@@ -1012,7 +1020,6 @@
                                                 <tr>
                                                     <th width="15%">Tên thuốc
                                                         <br>Dược chất chính</th>
-                                                    <th width="8%">Đơn vị</th>
                                                     <th width="3%">Sáng</th>
                                                     <th width="3%">Trưa</th>
                                                     <th width="3%">Chiều</th>
@@ -1318,6 +1325,7 @@
         $('#add_medicine').on('click', function (event) {
             var name = $("#medicine").val();
             var medicine = $("#medicine").attr('data-id');
+            var unit = $("#unit").val();
             var id = $('#getId').val();
             var dosage = $('#dosage').val();
             var morning = $("#morning").val();
@@ -1340,6 +1348,7 @@
                 night: night,
                 using_med: using_med,
                 note: note,
+                unit: unit,
                 price: price,
                 dosage: dosage,
                 orderId: $('#orderId').val()
@@ -1382,6 +1391,11 @@
                     "data-id": ui.item.id
                 }); // display the selected text
                 $('#price').val(ui.item.price);
+                $('#unit').val(ui.item.unit);
+                 $("#unit").attr({
+                    "data-id": ui.item.unitId
+                }); // display the selected text
+                console.log(ui);
             }
         });
 

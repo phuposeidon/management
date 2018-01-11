@@ -95,15 +95,13 @@
             <div class="mt-boxy-color"></div>
             <div class="medi-info">
               <h3>Trường hợp khẩn cấp</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-              <a href="#" class="medi-info-btn">CHI TIẾT</a>
+              <p> Hỗ trợ 24h để bảo vệ sức khỏe cho bạn và người thân  </p>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="medi-info">
-              <h3>Trường hợp khẩn cấp</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-              <a href="#" class="medi-info-btn">CHI TIẾT</a>
+              <h3>Tư vấn & hỏi đáp</h3>
+              <p>Đội ngũ bác sĩ giàu kinh nghiệm sẽ trả lời các thắc mắc cho bạn, mọi thông tin cá nhân đều được chúng tôi bảo mật. </p>
             </div>
           </div>
           <div class="col-md-4 col-sm-4 mt-boxy-3">
@@ -181,7 +179,7 @@
         </div>
 
         @foreach($topDoctors as $doc)
-        <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="col-md-3 col-sm-12 col-xs-12">
           <div class="thumbnail" style="height: 400px">
             <img src="{{asset('img/user/'.$doc->avatar)}}" alt="..." class="team-img" style="height:245px; width:245px">
             <div class="caption">
